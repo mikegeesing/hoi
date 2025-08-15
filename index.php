@@ -18,9 +18,9 @@ if ($conn->connect_error) {
 }
 
 // --- SQL Query ---
-// This is the query to select the "voornaam" (first name) from a table called "users".
+// This is the query to select the "achternaam" (last name) from a table called "users".
 // You should replace "users" with the actual name of your table if it's different.
-$sql = "SELECT voornaam FROM users";
+$sql = "SELECT achternaam FROM users";
 
 // --- Execute the Query ---
 $result = $conn->query($sql);
@@ -30,12 +30,12 @@ if ($result && $result->num_rows > 0) {
     // --- Loop Through the Results ---
     // The while loop iterates over each row of the result set.
     // `mysqli_fetch_assoc` fetches one row as an associative array.
-    echo "<h1>First Names</h1>";
+    echo "<h1>Last Names</h1>";
     echo "<ul>";
     while($row = $result->fetch_assoc()) {
-        // We access the "voornaam" column from the associative array.
+        // We access the "achternaam" column from the associative array.
         // We use htmlspecialchars to prevent XSS vulnerabilities when displaying user-provided data.
-        $doe = htmlspecialchars($row["voornaam"]);
+        $doe = htmlspecialchars($row["achternaam"]);
         echo "<li>" . $doe . "</li>";
     }
     echo "</ul>";
