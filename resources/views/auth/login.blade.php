@@ -43,5 +43,47 @@
                 {{ __('Log in') }}
             </x-primary-button>
         </div>
+
+        <div class="flex items-center justify-end mt-4">
+            <button id="passkey-login" type="button" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                {{ __('Log in with passkey') }}
+            </button>
+        </div>
     </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/@laragear/webpass@2/dist/webpass.min.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const btn = document.getElementById('passkey-login');
+            if (!btn) return;
+
+            const setBusy = (busy) => {
+                btn.disabled = busy;
+                btn.textContent = busy ? 'Bezig...' : 'Log in met passkey';
+            };
+
+            btn.addEventListener('click', async () => {
+                if (!window.Webpass || Webpass.isUnsupported()) {
+                    alert('Passkeys worden niet ondersteund op dit apparaat.');
+                    return;
+                }
+
+                setBusy(true);
+                try {
+                    const { success, error } = await Webpass.assert('/webauthn/login/options', '/webauthn/login');
+                    if (success) {
+                        window.location.href = '/dashboard';
+                        return;
+                    }
+
+                    alert(error || 'Kon niet inloggen met passkey.');
+                } catch (err) {
+                    console.error(err);
+                    alert('Kon niet inloggen met passkey.');
+                } finally {
+                    setBusy(false);
+                }
+            });
+        });
+    </script>
 </x-guest-layout>

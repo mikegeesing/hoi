@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\AdminTokenPageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestoreController;
 use App\Http\Controllers\DashboardController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,9 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// WebAuthn routes for passkeys
+WebAuthnRoutes::register()->withoutMiddleware(VerifyCsrfToken::class);
 
 /*
 |--------------------------------------------------------------------------
