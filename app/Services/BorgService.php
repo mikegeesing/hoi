@@ -72,7 +72,6 @@ class BorgService
         // Others (when using plain borg or different env) may emit ls-style lines
         // like: drwx--x--x onlineho onlineho 0 Wed, 2025-12-03 14:16:44 home/onlineho
         $raw = trim($process->getOutput());
-        \Illuminate\Support\Facades\Log::debug('BorgService::listFiles raw output preview', ['archive' => $archive, 'path' => $path, 'preview' => substr($raw,0,400)]);
 
         $files = [];
         if ($raw === '') {
