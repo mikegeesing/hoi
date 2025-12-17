@@ -14,7 +14,7 @@ class AdminTokenPageController extends Controller
     {
         $tokens = RestoreToken::orderByDesc('created_at')->get();
 
-        // Decrypt the stored encrypted token for admins so they can view it
+        // Decrypt the stored encrypted token for admins so ze altijd zichtbaar is in de view
         if (auth()->check() && auth()->user()->is_admin) {
             foreach ($tokens as $t) {
                 try {
