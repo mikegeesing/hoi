@@ -24,7 +24,11 @@ class AdminTokenPageController extends Controller
                         $t->plain_token = null;
                     }
                 } catch (\Throwable $e) {
-                    \Log::error('Failed to decrypt token for token ID ' . $t->id . ': ' . $e->getMessage());
+                    \Log::error('Failed to decrypt token for token ID ' . $t->id . ': ' . $e->getMessage(), [
+                        'APP_KEY' => config('app.key'),
+                        'CIPHER' => config('app.cipher'),
+                        'token_encrypted_length' => strlen($t->token_encrypted ?? ''),
+                    ]);
                     $t->plain_token = null;
                 }
             }
