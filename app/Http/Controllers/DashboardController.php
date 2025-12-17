@@ -51,6 +51,5 @@ class DashboardController extends Controller
         return view('dashboard', [
             'events' => $events ?? [],
         ]);
-        ]);
     }
 }
