@@ -14,23 +14,23 @@ class AdminTokenPageController extends Controller
     {
         $tokens = RestoreToken::orderByDesc('created_at')->get();
 
+        \Log::info('AdminTokenPageController@index: loaded ' . count($tokens) . ' tokens');
+
         // Decrypt the stored encrypted token for admins so ze altijd zichtbaar is in de view
-        if (auth()->check() && auth()->user()->is_admin) {
-            foreach ($tokens as $t) {
-                try {
-                    if ($t->token_encrypted) {
-                        $t->plain_token = Crypt::decryptString($t->token_encrypted);
-                    } else {
-                        $t->plain_token = null;
-                    }
-                } catch (\Throwable $e) {
-                    \Log::error('Failed to decrypt token for token ID ' . $t->id . ': ' . $e->getMessage(), [
-                        'APP_KEY' => config('app.key'),
-                        'CIPHER' => config('app.cipher'),
-                        'token_encrypted_length' => strlen($t->token_encrypted ?? ''),
-                    ]);
+        foreach ($tokens as $t) {
+            \Log::info('Token ' . $t->id . ': has token_encrypted = ' . ($t->token_encrypted ? 'YES' : 'NO'));
+            
+            try {
+                if ($t->token_encrypted) {
+                    $decrypted = Crypt::decryptString($t->token_encrypted);
+                    \Log::info('Token ' . $t->id . ': decrypted successfully, length = ' . strlen($decrypted));
+                    $t->plain_token = $decrypted;
+                } else {
                     $t->plain_token = null;
                 }
+            } catch (\Throwable $e) {
+                \Log::error('Token ' . $t->id . ': decryption failed: ' . $e->getMessage());
+                $t->plain_token = null;
             }
         }
 
