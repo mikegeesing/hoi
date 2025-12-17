@@ -81,6 +81,7 @@ class RestoreController extends Controller
 
         try {
             $files = $borg->listFiles($archive, $path);
+            \Illuminate\Support\Facades\Log::info('restore.showFiles: raw listFiles result', ['archive' => $archive, 'path' => $path, 'result_preview' => is_array($files) ? array_slice($files,0,10) : $files]);
 
             // Normalise different service return shapes into an array of
             // ['type','size','name','path'] entries for the view.
@@ -140,6 +141,21 @@ class RestoreController extends Controller
             }
 
             $files = $normalized;
+
+            // If normalization produced nothing, try root path as fallback and log it
+            if (empty($files) && $path !== '') {
+                \Illuminate\Support\Facades\Log::warning('restore.showFiles: no files for path, retrying root', ['archive' => $archive, 'path' => $path]);
+                try {
+                    $fallback = $borg->listFiles($archive, '');
+                    \Illuminate\Support\Facades\Log::info('restore.showFiles: fallback listFiles', ['archive' => $archive, 'fallback_preview' => is_array($fallback) ? array_slice($fallback,0,10) : $fallback]);
+                    // attempt to normalize fallback if present
+                    if (is_array($fallback) && isset($fallback['files']) && is_array($fallback['files'])) {
+                        $files = $fallback['files'];
+                    }
+                } catch (\Throwable $e) {
+                    \Illuminate\Support\Facades\Log::error('restore.showFiles: fallback failed: ' . $e->getMessage());
+                }
+            }
         } catch (\Throwable $e) {
             Log::error('Filebrowser fout', [
                 'archive' => $archive,
