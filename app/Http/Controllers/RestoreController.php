@@ -170,8 +170,21 @@ class RestoreController extends Controller
             $files = array_filter($files, function ($file) use ($path) {
                 $name = $file['name'] ?? '';
                 $filePath = $file['path'] ?? '';
+                $type = $file['type'] ?? 'file';
                 
-                // Skip Maildir metadata/system folders
+                // Skip relative paths (symlinks)
+                if (str_starts_with($filePath, './')) {
+                    Log::debug('restore.showFiles: skipping relative path', ['path' => $filePath]);
+                    return false;
+                }
+
+                // Skip files with extensions that are incorrectly marked as directories
+                if ($type === 'dir' && preg_match('/\.(html|php|txt|log|conf|xml|json|js|css|sh|py)$/i', $name)) {
+                    Log::debug('restore.showFiles: skipping file with extension marked as dir', ['name' => $name, 'path' => $filePath]);
+                    return false;
+                }
+
+                // Skip hidden system files
                 $skipPatterns = [
                     '/^\./',                    // Starts with dot (hidden/system folders)
                     '/^dovecot-/i',            // Dovecot metadata
@@ -191,24 +204,32 @@ class RestoreController extends Controller
                     }
                 }
 
-                // Skip "home" and user home folder names when viewing /home/onlineho
-                // This prevents showing "onlineho" folder inside /home/onlineho
-                if (str_starts_with($path, '/home/onlineho') && in_array(strtolower($name), ['onlineho', 'home'])) {
+                // Skip "onlineho" folder when viewing /home/onlineho (prevent self-reference)
+                if ($path === 'home/onlineho' && $name === 'onlineho') {
+                    Log::debug('restore.showFiles: skipping onlineho in /home/onlineho');
                     return false;
                 }
                 
                 return true;
             });
 
-            // Remove duplicates by path (first occurrence wins)
-            $seenPaths = [];
-            $files = array_filter($files, function ($file) use (&$seenPaths) {
+            // Remove duplicates by path AND name (case-insensitive)
+            // This prevents showing the same folder twice with different paths
+            $seenNamesPrimary = [];
+            $files = array_filter($files, function ($file) use (&$seenNamesPrimary) {
                 $filePath = $file['path'] ?? '';
-                if (in_array($filePath, $seenPaths)) {
-                    Log::warning('restore.showFiles: duplicate path filtered', ['path' => $filePath]);
+                $name = strtolower($file['name'] ?? '');
+                
+                // For primary directories, only keep first occurrence
+                if ($file['type'] === 'dir' && in_array($name, $seenNamesPrimary)) {
+                    Log::debug('restore.showFiles: duplicate dir filtered', ['name' => $name, 'path' => $filePath]);
                     return false;
                 }
-                $seenPaths[] = $filePath;
+                
+                if ($file['type'] === 'dir') {
+                    $seenNamesPrimary[] = $name;
+                }
+                
                 return true;
             });
 
@@ -224,7 +245,7 @@ class RestoreController extends Controller
                 return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
             })->values()->all();
 
-            Log::info('restore.showFiles: after filtering & sorting', [
+            Log::info('restore.showFiles: final result', [
                 'path' => $path,
                 'files_count' => count($files),
                 'files_list' => array_map(fn($f) => [
