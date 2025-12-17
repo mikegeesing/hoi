@@ -1,171 +1,122 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <title>Backup kalender</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+<x-restore-layout>
+    <x-slot name="token">{{ $token }}</x-slot>
+    
+    <x-slot name="head">
+        <!-- FullCalendar -->
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+        <style>
+            .fc .fc-toolbar-title { font-size: 1.25rem; font-weight: 700; }
+            .fc .fc-button { background-color: #4f46e5; border-color: #4f46e5; }
+            .fc .fc-button:hover { background-color: #4338ca; border-color: #4338ca; }
+            .fc .fc-button-primary:not(:disabled).fc-button-active { background-color: #3730a3; border-color: #3730a3; }
+        </style>
+    </x-slot>
 
-    <!-- FullCalendar -->
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
-
-    <style>
-        body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #f6f7f9;
-            margin: 0;
-            padding: 40px 20px;
-            color: #111827;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .topbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin: 0;
-        }
-
-        .btn {
-            background: #2563eb;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .btn:hover {
-            background: #1e4fd8;
-        }
-
-        .card {
-            background: rgba(255,255,255,0.8);
-            border-radius: 16px;
-            padding: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            backdrop-filter: blur(8px);
-        }
-
-        /* FullCalendar styling */
-        .fc .fc-toolbar-title {
-            font-size: 18px;
-            font-weight: 700;
-        }
-
-        .fc .fc-daygrid-event {
-            border-radius: 10px;
-            padding: 4px 8px;
-            font-weight: 600;
-        }
-
-        .fc .fc-daygrid-day-number {
-            font-weight: 600;
-            color: #374151;
-        }
-    </style>
-</head>
-<body>
-
-<div class="container">
-
-    <div class="topbar">
-        <div>
-            <h1 class="text-2xl font-bold">Backup kalender</h1>
-            <div class="text-sm text-gray-600 mt-1">Selecteer een snapshot om te herstellen</div>
+    <div class="space-y-6">
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="min-w-0 flex-1">
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                    Backup Kalender
+                </h2>
+                <div class="mt-1 flex flex-col sm:flex-row sm:flex-wrap sm:space-x-6">
+                    <div class="mt-2 flex items-center text-sm text-gray-500">
+                        <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+                        </svg>
+                        Selecteer een snapshot datum
+                    </div>
+                    @if($path)
+                        <div class="mt-2 flex items-center text-sm text-gray-500">
+                            <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z" clip-rule="evenodd" />
+                            </svg>
+                            Pad: <code class="ml-1 bg-gray-100 px-1 py-0.5 rounded text-xs">{{ $path }}</code>
+                        </div>
+                    @endif
+                </div>
+            </div>
+            <div class="mt-4 flex md:ml-4 md:mt-0">
+                <a href="{{ route('restore.archives') }}?token={{ urlencode($token) }}" class="inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    Lijstweergave
+                </a>
+            </div>
         </div>
 
-        <div class="flex items-center gap-3">
-            <a class="btn" href="/restore?token={{ urlencode($token) }}">
-                Lijstweergave
-            </a>
-            @if($path)
-                <div class="text-sm text-gray-700">Pad: <span class="font-medium">{{ $path }}</span></div>
-            @endif
+        <div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl p-6">
+            <div id="calendar"></div>
         </div>
     </div>
 
-    <div class="card">
-        <div id="calendar"></div>
-    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const events = @json($events);
+        const token  = @json($token);
+        const filesFilter = @json($files ?? null);
 
-</div>
+        const calendar = new FullCalendar.Calendar(
+            document.getElementById('calendar'),
+            {
+                initialView: 'dayGridMonth',
+                height: 'auto',
+                firstDay: 1, // maandag
+                locale: 'nl',
+                buttonText: {
+                    today: 'Vandaag'
+                },
+                events: events,
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,listMonth'
+                },
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-    const events = @json($events);
-    const token  = @json($token);
-    const archiveFilter = @json($archive ?? null);
-    const pathFilter = @json($path ?? null);
-    const filesFilter = @json($files ?? null);
+                eventClick: function(info) {
+                    info.jsEvent.preventDefault();
 
-    const calendar = new FullCalendar.Calendar(
-        document.getElementById('calendar'),
-        {
-            initialView: 'dayGridMonth',
-            height: 'auto',
-            firstDay: 1, // maandag
-            events: events,
+                    const day = info.event.extendedProps.day;
+                    const archiveName = info.event.extendedProps.archive;
 
-            eventClick: function(info) {
-                info.jsEvent.preventDefault();
-
-                const day = info.event.extendedProps.day;
-                const archiveName = info.event.extendedProps.archive;
-
-                if (filesFilter && Array.isArray(filesFilter) && filesFilter.length > 0) {
-                    // Start restore for selected files at the selected archive
-                    fetch('/restore/start', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
-                        },
-                        body: JSON.stringify({
-                            token: token,
-                            archive: archiveName,
-                            files: filesFilter
-                        })
-                    })
-                    .then(r => r.json())
-                    .then(j => {
-                        if (j.job_id) {
-                            alert('Herstel job gestart: ' + j.job_id);
-                            window.location.href = '/restore/status/' + j.job_id + '?token=' + encodeURIComponent(token);
-                        } else if (j.error) {
-                            alert('Fout: ' + j.error);
+                    if (filesFilter && Array.isArray(filesFilter) && filesFilter.length > 0) {
+                        if (!confirm('Wilt u het herstel starten voor ' + filesFilter.length + ' bestanden uit archief "' + archiveName + '"?')) {
+                            return;
                         }
-                    })
-                    .catch(e => alert('Fout bij starten restore: ' + e.message));
 
-                    return;
+                        // Start restore for selected files at the selected archive
+                        fetch('/restore/start', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                            },
+                            body: JSON.stringify({
+                                token: token,
+                                archive: archiveName,
+                                files: filesFilter
+                            })
+                        })
+                        .then(r => r.json())
+                        .then(j => {
+                            if (j.job_id) {
+                                window.location.href = '/restore/status/' + j.job_id + '?token=' + encodeURIComponent(token);
+                            } else if (j.error) {
+                                alert('Fout: ' + j.error);
+                            }
+                        })
+                        .catch(e => alert('Fout bij starten restore: ' + e.message));
+
+                        return;
+                    }
+
+                    // Klik op dag → ga naar files browser voor dat archief
+                    // Oorspronkelijk stuurde dit naar ?date=... maar de files browser verwacht 'archive' param.
+                    // We gebruiken de archive name uit het event.
+                    window.location.href = '/restore/files?token=' + encodeURIComponent(token) + '&archive=' + encodeURIComponent(archiveName);
                 }
-
-                // Klik op dag → ga naar lijst gefilterd op datum
-                window.location.href =
-                    '/restore?token=' + encodeURIComponent(token) +
-                    '&date=' + encodeURIComponent(day) +
-                    '&from_calendar=1';
             }
-        }
-    );
+        );
 
-    calendar.render();
-});
-</script>
-
-</body>
-</html>
-
+        calendar.render();
+    });
+    </script>
+</x-restore-layout>

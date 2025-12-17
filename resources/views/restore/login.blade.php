@@ -1,163 +1,124 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-50">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Borg Restore Portal - Inloggen</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inloggen - Borg Restore Portal</title>
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
-        .login-container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-            padding: 40px;
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
         }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 24px;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #333;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.3s;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        button {
-            width: 100%;
-            padding: 12px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        .alert {
-            padding: 12px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-            font-size: 14px;
-        }
-
-        .alert-error {
-            background-color: #fee;
-            border: 1px solid #fcc;
-            color: #c00;
-        }
-
-        .alert-info {
-            background-color: #eef;
-            border: 1px solid #ccf;
-            color: #006;
-        }
-
-        .info-text {
-            text-align: center;
-            color: #666;
-            font-size: 13px;
-            margin-top: 20px;
-            line-height: 1.5;
-        }
-    </style>
+    </script>
 </head>
-<body>
-    <div class="login-container">
-        <h1>🔐 Restore Portal</h1>
-        <p class="subtitle">Borg Backup Restore</p>
-
-        @if (session('error'))
-            <div class="alert alert-error">
-                {{ session('error') }}
+<body class="h-full font-sans antialiased text-gray-900">
+    <div class="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="flex justify-center">
+                <div class="bg-indigo-600 p-3 rounded-xl shadow-lg">
+                    <svg class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
+                    </svg>
+                </div>
             </div>
-        @endif
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
+                Borg Restore Portal
+            </h2>
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Voer uw token in om toegang te krijgen tot uw backups
+            </p>
+        </div>
 
-        @if (session('success'))
-            <div class="alert alert-info">
-                {{ session('success') }}
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-100">
+                @if (session('error'))
+                    <div class="mb-4 rounded-md bg-red-50 p-4 border border-red-200">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800">Toegang geweigerd</h3>
+                                <div class="mt-2 text-sm text-red-700">
+                                    <p>{{ session('error') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="mb-4 rounded-md bg-green-50 p-4 border border-green-200">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <svg class="h-5 w-5 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                            </div>
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-green-800">Gelukt</h3>
+                                <div class="mt-2 text-sm text-green-700">
+                                    <p>{{ session('success') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                <form class="space-y-6" action="{{ route('restore.archives') }}" method="GET">
+                    <div>
+                        <label for="token" class="block text-sm font-medium leading-6 text-gray-900">
+                            Herstel-token
+                        </label>
+                        <div class="mt-2">
+                            <input 
+                                id="token" 
+                                name="token" 
+                                type="text" 
+                                required 
+                                autofocus
+                                class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                placeholder="Plak uw token hier..."
+                            >
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-colors duration-200">
+                            Inloggen
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-gray-300"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="bg-white px-2 text-gray-500">Info</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center text-xs text-gray-500">
+                        <p>U hebt een geldige herstel-token nodig om verder te gaan.<br>Deze heeft u ontvangen via e-mail van onze administratie.</p>
+                    </div>
+                </div>
             </div>
-        @endif
-
-        <form action="{{ route('restore.archives') }}" method="GET">
-            <div class="form-group">
-                <label for="token">Herstel-token</label>
-                <input 
-                    type="text" 
-                    id="token" 
-                    name="token" 
-                    placeholder="Vul uw herstel-token in" 
-                    required
-                    autofocus
-                >
-            </div>
-
-            <button type="submit">Inloggen</button>
-        </form>
-
-        <p class="info-text">
-            U hebt een geldige herstel-token nodig om verder te gaan. 
-            Deze heeft u ontvangen via e-mail van onze administratie.
-        </p>
+        </div>
     </div>
 </body>
 </html>

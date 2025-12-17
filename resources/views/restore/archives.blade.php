@@ -1,51 +1,100 @@
-<div class="max-w-5xl mx-auto px-4">
-    <div class="flex items-center justify-between mb-6">
-        <h1 class="text-2xl font-bold">Borg Restore Portal</h1>
-        <div class="text-sm text-gray-600">Token: <code class="bg-gray-100 px-2 py-1 rounded">••••••••••</code></div>
-    </div>
+<x-restore-layout>
+    <x-slot name="token">{{ $token }}</x-slot>
 
-    <div class="grid gap-6">
-        <div class="bg-white shadow rounded-lg overflow-hidden">
-            <div class="p-4 border-b">
-                <h2 class="font-semibold">Beschikbare archieven</h2>
+    <div class="space-y-6" x-data="{ search: '' }">
+        <!-- Header Section -->
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="min-w-0 flex-1">
+                <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
+                    Beschikbare Archieven
+                </h2>
+                <p class="mt-1 text-sm text-gray-500">
+                    Kies een archief om bestanden te bekijken of te herstellen.
+                </p>
             </div>
-
-            <div class="p-4">
-                <table class="w-full text-sm">
-                    <thead>
-                        <tr class="text-left text-xs text-gray-500 uppercase">
-                            <th class="py-2">Naam</th>
-                            <th class="py-2">Type</th>
-                            <th class="py-2">Acties</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    @foreach ($archives as $a)
-                        @php
-                            $detectedType = $a['detected_type'] ?? 'Unknown';
-                        @endphp
-                        <tr class="border-t">
-                            <td class="py-3">{{ $a['name'] }}</td>
-                            <td class="py-3 text-gray-600">
-                                @if ($detectedType === 'DB')
-                                    <span class="inline-flex items-center gap-2">🛢️ Database</span>
-                                @elseif ($detectedType === 'Files')
-                                    <span class="inline-flex items-center gap-2">📁 Bestanden</span>
-                                @elseif ($detectedType === 'Full')
-                                    <span class="inline-flex items-center gap-2">💾 Volledig</span>
-                                @else
-                                    <span class="inline-flex items-center gap-2">❓ Onbekend</span>
-                                @endif
-                            </td>
-                            <td class="py-3">
-                                <a class="inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded" href="{{ route('restore.files', ['archive' => $a['name'], 'token' => $token]) }}">Bekijk</a>
-                                <a class="ml-2 inline-flex items-center px-3 py-1 bg-gray-100 text-gray-800 rounded" href="{{ route('restore.calendar') }}?token={{ urlencode($token) }}&archive={{ urlencode($a['name']) }}">Kalender</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
+            <div class="mt-4 flex md:ml-4 md:mt-0">
+                <div class="relative rounded-md shadow-sm">
+                    <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+                        <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M9 3.5a5.5 5.5 0 100 11 5.5 5.5 0 000-11zM2 9a7 7 0 1112.452 4.391l3.328 3.329a.75.75 0 11-1.06 1.06l-3.329-3.328A7 7 0 012 9z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <input 
+                        type="text" 
+                        x-model="search"
+                        class="block w-full rounded-md border-0 py-1.5 pl-10 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" 
+                        placeholder="Zoek op naam..."
+                    >
+                </div>
             </div>
         </div>
+
+        <!-- Archives Grid/List -->
+        <div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl overflow-hidden">
+            <ul role="list" class="divide-y divide-gray-100">
+                @foreach ($archives as $a)
+                    @php
+                        $detectedType = $a['detected_type'] ?? 'Unknown';
+                        $name = $a['name'];
+                        // Extract date from name if possible (assuming format like server-YYYY-MM-DD...)
+                        $dateDisplay = null;
+                        if (preg_match('/(\d{4}-\d{2}-\d{2})/', $name, $matches)) {
+                            $dateDisplay = $matches[1];
+                        }
+                    @endphp
+                    <li 
+                        class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 transition-colors duration-150"
+                        x-show="search === '' || '{{ strtolower($name) }}'.includes(search.toLowerCase())"
+                        x-transition
+                    >
+                        <div class="flex min-w-0 gap-x-4">
+                            <div class="h-12 w-12 flex-none rounded-full bg-gray-50 flex items-center justify-center ring-1 ring-gray-200">
+                                @if ($detectedType === 'DB')
+                                    <span class="text-xl" title="Database">🛢️</span>
+                                @elseif ($detectedType === 'Files')
+                                    <span class="text-xl" title="Bestanden">📁</span>
+                                @elseif ($detectedType === 'Full')
+                                    <span class="text-xl" title="Volledig">💾</span>
+                                @else
+                                    <span class="text-xl" title="Onbekend">📦</span>
+                                @endif
+                            </div>
+                            <div class="min-w-0 flex-auto">
+                                <p class="text-sm font-semibold leading-6 text-gray-900">
+                                    <a href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}">
+                                        <span class="absolute inset-x-0 -top-px bottom-0"></span>
+                                        {{ $name }}
+                                    </a>
+                                </p>
+                                <div class="mt-1 flex text-xs leading-5 text-gray-500 gap-2">
+                                    @if($dateDisplay)
+                                        <span class="inline-flex items-center rounded-md bg-gray-50 px-2 py-1 font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10">📅 {{ $dateDisplay }}</span>
+                                    @endif
+                                    <span class="inline-flex items-center rounded-md bg-blue-50 px-2 py-1 font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10">{{ $detectedType }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-x-4 z-10">
+                            <a 
+                                href="{{ route('restore.calendar') }}?token={{ urlencode($token) }}&archive={{ urlencode($name) }}"
+                                class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
+                            >
+                                Bekijk in Kalender
+                            </a>
+                            <a 
+                                href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}"
+                                class="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-indigo-600 shadow-sm ring-1 ring-inset ring-indigo-200 hover:bg-indigo-50"
+                            >
+                                Browse &rarr;
+                            </a>
+                        </div>
+                    </li>
+                @endforeach
+            </ul>
+        </div>
+        
+        <div class="text-center text-sm text-gray-500 mt-4" x-show="search !== ''">
+            <span x-text="document.querySelectorAll('li[x-show]').length"></span> resultaten zichtbaar
+        </div>
     </div>
-</div>
+</x-restore-layout>

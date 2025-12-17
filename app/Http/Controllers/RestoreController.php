@@ -64,6 +64,7 @@ class RestoreController extends Controller
     {
         $rawToken = $request->query('token');
         $path = $request->query('path', '');
+        $search = $request->query('search');
 
         if (! $rawToken) {
             return redirect()->route('restore.login')->with('error', 'Token vereist');
@@ -80,8 +81,20 @@ class RestoreController extends Controller
         }
 
         try {
-            $files = $borg->listFiles($archive, $path);
-            \Illuminate\Support\Facades\Log::info('restore.showFiles: raw listFiles result', ['archive' => $archive, 'path' => $path, 'result_preview' => is_array($files) ? array_slice($files,0,10) : $files]);
+            // Als er gezocht wordt, bouwen we een pattern
+            $borgPath = $path;
+            if ($search) {
+                // Zorg dat we zoeken binnen de huidige path context
+                // Borg patterns zijn sh-style. 
+                // We strippen leading slash voor borg match (borg paths zijn vaak relatief in list)
+                $cleanPath = ltrim($path, '/');
+                $borgPath = $cleanPath 
+                    ? "sh:$cleanPath/*$search*" 
+                    : "sh:*$search*";
+            }
+
+            $files = $borg->listFiles($archive, $borgPath);
+            \Illuminate\Support\Facades\Log::info('restore.showFiles: raw listFiles result', ['archive' => $archive, 'path' => $borgPath, 'result_preview' => is_array($files) ? array_slice($files,0,10) : $files]);
 
             // Normalise different service return shapes into an array of
             // ['type','size','name','path'] entries for the view.
