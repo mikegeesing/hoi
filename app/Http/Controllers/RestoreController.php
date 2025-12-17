@@ -166,21 +166,31 @@ class RestoreController extends Controller
 
             $files = $normalized;
 
-            // Filter out system/metadata folders from Maildir, Dovecot, etc.
-            $files = array_filter($files, function ($file) use ($path) {
+            // Filter: Only show items that are direct children of the current path
+            // This prevents showing nested subdirectories from deeper levels
+            $currentPathDepth = substr_count(rtrim($path, '/'), '/');
+            
+            $files = array_filter($files, function ($file) use ($path, $currentPathDepth) {
                 $name = $file['name'] ?? '';
                 $filePath = $file['path'] ?? '';
                 $type = $file['type'] ?? 'file';
                 
+                // Calculate path depth to ensure we only show direct children
+                $filePathDepth = substr_count(rtrim($filePath, '/'), '/');
+                $expectedDepth = $currentPathDepth + 1;
+                
+                // Only show direct children (depth should be exactly one level deeper)
+                if ($filePathDepth !== $expectedDepth) {
+                    return false;
+                }
+                
                 // Skip relative paths (symlinks)
                 if (str_starts_with($filePath, './')) {
-                    Log::debug('restore.showFiles: skipping relative path', ['path' => $filePath]);
                     return false;
                 }
 
                 // Skip files with extensions that are incorrectly marked as directories
                 if ($type === 'dir' && preg_match('/\.(html|php|txt|log|conf|xml|json|js|css|sh|py)$/i', $name)) {
-                    Log::debug('restore.showFiles: skipping file with extension marked as dir', ['name' => $name, 'path' => $filePath]);
                     return false;
                 }
 
@@ -207,37 +217,28 @@ class RestoreController extends Controller
                 // Skip server default/system domain folders
                 if (str_contains($filePath, '/domains/')) {
                     if (in_array(strtolower($name), ['default', 'suspended', 'sharedip'])) {
-                        Log::debug('restore.showFiles: skipping system domain folder', ['name' => $name]);
                         return false;
                     }
                 }
 
                 // Skip "onlineho" folder when viewing /home/onlineho (prevent self-reference)
                 if ($path === 'home/onlineho' && $name === 'onlineho') {
-                    Log::debug('restore.showFiles: skipping onlineho in /home/onlineho');
                     return false;
                 }
                 
                 return true;
             });
 
-            // Remove duplicates by path AND name (case-insensitive)
-            // This prevents showing the same folder twice with different paths
-            $seenNamesPrimary = [];
-            $files = array_filter($files, function ($file) use (&$seenNamesPrimary) {
-                $filePath = $file['path'] ?? '';
+            // Remove duplicates by name (case-insensitive)
+            $seenNames = [];
+            $files = array_filter($files, function ($file) use (&$seenNames) {
                 $name = strtolower($file['name'] ?? '');
                 
-                // For primary directories, only keep first occurrence
-                if ($file['type'] === 'dir' && in_array($name, $seenNamesPrimary)) {
-                    Log::debug('restore.showFiles: duplicate dir filtered', ['name' => $name, 'path' => $filePath]);
+                if (in_array($name, $seenNames)) {
                     return false;
                 }
                 
-                if ($file['type'] === 'dir') {
-                    $seenNamesPrimary[] = $name;
-                }
-                
+                $seenNames[] = $name;
                 return true;
             });
 
@@ -252,16 +253,6 @@ class RestoreController extends Controller
                 
                 return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
             })->values()->all();
-
-            Log::info('restore.showFiles: final result', [
-                'path' => $path,
-                'files_count' => count($files),
-                'files_list' => array_map(fn($f) => [
-                    'name' => $f['name'] ?? 'N/A',
-                    'type' => $f['type'] ?? 'unknown',
-                    'path' => $f['path'] ?? 'N/A'
-                ], $files)
-            ]);
 
             // If normalization produced nothing, try root path as fallback and log it
             if (empty($files) && $path !== '') {
