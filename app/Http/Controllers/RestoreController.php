@@ -81,26 +81,65 @@ class RestoreController extends Controller
 
         try {
             $files = $borg->listFiles($archive, $path);
-            // Normalise different service return shapes:
-            // - BorgService::listFiles returns ['files' => [ ...structured items...]]
-            // - Some wrappers may return a plain array of file path strings
+
+            // Normalise different service return shapes into an array of
+            // ['type','size','name','path'] entries for the view.
+            $normalized = [];
+
+            // If wrapper returns an envelope
             if (is_array($files) && isset($files['files']) && is_array($files['files'])) {
                 $files = $files['files'];
-            } elseif (is_array($files) && count($files) > 0 && is_string($files[0] ?? null)) {
-                // array of string paths -> convert to view-friendly structure
-                $converted = [];
-                foreach ($files as $p) {
-                    $converted[] = [
-                        'type' => is_dir($p) ? 'dir' : 'file',
-                        'size' => 0,
-                        'name' => basename($p),
-                        'path' => $p,
-                    ];
-                }
-                $files = $converted;
-            } elseif (! is_array($files)) {
-                $files = [];
             }
+
+            // If a single object was returned, make it an array
+            if ($files && ! is_array($files)) {
+                $files = [$files];
+            }
+
+            if (is_array($files)) {
+                foreach ($files as $item) {
+                    // Allow stdClass / objects
+                    if (is_object($item)) {
+                        $item = (array) $item;
+                    }
+
+                    // If it's a plain string path
+                    if (is_string($item)) {
+                        $p = $item;
+                        $normalized[] = [
+                            'type' => 'file',
+                            'size' => 0,
+                            'name' => basename($p),
+                            'path' => $p,
+                        ];
+                        continue;
+                    }
+
+                    if (is_array($item)) {
+                        // try common keys
+                        $p = $item['path'] ?? $item['name'] ?? ($item['filename'] ?? null);
+                        $name = $item['name'] ?? $item['filename'] ?? ($p ? basename($p) : 'N/A');
+                        $type = $item['type'] ?? ($item['is_dir'] ?? null) ? 'dir' : ($item['filetype'] ?? ($item['mode'] ?? 'file'));
+                        $size = $item['size'] ?? $item['bytes'] ?? 0;
+
+                        // normalize type value
+                        if ($type === true || $type === 'dir' || stripos((string)$type, 'dir') !== false) {
+                            $type = 'dir';
+                        } else {
+                            $type = 'file';
+                        }
+
+                        $normalized[] = [
+                            'type' => $type,
+                            'size' => (int) $size,
+                            'name' => $name,
+                            'path' => $p ?? $name,
+                        ];
+                    }
+                }
+            }
+
+            $files = $normalized;
         } catch (\Throwable $e) {
             Log::error('Filebrowser fout', [
                 'archive' => $archive,
