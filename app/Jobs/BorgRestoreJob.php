@@ -65,7 +65,8 @@ class BorgRestoreJob implements ShouldQueue
         $command = [
             '/usr/bin/borg',
             'extract',
-            '--list',
+            '--destination',
+            $tempPath,
             $this->repositoryPath . '::' . $this->restoreJob->archive_name,
             ...$this->restoreJob->files_to_restore,
         ];
