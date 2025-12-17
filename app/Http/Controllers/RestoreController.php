@@ -84,7 +84,25 @@ class RestoreController extends Controller
 
         // 👉 FIX: Stel het initiële pad in op de gewenste home directory
         if ($path === '') {
-            $path = '/home/onlineho'; // De gewenste startdirectory
+            $path = 'home/onlineho'; // De gewenste startdirectory (zonder leading slash)
+        }
+
+        // Security: Ensure user stays within home/onlineho
+        $basePath = 'home/onlineho';
+        $normalizedPath = $path;
+        
+        // Normalize path: remove leading/trailing slashes for comparison
+        $normalizedPath = trim($normalizedPath, '/');
+        $normalizedBasePath = trim($basePath, '/');
+        
+        // Check if path starts with basePath or is exactly basePath
+        if ($normalizedPath !== $normalizedBasePath && !str_starts_with($normalizedPath . '/', $normalizedBasePath . '/')) {
+            Log::warning('restore.showFiles: unauthorized path access attempt', [
+                'requested_path' => $path,
+                'base_path' => $basePath,
+                'token_id' => $token->id ?? 'unknown'
+            ]);
+            return view('landing', ['error' => 'Toegang geweigerd: u mag alleen in uw home directory navigeren']);
         }
 
         try {

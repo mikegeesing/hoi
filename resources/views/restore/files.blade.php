@@ -79,10 +79,10 @@
                     <h3 class="mt-2 text-sm font-semibold text-gray-900">Geen bestanden gevonden</h3>
                     <p class="mt-1 text-sm text-gray-500">Er zijn geen bestanden gevonden op het pad <span class="font-mono text-xs bg-gray-100 px-1 rounded">{{ $path ?: '/' }}</span>.</p>
                     <div class="mt-6">
-                        @if($path !== '' && $path !== '/')
+                        @if($path !== '' && $path !== '/' && $path !== 'home/onlineho')
                              @php
                                 $parentPath = dirname($path);
-                                if ($parentPath === '.') $parentPath = '';
+                                if ($parentPath === '.' || $parentPath === '/' || $parentPath === 'home') $parentPath = 'home/onlineho';
                              @endphp
                              <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => $parentPath, 'depth' => (request('depth', 1) - 1)]) }}" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -107,10 +107,10 @@
                 </div>
 
                 <ul role="list" class="divide-y divide-gray-100">
-                    @if($path !== '' && $path !== '/' && !request('search'))
+                    @if($path !== '' && $path !== '/' && $path !== 'home/onlineho' && !request('search'))
                          @php
                             $parentPath = dirname($path);
-                            if ($parentPath === '.' || $parentPath === '/') $parentPath = '';
+                            if ($parentPath === '.' || $parentPath === '/' || $parentPath === 'home') $parentPath = 'home/onlineho';
                          @endphp
                         <li class="hover:bg-gray-50 transition-colors">
                             <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => $parentPath]) }}" class="block px-4 py-3 sm:px-6">
