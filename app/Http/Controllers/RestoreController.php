@@ -57,6 +57,10 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
         $path = $request->query('path', '');
 
+        if (! $rawToken) {
+            return view('landing', ['error' => 'Geen token']);
+        }
+
         $token = $this->validateTokenOnly($rawToken);
         if (! $token) {
             return view('landing', ['error' => 'Token ongeldig']);
@@ -69,6 +73,26 @@ class RestoreController extends Controller
 
         try {
             $files = $borg->listFiles($archive, $path);
+            // Normalise different service return shapes:
+            // - BorgService::listFiles returns ['files' => [ ...structured items...]]
+            // - Some wrappers may return a plain array of file path strings
+            if (is_array($files) && isset($files['files']) && is_array($files['files'])) {
+                $files = $files['files'];
+            } elseif (is_array($files) && count($files) > 0 && is_string($files[0] ?? null)) {
+                // array of string paths -> convert to view-friendly structure
+                $converted = [];
+                foreach ($files as $p) {
+                    $converted[] = [
+                        'type' => is_dir($p) ? 'dir' : 'file',
+                        'size' => 0,
+                        'name' => basename($p),
+                        'path' => $p,
+                    ];
+                }
+                $files = $converted;
+            } elseif (! is_array($files)) {
+                $files = [];
+            }
         } catch (\Throwable $e) {
             Log::error('Filebrowser fout', [
                 'archive' => $archive,
@@ -305,6 +329,14 @@ class RestoreController extends Controller
     public function getJobStatus(Request $request, RestoreJob $job)
     {
         $rawToken = $request->query('token');
+        if (! $rawToken) {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['error' => 'Geen token'], 403);
+            }
+
+            return view('landing', ['error' => 'Geen token']);
+        }
+
         $token = $this->validateTokenOnly($rawToken);
         if (! $token) {
             return response()->json(['error' => 'Token ongeldig'], 403);
@@ -329,8 +361,10 @@ class RestoreController extends Controller
         ]);
     }
 
-    private function validateTokenOnly(string $plainToken): ?RestoreToken
+    private function validateTokenOnly(?string $plainToken): ?RestoreToken
     {
+        if (! $plainToken) return null;
+
         $token = RestoreToken::where(
             'token',
             hash('sha256', $plainToken)

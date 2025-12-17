@@ -1,4 +1,7 @@
 <div class="max-w-5xl mx-auto px-4">
+    @php
+        $files = $files ?? [];
+    @endphp
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-2xl font-bold">Restore browser</h1>
@@ -36,16 +39,17 @@
         $fileName = $f['name'] ?? 'N/A'; // Fix voor 'Undefined array key "name"'
         $fileType = $f['type'] ?? '';
         $fileSize = $f['size'] ?? 0;
+        $filePath = $f['path'] ?? '';
     @endphp
     <td class="py-3" style="width:40px">
-        <input type="checkbox" class="select-file" value="{{ $f['path'] }}">
+        <input type="checkbox" class="select-file" value="{{ $filePath }}">
     </td>
     <td class="py-3">
         @if($fileType === 'dir')
         <a href="{{ route('restore.files', [
             'archive' => $archive, // Gebruik de variabele, niet de string
             'token' => $token,
-            'path' => $f['path']
+            'path' => $filePath
         ]) }}">
             📁 {{ $fileName }}
         </a>
@@ -55,7 +59,7 @@
     </td>
 
     <td class="py-3">
-        <a class="inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded" href="/restore/calendar?token={{ urlencode($token) }}&archive={{ urlencode($archive) }}&path={{ urlencode($f['path']) }}">Restore</a>
+        <a class="inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded" href="/restore/calendar?token={{ urlencode($token) }}&archive={{ urlencode($archive) }}&path={{ urlencode($filePath) }}">Restore</a>
     </td>
 
     <td class="py-3 text-gray-600">{{ $fileType }}</td>
@@ -77,8 +81,8 @@ document.getElementById('openCalendarBtn').addEventListener('click', function(){
         return;
     }
 
-    const token = encodeURIComponent('{{ $token }}');
-    const archive = encodeURIComponent('{{ $archive }}');
+    const token = encodeURIComponent(@json($token));
+    const archive = encodeURIComponent(@json($archive));
     const files = encodeURIComponent(JSON.stringify(checks));
 
     // graceful url + nice message
