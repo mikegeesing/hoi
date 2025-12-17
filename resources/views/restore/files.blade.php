@@ -234,10 +234,19 @@
                 })
             });
 
-            const data = await response.json();
+            let data;
+            try {
+                data = await response.json();
+            } catch (e) {
+                const text = await response.text();
+                alert('Fout bij herstellen (geen JSON response):\nStatus: ' + response.status + '\nResponse: ' + text.substring(0, 500));
+                console.error('Response text:', text);
+                return;
+            }
 
             if (!response.ok) {
-                alert('Fout bij herstellen: ' + (data.error || 'Onbekende fout'));
+                alert('Fout bij herstellen:\nStatus: ' + response.status + '\n' + (data.error || JSON.stringify(data)));
+                console.error('Error response:', data);
                 return;
             }
 
@@ -245,6 +254,7 @@
             window.location.href = '/restore/status/' + data.job_id + '?token=' + encodeURIComponent(token);
         } catch (error) {
             alert('Fout bij herstellen: ' + error.message);
+            console.error('Fetch error:', error);
         }
     }
     </script>
