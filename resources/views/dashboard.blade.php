@@ -39,6 +39,27 @@
                     
                     @if(auth()->check() && auth()->user()->role === 'admin')
                         <div class="mt-8">
+                            <h3 class="text-lg font-semibold mb-4">📅 Beschikbare Snapshots</h3>
+                            
+                            @if(empty($events))
+                                <div class="bg-yellow-50 border border-yellow-200 rounded p-4 text-yellow-800">
+                                    Geen snapshots beschikbaar
+                                </div>
+                            @else
+                                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                    @foreach($events as $event)
+                                        <div class="p-4 border rounded-lg bg-blue-50 hover:bg-blue-100 transition">
+                                            <div class="font-semibold text-blue-900">{{ $event['archive'] }}</div>
+                                            <div class="text-sm text-blue-700 mt-1">📅 {{ $event['day'] ?? 'N/A' }}</div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+
+                    @if(auth()->check() && auth()->user()->role === 'admin')
+                        <div class="mt-8">
                             <h3 class="text-lg font-semibold">Recente restore jobs</h3>
                             @php
                                 $recent = \App\Models\RestoreJob::orderByDesc('created_at')->limit(8)->get();
