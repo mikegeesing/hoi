@@ -184,7 +184,7 @@ class RestoreController extends Controller
                     return false;
                 }
 
-                // Skip hidden system files
+                // Skip hidden system files and system folders
                 $skipPatterns = [
                     '/^\./',                    // Starts with dot (hidden/system folders)
                     '/^dovecot-/i',            // Dovecot metadata
@@ -200,6 +200,14 @@ class RestoreController extends Controller
                 
                 foreach ($skipPatterns as $pattern) {
                     if (preg_match($pattern, $name)) {
+                        return false;
+                    }
+                }
+
+                // Skip server default/system domain folders
+                if (str_contains($filePath, '/domains/')) {
+                    if (in_array(strtolower($name), ['default', 'suspended', 'sharedip'])) {
+                        Log::debug('restore.showFiles: skipping system domain folder', ['name' => $name]);
                         return false;
                     }
                 }
