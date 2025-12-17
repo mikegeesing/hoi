@@ -18,7 +18,16 @@
 @php $files = $files ?? []; @endphp
 
 @if(count($files) === 0)
-    <div class="p-6">Geen bestanden gevonden.</div>
+    <div class="p-6">
+        <div class="text-center py-10">
+            <h3 class="text-lg font-semibold">Geen bestanden gevonden</h3>
+            <p class="text-sm text-gray-600 mt-2">Er zijn geen bestanden gevonden op het pad <span class="font-medium">{{ $path ?: '/' }}</span> binnen dit archief.</p>
+            <div class="mt-4 flex items-center justify-center gap-3">
+                <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => '']) }}" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded">Bekijk root van archief</a>
+                <a href="{{ route('restore.archives') }}?token={{ urlencode($token) }}" class="inline-block bg-gray-200 text-gray-800 px-4 py-2 rounded">Terug naar archieven</a>
+            </div>
+        </div>
+    </div>
 @else
     <div class="p-4 overflow-auto">
         <table class="min-w-full text-sm divide-y">
