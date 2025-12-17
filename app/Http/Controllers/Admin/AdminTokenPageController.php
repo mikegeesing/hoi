@@ -18,8 +18,13 @@ class AdminTokenPageController extends Controller
         if (auth()->check() && auth()->user()->is_admin) {
             foreach ($tokens as $t) {
                 try {
-                    $t->plain_token = $t->token_encrypted ? Crypt::decryptString($t->token_encrypted) : null;
+                    if ($t->token_encrypted) {
+                        $t->plain_token = Crypt::decryptString($t->token_encrypted);
+                    } else {
+                        $t->plain_token = null;
+                    }
                 } catch (\Throwable $e) {
+                    \Log::error('Failed to decrypt token for token ID ' . $t->id . ': ' . $e->getMessage());
                     $t->plain_token = null;
                 }
             }
