@@ -85,11 +85,6 @@
                                 <code class="text-sm bg-gray-100 p-1 rounded font-mono select-all">{{ $t->plain_token }}</code>
                                 <button onclick="navigator.clipboard.writeText('{{ $t->plain_token }}')" class="ml-1 text-xs px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded border border-gray-300">Kopieer</button>
                             </span>
-                        @elseif(auth()->check() && auth()->user()->is_admin && $t->token_encrypted)
-                            <span class="inline-flex items-center gap-2">
-                                <code class="text-sm bg-gray-100 p-1 rounded font-mono select-all">{{ Crypt::decryptString($t->token_encrypted) }}</code>
-                                <button onclick="navigator.clipboard.writeText('{{ Crypt::decryptString($t->token_encrypted) }}')" class="ml-1 text-xs px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded border border-gray-300">Kopieer</button>
-                            </span>
                         @else
                             <span class="text-gray-400">—</span>
                             <div class="text-xs text-gray-500">(oude token; klik Regenerate om nieuw token te maken)</div>
