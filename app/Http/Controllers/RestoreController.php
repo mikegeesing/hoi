@@ -199,16 +199,19 @@ class RestoreController extends Controller
                 
                 // Only show direct children (depth should be exactly one level deeper)
                 if ($filePathDepth !== $expectedDepth) {
+                    Log::debug('restore.showFiles: filtered by depth', ['name' => $name, 'fileDepth' => $filePathDepth, 'expectedDepth' => $expectedDepth]);
                     return false;
                 }
                 
                 // Skip relative paths (symlinks)
                 if (str_starts_with($filePath, './')) {
+                    Log::debug('restore.showFiles: filtered - relative path', ['path' => $filePath]);
                     return false;
                 }
 
                 // Skip files with extensions that are incorrectly marked as directories
                 if ($type === 'dir' && preg_match('/\.(html|php|txt|log|conf|xml|json|js|css|sh|py)$/i', $name)) {
+                    Log::debug('restore.showFiles: filtered - file ext marked as dir', ['name' => $name]);
                     return false;
                 }
 
@@ -228,6 +231,7 @@ class RestoreController extends Controller
                 
                 foreach ($skipPatterns as $pattern) {
                     if (preg_match($pattern, $name)) {
+                        Log::debug('restore.showFiles: filtered - pattern match', ['name' => $name, 'pattern' => $pattern]);
                         return false;
                     }
                 }
@@ -235,12 +239,14 @@ class RestoreController extends Controller
                 // Skip server default/system domain folders
                 if (str_contains($filePath, '/domains/')) {
                     if (in_array(strtolower($name), ['default', 'suspended', 'sharedip'])) {
+                        Log::debug('restore.showFiles: filtered - system domain', ['name' => $name]);
                         return false;
                     }
                 }
 
                 // Skip "onlineho" folder when viewing /home/onlineho (prevent self-reference)
                 if ($path === 'home/onlineho' && $name === 'onlineho') {
+                    Log::debug('restore.showFiles: filtered - self reference');
                     return false;
                 }
                 
@@ -253,6 +259,7 @@ class RestoreController extends Controller
                 $name = strtolower($file['name'] ?? '');
                 
                 if (in_array($name, $seenNames)) {
+                    Log::debug('restore.showFiles: filtered - duplicate name', ['name' => $file['name']]);
                     return false;
                 }
                 
