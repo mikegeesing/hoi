@@ -48,6 +48,11 @@ class BorgRestoreJob implements ShouldQueue
         // 2. Bepaal de tijdelijke herstelmap
         $tempPath = '/tmp/borg-restore-' . Str::random(10);
 
+        // Maak de directory aan
+        if (!file_exists($tempPath)) {
+            mkdir($tempPath, 0755, true);
+        }
+
         // Zorg ervoor dat de restore-path wordt opgeslagen voor later
         $this->restoreJob->restore_path = $tempPath;
         $this->restoreJob->save();
