@@ -62,7 +62,6 @@
     <td class="py-3 text-gray-600">{{ number_format($fileSize / 1024, 1) }} KB</td>
 </tr>
 @endforeach
-            @endforeach
             </tbody>
         </table>
     </div>
