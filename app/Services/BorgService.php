@@ -67,31 +67,51 @@ class BorgService
             );
         }
 
-        /**
-         * Verwacht formaat:
-         * d\t0\thome
-         * -\t123\thome/file.txt
-         */
-        $files = [];
+        // Attempt to parse multiple possible output formats from the runner.
+        // Some runner variants output tab-separated values like: d\t0\thome
+        // Others (when using plain borg or different env) may emit ls-style lines
+        // like: drwx--x--x onlineho onlineho 0 Wed, 2025-12-03 14:16:44 home/onlineho
+        $raw = trim($process->getOutput());
+        \Illuminate\Support\Facades\Log::debug('BorgService::listFiles raw output preview', ['archive' => $archive, 'path' => $path, 'preview' => substr($raw,0,400)]);
 
-        foreach (explode("\n", trim($process->getOutput())) as $line) {
+        $files = [];
+        if ($raw === '') {
+            return ['files' => []];
+        }
+
+        foreach (explode("\n", $raw) as $line) {
+            $line = trim($line);
             if ($line === '') continue;
 
-            [$type, $size, $path] = array_pad(explode("\t", $line, 3), 3, null);
+            // If line contains explicit tabs, prefer tab-splitting
+            if (strpos($line, "\t") !== false) {
+                [$type, $size, $pathToken] = array_pad(explode("\t", $line, 3), 3, null);
+            } else {
+                // Fallback: whitespace-separated, take last token as path
+                $parts = preg_split('/\s+/', $line);
+                $pathToken = array_pop($parts);
 
-            if (! $path) continue;
+                // Attempt to infer size and type from the remaining tokens
+                $type = null;
+                $size = 0;
+                if (isset($parts[0])) {
+                    // permissions string like drwx... -> type = 'd' or '-'
+                    $perm = $parts[0];
+                    $type = (strpos($perm, 'd') === 0) ? 'd' : '-';
+                }
+            }
+
+            if (! isset($pathToken) || $pathToken === '') continue;
 
             $files[] = [
-                'type' => $type === 'd' ? 'dir' : 'file',
-                'size' => (int) $size,
-                'name' => basename($path),
-                'path' => $path,
+                'type' => (isset($type) && $type === 'd') ? 'dir' : 'file',
+                'size' => (int) ($size ?? 0),
+                'name' => basename($pathToken),
+                'path' => $pathToken,
             ];
         }
 
-        return [
-            'files' => $files
-        ];
+        return ['files' => $files];
     }
 
     /**
