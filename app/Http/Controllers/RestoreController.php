@@ -191,8 +191,9 @@ class RestoreController extends Controller
      * CALENDAR VIEW
      * If `path` and `archive` query params are present, only show events where the path exists.
      */
-    public function showCalendar(Request $request, BorgService $borg, BorgWrapperService $wrapper)
+    public function showCalendar(Request $request, BorgService $borg)
     {
+        Log::info('RestoreController@showCalendar hit', ['url' => $request->fullUrl()]);
         $rawToken = $request->query('token');
 
         if (! $rawToken) {

@@ -201,9 +201,10 @@
         const token = encodeURIComponent(@json($token));
         const archive = encodeURIComponent(@json($archive));
         const files = encodeURIComponent(JSON.stringify(checks));
+        const url = @json(route('restore.calendar'));
 
         // graceful url + nice message
-        window.location.href = '/restore/calendar?token=' + token + '&archive=' + archive + '&files=' + files;
+        window.location.href = url + '?token=' + token + '&archive=' + archive + '&files=' + files;
     });
     </script>
 </x-restore-layout>
