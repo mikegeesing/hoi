@@ -60,6 +60,7 @@
             <thead class="bg-gray-100">
                 <tr>
                     <th class="p-3 text-left">Borg user</th>
+                    <th class="p-3">Token</th>
                     <th class="p-3">Status</th>
                     <th class="p-3">Gebruik</th>
                     <th class="p-3">Verloopt</th>
@@ -75,6 +76,7 @@
                 @endphp
                 <tr class="border-t">
                     <td class="p-3">{{ $t->borg_user }}</td>
+                    <td class="p-3 break-all">{{ $t->plain_token ?? '—' }}</td>
                     <td class="p-3">{{ $status }}</td>
                     <td class="p-3">{{ $t->used }} / {{ $t->max_uses }}</td>
                     <td class="p-3">{{ $t->expires_at->format('d-m-Y H:i') }}</td>
