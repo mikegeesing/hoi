@@ -1,4 +1,7 @@
 <div class="max-w-5xl mx-auto px-4">
+    @php
+        $files = $files ?? [];
+    @endphp
     <div class="flex items-center justify-between mb-6">
         <div>
             <h1 class="text-2xl font-bold">Restore browser</h1>
@@ -78,8 +81,8 @@ document.getElementById('openCalendarBtn').addEventListener('click', function(){
         return;
     }
 
-    const token = encodeURIComponent('{{ $token }}');
-    const archive = encodeURIComponent('{{ $archive }}');
+    const token = encodeURIComponent(@json($token));
+    const archive = encodeURIComponent(@json($archive));
     const files = encodeURIComponent(JSON.stringify(checks));
 
     // graceful url + nice message
