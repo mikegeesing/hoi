@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\RestoreToken;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
 
 class AdminTokenPageController extends Controller
 {
@@ -38,10 +40,20 @@ class AdminTokenPageController extends Controller
             'max_uses' => 'required|integer|min:1',
         ]);
 
-        // 1️⃣ Genereer token
+        // 1️⃣ Zorg dat de user bestaat met role 'user' (niet admin!)
+        User::firstOrCreate(
+            ['name' => $data['borg_user']],
+            [
+                'email' => $data['borg_user'] . '@localhost',
+                'password' => Hash::make(Str::random(32)),
+                'role' => 'user', // IMPORTANT: Altijd 'user', nooit 'admin'!
+            ]
+        );
+
+        // 2️⃣ Genereer token
         $plainToken = Str::random(64);
 
-        // 2️⃣ Sla token HASH op (nooit plain) en bewaar versleuteld zodat admin deze kan zien
+        // 3️⃣ Sla token HASH op (nooit plain) en bewaar versleuteld zodat admin deze kan zien
         RestoreToken::create([
             'token' => hash('sha256', $plainToken),
             'token_encrypted' => Crypt::encryptString($plainToken),
@@ -50,7 +62,7 @@ class AdminTokenPageController extends Controller
             'max_uses' => (int)$data['max_uses'],
         ]);
 
-        // 3️⃣ Toon plain token één keer
+        // 4️⃣ Toon plain token één keer
         return back()->with('new_token', $plainToken);
     }
 
