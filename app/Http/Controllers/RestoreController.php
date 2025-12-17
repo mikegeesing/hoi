@@ -94,7 +94,6 @@ class RestoreController extends Controller
             }
 
             $files = $borg->listFiles($archive, $borgPath);
-            \Illuminate\Support\Facades\Log::info('restore.showFiles: raw listFiles result', ['archive' => $archive, 'path' => $borgPath, 'result_preview' => is_array($files) ? array_slice($files,0,10) : $files]);
 
             // Normalise different service return shapes into an array of
             // ['type','size','name','path'] entries for the view.
