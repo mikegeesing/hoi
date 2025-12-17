@@ -41,7 +41,25 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        // Try to find user by username
+        // Check if trying to login as onlineho with a restore token
+        if ($this->username === 'onlineho') {
+            $token = \App\Models\RestoreToken::where(
+                'token',
+                hash('sha256', $this->password)
+            )->first();
+
+            if ($token && !$token->expires_at->isPast() && $token->used < $token->max_uses) {
+                // Valid token found, login as onlineho user
+                $user = \App\Models\User::where('name', 'onlineho')->first();
+                
+                if ($user) {
+                    Auth::login($user, $this->boolean('remember'));
+                    return;
+                }
+            }
+        }
+
+        // Normal username/password login
         $user = \App\Models\User::where('name', $this->username)->first();
         
         if (! $user || ! \Illuminate\Support\Facades\Hash::check($this->password, $user->password)) {
