@@ -178,11 +178,12 @@
 
                                 <!-- Actions -->
                                 <div class="col-span-2 text-right z-10 relative flex justify-end gap-2">
-                                    <a href="{{ route('restore.calendar', ['token' => $token, 'archive' => $archive, 'path' => $filePath]) }}" 
-                                       class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded hover:bg-indigo-100 border border-indigo-200"
+                                    <button 
+                                        onclick="restoreFile('{{ addslashes($filePath) }}')"
+                                        class="text-xs font-semibold text-white bg-indigo-600 px-3 py-1 rounded hover:bg-indigo-700 border border-indigo-700 shadow-sm transition"
                                     >
                                         Restore
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         </li>
@@ -210,5 +211,41 @@
         // graceful url + nice message
         window.location.href = url + '?token=' + token + '&archive=' + archive + '&files=' + files;
     });
+
+    async function restoreFile(filePath) {
+        if (!confirm('Weet je zeker dat je dit bestand/map wilt herstellen?\n\nPad: ' + filePath)) {
+            return;
+        }
+
+        const token = @json($token);
+        const archive = @json($archive);
+
+        try {
+            const response = await fetch('/api/restore', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    token: token,
+                    archive: archive,
+                    files: [filePath]
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                alert('Fout bij herstellen: ' + (data.error || 'Onbekende fout'));
+                return;
+            }
+
+            // Redirect naar status pagina
+            window.location.href = '/restore/status/' + data.job_id + '?token=' + encodeURIComponent(token);
+        } catch (error) {
+            alert('Fout bij herstellen: ' + error.message);
+        }
+    }
     </script>
 </x-restore-layout>
