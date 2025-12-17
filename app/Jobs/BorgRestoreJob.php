@@ -56,33 +56,29 @@ class BorgRestoreJob implements ShouldQueue
         // We moeten de bestandenlijst uit het Job-model halen (opgeslagen als JSON array)
         $filesToRestore = implode(' ', $this->restoreJob->files_to_restore);
 
-        // BELANGRIJK: Gebruik 'sudo -u onlineh' om het commando uit te voeren als de webhosting gebruiker.
-        // Vereist dat de SUDOERS file dit toestaat, zoals we eerder bespraken.
+        // Run borg extract directly (assumes the queue worker runs as the correct user)
         $command = [
-            'sudo',
-            '-u',
-            $this->restoreJob->token->borg_user, // 'onlineh'
-            'borg',
+            '/usr/bin/borg',
             'extract',
             '--list',
-            '--progress',
-            '--stdout',
-            '--destination',
-            $tempPath,
             $this->repositoryPath . '::' . $this->restoreJob->archive_name,
-            '--',
             ...$this->restoreJob->files_to_restore,
         ];
 
         // 4. Stel de omgevingsvariabele BORG_PASSPHRASE in
         // Dit is de veilige manier om het wachtwoord door te geven aan Borg.
-        $env = [
-            'BORG_PASSPHRASE' => $this->restorePassword,
-        ];
+        $env = array_merge(
+            [
+                'BORG_PASSPHRASE' => $this->restorePassword,
+                'BORG_RELOCATED_REPO_ACCESS_IS_OK' => 'yes',
+                'TMPDIR' => config('filesystems.borg_temp_path', '/tmp'),
+            ],
+            $_ENV
+        );
 
         try {
             // 5. Voer het commando uit met behulp van Symfony Process
-            $process = new Process($command, null, $env, null, 7200); // 2 uur timeout
+            $process = new Process($command, $tempPath, $env, null, 7200); // 2 uur timeout
             $process->run();
 
             $output = $process->getOutput() . "\n" . $process->getErrorOutput();
