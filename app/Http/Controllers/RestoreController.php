@@ -163,6 +163,46 @@ class RestoreController extends Controller
 
             $files = $normalized;
 
+            // Filter out system/metadata folders from Maildir, Dovecot, etc.
+            $files = array_filter($files, function ($file) {
+                $name = $file['name'] ?? '';
+                $path = $file['path'] ?? '';
+                
+                // Skip Maildir metadata/system folders
+                $skipPatterns = [
+                    '/^\./',                    // Starts with dot (hidden/system folders)
+                    '/^dovecot-/i',            // Dovecot metadata
+                    '/^maildirsize$/i',        // Maildir size file
+                    '/^maildirfolder$/i',      // Maildir folder metadata
+                    '/^subscriptions$/i',      // IMAP subscriptions file
+                    '/^cur$/i',                // Maildir "current messages"
+                    '/^new$/i',                // Maildir "new messages"
+                    '/^tmp$/i',                // Maildir temp folder (in mail dirs)
+                    '/^\.uidvalidity$/i',      // Maildir UID validity
+                    '/^\.Trashed$/i',          // Dovecot trash
+                ];
+                
+                foreach ($skipPatterns as $pattern) {
+                    if (preg_match($pattern, $name)) {
+                        return false;
+                    }
+                }
+                
+                return true;
+            });
+
+            // Sort: directories first, then alphabetically
+            $files = collect($files)->sort(function ($a, $b) {
+                $aIsDir = ($a['type'] === 'dir') ? 0 : 1;
+                $bIsDir = ($b['type'] === 'dir') ? 0 : 1;
+                
+                if ($aIsDir !== $bIsDir) {
+                    return $aIsDir <=> $bIsDir;
+                }
+                
+                return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
+            })->values()->all();
+
             // If normalization produced nothing, try root path as fallback and log it
             if (empty($files) && $path !== '') {
                 \Illuminate\Support\Facades\Log::warning('restore.showFiles: no files for path, retrying root', ['archive' => $archive, 'path' => $path]);
