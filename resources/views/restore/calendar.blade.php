@@ -81,11 +81,19 @@
 <div class="container">
 
     <div class="topbar">
-        <h1>Backup kalender</h1>
+        <div>
+            <h1 class="text-2xl font-bold">Backup kalender</h1>
+            <div class="text-sm text-gray-600 mt-1">Selecteer een snapshot om te herstellen</div>
+        </div>
 
-        <a class="btn" href="/restore?token={{ urlencode($token) }}">
-            Lijstweergave
-        </a>
+        <div class="flex items-center gap-3">
+            <a class="btn" href="/restore?token={{ urlencode($token) }}">
+                Lijstweergave
+            </a>
+            @if($path)
+                <div class="text-sm text-gray-700">Pad: <span class="font-medium">{{ $path }}</span></div>
+            @endif
+        </div>
     </div>
 
     <div class="card">

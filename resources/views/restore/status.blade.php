@@ -12,17 +12,31 @@
     </style>
 </head>
 <body>
-<div class="card">
-    <h1>Herstel job #{{ $job->id }}</h1>
-    <p>Status: <strong id="status">{{ $job->status }}</strong></p>
-    <p>Restore path: <span id="restore_path">{{ $job->restore_path ?? '—' }}</span></p>
+<div class="max-w-3xl mx-auto">
+    <div class="bg-white shadow rounded-lg p-6">
+        <div class="flex items-start justify-between">
+            <div>
+                <h1 class="text-2xl font-bold">Herstel job #{{ $job->id }}</h1>
+                <div class="text-sm text-gray-600">Aangemaakt: {{ $job->created_at->diffForHumans() }}</div>
+            </div>
+            <div class="text-right">
+                <div class="text-sm text-gray-500">Status</div>
+                <div class="mt-1 font-semibold" id="status">{{ $job->status }}</div>
+            </div>
+        </div>
 
-    <h3>Log</h3>
-    <pre id="log">{{ $job->log_output ?? 'Nog geen output' }}</pre>
+        <div class="mt-4">
+            <div class="text-sm text-gray-600">Restore path</div>
+            <div class="font-mono mt-1 text-sm" id="restore_path">{{ $job->restore_path ?? '—' }}</div>
+        </div>
 
-    <p>
-        <a href="/restore?token={{ urlencode($token) }}">Terug</a>
-    </p>
+        <h3 class="mt-6 mb-2 text-sm font-semibold">Log</h3>
+        <pre id="log" class="bg-gray-900 text-white p-3 rounded h-56 overflow-auto">{{ $job->log_output ?? 'Nog geen output' }}</pre>
+
+        <div class="mt-4">
+            <a class="text-blue-600" href="/restore?token={{ urlencode($token) }}">Terug naar portal</a>
+        </div>
+    </div>
 </div>
 
 <script>

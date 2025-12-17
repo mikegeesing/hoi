@@ -15,6 +15,17 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="url('/restore')" :active="request()->is('restore*')">
+                        {{ __('Restore') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('restore.calendar')" :active="request()->routeIs('restore.calendar')">
+                        {{ __('Calendar') }}
+                    </x-nav-link>
+                    @if(auth()->check() && auth()->user()->role === 'admin')
+                        <x-nav-link :href="url('/admin/tokens')" :active="request()->is('admin/tokens')">
+                            {{ __('Tokens') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 

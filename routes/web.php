@@ -42,6 +42,11 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// Admin restore job pages
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    Route::get('/restore/jobs/{job}', [\App\Http\Controllers\Admin\RestoreJobController::class, 'show']);
+});
+
 /*
 |--------------------------------------------------------------------------
 | Restore portal (TOKEN based, GEEN auth)
