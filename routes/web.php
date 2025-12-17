@@ -53,7 +53,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/restore', [RestoreController::class, 'showArchives'])
+Route::get('/restore', [RestoreController::class, 'showLogin'])
+    ->name('restore.login');
+
+Route::get('/restore/archives', [RestoreController::class, 'showArchives'])
     ->name('restore.archives');
 
 Route::get('/restore/files/{archive}', [RestoreController::class, 'showFiles'])

@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\Bus;
 class RestoreController extends Controller
 {
     /**
+     * LOGIN PAGINA
+     */
+    public function showLogin()
+    {
+        return view('restore.login');
+    }
+
+    /**
      * ARCHIVE OVERZICHT
      */
     public function showArchives(Request $request, BorgService $borg)
@@ -23,7 +31,7 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
 
         if (! $rawToken) {
-            return view('landing', ['error' => 'Geen token']);
+            return redirect()->route('restore.login')->with('error', 'Token vereist');
         }
 
         $token = $this->validateTokenOnly($rawToken);
@@ -58,7 +66,7 @@ class RestoreController extends Controller
         $path = $request->query('path', '');
 
         if (! $rawToken) {
-            return view('landing', ['error' => 'Geen token']);
+            return redirect()->route('restore.login')->with('error', 'Token vereist');
         }
 
         $token = $this->validateTokenOnly($rawToken);
@@ -120,7 +128,7 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
 
         if (! $rawToken) {
-            return view('landing', ['error' => 'Geen token']);
+            return redirect()->route('restore.login')->with('error', 'Token vereist');
         }
 
         $token = $this->validateTokenOnly($rawToken);
