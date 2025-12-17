@@ -111,7 +111,11 @@
                     // Klik op dag → ga naar files browser voor dat archief
                     // Oorspronkelijk stuurde dit naar ?date=... maar de files browser verwacht 'archive' param.
                     // We gebruiken de archive name uit het event.
-                    window.location.href = '/restore/files?token=' + encodeURIComponent(token) + '&archive=' + encodeURIComponent(archiveName);
+                    
+                    // Route expects: /restore/files/{archive}?token=...
+                    // We construct it manually or use a base url provided by blade
+                    const baseUrl = '/restore/files/';
+                    window.location.href = baseUrl + encodeURIComponent(archiveName) + '?token=' + encodeURIComponent(token);
                 }
             }
         );
