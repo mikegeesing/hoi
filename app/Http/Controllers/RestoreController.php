@@ -122,7 +122,7 @@ class RestoreController extends Controller
             $files = $borg->listFiles($archive, $borgPath);
             Log::info('restore.showFiles: listFiles raw response', [
                 'files_count' => count($files['files'] ?? []),
-                'files_preview' => array_slice($files['files'] ?? [], 0, 20)
+                'files_preview' => array_slice($files['files'] ?? [], 0, 50)
             ]);
 
             // Normalise different service return shapes into an array of
