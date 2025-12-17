@@ -102,7 +102,10 @@ class RestoreController extends Controller
 
             Log::info('restore.showFiles: listFiles call', ['archive' => $archive, 'path' => $path, 'borgPath' => $borgPath]);
             $files = $borg->listFiles($archive, $borgPath);
-            Log::info('restore.showFiles: listFiles response', ['files_preview' => is_array($files) ? array_slice($files, 0, 5) : $files]);
+            Log::info('restore.showFiles: listFiles raw response', [
+                'files_count' => count($files['files'] ?? []),
+                'files_preview' => array_slice($files['files'] ?? [], 0, 20)
+            ]);
 
             // Normalise different service return shapes into an array of
             // ['type','size','name','path'] entries for the view.
@@ -191,6 +194,17 @@ class RestoreController extends Controller
                 return true;
             });
 
+            // Remove duplicates by path
+            $seenPaths = [];
+            $files = array_filter($files, function ($file) use (&$seenPaths) {
+                $path = $file['path'] ?? '';
+                if (in_array($path, $seenPaths)) {
+                    return false;
+                }
+                $seenPaths[] = $path;
+                return true;
+            });
+
             // Sort: directories first, then alphabetically
             $files = collect($files)->sort(function ($a, $b) {
                 $aIsDir = ($a['type'] === 'dir') ? 0 : 1;
@@ -202,6 +216,11 @@ class RestoreController extends Controller
                 
                 return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
             })->values()->all();
+
+            Log::info('restore.showFiles: after filtering', [
+                'files_count' => count($files),
+                'files_names' => array_map(fn($f) => $f['name'] ?? 'N/A', array_slice($files, 0, 20))
+            ]);
 
             // If normalization produced nothing, try root path as fallback and log it
             if (empty($files) && $path !== '') {
