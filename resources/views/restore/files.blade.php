@@ -56,7 +56,7 @@
     </td>
 
     <td class="py-3">
-        <a class="inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded" href="/restore/calendar?token={{ urlencode($token) }}&archive={{ urlencode($archive) }}&path={{ urlencode($f['path']) }}">Restore</a>
+        <a class="inline-flex items-center px-3 py-1 bg-blue-600 text-white rounded" href="/restore/calendar?token={{ urlencode($token) }}&archive={{ urlencode($archive) }}&path={{ urlencode($filePath) }}">Restore</a>
     </td>
 
     <td class="py-3 text-gray-600">{{ $fileType }}</td>
