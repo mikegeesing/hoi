@@ -36,6 +36,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/tokens', [AdminTokenPageController::class, 'index']);
     Route::post('/tokens', [AdminTokenPageController::class, 'store']);
     Route::post('/tokens/{token}/revoke', [AdminTokenPageController::class, 'revoke']);
+    Route::post('/tokens/{token}/regenerate', [AdminTokenPageController::class, 'regenerate']);
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

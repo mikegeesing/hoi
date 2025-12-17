@@ -58,4 +58,22 @@ class AdminTokenPageController extends Controller
 
         return back()->with('status', 'Token ingetrokken');
     }
+
+    public function regenerate(RestoreToken $token)
+    {
+        // Only admins may regenerate — middleware ensures this, but double-check
+        if (!auth()->check() || !auth()->user()->is_admin) {
+            abort(403);
+        }
+
+        $plainToken = Str::random(64);
+
+        $token->update([
+            'token' => hash('sha256', $plainToken),
+            'token_encrypted' => Crypt::encryptString($plainToken),
+            'used' => 0,
+        ]);
+
+        return back()->with('new_token', $plainToken)->with('status', 'Token opnieuw gegenereerd');
+    }
 }

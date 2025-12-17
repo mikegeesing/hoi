@@ -76,14 +76,26 @@
                 @endphp
                 <tr class="border-t">
                     <td class="p-3">{{ $t->borg_user }}</td>
-                    <td class="p-3 break-all">{{ $t->plain_token ?? '—' }}</td>
+                    <td class="p-3 break-all">
+                        @if($t->plain_token)
+                            <code class="text-sm bg-gray-100 p-1 rounded">{{ $t->plain_token }}</code>
+                        @else
+                            <span class="text-gray-400">—</span>
+                            <div class="text-xs text-gray-500">(oude token; klik Regenerate om nieuw token te maken)</div>
+                        @endif
+                    </td>
                     <td class="p-3">{{ $status }}</td>
                     <td class="p-3">{{ $t->used }} / {{ $t->max_uses }}</td>
                     <td class="p-3">{{ $t->expires_at->format('d-m-Y H:i') }}</td>
-                    <td class="p-3 text-right">
-                        <form method="POST" action="/admin/tokens/{{ $t->id }}/revoke">
+                    <td class="p-3 text-right space-x-2">
+                        <form class="inline" method="POST" action="/admin/tokens/{{ $t->id }}/regenerate">
                             @csrf
-                            <button class="text-red-600">Intrekken</button>
+                            <button class="bg-yellow-500 text-white px-3 py-1 rounded text-sm">Regenerate</button>
+                        </form>
+
+                        <form class="inline" method="POST" action="/admin/tokens/{{ $t->id }}/revoke">
+                            @csrf
+                            <button class="ml-2 bg-red-600 text-white px-3 py-1 rounded text-sm">Intrekken</button>
                         </form>
                     </td>
                 </tr>
