@@ -61,6 +61,7 @@ Route::get('/restore/status/{job}', [RestoreController::class, 'getJobStatus'])
     ->name('restore.status');
 
 Route::get('/restore/calendar', [RestoreController::class, 'showCalendar'])->name('restore.calendar');
+Route::get('/restore/api/snapshots', [RestoreController::class, 'apiSnapshots'])->name('restore.api.snapshots');
 
 
 

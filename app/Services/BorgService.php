@@ -93,5 +93,39 @@ class BorgService
             'files' => $files
         ];
     }
+
+    /**
+     * Extract specific files/paths from an archive to an optional destination.
+     * Returns combined stdout/stderr on success, throws on failure.
+     */
+    public function extractFiles(string $archive, array $files, string $destination = ''): string
+    {
+        $args = [
+            'sudo',
+            $this->runner,
+            'extract',
+            $archive,
+        ];
+
+        if ($destination !== '') {
+            $args[] = '--destination';
+            $args[] = $destination;
+        }
+
+        $args[] = '--';
+        $args = array_merge($args, $files);
+
+        $process = new Process($args);
+        $process->setTimeout(7200);
+        $process->run();
+
+        $output = $process->getOutput() . "\n" . $process->getErrorOutput();
+
+        if (! $process->isSuccessful()) {
+            throw new \RuntimeException(trim($output) ?: 'Borg extract failed');
+        }
+
+        return $output;
+    }
 }
 

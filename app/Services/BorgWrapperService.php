@@ -104,6 +104,38 @@ class BorgWrapperService
     }
 
     /**
+     * Return list of archives where the given path exists.
+     * Each item: ['name' => ..., 'time' => ...]
+     */
+    public function archivesContainingPath(string $path): array
+    {
+        $archives = $this->getArchives();
+        $matches = [];
+
+        foreach ($archives as $archive) {
+            $name = $archive['name'];
+            try {
+                $fileList = $this->getFiles($name);
+                // $fileList is an array of file paths
+                foreach ($fileList as $fp) {
+                    if ($fp === $path || str_starts_with($fp, rtrim($path, '/') . '/')) {
+                        $matches[] = [
+                            'name' => $name,
+                            'time' => $archive['time'] ?? null,
+                        ];
+                        break;
+                    }
+                }
+            } catch (\Throwable $e) {
+                // ignore this archive on error
+                continue;
+            }
+        }
+
+        return $matches;
+    }
+
+    /**
      * Helper voor leesbare groottes
      */
     protected function formatSize(int $bytes): string

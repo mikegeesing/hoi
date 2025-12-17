@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Backup kalender</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- FullCalendar -->
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.css" rel="stylesheet">
@@ -97,6 +98,9 @@
 document.addEventListener('DOMContentLoaded', function () {
     const events = @json($events);
     const token  = @json($token);
+    const archiveFilter = @json($archive ?? null);
+    const pathFilter = @json($path ?? null);
+    const filesFilter = @json($files ?? null);
 
     const calendar = new FullCalendar.Calendar(
         document.getElementById('calendar'),
@@ -110,6 +114,36 @@ document.addEventListener('DOMContentLoaded', function () {
                 info.jsEvent.preventDefault();
 
                 const day = info.event.extendedProps.day;
+                const archiveName = info.event.extendedProps.archive;
+
+                if (filesFilter && Array.isArray(filesFilter) && filesFilter.length > 0) {
+                    // Start restore for selected files at the selected archive
+                    fetch('/restore/start', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-Requested-With': 'XMLHttpRequest',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                        },
+                        body: JSON.stringify({
+                            token: token,
+                            archive: archiveName,
+                            files: filesFilter
+                        })
+                    })
+                    .then(r => r.json())
+                    .then(j => {
+                        if (j.job_id) {
+                            alert('Herstel job gestart: ' + j.job_id);
+                            window.location.href = '/restore/status/' + j.job_id + '?token=' + encodeURIComponent(token);
+                        } else if (j.error) {
+                            alert('Fout: ' + j.error);
+                        }
+                    })
+                    .catch(e => alert('Fout bij starten restore: ' + e.message));
+
+                    return;
+                }
 
                 // Klik op dag → ga naar lijst gefilterd op datum
                 window.location.href =
