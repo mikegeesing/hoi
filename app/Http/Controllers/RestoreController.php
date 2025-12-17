@@ -57,6 +57,10 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
         $path = $request->query('path', '');
 
+        if (! $rawToken) {
+            return view('landing', ['error' => 'Geen token']);
+        }
+
         $token = $this->validateTokenOnly($rawToken);
         if (! $token) {
             return view('landing', ['error' => 'Token ongeldig']);
@@ -325,6 +329,14 @@ class RestoreController extends Controller
     public function getJobStatus(Request $request, RestoreJob $job)
     {
         $rawToken = $request->query('token');
+        if (! $rawToken) {
+            if ($request->wantsJson() || $request->ajax()) {
+                return response()->json(['error' => 'Geen token'], 403);
+            }
+
+            return view('landing', ['error' => 'Geen token']);
+        }
+
         $token = $this->validateTokenOnly($rawToken);
         if (! $token) {
             return response()->json(['error' => 'Token ongeldig'], 403);
@@ -349,8 +361,10 @@ class RestoreController extends Controller
         ]);
     }
 
-    private function validateTokenOnly(string $plainToken): ?RestoreToken
+    private function validateTokenOnly(?string $plainToken): ?RestoreToken
     {
+        if (! $plainToken) return null;
+
         $token = RestoreToken::where(
             'token',
             hash('sha256', $plainToken)
