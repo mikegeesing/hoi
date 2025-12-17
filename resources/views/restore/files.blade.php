@@ -84,7 +84,7 @@
                                 $parentPath = dirname($path);
                                 if ($parentPath === '.') $parentPath = '';
                              @endphp
-                             <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => $parentPath]) }}" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                             <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => $parentPath, 'depth' => (request('depth', 1) - 1)]) }}" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                                 <svg class="-ml-0.5 mr-1.5 h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
                                 </svg>
@@ -157,7 +157,7 @@
                                         </div>
                                         <div class="min-w-0 flex-1">
                                             @if($isDir)
-                                                <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => $filePath]) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-900 truncate block focus:outline-none">
+                                                <a href="{{ route('restore.files', ['archive' => $archive, 'token' => $token, 'path' => $filePath, 'depth' => (request('depth', 0) + 1)]) }}" class="text-sm font-medium text-indigo-600 hover:text-indigo-900 truncate block focus:outline-none">
                                                     <span class="absolute inset-x-0 -top-px bottom-0 sm:hidden"></span>
                                                     {{ $fileName }}
                                                 </a>

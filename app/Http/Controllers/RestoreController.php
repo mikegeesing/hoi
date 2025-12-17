@@ -65,6 +65,13 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
         $path = $request->query('path', '');
         $search = $request->query('search');
+        $depth = (int) $request->query('depth', 0);
+
+        // Prevent infinite recursion
+        $MAX_DEPTH = 100;
+        if ($depth > $MAX_DEPTH) {
+            return view('landing', ['error' => 'Maximale mapdiepte bereikt']);
+        }
 
         if (! $rawToken) {
             return redirect()->route('restore.login')->with('error', 'Token vereist');
@@ -93,7 +100,9 @@ class RestoreController extends Controller
                     : "sh:*$search*";
             }
 
+            Log::info('restore.showFiles: listFiles call', ['archive' => $archive, 'path' => $path, 'borgPath' => $borgPath]);
             $files = $borg->listFiles($archive, $borgPath);
+            Log::info('restore.showFiles: listFiles response', ['files_preview' => is_array($files) ? array_slice($files, 0, 5) : $files]);
 
             // Normalise different service return shapes into an array of
             // ['type','size','name','path'] entries for the view.
