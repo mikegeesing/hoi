@@ -50,17 +50,25 @@
                         <a href="/restore" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Open</a>
                     </div>
 
-                    <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                        <h3 class="font-bold text-lg mb-2">🗝️ Tokens Beheren</h3>
-                        <p class="text-gray-600 text-sm mb-4">Maak of beheer tokens voor klanten.</p>
-                        <a href="/admin/tokens" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">Beheren</a>
-                    </div>
+                    @if(auth()->user() && auth()->user()->role === 'admin')
+                        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                            <h3 class="font-bold text-lg mb-2">🗝️ Tokens Beheren</h3>
+                            <p class="text-gray-600 text-sm mb-4">Maak of beheer tokens voor klanten.</p>
+                            <a href="/admin/tokens" class="inline-block bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900">Beheren</a>
+                        </div>
 
-                    <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
-                        <h3 class="font-bold text-lg mb-2">⚙️ Profiel</h3>
-                        <p class="text-gray-600 text-sm mb-4">Wijzig uw profiel instellingen.</p>
-                        <a href="/admin/profile" class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Instellingen</a>
-                    </div>
+                        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                            <h3 class="font-bold text-lg mb-2">⚙️ Profiel</h3>
+                            <p class="text-gray-600 text-sm mb-4">Wijzig uw profiel instellingen.</p>
+                            <a href="/admin/profile" class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Instellingen</a>
+                        </div>
+                    @else
+                        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                            <h3 class="font-bold text-lg mb-2">⚙️ Profiel</h3>
+                            <p class="text-gray-600 text-sm mb-4">Wijzig uw profiel instellingen.</p>
+                            <a href="/profile" class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Instellingen</a>
+                        </div>
+                    @endif
                 </div>
 
                 <!-- Calendar Section -->
