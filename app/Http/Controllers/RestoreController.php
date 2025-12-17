@@ -209,12 +209,6 @@ class RestoreController extends Controller
                     return false;
                 }
 
-                // Skip files with extensions that are incorrectly marked as directories
-                if ($type === 'dir' && preg_match('/\.(html|php|txt|log|conf|xml|json|js|css|sh|py)$/i', $name)) {
-                    Log::debug('restore.showFiles: filtered - file ext marked as dir', ['name' => $name]);
-                    return false;
-                }
-
                 // Skip hidden system files and system folders
                 $skipPatterns = [
                     '/^\./',                    // Starts with dot (hidden/system folders)
