@@ -19,14 +19,16 @@ class DashboardController extends Controller
         }
 
         // User is authenticated, show calendar view
+        $events = [];
         try {
             $data = $borg->listArchives();
             $archives = $data['archives'] ?? [];
 
-            $events = [];
             foreach ($archives as $a) {
-                $name = $a['name'];
+                $name = $a['name'] ?? null;
                 $time = $a['time'] ?? null;
+
+                if (!$name) continue;
 
                 $day = null;
                 if ($time) {
@@ -47,7 +49,8 @@ class DashboardController extends Controller
         }
 
         return view('dashboard', [
-            'events' => $events,
+            'events' => $events ?? [],
+        ]);
         ]);
     }
 }
