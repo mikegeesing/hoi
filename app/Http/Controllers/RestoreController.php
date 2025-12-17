@@ -167,9 +167,9 @@ class RestoreController extends Controller
             $files = $normalized;
 
             // Filter out system/metadata folders from Maildir, Dovecot, etc.
-            $files = array_filter($files, function ($file) {
+            $files = array_filter($files, function ($file) use ($path) {
                 $name = $file['name'] ?? '';
-                $path = $file['path'] ?? '';
+                $filePath = $file['path'] ?? '';
                 
                 // Skip Maildir metadata/system folders
                 $skipPatterns = [
@@ -190,18 +190,25 @@ class RestoreController extends Controller
                         return false;
                     }
                 }
+
+                // Skip "home" and user home folder names when viewing /home/onlineho
+                // This prevents showing "onlineho" folder inside /home/onlineho
+                if (str_starts_with($path, '/home/onlineho') && in_array(strtolower($name), ['onlineho', 'home'])) {
+                    return false;
+                }
                 
                 return true;
             });
 
-            // Remove duplicates by path
+            // Remove duplicates by path (first occurrence wins)
             $seenPaths = [];
             $files = array_filter($files, function ($file) use (&$seenPaths) {
-                $path = $file['path'] ?? '';
-                if (in_array($path, $seenPaths)) {
+                $filePath = $file['path'] ?? '';
+                if (in_array($filePath, $seenPaths)) {
+                    Log::warning('restore.showFiles: duplicate path filtered', ['path' => $filePath]);
                     return false;
                 }
-                $seenPaths[] = $path;
+                $seenPaths[] = $filePath;
                 return true;
             });
 
@@ -217,9 +224,14 @@ class RestoreController extends Controller
                 return strcasecmp($a['name'] ?? '', $b['name'] ?? '');
             })->values()->all();
 
-            Log::info('restore.showFiles: after filtering', [
+            Log::info('restore.showFiles: after filtering & sorting', [
+                'path' => $path,
                 'files_count' => count($files),
-                'files_names' => array_map(fn($f) => $f['name'] ?? 'N/A', array_slice($files, 0, 20))
+                'files_list' => array_map(fn($f) => [
+                    'name' => $f['name'] ?? 'N/A',
+                    'type' => $f['type'] ?? 'unknown',
+                    'path' => $f['path'] ?? 'N/A'
+                ], $files)
             ]);
 
             // If normalization produced nothing, try root path as fallback and log it
