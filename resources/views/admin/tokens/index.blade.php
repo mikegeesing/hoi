@@ -80,6 +80,7 @@
                 <tr class="border-t hover:bg-gray-50 transition">
                     <td class="p-3 font-semibold text-gray-700">{{ $t->borg_user }}</td>
                     <td class="p-3 break-all">
+                        <!-- DEBUG: plain_token = '{{ $t->plain_token }}' | token_encrypted = '{{ $t->token_encrypted ? 'SET' : 'NULL' }}' -->
                         @if($t->plain_token)
                             <span class="inline-flex items-center gap-2">
                                 <code class="text-sm bg-gray-100 p-1 rounded font-mono select-all">{{ $t->plain_token }}</code>
