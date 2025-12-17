@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Log;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,12 +14,16 @@ class AppServiceProvider extends ServiceProvider
     {
         // Bind BorgWrapperService with repository path and passphrase from config/env
         $this->app->singleton(\App\Services\BorgWrapperService::class, function ($app) {
-            $repo = config('services.borg.repository') ?? env('BORG_REPOSITORY');
-            $pass = config('services.borg.passphrase') ?? env('BORG_PASSPHRASE');
+            $repo = config('services.borg.repository', env('BORG_REPOSITORY', '/backups'));
+            $pass = config('services.borg.passphrase', env('BORG_PASSPHRASE', ''));
 
-            if (empty($repo) || empty($pass)) {
-                // Let developers see a clear error during resolution
-                throw new \RuntimeException('BorgWrapperService requires BORG_REPOSITORY and BORG_PASSPHRASE to be set.');
+            if (empty($repo)) {
+                Log::warning('BorgWrapperService: BORG_REPOSITORY not set, using /backups');
+                $repo = '/backups';
+            }
+
+            if (empty($pass)) {
+                Log::warning('BorgWrapperService: BORG_PASSPHRASE is empty. Borg commands may fail.');
             }
 
             return new \App\Services\BorgWrapperService($repo, $pass);

@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'borg' => [
+        'repository' => env('BORG_REPOSITORY', '/backups'),
+        'passphrase' => env('BORG_PASSPHRASE', ''),
+    ],
+
 ];
