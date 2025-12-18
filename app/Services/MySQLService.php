@@ -112,11 +112,6 @@ class MySQLService
      */
     public function extractSqlFile(string $archive, string $filename): string
     {
-        // Check if runner script exists
-        if (!file_exists($this->runner)) {
-            throw new \RuntimeException("Borg runner script not found at: {$this->runner}");
-        }
-        
         // Sanitize to prevent path traversal, but preserve the full path
         $filename = str_replace(['../', '..\\'], '', $filename);
         
@@ -130,6 +125,9 @@ class MySQLService
         mkdir($tempDir, 0755, true);
         
         try {
+            // Use BorgService for extraction since it has working extractFiles method
+            $borgService = app(\App\Services\BorgService::class);
+            
             // Try different path formats
             $pathsToTry = [
                 $filename,                    // e.g., home/sql_dumps/file.sql
@@ -143,56 +141,27 @@ class MySQLService
             $lastError = '';
             
             foreach ($pathsToTry as $pathVariant) {
-                $args = [
-                    'sudo',
-                    $this->runner,
-                    'extract',
-                    $archive,
-                    '--destination',
-                    $tempDir,
-                    '--',  // Add separator before file paths
-                    $pathVariant,
-                ];
+                try {
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgService', [
+                        'archive' => $archive,
+                        'path_variant' => $pathVariant,
+                        'temp_dir' => $tempDir,
+                    ]);
 
-                \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction', [
-                    'archive' => $archive,
-                    'path_variant' => $pathVariant,
-                    'temp_dir' => $tempDir,
-                    'command' => implode(' ', $args),
-                ]);
-
-                $process = new Process($args);
-                $process->setTimeout(300);
-                $process->run();
-
-                $stdout = $process->getOutput();
-                $stderr = $process->getErrorOutput();
-                $exitCode = $process->getExitCode();
-
-                \Illuminate\Support\Facades\Log::info('Borg extract attempt', [
-                    'path' => $pathVariant,
-                    'exit_code' => $exitCode,
-                    'is_successful' => $process->isSuccessful(),
-                    'stdout_length' => strlen($stdout),
-                    'stderr_length' => strlen($stderr),
-                    'stdout_preview' => substr($stdout, 0, 200),
-                    'stderr_preview' => substr($stderr, 0, 200),
-                    'command' => implode(' ', $args),
-                ]);
-
-                if ($process->isSuccessful()) {
+                    $borgService->extractFiles($archive, [$pathVariant], $tempDir);
+                    
                     $extractSuccess = true;
-                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded', [
+                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via BorgService', [
                         'archive' => $archive,
                         'working_path' => $pathVariant,
                     ]);
                     break;
-                }
-                
-                // Combine stdout and stderr for error message
-                $lastError = trim($stdout . "\n" . $stderr);
-                if (empty($lastError)) {
-                    $lastError = "No output from borg (exit code: $exitCode)";
+                } catch (\Exception $e) {
+                    $lastError = $e->getMessage();
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed', [
+                        'path' => $pathVariant,
+                        'error' => $lastError,
+                    ]);
                 }
             }
 
