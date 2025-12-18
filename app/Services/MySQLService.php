@@ -9,10 +9,10 @@ class MySQLService
     private string $runner = '/usr/local/bin/borg-runner.sh';
 
     /**
-     * Extract SQL files from an archive
+     * Extract SQL files from an archive, optionally filtered by username
      * Returns array of filenames from /home/sql_dumps/
      */
-    public function listSqlFiles(string $archive): array
+    public function listSqlFiles(string $archive, ?string $filterByUsername = null): array
     {
         $args = [
             'sudo',
@@ -45,12 +45,38 @@ class MySQLService
             if (count($parts) >= 3) {
                 $filename = array_pop($parts); // last part is filename
                 if (str_ends_with($filename, '.sql')) {
+                    // Filter by username if provided
+                    if ($filterByUsername && !$this->isFileForUser($filename, $filterByUsername)) {
+                        continue;
+                    }
                     $files[] = $filename;
                 }
             }
         }
 
         return $files;
+    }
+
+    /**
+     * Check if a SQL file is for a specific username
+     * Files can match by: username in filename or default pattern
+     */
+    private function isFileForUser(string $filename, string $username): bool
+    {
+        // Remove .sql extension
+        $nameWithoutExt = preg_replace('/\.sql$/', '', $filename);
+        
+        // Check if filename contains the username (e.g., "onlineh_wp461.sql" contains "onlineh")
+        if (str_contains($nameWithoutExt, $username)) {
+            return true;
+        }
+
+        // Also check if username prefix matches (e.g., "onlineh_" prefix)
+        if (str_starts_with($nameWithoutExt, $username . '_')) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

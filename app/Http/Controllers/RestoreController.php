@@ -595,7 +595,8 @@ class RestoreController extends Controller
         }
 
         try {
-            $sqlFiles = $mysql->listSqlFiles($archive);
+            // Filter SQL files by the token's borg_user
+            $sqlFiles = $mysql->listSqlFiles($archive, $token->borg_user);
         } catch (\Exception $e) {
             Log::error('Failed to list SQL files', ['archive' => $archive, 'error' => $e->getMessage()]);
             return view('restore.mysql-select', [
