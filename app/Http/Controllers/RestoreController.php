@@ -663,6 +663,8 @@ class RestoreController extends Controller
                 'error' => $e->getMessage(),
                 'archive' => $archive,
                 'database' => $database,
+                'sqlFile' => $sqlFile,
+                'restoreType' => $restoreType,
             ]);
 
             return response()->json([

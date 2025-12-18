@@ -113,7 +113,36 @@ class MySQLService
         $process->run();
 
         if (!$process->isSuccessful()) {
-            throw new \RuntimeException('Failed to extract SQL file: ' . trim($process->getErrorOutput()));
+            $errorOutput = trim($process->getErrorOutput());
+            $standardOutput = trim($process->getOutput());
+            $exitCode = $process->getExitCode();
+            
+            $errorMessage = "Failed to extract SQL file: $filename from archive: $archive";
+            $errorMessage .= " (exit code: $exitCode)";
+            
+            // Check if runner doesn't exist
+            if ($exitCode === 127) {
+                $errorMessage .= " - Runner script not found at {$this->runner}";
+            }
+            
+            if ($errorOutput) {
+                $errorMessage .= " - Error: $errorOutput";
+            }
+            if ($standardOutput) {
+                $errorMessage .= " - Output: $standardOutput";
+            }
+            
+            // Log detailed debug information
+            \Illuminate\Support\Facades\Log::debug('MySQL extract failure details', [
+                'filename' => $filename,
+                'archive' => $archive,
+                'exit_code' => $exitCode,
+                'error_output' => $errorOutput,
+                'standard_output' => $standardOutput,
+                'command_args' => $args,
+            ]);
+            
+            throw new \RuntimeException($errorMessage);
         }
 
         return $process->getOutput();
