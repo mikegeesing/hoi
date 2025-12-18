@@ -89,6 +89,9 @@ Route::post('/restore/mysql/confirm', [RestoreController::class, 'confirmMySQLRe
 Route::get('/restore/website', [RestoreController::class, 'showWebsiteRestore'])->name('restore.website');
 Route::post('/restore/website/confirm', [RestoreController::class, 'confirmWebsiteRestore'])->name('restore.website-confirm');
 
+// DEBUG: Show raw borg list output
+Route::get('/restore/debug/borg-list', [RestoreController::class, 'debugBorgList'])->name('restore.debug.borg-list');
+
 
 
 /*

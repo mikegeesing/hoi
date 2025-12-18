@@ -852,4 +852,53 @@ class RestoreController extends Controller
 
         return $token;
     }
+
+    /**
+     * DEBUG: Show raw borg list-files output for an archive
+     * GET /restore/debug/borg-list?token=...&archive=...
+     */
+    public function debugBorgList(Request $request, MySQLService $mysql)
+    {
+        $rawToken = $request->query('token');
+        $archive = $request->query('archive');
+
+        if (!$rawToken || !$archive) {
+            return response()->json(['error' => 'token and archive required'], 400);
+        }
+
+        $token = $this->validateTokenOnly($rawToken);
+        if (!$token) {
+            return response()->json(['error' => 'invalid token'], 403);
+        }
+
+        try {
+            // Use reflection to call protected/private method for debugging
+            $reflection = new \ReflectionClass($mysql);
+            $method = $reflection->getMethod('runBorgListFiles');
+            $method->setAccessible(true);
+
+            // Or just directly execute the borg command
+            $cmd = [
+                'sudo',
+                '/usr/local/bin/borg-runner.sh',
+                'list-files',
+                $archive,
+                'home/sql_dumps',
+            ];
+
+            $process = new \Symfony\Component\Process\Process($cmd);
+            $process->setTimeout(120);
+            $process->run();
+
+            return response()->json([
+                'success' => $process->isSuccessful(),
+                'exit_code' => $process->getExitCode(),
+                'stdout_lines' => explode("\n", trim($process->getOutput())),
+                'stderr' => $process->getErrorOutput(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
+    }
 }
+
