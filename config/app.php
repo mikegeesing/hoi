@@ -52,7 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    // Default to production host to avoid WebAuthn RP-ID mismatch when APP_URL is unset
+    'url' => env('APP_URL', 'https://restore.onlinehoster.nl'),
 
     /*
     |--------------------------------------------------------------------------
