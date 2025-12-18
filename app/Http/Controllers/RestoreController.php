@@ -39,7 +39,19 @@ class RestoreController extends Controller
             return view('landing', ['error' => 'Token ongeldig']);
         }
 
-        $data = $borg->listArchives();
+        try {
+            $data = $borg->listArchives();
+        } catch (\RuntimeException $e) {
+            // Check if it's a lock timeout error (backups in progress)
+            if (str_contains($e->getMessage(), 'lock')) {
+                return view('restore.backups-running', [
+                    'token' => $rawToken,
+                    'error' => $e->getMessage(),
+                ]);
+            }
+            throw $e;
+        }
+        
         $archives = $data['archives'] ?? [];
 
         foreach ($archives as &$a) {
