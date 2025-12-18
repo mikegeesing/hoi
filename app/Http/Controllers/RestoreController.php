@@ -614,6 +614,96 @@ class RestoreController extends Controller
     }
 
     /**
+     * MYSQL RESTORE - Confirm and execute restore
+     */
+    public function confirmMySQLRestore(Request $request, BorgService $borg, MySQLService $mysql)
+    {
+        $rawToken = $request->input('token');
+        $archive = $request->input('archive');
+        $database = $request->input('database_name');
+        $sqlFile = $request->input('database');
+        $restoreType = $request->input('restore_type', 'full');
+        $tables = $request->input('tables', []);
+
+        $token = $this->validateTokenOnly($rawToken);
+        if (!$token) {
+            return response()->json(['error' => 'Token ongeldig'], 403);
+        }
+
+        if (!$database || !$sqlFile || !$archive) {
+            return response()->json(['error' => 'Ontbrekende parameters'], 400);
+        }
+
+        try {
+            // Extract SQL from archive
+            $sqlContent = $mysql->extractSqlFile($archive, $sqlFile);
+
+            // Filter by tables if needed
+            if ($restoreType === 'table' && !empty($tables)) {
+                $sqlContent = $mysql->filterSqlByTables($sqlContent, $tables);
+            }
+
+            // Execute restore
+            $mysql->restoreDatabase($database, $sqlContent);
+
+            Log::info('Database restored successfully', [
+                'token_id' => $token->id,
+                'archive' => $archive,
+                'database' => $database,
+                'type' => $restoreType,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Database succesvol hersteld',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Database restore failed', [
+                'error' => $e->getMessage(),
+                'archive' => $archive,
+                'database' => $database,
+            ]);
+
+            return response()->json([
+                'error' => 'Restore mislukt: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
+     * API - Get tables from SQL file
+     */
+    public function apiSqlTables(Request $request, BorgService $borg, MySQLService $mysql)
+    {
+        $rawToken = $request->query('token');
+        $archive = $request->query('archive');
+        $sqlFile = $request->query('file');
+
+        $token = $this->validateTokenOnly($rawToken);
+        if (!$token) {
+            return response()->json(['error' => 'Token ongeldig'], 403);
+        }
+
+        if (!$archive || !$sqlFile) {
+            return response()->json(['error' => 'Archive en file vereist'], 400);
+        }
+
+        try {
+            $sqlContent = $mysql->extractSqlFile($archive, $sqlFile);
+            $tables = $mysql->extractTableNames($sqlContent);
+
+            return response()->json([
+                'tables' => $tables,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Failed to extract tables', ['error' => $e->getMessage()]);
+            return response()->json([
+                'error' => 'Kon tabel namen niet ophalen',
+            ], 500);
+        }
+    }
+
+    /**
      * WEBSITE RESTORE - Show domain selection
      */
     public function showWebsiteRestore(Request $request)
@@ -641,16 +731,107 @@ class RestoreController extends Controller
     }
 
     /**
+     * WEBSITE RESTORE - Confirm and execute restore
+     */
+    public function confirmWebsiteRestore(Request $request, BorgService $borg, MySQLService $mysql)
+    {
+        $rawToken = $request->input('token');
+        $archive = $request->input('archive');
+        $domain = $request->input('domain');
+        $restorePath = $request->input('restore_path');
+        $sqlFile = $request->input('database_file');
+        $dbName = $request->input('database_name');
+
+        $token = $this->validateTokenOnly($rawToken);
+        if (!$token) {
+            return response()->json(['error' => 'Token ongeldig'], 403);
+        }
+
+        if (!$domain || !$archive) {
+            return response()->json(['error' => 'Ontbrekende parameters'], 400);
+        }
+
+        try {
+            // Start restore job for files
+            $result = DB::transaction(function () use ($token, $archive, $restorePath, $domain, $sqlFile, $dbName, $mysql) {
+                // Check token usage
+                $t = RestoreToken::where('id', $token->id)->lockForUpdate()->first();
+                if (!$t || $t->used >= $t->max_uses) {
+                    throw new \RuntimeException('Token niet meer geldig');
+                }
+
+                // Increment usage
+                $t->used = ($t->used ?? 0) + 1;
+                $t->last_used_at = now();
+                $t->save();
+
+                // Create restore job
+                $job = RestoreJob::create([
+                    'token_id' => $t->id,
+                    'status' => 'pending',
+                    'archive' => $archive,
+                    'restore_path' => $restorePath ?? '/home/' . $domain,
+                    'log_output' => 'Wachten op verwerking...',
+                ]);
+
+                // If database file specified, also restore DB
+                if ($sqlFile && $dbName) {
+                    try {
+                        $sqlContent = $mysql->extractSqlFile($archive, $sqlFile);
+                        $mysql->restoreDatabase($dbName, $sqlContent);
+                        $job->update(['log_output' => $job->log_output . "\nDatabase hersteld: " . $dbName]);
+                    } catch (\Exception $e) {
+                        Log::warning('Database restore in website restore failed', ['error' => $e->getMessage()]);
+                    }
+                }
+
+                return $job;
+            });
+
+            // Queue file restore job
+            Bus::dispatch(new BorgRestoreJob($result));
+
+            Log::info('Website restore started', [
+                'token_id' => $token->id,
+                'archive' => $archive,
+                'domain' => $domain,
+                'job_id' => $result->id,
+            ]);
+
+            return response()->json([
+                'success' => true,
+                'job_id' => $result->id,
+                'message' => 'Website restore gestart',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Website restore failed', [
+                'error' => $e->getMessage(),
+                'archive' => $archive,
+                'domain' => $domain,
+            ]);
+
+            return response()->json([
+                'error' => 'Restore mislukt: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
+    /**
      * Get available domains (placeholder)
      */
     private function getAvailableDomains(): array
     {
-        // TODO: Implement DirectAdmin API call or read from config
-        // For now return example domains
-        return [
-            'example.com',
-            'test.com',
-        ];
+        $domains = config('restore.domains', []);
+        
+        // Filter out empty strings
+        $domains = array_filter($domains, fn($d) => !empty(trim($d)));
+        
+        // If no domains configured, return empty
+        if (empty($domains)) {
+            return [];
+        }
+
+        return array_map('trim', $domains);
     }
 
     private function validateTokenOnly(?string $plainToken): ?RestoreToken

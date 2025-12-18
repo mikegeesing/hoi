@@ -58,12 +58,15 @@ class MySQLService
      */
     public function extractSqlFile(string $archive, string $filename): string
     {
+        // Sanitize filename to prevent path traversal
+        $filename = basename($filename);
+        
         $args = [
             'sudo',
             $this->runner,
             'extract',
             $archive,
-            'home/sql_dumps/' . basename($filename),
+            'home/sql_dumps/' . $filename,
         ];
 
         $process = new Process($args);
@@ -151,19 +154,19 @@ class MySQLService
         file_put_contents($tmpFile, $sqlContent);
 
         try {
-            $process = new Process([
-                'sudo',
-                'mysql',
-                $database,
-                '<',
-                $tmpFile
-            ]);
+            // Use shell_exec or Process to pipe SQL to mysql
+            $cmd = sprintf(
+                'sudo mysql %s < %s 2>&1',
+                escapeshellarg($database),
+                escapeshellarg($tmpFile)
+            );
 
-            $process->setTimeout(600);
-            $process->run();
-
-            if (!$process->isSuccessful()) {
-                throw new \RuntimeException('MySQL restore failed: ' . trim($process->getErrorOutput()));
+            $output = shell_exec($cmd);
+            
+            // Check if there were any errors (non-zero exit code)
+            $lastLine = shell_exec($cmd . '; echo $?');
+            if (trim($lastLine) !== '0') {
+                throw new \RuntimeException('MySQL restore failed: ' . trim($output ?? ''));
             }
 
             return true;

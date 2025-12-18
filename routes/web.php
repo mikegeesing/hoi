@@ -81,6 +81,7 @@ Route::get('/restore/status/{job}', [RestoreController::class, 'getJobStatus'])
 
 Route::get('/restore/calendar', [RestoreController::class, 'showCalendar'])->name('restore.calendar');
 Route::get('/restore/api/snapshots', [RestoreController::class, 'apiSnapshots'])->name('restore.api.snapshots');
+Route::get('/restore/api/tables', [RestoreController::class, 'apiSqlTables'])->name('restore.api.tables');
 
 Route::get('/restore/mysql', [RestoreController::class, 'showMySQLRestore'])->name('restore.mysql');
 Route::post('/restore/mysql/confirm', [RestoreController::class, 'confirmMySQLRestore'])->name('restore.mysql-confirm');

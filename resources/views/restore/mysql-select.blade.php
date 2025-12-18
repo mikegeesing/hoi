@@ -126,8 +126,19 @@
             currentSqlFile = filename;
             document.getElementById('dbFile').value = filename;
             
-            // TODO: Fetch tables from API
-            // For now, just show the modal
+            // Load tables from this SQL file
+            try {
+                const response = await fetch('{{ route("restore.api.tables") }}?token={{ urlencode($token) }}&archive={{ urlencode($archive) }}&file=' + encodeURIComponent(filename));
+                const data = await response.json();
+                
+                if (data.tables) {
+                    parsedTables[filename] = data.tables;
+                    updateTableCheckboxes(data.tables);
+                }
+            } catch (error) {
+                console.error('Failed to load tables:', error);
+            }
+            
             document.getElementById('restoreModal').classList.remove('hidden');
         }
 
@@ -141,10 +152,35 @@
             
             if (type === 'table') {
                 div.classList.remove('hidden');
-                // TODO: Load tables for current SQL file
             } else {
                 div.classList.add('hidden');
             }
+        }
+
+        function updateTableCheckboxes(tables) {
+            const container = document.getElementById('tableCheckboxes');
+            container.innerHTML = '';
+            
+            if (!tables || tables.length === 0) {
+                container.innerHTML = '<p class="text-sm text-gray-500">Geen tabel names gevonden</p>';
+                return;
+            }
+            
+            tables.forEach(table => {
+                const div = document.createElement('div');
+                div.className = 'flex items-center';
+                div.innerHTML = `
+                    <input type="checkbox" name="tables[]" value="${escapeHtml(table)}" id="table_${escapeHtml(table)}" class="rounded">
+                    <label for="table_${escapeHtml(table)}" class="ml-2 text-sm text-gray-700">${escapeHtml(table)}</label>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         // Close modal on outside click
