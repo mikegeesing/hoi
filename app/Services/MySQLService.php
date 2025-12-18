@@ -40,6 +40,13 @@ class MySQLService
             return [];
         }
 
+        // Log the raw output for debugging
+        \Illuminate\Support\Facades\Log::debug('Borg list-files raw output', [
+            'archive' => $archive,
+            'output_lines' => count(explode("\n", $output)),
+            'first_lines' => implode(" | ", array_slice(explode("\n", $output), 0, 3)),
+        ]);
+
         $files = [];
         $seen = []; // Track seen files to avoid duplicates
         
@@ -52,6 +59,12 @@ class MySQLService
             if (preg_match('/\bhome\/\S+\.sql\b/', $line, $matches)) {
                 $fullPath = $matches[0];
                 $filename = basename($fullPath);
+                
+                \Illuminate\Support\Facades\Log::debug('Extracted SQL file from borg list', [
+                    'raw_line' => $line,
+                    'extracted_path' => $fullPath,
+                    'filename' => $filename,
+                ]);
                 
                 // Skip duplicates
                 if (isset($seen[$fullPath])) {
@@ -112,10 +125,8 @@ class MySQLService
             $filename .= '.sql';
         }
         
-        // Ensure leading slash for borg extraction
-        if (!str_starts_with($filename, '/')) {
-            $filename = '/' . $filename;
-        }
+        // Do NOT add leading slash - borg uses paths relative to archive root
+        // The path should be exactly as it appears in the archive (e.g., home/sql_dumps/file.sql)
         
         $args = [
             'sudo',
@@ -125,6 +136,12 @@ class MySQLService
             '--',
             $filename,
         ];
+
+        \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction', [
+            'archive' => $archive,
+            'filename' => $filename,
+            'command_args' => $args,
+        ]);
 
         $process = new Process($args);
         $process->setTimeout(300);
@@ -166,6 +183,11 @@ class MySQLService
             
             throw new \RuntimeException($errorMessage);
         }
+
+        \Illuminate\Support\Facades\Log::info('SQL file extracted successfully', [
+            'archive' => $archive,
+            'filename' => $filename,
+        ]);
 
         return $process->getOutput();
     }
