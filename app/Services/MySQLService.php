@@ -102,12 +102,19 @@ class MySQLService
             $filename .= '.sql';
         }
         
+        // Ensure leading slash for borg extraction
+        if (!str_starts_with($filename, '/')) {
+            $filename = '/' . $filename;
+        }
+        
         $args = [
             'sudo',
             $this->runner,
             'extract',
             $archive,
             '--',
+            $filename,
+        ];
             $filename,
         ];
 
