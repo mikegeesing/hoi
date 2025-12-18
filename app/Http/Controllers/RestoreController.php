@@ -388,13 +388,20 @@ class RestoreController extends Controller
             }
 
             $day = null;
+            $displayTime = null;
             if ($time) {
                 // Borg returns ISO time like 2025-12-17T02:00:00
                 $day = substr($time, 0, 10);
+                // Extract just the time HH:mm from time field
+                $displayTime = substr($time, 11, 5); // "HH:mm"
+            } elseif (preg_match('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2})/', $name, $matches)) {
+                // Fallback: extract time from archive name if no time field
+                $day = $matches[1];
+                $displayTime = $matches[2];
             }
 
             $events[] = [
-                'title' => $name,
+                'title' => $displayTime ? $displayTime : $name,
                 'start' => $day,
                 'day' => $day,
                 'archive' => $name,
