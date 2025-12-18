@@ -79,10 +79,12 @@
                         return;
                     }
 
-                    alert(error || 'Kon niet inloggen met passkey.');
+                    // Toon een vriendelijke melding, details alleen in de console.
+                    console.warn('WebAuthn login error:', error);
+                    alert('De passkey is onjuist. Probeer opnieuw of gebruik je wachtwoord.');
                 } catch (err) {
-                    console.error(err);
-                    alert('Kon niet inloggen met passkey.');
+                    console.error('WebAuthn login exception:', err);
+                    alert('De passkey is onjuist. Probeer opnieuw of gebruik je wachtwoord.');
                 } finally {
                     setBusy(false);
                 }
