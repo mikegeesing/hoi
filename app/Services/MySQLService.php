@@ -130,12 +130,13 @@ class MySQLService
         mkdir($tempDir, 0755, true);
         
         try {
-            // Extract file to temp directory
+            // Extract file to temp directory using --destination flag
             $args = [
                 'sudo',
                 $this->runner,
                 'extract',
                 $archive,
+                '--destination',
                 $tempDir,
                 $filename,
             ];
