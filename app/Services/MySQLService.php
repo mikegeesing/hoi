@@ -125,9 +125,7 @@ class MySQLService
             $filename .= '.sql';
         }
         
-        // Do NOT add leading slash - borg uses paths relative to archive root
-        // The path should be exactly as it appears in the archive (e.g., home/sql_dumps/file.sql)
-        
+        // Try the extract command - path should be exactly as it appears in borg list
         $args = [
             'sudo',
             $this->runner,
@@ -140,7 +138,7 @@ class MySQLService
         \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction', [
             'archive' => $archive,
             'filename' => $filename,
-            'command_args' => $args,
+            'command' => implode(' ', $args),
         ]);
 
         $process = new Process($args);
@@ -152,6 +150,46 @@ class MySQLService
             $standardOutput = trim($process->getOutput());
             $exitCode = $process->getExitCode();
             
+            // Try alternative path formats
+            $alternativePaths = [
+                '/' . $filename,  // With leading slash
+                ltrim($filename, '/'),  // Ensure no leading slash
+            ];
+            
+            if ($exitCode === 21) {
+                // File not found - try alternative path formats
+                foreach ($alternativePaths as $altPath) {
+                    if ($altPath === $filename) continue;  // Skip if same
+                    
+                    $altArgs = [
+                        'sudo',
+                        $this->runner,
+                        'extract',
+                        $archive,
+                        '--',
+                        $altPath,
+                    ];
+                    
+                    \Illuminate\Support\Facades\Log::debug('Retrying with alternative path', [
+                        'original_path' => $filename,
+                        'alternative_path' => $altPath,
+                    ]);
+                    
+                    $altProcess = new Process($altArgs);
+                    $altProcess->setTimeout(300);
+                    $altProcess->run();
+                    
+                    if ($altProcess->isSuccessful()) {
+                        \Illuminate\Support\Facades\Log::info('SQL extraction succeeded with alternative path', [
+                            'archive' => $archive,
+                            'original_path' => $filename,
+                            'working_path' => $altPath,
+                        ]);
+                        return $altProcess->getOutput();
+                    }
+                }
+            }
+            
             $errorMessage = "Failed to extract SQL file: $filename from archive: $archive";
             $errorMessage .= " (exit code: $exitCode)";
             
@@ -161,7 +199,7 @@ class MySQLService
             }
             // Exit code 21 typically means item not found in Borg
             elseif ($exitCode === 21) {
-                $errorMessage .= " - File not found in archive at path: $filename";
+                $errorMessage .= " - File not found in archive at path: $filename (tried alternatives too)";
             }
             
             if ($errorOutput) {
