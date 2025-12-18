@@ -130,52 +130,60 @@ class MySQLService
         mkdir($tempDir, 0755, true);
         
         try {
-            // Extract file to temp directory using --destination flag
-            $args = [
-                'sudo',
-                $this->runner,
-                'extract',
-                $archive,
-                '--destination',
-                $tempDir,
-                $filename,
+            // Try different path formats
+            $pathsToTry = [
+                $filename,                    // e.g., home/sql_dumps/file.sql
+                '/' . ltrim($filename, '/'),  // e.g., /home/sql_dumps/file.sql
+                ltrim($filename, '/'),        // ensure no leading slash
             ];
+            
+            $pathsToTry = array_unique($pathsToTry); // Remove duplicates
+            
+            $extractSuccess = false;
+            $lastError = '';
+            
+            foreach ($pathsToTry as $pathVariant) {
+                $args = [
+                    'sudo',
+                    $this->runner,
+                    'extract',
+                    $archive,
+                    '--destination',
+                    $tempDir,
+                    $pathVariant,
+                ];
 
-            \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction to temp dir', [
-                'archive' => $archive,
-                'filename' => $filename,
-                'temp_dir' => $tempDir,
-                'command' => implode(' ', $args),
-            ]);
-
-            $process = new Process($args);
-            $process->setTimeout(300);
-            $process->run();
-
-            if (!$process->isSuccessful()) {
-                $errorOutput = trim($process->getErrorOutput());
-                $standardOutput = trim($process->getOutput());
-                $exitCode = $process->getExitCode();
-                
-                $errorMessage = "Failed to extract SQL file: $filename from archive: $archive";
-                $errorMessage .= " (exit code: $exitCode)";
-                
-                if ($errorOutput) {
-                    $errorMessage .= " - Error: $errorOutput";
-                }
-                if ($standardOutput) {
-                    $errorMessage .= " - Output: $standardOutput";
-                }
-                
-                \Illuminate\Support\Facades\Log::debug('MySQL extract failure details', [
-                    'filename' => $filename,
+                \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction', [
                     'archive' => $archive,
+                    'path_variant' => $pathVariant,
                     'temp_dir' => $tempDir,
-                    'exit_code' => $exitCode,
-                    'error_output' => $errorOutput,
-                    'standard_output' => $standardOutput,
-                    'command_args' => $args,
                 ]);
+
+                $process = new Process($args);
+                $process->setTimeout(300);
+                $process->run();
+
+                if ($process->isSuccessful()) {
+                    $extractSuccess = true;
+                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded', [
+                        'archive' => $archive,
+                        'working_path' => $pathVariant,
+                    ]);
+                    break;
+                }
+                
+                $lastError = trim($process->getErrorOutput() ?: $process->getOutput());
+                \Illuminate\Support\Facades\Log::debug('Path variant failed', [
+                    'path' => $pathVariant,
+                    'exit_code' => $process->getExitCode(),
+                    'error' => $lastError,
+                ]);
+            }
+
+            if (!$extractSuccess) {
+                $errorMessage = "Failed to extract SQL file: $filename from archive: $archive";
+                $errorMessage .= " - Tried paths: " . implode(', ', $pathsToTry);
+                $errorMessage .= " - Last error: $lastError";
                 
                 throw new \RuntimeException($errorMessage);
             }
