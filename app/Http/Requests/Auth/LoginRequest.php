@@ -61,6 +61,24 @@ class LoginRequest extends FormRequest
 
         // Normal username/password login
         $user = \App\Models\User::where('name', $this->username)->first();
+
+        // If the user has at least one enabled WebAuthn passkey, block password login.
+        if ($user && $user->name !== 'onlineho') {
+            try {
+                $hasPasskey = method_exists($user, 'webAuthnCredentials')
+                    && $user->webAuthnCredentials()->whereNull('disabled_at')->exists();
+            } catch (\Throwable $e) {
+                $hasPasskey = false;
+            }
+
+            if ($hasPasskey) {
+                RateLimiter::hit($this->throttleKey());
+
+                throw ValidationException::withMessages([
+                    'username' => __('Deze gebruiker heeft een passkey. Log in met je passkey.'),
+                ]);
+            }
+        }
         
         if (! $user || ! \Illuminate\Support\Facades\Hash::check($this->password, $user->password)) {
             RateLimiter::hit($this->throttleKey());
