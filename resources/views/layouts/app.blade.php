@@ -8,7 +8,9 @@
 </head>
 <body class="bg-gray-50">
     <div class="min-h-screen">
-        @include('layouts.navigation')
+        @if(auth()->check())
+            @include('layouts.navigation')
+        @endif
 
         <!-- Page Header -->
         @isset($header)
