@@ -95,6 +95,11 @@ class MySQLService
         // Sanitize filename to prevent path traversal
         $filename = basename($filename);
         
+        // Ensure .sql extension
+        if (!str_ends_with($filename, '.sql')) {
+            $filename .= '.sql';
+        }
+        
         $args = [
             'sudo',
             $this->runner,
