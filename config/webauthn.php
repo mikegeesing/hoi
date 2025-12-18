@@ -7,7 +7,7 @@ return [
     'rp' => [
         'id' => env('WEBAUTHN_RP_ID', parse_url(env('APP_URL', 'https://restore.onlinehoster.nl'), PHP_URL_HOST)),
         // Displayed to users during passkey flows
-        'name' => env('WEBAUTHN_RP_NAME', 'restore onlinehoster'),
+        'name' => env('WEBAUTHN_RP_NAME', 'Restore Onlinehoster'),
         'icon' => null,
         'origins' => [
             env('WEBAUTHN_ORIGIN', env('APP_URL', 'https://restore.onlinehoster.nl')),
