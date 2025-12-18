@@ -125,17 +125,17 @@ class MySQLService
             $filename .= '.sql';
         }
         
-        // Try the extract command - path should be exactly as it appears in borg list
+        // Use extract-stdout to get file contents directly (not extract which writes to disk)
+        // borg-runner.sh should support extract-stdout or cat command
         $args = [
             'sudo',
             $this->runner,
-            'extract',
+            'cat',  // Changed from 'extract' to 'cat' which outputs to stdout
             $archive,
-            '--',
             $filename,
         ];
 
-        \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction', [
+        \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction with cat', [
             'archive' => $archive,
             'filename' => $filename,
             'command' => implode(' ', $args),
@@ -164,9 +164,8 @@ class MySQLService
                     $altArgs = [
                         'sudo',
                         $this->runner,
-                        'extract',
+                        'cat',  // Use cat command for stdout output
                         $archive,
-                        '--',
                         $altPath,
                     ];
                     
