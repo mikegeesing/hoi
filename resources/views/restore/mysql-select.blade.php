@@ -83,7 +83,7 @@
                         <label class="block text-sm font-medium text-gray-700 mb-2">
                             Database naam
                         </label>
-                        <input type="text" name="database_name" required placeholder="bijv. my_database" class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm">
+                        <input type="text" name="database_name" id="dbName" required class="block w-full rounded-md border-0 py-2 px-3 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-amber-600 sm:text-sm">
                     </div>
 
                     <div class="mb-4">
@@ -125,6 +125,10 @@
         async function openRestoreModal(filename) {
             currentSqlFile = filename;
             document.getElementById('dbFile').value = filename;
+            
+            // Extract database name from filename (remove .sql extension)
+            const dbName = filename.replace(/\.sql$/, '');
+            document.getElementById('dbName').value = dbName;
             
             // Load tables from this SQL file
             try {
