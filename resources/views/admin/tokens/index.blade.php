@@ -1,7 +1,11 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Admin – Restore tokens') }}
+        </h2>
+    </x-slot>
 
-@section('content')
-<div class="max-w-6xl mx-auto py-10">
+    <div class="max-w-6xl mx-auto py-10">
 
     <h1 class="text-3xl font-extrabold mb-8 text-gray-800 flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 10c-4.418 0-8-1.79-8-4V7a2 2 0 012-2h2m12 0a2 2 0 012 2v7c0 2.21-3.582 4-8 4z" /></svg>
@@ -121,5 +125,5 @@
         </table>
     </div>
 
-</div>
-@endsection
+    </div>
+</x-app-layout>
