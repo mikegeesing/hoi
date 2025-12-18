@@ -100,12 +100,15 @@ class MySQLService
             $filename .= '.sql';
         }
         
+        $path = 'home/sql_dumps/' . $filename;
+        
         $args = [
             'sudo',
             $this->runner,
             'extract',
             $archive,
-            'home/sql_dumps/' . $filename,
+            '--',
+            $path,
         ];
 
         $process = new Process($args);
@@ -124,6 +127,10 @@ class MySQLService
             if ($exitCode === 127) {
                 $errorMessage .= " - Runner script not found at {$this->runner}";
             }
+            // Exit code 21 typically means item not found in Borg
+            elseif ($exitCode === 21) {
+                $errorMessage .= " - File not found in archive at path: $path";
+            }
             
             if ($errorOutput) {
                 $errorMessage .= " - Error: $errorOutput";
@@ -136,6 +143,7 @@ class MySQLService
             \Illuminate\Support\Facades\Log::debug('MySQL extract failure details', [
                 'filename' => $filename,
                 'archive' => $archive,
+                'path' => $path,
                 'exit_code' => $exitCode,
                 'error_output' => $errorOutput,
                 'standard_output' => $standardOutput,
