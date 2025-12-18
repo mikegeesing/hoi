@@ -141,8 +141,9 @@ class MySQLService
             $lastError = '';
             
             foreach ($pathsToTry as $pathVariant) {
+                // Strategy A: use destination flag (preferred)
                 try {
-                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgService', [
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgService (destination flag)', [
                         'archive' => $archive,
                         'path_variant' => $pathVariant,
                         'temp_dir' => $tempDir,
@@ -151,14 +152,60 @@ class MySQLService
                     $borgService->extractFiles($archive, [$pathVariant], $tempDir);
                     
                     $extractSuccess = true;
-                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via BorgService', [
+                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via BorgService (destination flag)', [
                         'archive' => $archive,
                         'working_path' => $pathVariant,
                     ]);
                     break;
                 } catch (\Exception $e) {
                     $lastError = $e->getMessage();
-                    \Illuminate\Support\Facades\Log::debug('Path variant failed', [
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (destination flag)', [
+                        'path' => $pathVariant,
+                        'error' => $lastError,
+                    ]);
+                }
+
+                // Strategy B: without destination flag, but set working directory
+                try {
+                    $args = [
+                        'sudo',
+                        '/usr/local/bin/borg-runner.sh',
+                        'extract',
+                        $archive,
+                        '--',
+                        $pathVariant,
+                    ];
+
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction (cwd strategy)', [
+                        'archive' => $archive,
+                        'path_variant' => $pathVariant,
+                        'cwd' => $tempDir,
+                        'command' => implode(' ', $args),
+                    ]);
+
+                    $process = new Process($args, $tempDir);
+                    $process->setTimeout(300);
+                    $process->run();
+
+                    if ($process->isSuccessful()) {
+                        $extractSuccess = true;
+                        \Illuminate\Support\Facades\Log::info('SQL extraction succeeded (cwd strategy)', [
+                            'archive' => $archive,
+                            'working_path' => $pathVariant,
+                        ]);
+                        break;
+                    }
+
+                    $lastError = trim($process->getOutput() . "\n" . $process->getErrorOutput()) ?: ('No output (exit code ' . $process->getExitCode() . ')');
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (cwd strategy)', [
+                        'path' => $pathVariant,
+                        'exit_code' => $process->getExitCode(),
+                        'stdout' => $process->getOutput(),
+                        'stderr' => $process->getErrorOutput(),
+                    ]);
+                } catch (\Exception $e) {
+                    $lastError = $e->getMessage();
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (cwd strategy exception)', [
                         'path' => $pathVariant,
                         'error' => $lastError,
                     ]);

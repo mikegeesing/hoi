@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Symfony\Component\Process\Process;
+use Illuminate\Support\Facades\Log;
 
 class BorgService
 {
@@ -119,32 +120,107 @@ class BorgService
      */
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
-        $args = [
-            'sudo',
-            $this->runner,
-            'extract',
-            $archive,
+        $env = [
+            'TMPDIR' => env('TMPDIR', sys_get_temp_dir()),
+            'HOME' => env('HOME', getenv('HOME') ?: '/home/onlineh'),
         ];
 
-        if ($destination !== '') {
-            $args[] = '--destination';
-            $args[] = $destination;
+        $attemptErrors = [];
+
+        $attempt = function (bool $useDestination, ?string $cwd) use ($archive, $files, $destination, $env, &$attemptErrors): string {
+            $args = [
+                'sudo',
+                $this->runner,
+                'extract',
+                $archive,
+            ];
+
+            $label = $useDestination ? 'with-destination' : 'cwd-only';
+
+            if ($useDestination && $destination !== '') {
+                $args[] = '--destination';
+                $args[] = $destination;
+            }
+
+            $args[] = '--';
+            $args = array_merge($args, $files);
+
+            Log::debug('Borg extract starting', [
+                'archive' => $archive,
+                'destination' => $useDestination ? $destination : null,
+                'files' => $files,
+                'command' => implode(' ', $args),
+                'cwd' => $cwd,
+                'label' => $label,
+                'env' => $env,
+            ]);
+
+            $process = new Process($args, $cwd, $env);
+            $process->setTimeout(7200);
+            $process->run();
+
+            $output = $process->getOutput() . "\n" . $process->getErrorOutput();
+
+            if ($process->isSuccessful()) {
+                Log::info('Borg extract succeeded', [
+                    'archive' => $archive,
+                    'destination' => $useDestination ? $destination : null,
+                    'files' => $files,
+                    'exit_code' => $process->getExitCode(),
+                    'stdout_snippet' => substr($process->getOutput(), 0, 300),
+                    'stderr_snippet' => substr($process->getErrorOutput(), 0, 300),
+                    'label' => $label,
+                ]);
+                return $output;
+            }
+
+            $attemptErrors[] = [
+                'label' => $label,
+                'exit_code' => $process->getExitCode(),
+                'stdout' => $process->getOutput(),
+                'stderr' => $process->getErrorOutput(),
+                'message' => trim($output) ?: 'Borg extract failed',
+            ];
+
+            Log::warning('Borg extract attempt failed', [
+                'label' => $label,
+                'archive' => $archive,
+                'destination' => $useDestination ? $destination : null,
+                'files' => $files,
+                'exit_code' => $process->getExitCode(),
+                'stdout' => $process->getOutput(),
+                'stderr' => $process->getErrorOutput(),
+            ]);
+
+            throw new \RuntimeException($attemptErrors[array_key_last($attemptErrors)]['message']);
+        };
+
+        // First try with destination flag if provided
+        try {
+            return $attempt(true, null);
+        } catch (\Throwable $e) {
+            // If destination was provided, retry without destination but set CWD
+            if ($destination !== '') {
+                try {
+                    return $attempt(false, $destination);
+                } catch (\Throwable $e2) {
+                    // Fall through to combined error handling below
+                }
+            }
         }
 
-        $args[] = '--';
-        $args = array_merge($args, $files);
+        // If we reach here, all attempts failed
+        Log::error('Borg extract failed after retries', [
+            'archive' => $archive,
+            'destination' => $destination,
+            'files' => $files,
+            'attempt_errors' => $attemptErrors,
+        ]);
 
-        $process = new Process($args);
-        $process->setTimeout(7200);
-        $process->run();
+        $messages = array_map(fn($err) => "[{$err['label']}] exit {$err['exit_code']}: {$err['message']}", $attemptErrors);
+        $message = implode(' | ', $messages) ?: 'Borg extract failed';
 
-        $output = $process->getOutput() . "\n" . $process->getErrorOutput();
-
-        if (! $process->isSuccessful()) {
-            throw new \RuntimeException(trim($output) ?: 'Borg extract failed');
-        }
-
-        return $output;
+        throw new \RuntimeException($message);
     }
 }
 
