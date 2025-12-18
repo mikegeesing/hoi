@@ -203,7 +203,7 @@ class MySQLService
         } finally {
             // Clean up temp directory
             if (file_exists($tempDir)) {
-                exec("rm -rf " . escapeshellarg($tempDir));
+                \exec("rm -rf " . \escapeshellarg($tempDir));
             }
         }
     }
