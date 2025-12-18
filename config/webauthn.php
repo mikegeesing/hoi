@@ -6,7 +6,8 @@ return [
     // Relying Party ID must match the effective domain serving the app.
     'rp' => [
         'id' => env('WEBAUTHN_RP_ID', parse_url(env('APP_URL', 'https://restore.onlinehoster.nl'), PHP_URL_HOST)),
-        'name' => env('APP_NAME', 'Online Hoster Restore'),
+        // Displayed to users during passkey flows
+        'name' => env('WEBAUTHN_RP_NAME', 'restore onlinehoster'),
         'icon' => null,
         'origins' => [
             env('WEBAUTHN_ORIGIN', env('APP_URL', 'https://restore.onlinehoster.nl')),
