@@ -36,6 +36,8 @@ class MySQLService
         }
 
         $files = [];
+        $seen = []; // Track seen files to avoid duplicates
+        
         foreach (explode("\n", $output) as $line) {
             $line = trim($line);
             if (empty($line)) continue;
@@ -45,6 +47,12 @@ class MySQLService
             if (count($parts) >= 3) {
                 $filename = array_pop($parts); // last part is filename
                 if (str_ends_with($filename, '.sql')) {
+                    // Skip duplicates
+                    if (isset($seen[$filename])) {
+                        continue;
+                    }
+                    $seen[$filename] = true;
+                    
                     // Filter by username if provided
                     if ($filterByUsername && !$this->isFileForUser($filename, $filterByUsername)) {
                         continue;
