@@ -60,4 +60,21 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    /**
+     * Delete a specific WebAuthn passkey from the authenticated user.
+     */
+    public function destroyPasskey(Request $request, string $credentialId): RedirectResponse
+    {
+        $user = $request->user();
+
+        $credential = $user->webAuthnCredentials()->whereKey($credentialId)->first();
+
+        if ($credential) {
+            $credential->delete();
+            return Redirect::route('profile.edit')->with('status', 'passkey-deleted');
+        }
+
+        return Redirect::route('profile.edit')->with('status', 'passkey-not-found');
+    }
 }

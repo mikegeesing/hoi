@@ -27,7 +27,14 @@
                                 <div class="text-red-600">Uitgeschakeld</div>
                             @endif
                         </div>
-                        <div class="text-gray-500 text-xs">ID: {{ \Illuminate\Support\Str::limit($pk->id, 16) }}</div>
+                        <div class="flex items-center gap-3">
+                            <div class="text-gray-500 text-xs">ID: {{ \Illuminate\Support\Str::limit($pk->id, 16) }}</div>
+                            <form method="POST" action="{{ route('profile.passkeys.destroy', $pk->id) }}" onsubmit="return confirm('Weet je zeker dat je deze passkey wilt verwijderen?');">
+                                @csrf
+                                @method('DELETE')
+                                <x-secondary-button type="submit">Verwijderen</x-secondary-button>
+                            </form>
+                        </div>
                     </li>
                 @endforeach
             </ul>

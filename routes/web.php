@@ -51,6 +51,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')->middleware('auth');
 Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update')->middleware('auth');
 Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy')->middleware('auth');
+Route::delete('/profile/passkeys/{credentialId}', [ProfileController::class, 'destroyPasskey'])->name('profile.passkeys.destroy')->middleware('auth');
 
 // Admin restore job pages
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {

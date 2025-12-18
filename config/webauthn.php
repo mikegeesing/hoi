@@ -1,6 +1,8 @@
 <?php
 
 return [
+    // Enforce passkey-only authentication (disable password login & self-registration)
+    'only' => (bool) env('WEBAUTHN_ONLY', false),
     // Relying Party ID must match the effective domain serving the app.
     'rp' => [
         'id' => env('WEBAUTHN_RP_ID', parse_url(env('APP_URL', 'https://restore.onlinehoster.nl'), PHP_URL_HOST)),

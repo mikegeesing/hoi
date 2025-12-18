@@ -12,15 +12,25 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Route::get('register', [RegisteredUserController::class, 'create'])
-        ->name('register');
+    // Disable self-registration when WebAuthn-only mode is enabled
+    if (!config('webauthn.only')) {
+        Route::get('register', [RegisteredUserController::class, 'create'])
+            ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+        Route::post('register', [RegisteredUserController::class, 'store']);
+    }
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    // If WebAuthn-only, block password login post
+    if (config('webauthn.only')) {
+        Route::post('login', function () {
+            abort(403, 'Password login is disabled.');
+        })->name('login');
+    } else {
+        Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    }
 
     Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
         ->name('password.request');
