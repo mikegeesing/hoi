@@ -42,6 +42,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/tokens', [AdminTokenPageController::class, 'store']);
     Route::post('/tokens/{token}/revoke', [AdminTokenPageController::class, 'revoke']);
     Route::post('/tokens/{token}/regenerate', [AdminTokenPageController::class, 'regenerate']);
+
+    // Redirect admin profile URL to the standard profile page
+    Route::redirect('/profile', '/profile')->name('admin.profile');
 });
 
 // Profile routes for all authenticated users (admin & non-admin)
