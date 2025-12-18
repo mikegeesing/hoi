@@ -201,11 +201,35 @@ class MySQLService
             return $content;
             
         } finally {
-            // Clean up temp directory
+            // Clean up temp directory using PHP's recursive removal
             if (file_exists($tempDir)) {
-                \exec("rm -rf " . \escapeshellarg($tempDir));
+                $this->removeDirectory($tempDir);
             }
         }
+    }
+
+    /**
+     * Recursively remove a directory
+     */
+    private function removeDirectory(string $dir): void
+    {
+        if (!is_dir($dir)) {
+            return;
+        }
+
+        $items = array_diff(scandir($dir), ['.', '..']);
+        
+        foreach ($items as $item) {
+            $path = $dir . '/' . $item;
+            
+            if (is_dir($path)) {
+                $this->removeDirectory($path);
+            } else {
+                @unlink($path);
+            }
+        }
+        
+        @rmdir($dir);
     }
 
     /**
