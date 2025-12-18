@@ -14,6 +14,11 @@ class MySQLService
      */
     public function listSqlFiles(string $archive, ?string $filterByUsername = null): array
     {
+        // Check if runner script exists
+        if (!file_exists($this->runner)) {
+            throw new \RuntimeException("Borg runner script not found at: {$this->runner}");
+        }
+        
         $args = [
             'sudo',
             $this->runner,
@@ -94,6 +99,11 @@ class MySQLService
      */
     public function extractSqlFile(string $archive, string $filename): string
     {
+        // Check if runner script exists
+        if (!file_exists($this->runner)) {
+            throw new \RuntimeException("Borg runner script not found at: {$this->runner}");
+        }
+        
         // Sanitize to prevent path traversal, but preserve the full path
         $filename = str_replace(['../', '..\\'], '', $filename);
         
@@ -113,8 +123,6 @@ class MySQLService
             'extract',
             $archive,
             '--',
-            $filename,
-        ];
             $filename,
         ];
 
@@ -158,6 +166,9 @@ class MySQLService
             
             throw new \RuntimeException($errorMessage);
         }
+
+        return $process->getOutput();
+    }
 
         return $process->getOutput();
     }
