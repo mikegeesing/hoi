@@ -70,6 +70,7 @@
                     <th class="p-3">Token</th>
                     <th class="p-3">Status</th>
                     <th class="p-3">Gebruik</th>
+                    <th class="p-3">Laatst gebruikt</th>
                     <th class="p-3">Verloopt</th>
                     <th class="p-3"></th>
                 </tr>
@@ -101,6 +102,13 @@
                         </span>
                     </td>
                     <td class="p-3">{{ $t->used }} / {{ $t->max_uses }}</td>
+                    <td class="p-3">
+                        @if($t->last_used_at)
+                            {{ $t->last_used_at->format('d-m-Y H:i') }}
+                        @else
+                            <span class="text-gray-400">—</span>
+                        @endif
+                    </td>
                     <td class="p-3">{{ $t->expires_at->format('d-m-Y H:i') }}</td>
                     <td class="p-3 text-right space-x-2">
                         <form class="inline" method="POST" action="/admin/tokens/{{ $t->id }}/regenerate">
@@ -116,7 +124,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5" class="p-4 text-center text-gray-500">
+                    <td colspan="7" class="p-4 text-center text-gray-500">
                         Nog geen tokens aangemaakt
                     </td>
                 </tr>

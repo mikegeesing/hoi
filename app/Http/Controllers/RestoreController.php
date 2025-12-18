@@ -483,6 +483,7 @@ class RestoreController extends Controller
                 if ($t->used >= $t->max_uses) throw new \RuntimeException('Token heeft geen resterende gebruiken');
 
                 $t->used = ($t->used ?? 0) + 1;
+                $t->last_used_at = now();
                 $t->save();
 
                 $job = RestoreJob::create([

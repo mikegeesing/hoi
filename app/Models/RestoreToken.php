@@ -13,10 +13,12 @@ class RestoreToken extends Model
         'expires_at',
         'max_uses',
         'used',
+        'last_used_at',
     ];
 
     protected $casts = [
         'expires_at' => 'datetime',
+        'last_used_at' => 'datetime',
     ];
 
 }
