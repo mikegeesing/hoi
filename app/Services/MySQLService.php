@@ -42,29 +42,24 @@ class MySQLService
             $line = trim($line);
             if (empty($line)) continue;
             
-            // Parse output - could be tab-separated or space-separated
-            // Format is typically: "mode size mtime path"
-            $parts = preg_split('/\s+/', $line, 4); // Split into at most 4 parts
-            if (count($parts) >= 4) {
-                $fullPath = $parts[3]; // Full path is the last part
-                
-                // Extract filename from path for filtering
+            // Extract path - it's the part that starts with 'home/'
+            // Format is: "size day, date time path"
+            if (preg_match('/\bhome\/\S+\.sql\b/', $line, $matches)) {
+                $fullPath = $matches[0];
                 $filename = basename($fullPath);
                 
-                if (str_ends_with($filename, '.sql')) {
-                    // Skip duplicates
-                    if (isset($seen[$fullPath])) {
-                        continue;
-                    }
-                    $seen[$fullPath] = true;
-                    
-                    // Filter by username if provided
-                    if ($filterByUsername && !$this->isFileForUser($filename, $filterByUsername)) {
-                        continue;
-                    }
-                    // Return the full path, not just filename
-                    $files[] = $fullPath;
+                // Skip duplicates
+                if (isset($seen[$fullPath])) {
+                    continue;
                 }
+                $seen[$fullPath] = true;
+                
+                // Filter by username if provided
+                if ($filterByUsername && !$this->isFileForUser($filename, $filterByUsername)) {
+                    continue;
+                }
+                // Return the full path
+                $files[] = $fullPath;
             }
         }
 
