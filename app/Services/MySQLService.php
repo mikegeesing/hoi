@@ -125,108 +125,87 @@ class MySQLService
             $filename .= '.sql';
         }
         
-        // Use extract-stdout to get file contents directly (not extract which writes to disk)
-        // borg-runner.sh should support extract-stdout or cat command
-        $args = [
-            'sudo',
-            $this->runner,
-            'cat',  // Changed from 'extract' to 'cat' which outputs to stdout
-            $archive,
-            $filename,
-        ];
-
-        \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction with cat', [
-            'archive' => $archive,
-            'filename' => $filename,
-            'command' => implode(' ', $args),
-        ]);
-
-        $process = new Process($args);
-        $process->setTimeout(300);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            $errorOutput = trim($process->getErrorOutput());
-            $standardOutput = trim($process->getOutput());
-            $exitCode = $process->getExitCode();
-            
-            // Try alternative path formats
-            $alternativePaths = [
-                '/' . $filename,  // With leading slash
-                ltrim($filename, '/'),  // Ensure no leading slash
+        // Create temp directory for extraction
+        $tempDir = sys_get_temp_dir() . '/borg_extract_' . uniqid();
+        mkdir($tempDir, 0755, true);
+        
+        try {
+            // Extract file to temp directory
+            $args = [
+                'sudo',
+                $this->runner,
+                'extract',
+                $archive,
+                $tempDir,
+                $filename,
             ];
-            
-            if ($exitCode === 21) {
-                // File not found - try alternative path formats
-                foreach ($alternativePaths as $altPath) {
-                    if ($altPath === $filename) continue;  // Skip if same
-                    
-                    $altArgs = [
-                        'sudo',
-                        $this->runner,
-                        'cat',  // Use cat command for stdout output
-                        $archive,
-                        $altPath,
-                    ];
-                    
-                    \Illuminate\Support\Facades\Log::debug('Retrying with alternative path', [
-                        'original_path' => $filename,
-                        'alternative_path' => $altPath,
-                    ]);
-                    
-                    $altProcess = new Process($altArgs);
-                    $altProcess->setTimeout(300);
-                    $altProcess->run();
-                    
-                    if ($altProcess->isSuccessful()) {
-                        \Illuminate\Support\Facades\Log::info('SQL extraction succeeded with alternative path', [
-                            'archive' => $archive,
-                            'original_path' => $filename,
-                            'working_path' => $altPath,
-                        ]);
-                        return $altProcess->getOutput();
-                    }
-                }
-            }
-            
-            $errorMessage = "Failed to extract SQL file: $filename from archive: $archive";
-            $errorMessage .= " (exit code: $exitCode)";
-            
-            // Check if runner doesn't exist
-            if ($exitCode === 127) {
-                $errorMessage .= " - Runner script not found at {$this->runner}";
-            }
-            // Exit code 21 typically means item not found in Borg
-            elseif ($exitCode === 21) {
-                $errorMessage .= " - File not found in archive at path: $filename (tried alternatives too)";
-            }
-            
-            if ($errorOutput) {
-                $errorMessage .= " - Error: $errorOutput";
-            }
-            if ($standardOutput) {
-                $errorMessage .= " - Output: $standardOutput";
-            }
-            
-            // Log detailed debug information
-            \Illuminate\Support\Facades\Log::debug('MySQL extract failure details', [
-                'filename' => $filename,
+
+            \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction to temp dir', [
                 'archive' => $archive,
-                'exit_code' => $exitCode,
-                'error_output' => $errorOutput,
-                'standard_output' => $standardOutput,
-                'command_args' => $args,
+                'filename' => $filename,
+                'temp_dir' => $tempDir,
+                'command' => implode(' ', $args),
             ]);
+
+            $process = new Process($args);
+            $process->setTimeout(300);
+            $process->run();
+
+            if (!$process->isSuccessful()) {
+                $errorOutput = trim($process->getErrorOutput());
+                $standardOutput = trim($process->getOutput());
+                $exitCode = $process->getExitCode();
+                
+                $errorMessage = "Failed to extract SQL file: $filename from archive: $archive";
+                $errorMessage .= " (exit code: $exitCode)";
+                
+                if ($errorOutput) {
+                    $errorMessage .= " - Error: $errorOutput";
+                }
+                if ($standardOutput) {
+                    $errorMessage .= " - Output: $standardOutput";
+                }
+                
+                \Illuminate\Support\Facades\Log::debug('MySQL extract failure details', [
+                    'filename' => $filename,
+                    'archive' => $archive,
+                    'temp_dir' => $tempDir,
+                    'exit_code' => $exitCode,
+                    'error_output' => $errorOutput,
+                    'standard_output' => $standardOutput,
+                    'command_args' => $args,
+                ]);
+                
+                throw new \RuntimeException($errorMessage);
+            }
+
+            // Read the extracted file
+            $extractedPath = $tempDir . '/' . $filename;
             
-            throw new \RuntimeException($errorMessage);
+            if (!file_exists($extractedPath)) {
+                throw new \RuntimeException("Extracted file not found at: $extractedPath");
+            }
+            
+            $content = file_get_contents($extractedPath);
+            
+            if ($content === false) {
+                throw new \RuntimeException("Failed to read extracted file: $extractedPath");
+            }
+
+            \Illuminate\Support\Facades\Log::info('SQL file extracted successfully', [
+                'archive' => $archive,
+                'filename' => $filename,
+                'size' => strlen($content),
+            ]);
+
+            return $content;
+            
+        } finally {
+            // Clean up temp directory
+            if (file_exists($tempDir)) {
+                exec("rm -rf " . escapeshellarg($tempDir));
+            }
         }
-
-        \Illuminate\Support\Facades\Log::info('SQL file extracted successfully', [
-            'archive' => $archive,
-            'filename' => $filename,
-        ]);
-
-        return $process->getOutput();
     }
 
     /**
