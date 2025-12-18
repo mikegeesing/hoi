@@ -84,17 +84,38 @@
                             </div>
                         </div>
                         <div class="flex items-center gap-x-4 z-10">
-                            <a 
-                                href="{{ route('restore.calendar') }}?token={{ urlencode($token) }}&archive={{ urlencode($name) }}"
-                                class="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block"
-                            >
-                                Bekijk in Kalender
-                            </a>
+                            <div class="hidden sm:flex flex-col gap-2">
+                                <a 
+                                    href="{{ route('restore.calendar') }}?token={{ urlencode($token) }}&archive={{ urlencode($name) }}"
+                                    class="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                                    title="Blader door bestanden"
+                                >
+                                    Kalender →
+                                </a>
+                            </div>
+                            <div class="hidden sm:flex flex-col gap-2">
+                                <a 
+                                    href="{{ route('restore.mysql') }}?token={{ urlencode($token) }}&archive={{ urlencode($name) }}"
+                                    class="rounded-md bg-amber-50 px-2.5 py-1.5 text-sm font-semibold text-amber-700 shadow-sm ring-1 ring-inset ring-amber-200 hover:bg-amber-100"
+                                    title="Database restore"
+                                >
+                                    MySQL 🗄️
+                                </a>
+                            </div>
+                            <div class="hidden sm:flex flex-col gap-2">
+                                <a 
+                                    href="{{ route('restore.website') }}?token={{ urlencode($token) }}&archive={{ urlencode($name) }}"
+                                    class="rounded-md bg-green-50 px-2.5 py-1.5 text-sm font-semibold text-green-700 shadow-sm ring-1 ring-inset ring-green-200 hover:bg-green-100"
+                                    title="Website + database restore"
+                                >
+                                    Website 🌐
+                                </a>
+                            </div>
                             <a 
                                 href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}"
                                 class="rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-indigo-600 shadow-sm ring-1 ring-inset ring-indigo-200 hover:bg-indigo-50"
                             >
-                                Browse &rarr;
+                                Browse →
                             </a>
                         </div>
                     </li>

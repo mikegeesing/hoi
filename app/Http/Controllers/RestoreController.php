@@ -6,6 +6,7 @@ use App\Models\RestoreToken;
 use App\Models\RestoreJob;
 use App\Jobs\BorgRestoreJob;
 use App\Services\BorgService;
+use App\Services\MySQLService;
 use Illuminate\Support\Facades\DB;
 use App\Services\BorgWrapperService;
 use Illuminate\Http\Request;
@@ -574,6 +575,82 @@ class RestoreController extends Controller
             'job' => $job,
             'token' => $rawToken,
         ]);
+    }
+
+    /**
+     * MYSQL RESTORE - Show SQL database selection
+     */
+    public function showMySQLRestore(Request $request, BorgService $borg, MySQLService $mysql)
+    {
+        $rawToken = $request->query('token');
+        $archive = $request->query('archive');
+
+        if (!$rawToken || !$archive) {
+            return redirect()->route('restore.archives')->with('error', 'Token en archief vereist');
+        }
+
+        $token = $this->validateTokenOnly($rawToken);
+        if (!$token) {
+            return view('landing', ['error' => 'Token ongeldig']);
+        }
+
+        try {
+            $sqlFiles = $mysql->listSqlFiles($archive);
+        } catch (\Exception $e) {
+            Log::error('Failed to list SQL files', ['archive' => $archive, 'error' => $e->getMessage()]);
+            return view('restore.mysql-select', [
+                'token' => $rawToken,
+                'archive' => $archive,
+                'error' => 'Kon SQL bestanden niet ophalen: ' . $e->getMessage(),
+                'sqlFiles' => [],
+            ]);
+        }
+
+        return view('restore.mysql-select', [
+            'token' => $rawToken,
+            'archive' => $archive,
+            'sqlFiles' => $sqlFiles,
+        ]);
+    }
+
+    /**
+     * WEBSITE RESTORE - Show domain selection
+     */
+    public function showWebsiteRestore(Request $request)
+    {
+        $rawToken = $request->query('token');
+        $archive = $request->query('archive');
+
+        if (!$rawToken || !$archive) {
+            return redirect()->route('restore.archives')->with('error', 'Token en archief vereist');
+        }
+
+        $token = $this->validateTokenOnly($rawToken);
+        if (!$token) {
+            return view('landing', ['error' => 'Token ongeldig']);
+        }
+
+        // TODO: Get domains from DirectAdmin or local config
+        $domains = $this->getAvailableDomains();
+
+        return view('restore.website-select', [
+            'token' => $rawToken,
+            'archive' => $archive,
+            'domains' => $domains,
+        ]);
+    }
+
+    /**
+     * Get available domains (placeholder)
+     */
+    private function getAvailableDomains(): array
+    {
+        // TODO: Implement DirectAdmin API call or read from config
+        // For now return example domains
+        return [
+            'example.com',
+            'test.com',
+        ];
     }
 
     private function validateTokenOnly(?string $plainToken): ?RestoreToken
