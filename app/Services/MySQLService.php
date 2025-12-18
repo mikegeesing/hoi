@@ -10,7 +10,7 @@ class MySQLService
 
     /**
      * Extract SQL files from an archive, optionally filtered by username
-     * Returns array of filenames from /home/sql_dumps/
+     * Returns array of full paths from /home/sql_dumps/
      */
     public function listSqlFiles(string $archive, ?string $filterByUsername = null): array
     {
@@ -43,21 +43,27 @@ class MySQLService
             if (empty($line)) continue;
             
             // Parse output - could be tab-separated or space-separated
-            $parts = preg_split('/\s+/', $line);
-            if (count($parts) >= 3) {
-                $filename = array_pop($parts); // last part is filename
+            // Format is typically: "mode size mtime path"
+            $parts = preg_split('/\s+/', $line, 4); // Split into at most 4 parts
+            if (count($parts) >= 4) {
+                $fullPath = $parts[3]; // Full path is the last part
+                
+                // Extract filename from path for filtering
+                $filename = basename($fullPath);
+                
                 if (str_ends_with($filename, '.sql')) {
                     // Skip duplicates
-                    if (isset($seen[$filename])) {
+                    if (isset($seen[$fullPath])) {
                         continue;
                     }
-                    $seen[$filename] = true;
+                    $seen[$fullPath] = true;
                     
                     // Filter by username if provided
                     if ($filterByUsername && !$this->isFileForUser($filename, $filterByUsername)) {
                         continue;
                     }
-                    $files[] = $filename;
+                    // Return the full path, not just filename
+                    $files[] = $fullPath;
                 }
             }
         }
@@ -89,18 +95,17 @@ class MySQLService
 
     /**
      * Extract content of a specific SQL file from archive
+     * $filename should be the full path from listSqlFiles
      */
     public function extractSqlFile(string $archive, string $filename): string
     {
-        // Sanitize filename to prevent path traversal
-        $filename = basename($filename);
+        // Sanitize to prevent path traversal, but preserve the full path
+        $filename = str_replace(['../', '..\\'], '', $filename);
         
         // Ensure .sql extension
         if (!str_ends_with($filename, '.sql')) {
             $filename .= '.sql';
         }
-        
-        $path = 'home/sql_dumps/' . $filename;
         
         $args = [
             'sudo',
@@ -108,7 +113,7 @@ class MySQLService
             'extract',
             $archive,
             '--',
-            $path,
+            $filename,
         ];
 
         $process = new Process($args);
@@ -129,7 +134,7 @@ class MySQLService
             }
             // Exit code 21 typically means item not found in Borg
             elseif ($exitCode === 21) {
-                $errorMessage .= " - File not found in archive at path: $path";
+                $errorMessage .= " - File not found in archive at path: $filename";
             }
             
             if ($errorOutput) {
@@ -143,7 +148,6 @@ class MySQLService
             \Illuminate\Support\Facades\Log::debug('MySQL extract failure details', [
                 'filename' => $filename,
                 'archive' => $archive,
-                'path' => $path,
                 'exit_code' => $exitCode,
                 'error_output' => $errorOutput,
                 'standard_output' => $standardOutput,

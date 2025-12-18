@@ -37,7 +37,7 @@
                                 </div>
                                 <div class="min-w-0 flex-auto">
                                     <p class="text-sm font-semibold leading-6 text-gray-900">
-                                        {{ $file }}
+                                        {{ basename($file) }}
                                     </p>
                                     <p class="mt-1 text-xs text-gray-500">
                                         SQL database dump
@@ -126,8 +126,9 @@
             currentSqlFile = filename;
             document.getElementById('dbFile').value = filename;
             
-            // Extract database name from filename (remove .sql extension)
-            const dbName = filename.replace(/\.sql$/, '');
+            // Extract basename and remove .sql extension
+            const basename = filename.split('/').pop();
+            const dbName = basename.replace(/\.sql$/, '');
             document.getElementById('dbName').value = dbName;
             
             // Load tables from this SQL file
