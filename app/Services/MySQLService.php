@@ -170,9 +170,6 @@ class MySQLService
         return $process->getOutput();
     }
 
-        return $process->getOutput();
-    }
-
     /**
      * Parse SQL dump to extract table names
      */
