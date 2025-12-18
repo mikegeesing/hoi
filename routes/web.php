@@ -42,7 +42,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/tokens', [AdminTokenPageController::class, 'store']);
     Route::post('/tokens/{token}/revoke', [AdminTokenPageController::class, 'revoke']);
     Route::post('/tokens/{token}/regenerate', [AdminTokenPageController::class, 'regenerate']);
+});
 
+// Profile routes for all authenticated users (admin & non-admin)
+Route::middleware(['auth'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
