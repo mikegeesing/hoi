@@ -193,11 +193,30 @@ class MySQLService
                 throw new \RuntimeException($errorMessage);
             }
 
-            // Read the extracted file
-            $extractedPath = $tempDir . '/' . $filename;
+            // Borg extracts files maintaining their path structure
+            // So if we extract "home/sql_dumps/file.sql", it creates $tempDir/home/sql_dumps/file.sql
+            $extractedPath = $tempDir . '/' . ltrim($filename, '/');
             
             if (!file_exists($extractedPath)) {
-                throw new \RuntimeException("Extracted file not found at: $extractedPath");
+                // Try to find the file by searching recursively
+                $iterator = new \RecursiveIteratorIterator(
+                    new \RecursiveDirectoryIterator($tempDir, \RecursiveDirectoryIterator::SKIP_DOTS)
+                );
+                
+                foreach ($iterator as $file) {
+                    if ($file->isFile() && str_ends_with($file->getPathname(), '.sql')) {
+                        $extractedPath = $file->getPathname();
+                        \Illuminate\Support\Facades\Log::info('Found SQL file in temp dir', [
+                            'expected_path' => $tempDir . '/' . ltrim($filename, '/'),
+                            'actual_path' => $extractedPath,
+                        ]);
+                        break;
+                    }
+                }
+                
+                if (!file_exists($extractedPath)) {
+                    throw new \RuntimeException("Extracted file not found. Expected: $extractedPath, Temp dir: $tempDir");
+                }
             }
             
             $content = file_get_contents($extractedPath);
