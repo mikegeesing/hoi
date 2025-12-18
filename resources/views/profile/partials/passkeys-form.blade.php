@@ -70,7 +70,7 @@
                     const { success, error } = await Webpass.attest('/webauthn/register/options', '/webauthn/register');
                     if (success) {
                         setStatus('Passkey geregistreerd!');
-                        window.location.reload();
+                        window.location.href = '/profile?passkey_added=1';
                     } else {
                         setStatus(error || 'Registreren mislukt. Probeer opnieuw.', true);
                     }
