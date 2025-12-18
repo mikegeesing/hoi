@@ -18,6 +18,14 @@ return Application::configure(basePath: dirname(__DIR__))
         'auth.admin'   => CheckAdminApiKey::class,
         'restore.token'=> RestoreToken::class,
     ]);
+
+    // Allow WebAuthn endpoints without CSRF (publicly POSTed by JS)
+    $middleware->validateCsrfTokens(except: [
+        'webauthn/register/options',
+        'webauthn/register',
+        'webauthn/login/options',
+        'webauthn/login',
+    ]);
 })
 
 
