@@ -165,6 +165,21 @@ class MySQLService
                 $process->setTimeout(300);
                 $process->run();
 
+                $stdout = $process->getOutput();
+                $stderr = $process->getErrorOutput();
+                $exitCode = $process->getExitCode();
+
+                \Illuminate\Support\Facades\Log::info('Borg extract attempt', [
+                    'path' => $pathVariant,
+                    'exit_code' => $exitCode,
+                    'is_successful' => $process->isSuccessful(),
+                    'stdout_length' => strlen($stdout),
+                    'stderr_length' => strlen($stderr),
+                    'stdout_preview' => substr($stdout, 0, 200),
+                    'stderr_preview' => substr($stderr, 0, 200),
+                    'command' => implode(' ', $args),
+                ]);
+
                 if ($process->isSuccessful()) {
                     $extractSuccess = true;
                     \Illuminate\Support\Facades\Log::info('SQL extraction succeeded', [
@@ -175,14 +190,10 @@ class MySQLService
                 }
                 
                 // Combine stdout and stderr for error message
-                $lastError = trim($process->getOutput() . "\n" . $process->getErrorOutput());
-                \Illuminate\Support\Facades\Log::debug('Path variant failed', [
-                    'path' => $pathVariant,
-                    'exit_code' => $process->getExitCode(),
-                    'error' => $lastError,
-                    'stdout' => $process->getOutput(),
-                    'stderr' => $process->getErrorOutput(),
-                ]);
+                $lastError = trim($stdout . "\n" . $stderr);
+                if (empty($lastError)) {
+                    $lastError = "No output from borg (exit code: $exitCode)";
+                }
             }
 
             if (!$extractSuccess) {
