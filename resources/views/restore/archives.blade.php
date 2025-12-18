@@ -36,15 +36,24 @@
                     @php
                         $detectedType = $a['detected_type'] ?? 'Unknown';
                         $name = $a['name'];
-                        // Extract date from name if possible (assuming format like server-YYYY-MM-DD...)
+                        // Extract datetime from name if possible (assuming format like server-YYYY-MM-DDTHH:MM:SS...)
                         $dateDisplay = null;
-                        if (preg_match('/(\d{4}-\d{2}-\d{2})/', $name, $matches)) {
-                            $dateDisplay = $matches[1];
+                        $displayName = $name;
+                        if (preg_match('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', $name, $matches)) {
+                            // Parse the date and time
+                            $datetime = \DateTime::createFromFormat('Y-m-d\TH:i:s', $matches[1] . 'T' . $matches[2]);
+                            if ($datetime) {
+                                // Format as Dutch date and time: dd-mm-yyyy HH:mm
+                                $dateDisplay = $datetime->format('d-m-Y H:i');
+                                // Extract the prefix (e.g., "server") and show it with the formatted date
+                                $prefix = substr($name, 0, strpos($name, '-'));
+                                $displayName = $prefix . ' ' . $dateDisplay;
+                            }
                         }
                     @endphp
                     <li 
                         class="relative flex justify-between gap-x-6 px-4 py-5 hover:bg-gray-50 sm:px-6 transition-colors duration-150"
-                        x-show="search === '' || '{{ strtolower($name) }}'.includes(search.toLowerCase())"
+                        x-show="search === '' || '{{ strtolower($name) }}'.includes(search.toLowerCase()) || '{{ strtolower($displayName) }}'.includes(search.toLowerCase())"
                         x-transition
                     >
                         <div class="flex min-w-0 gap-x-4">
@@ -63,7 +72,7 @@
                                 <p class="text-sm font-semibold leading-6 text-gray-900">
                                     <a href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}">
                                         <span class="absolute inset-x-0 -top-px bottom-0"></span>
-                                        {{ $name }}
+                                        {{ $displayName }}
                                     </a>
                                 </p>
                                 <div class="mt-1 flex text-xs leading-5 text-gray-500 gap-2">
