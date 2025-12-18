@@ -70,7 +70,10 @@
 
                 setBusy(true);
                 try {
-                    const { success, error } = await Webpass.assert('/webauthn/login/options', '/webauthn/login');
+                    // Provide optional email hint if the username looks like an email
+                    const username = document.getElementById('username')?.value?.trim();
+                    const maybeEmail = username && /.+@.+\..+/.test(username) ? { email: username } : undefined;
+                    const { success, error } = await Webpass.assert('/webauthn/login/options', '/webauthn/login', maybeEmail);
                     if (success) {
                         window.location.href = '/dashboard';
                         return;
