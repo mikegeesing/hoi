@@ -150,6 +150,7 @@ class MySQLService
                     $archive,
                     '--destination',
                     $tempDir,
+                    '--',  // Add separator before file paths
                     $pathVariant,
                 ];
 
@@ -157,6 +158,7 @@ class MySQLService
                     'archive' => $archive,
                     'path_variant' => $pathVariant,
                     'temp_dir' => $tempDir,
+                    'command' => implode(' ', $args),
                 ]);
 
                 $process = new Process($args);
@@ -172,11 +174,14 @@ class MySQLService
                     break;
                 }
                 
-                $lastError = trim($process->getErrorOutput() ?: $process->getOutput());
+                // Combine stdout and stderr for error message
+                $lastError = trim($process->getOutput() . "\n" . $process->getErrorOutput());
                 \Illuminate\Support\Facades\Log::debug('Path variant failed', [
                     'path' => $pathVariant,
                     'exit_code' => $process->getExitCode(),
                     'error' => $lastError,
+                    'stdout' => $process->getOutput(),
+                    'stderr' => $process->getErrorOutput(),
                 ]);
             }
 
