@@ -415,10 +415,27 @@ class MySQLService
 
             $args = [$mysqlBinary];
             
-            // Add credentials from Laravel database config
-            $username = config('database.connections.mysql.username');
-            $password = config('database.connections.mysql.password');
-            $host = config('database.connections.mysql.host', 'localhost');
+            // Try to read DirectAdmin MySQL config first
+            $daConfigFile = '/usr/local/directadmin/conf/mysql.conf';
+            $username = null;
+            $password = null;
+            $host = null;
+            $socket = null;
+            
+            if (file_exists($daConfigFile)) {
+                $daConfig = parse_ini_file($daConfigFile);
+                $username = $daConfig['user'] ?? null;
+                $password = $daConfig['passwd'] ?? null;
+                $host = $daConfig['host'] ?? null;
+                $socket = $daConfig['socket'] ?? null;
+            }
+            
+            // Fallback to Laravel database config if DA config not found
+            if (!$username) {
+                $username = config('database.connections.mysql.username');
+                $password = config('database.connections.mysql.password');
+                $host = config('database.connections.mysql.host', 'localhost');
+            }
             
             if ($username) {
                 $args[] = '-u' . $username;
@@ -428,7 +445,9 @@ class MySQLService
                 $args[] = '-p' . $password;
             }
             
-            if ($host && $host !== 'localhost') {
+            if ($socket) {
+                $args[] = '--socket=' . $socket;
+            } elseif ($host && $host !== '' && $host !== 'localhost') {
                 $args[] = '-h' . $host;
             }
             
