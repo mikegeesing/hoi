@@ -129,7 +129,6 @@ class BorgService
 
         $attempt = function (bool $useDestination, ?string $cwd) use ($archive, $files, $destination, $env, &$attemptErrors): string {
             $args = [
-                'sudo',
                 $this->runner,
                 'extract',
                 $archive,

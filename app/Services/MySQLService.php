@@ -168,7 +168,6 @@ class MySQLService
                 // Strategy B: without destination flag, but set working directory
                 try {
                     $args = [
-                        'sudo',
                         '/usr/local/bin/borg-runner.sh',
                         'extract',
                         $archive,
