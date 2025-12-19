@@ -34,7 +34,7 @@
         <div class="grid gap-4">
             @foreach ($archives as $a)
                 @php
-                    $detectedType = $a['detected_type'] ?? 'Unknown';
+                    $detectedType = $a['detected_type'] ?? 'Onbekend';
                     $name = $a['name'];
                     $dateDisplay = null;
                     $relativeDisplay = null;
@@ -43,7 +43,14 @@
                         $datetime = \DateTime::createFromFormat('Y-m-d\TH:i:s', $matches[1] . 'T' . $matches[2]);
                         if ($datetime) {
                             $dateDisplay = $datetime->format('d-m-Y H:i');
-                            $relativeDisplay = $datetime->diff(new \DateTime())->format('%a dagen geleden');
+                            $diff = $datetime->diff(new \DateTime());
+                            $days = (int) $diff->format('%a');
+                            $hours = (int) $diff->format('%h');
+                            if ($days > 0) {
+                                $relativeDisplay = $days . ' dagen geleden';
+                            } else {
+                                $relativeDisplay = $hours . ' uur geleden';
+                            }
                             $prefix = substr($name, 0, strpos($name, '-'));
                             $displayName = $prefix . ' ' . $dateDisplay;
                         }
@@ -66,7 +73,7 @@
                                 <span class="text-xl" title="Onbekend">📦</span>
                             @endif
                         </div>
-                        <div class="flex-1 min-w-0">
+                            <div class="flex-1 min-w-0">
                             <div class="flex flex-wrap items-center gap-2">
                                 <a href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}" class="text-base font-semibold text-slate-900 hover:text-indigo-700">
                                     {{ $displayName }}
@@ -110,7 +117,7 @@
                             href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}"
                             class="inline-flex items-center justify-center rounded-full bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500"
                         >
-                            Browse →
+                            Bestanden →
                         </a>
                     </div>
                 </div>
