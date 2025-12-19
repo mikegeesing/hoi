@@ -413,10 +413,28 @@ class MySQLService
                 throw new \RuntimeException('MySQL binary not found in common locations');
             }
 
-            $process = new Process([
-                $mysqlBinary,
-                $database,
-            ]);
+            $args = [$mysqlBinary];
+            
+            // Add credentials from Laravel database config
+            $username = config('database.connections.mysql.username');
+            $password = config('database.connections.mysql.password');
+            $host = config('database.connections.mysql.host', 'localhost');
+            
+            if ($username) {
+                $args[] = '-u' . $username;
+            }
+            
+            if ($password) {
+                $args[] = '-p' . $password;
+            }
+            
+            if ($host && $host !== 'localhost') {
+                $args[] = '-h' . $host;
+            }
+            
+            $args[] = $database;
+
+            $process = new Process($args);
             
             $process->setInput($sqlContent);
             $process->setTimeout(3600);
