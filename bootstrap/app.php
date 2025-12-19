@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         'restore.token'=> RestoreToken::class,
     ]);
 
+    // Log all authenticated user activity
+    $middleware->append(\App\Http\Middleware\LogActivity::class);
+
     // Allow WebAuthn endpoints without CSRF (publicly POSTed by JS)
     $middleware->validateCsrfTokens(except: [
         'webauthn/register/options',

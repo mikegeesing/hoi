@@ -58,6 +58,12 @@
                         </div>
 
                         <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
+                            <h3 class="font-bold text-lg mb-2">📋 Activiteiten</h3>
+                            <p class="text-gray-600 text-sm mb-4">Bekijk alle gebruikersactiviteiten.</p>
+                            <a href="/admin/activity" class="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">Bekijken</a>
+                        </div>
+
+                        <div class="bg-white rounded-lg shadow p-6 hover:shadow-lg transition">
                             <h3 class="font-bold text-lg mb-2">⚙️ Profiel</h3>
                             <p class="text-gray-600 text-sm mb-4">Wijzig uw profiel instellingen.</p>
                             <a href="/admin/profile" class="inline-block bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">Instellingen</a>

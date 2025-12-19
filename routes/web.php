@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminTokenPageController;
+use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RestoreController;
 use App\Http\Controllers\DashboardController;
@@ -43,6 +44,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::post('/tokens', [AdminTokenPageController::class, 'store']);
     Route::post('/tokens/{token}/revoke', [AdminTokenPageController::class, 'revoke']);
     Route::post('/tokens/{token}/regenerate', [AdminTokenPageController::class, 'regenerate']);
+
+    Route::get('/activity', [ActivityLogController::class, 'index'])->name('admin.activity.index');
 
     // Redirect admin profile URL to the standard profile page
     Route::redirect('/profile', '/profile')->name('admin.profile');
