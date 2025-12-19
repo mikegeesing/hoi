@@ -413,7 +413,7 @@ class MySQLService
                 throw new \RuntimeException('MySQL binary not found in common locations');
             }
 
-            $args = [$mysqlBinary];
+            $baseArgs = [$mysqlBinary];
             
             // Priority 1: Check for restore-specific credentials in .env
             $username = env('MYSQL_RESTORE_USER');
@@ -441,23 +441,33 @@ class MySQLService
             }
             
             if ($username) {
-                $args[] = '-u' . $username;
+                $baseArgs[] = '-u' . $username;
             }
             
             if ($password) {
-                $args[] = '-p' . $password;
+                $baseArgs[] = '-p' . $password;
             }
             
             if ($socket) {
-                $args[] = '--socket=' . $socket;
+                $baseArgs[] = '--socket=' . $socket;
             } elseif ($host && $host !== '' && $host !== 'localhost') {
-                $args[] = '-h' . $host;
+                $baseArgs[] = '-h' . $host;
             }
-            
-            $args[] = $database;
 
-            $process = new Process($args);
-            
+            // Ensure clean restore: drop & recreate database before import
+            $prepSql = sprintf('DROP DATABASE IF EXISTS `%s`; CREATE DATABASE `%s`;', $database, $database);
+            $prepArgs = array_merge($baseArgs, ['-e', $prepSql]);
+            $prep = new Process($prepArgs);
+            $prep->setTimeout(120);
+            $prep->run();
+            if (!$prep->isSuccessful()) {
+                $error = trim($prep->getErrorOutput() ?: $prep->getOutput());
+                throw new \RuntimeException('MySQL prepare (drop/create) failed: ' . $error);
+            }
+
+            // Restore dump into fresh database
+            $restoreArgs = array_merge($baseArgs, [$database]);
+            $process = new Process($restoreArgs);
             $process->setInput($sqlContent);
             $process->setTimeout(3600);
             $process->run();
