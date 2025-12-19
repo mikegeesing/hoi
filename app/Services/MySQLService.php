@@ -391,19 +391,18 @@ class MySQLService
         file_put_contents($tmpFile, $sqlContent);
 
         try {
-            // Use shell_exec or Process to pipe SQL to mysql
-            $cmd = sprintf(
-                'sudo mysql %s < %s 2>&1',
-                escapeshellarg($database),
-                escapeshellarg($tmpFile)
-            );
-
-            $output = shell_exec($cmd);
+            $process = new Process([
+                'mysql',
+                $database,
+            ]);
             
-            // Check if there were any errors (non-zero exit code)
-            $lastLine = shell_exec($cmd . '; echo $?');
-            if (trim($lastLine) !== '0') {
-                throw new \RuntimeException('MySQL restore failed: ' . trim($output ?? ''));
+            $process->setInput($sqlContent);
+            $process->setTimeout(3600);
+            $process->run();
+
+            if (!$process->isSuccessful()) {
+                $error = trim($process->getErrorOutput() ?: $process->getOutput());
+                throw new \RuntimeException('MySQL restore failed: ' . $error);
             }
 
             return true;
