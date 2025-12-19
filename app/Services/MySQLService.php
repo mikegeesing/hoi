@@ -391,8 +391,29 @@ class MySQLService
         file_put_contents($tmpFile, $sqlContent);
 
         try {
-            $process = new Process([
+            // Try common DirectAdmin/MySQL paths
+            $mysqlPaths = [
+                '/usr/local/mysql/bin/mysql',
+                '/usr/local/mariadb/bin/mysql',
+                '/usr/bin/mariadb',
                 '/usr/bin/mysql',
+                'mysql', // fallback to PATH
+            ];
+
+            $mysqlBinary = null;
+            foreach ($mysqlPaths as $path) {
+                if ($path === 'mysql' || file_exists($path)) {
+                    $mysqlBinary = $path;
+                    break;
+                }
+            }
+
+            if (!$mysqlBinary) {
+                throw new \RuntimeException('MySQL binary not found in common locations');
+            }
+
+            $process = new Process([
+                $mysqlBinary,
                 $database,
             ]);
             
