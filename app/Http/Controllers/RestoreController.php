@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Bus;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class RestoreController extends Controller
 {
@@ -76,8 +77,23 @@ class RestoreController extends Controller
             }
         }
 
+        // Paginate archives (newest first)
+        $perPage = 10;
+        $page = max(1, (int) $request->query('page', 1));
+        $offset = ($page - 1) * $perPage;
+        $paginated = new LengthAwarePaginator(
+            array_slice($archives, $offset, $perPage),
+            count($archives),
+            $perPage,
+            $page,
+            [
+                'path' => $request->url(),
+                'query' => $request->query(),
+            ]
+        );
+
         return view('restore.archives', [
-            'archives' => $archives,
+            'archives' => $paginated,
             'token' => $rawToken,
         ]);
     }
