@@ -132,17 +132,11 @@ class BorgService
                 $this->runner,
                 'extract',
                 $archive,
+                '--',
             ];
-
-            $label = $useDestination ? 'with-destination' : 'cwd-only';
-
-            if ($useDestination && $destination !== '') {
-                $args[] = '--destination';
-                $args[] = $destination;
-            }
-
-            $args[] = '--';
             $args = array_merge($args, $files);
+
+            $label = $useDestination ? 'cwd-with-destination' : 'no-destination';
 
             Log::debug('Borg extract starting', [
                 'archive' => $archive,
@@ -194,17 +188,15 @@ class BorgService
             throw new \RuntimeException($attemptErrors[array_key_last($attemptErrors)]['message']);
         };
 
-        // First try with destination flag if provided
+        // First try with cwd set to destination if provided
         try {
-            return $attempt(true, null);
+            return $attempt(true, $destination !== '' ? $destination : null);
         } catch (\Throwable $e) {
-            // If destination was provided, retry without destination but set CWD
-            if ($destination !== '') {
-                try {
-                    return $attempt(false, $destination);
-                } catch (\Throwable $e2) {
-                    // Fall through to combined error handling below
-                }
+            // Retry without cwd override
+            try {
+                return $attempt(false, null);
+            } catch (\Throwable $e2) {
+                // Fall through to combined error handling below
             }
         }
 

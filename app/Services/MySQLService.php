@@ -141,9 +141,9 @@ class MySQLService
             $lastError = '';
             
             foreach ($pathsToTry as $pathVariant) {
-                // Strategy A: use destination flag (preferred)
+                // Strategy A: use BorgService with temp dir as working directory
                 try {
-                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgService (destination flag)', [
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgService (cwd)', [
                         'archive' => $archive,
                         'path_variant' => $pathVariant,
                         'temp_dir' => $tempDir,
@@ -152,14 +152,14 @@ class MySQLService
                     $borgService->extractFiles($archive, [$pathVariant], $tempDir);
                     
                     $extractSuccess = true;
-                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via BorgService (destination flag)', [
+                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via BorgService (cwd)', [
                         'archive' => $archive,
                         'working_path' => $pathVariant,
                     ]);
                     break;
                 } catch (\Exception $e) {
                     $lastError = $e->getMessage();
-                    \Illuminate\Support\Facades\Log::debug('Path variant failed (destination flag)', [
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (BorgService cwd)', [
                         'path' => $pathVariant,
                         'error' => $lastError,
                     ]);
