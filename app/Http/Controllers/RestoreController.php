@@ -55,6 +55,18 @@ class RestoreController extends Controller
         
         $archives = $data['archives'] ?? [];
 
+        // Sort newest first (by time, fallback to name)
+        usort($archives, function ($a, $b) {
+            $timeA = isset($a['time']) ? strtotime($a['time']) : null;
+            $timeB = isset($b['time']) ? strtotime($b['time']) : null;
+
+            if ($timeA && $timeB) {
+                return $timeB <=> $timeA; // newest first
+            }
+
+            return strcmp($b['name'] ?? '', $a['name'] ?? '');
+        });
+
         foreach ($archives as &$a) {
             try {
                 // Let op: De Blade-view archive.blade.php verwacht 'detected_type', niet 'type'
