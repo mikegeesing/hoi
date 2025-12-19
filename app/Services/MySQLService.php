@@ -393,6 +393,7 @@ class MySQLService
         try {
             // Try common DirectAdmin/MySQL paths
             $mysqlPaths = [
+                '/usr/local/bin/mysql',
                 '/usr/local/mysql/bin/mysql',
                 '/usr/local/mariadb/bin/mysql',
                 '/usr/bin/mariadb',
