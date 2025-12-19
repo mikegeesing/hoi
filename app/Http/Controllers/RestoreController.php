@@ -18,11 +18,18 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class RestoreController extends Controller
 {
     /**
-     * LOGIN PAGINA
+     * Restore portal entry point
+     * - If authenticated: go to archives (admin doesn't need token)
+     * - If not authenticated: redirect to login
      */
-    public function showLogin()
+    public function index(Request $request)
     {
-        // Token-only login page removed; redirect users to standard account login
+        // If user is authenticated (admin), redirect to archives without token
+        if (auth()->check()) {
+            return redirect()->route('restore.archives', ['token' => 'admin-access']);
+        }
+        
+        // Not authenticated - redirect to login
         return redirect()->route('login');
     }
 
@@ -31,16 +38,13 @@ class RestoreController extends Controller
      */
     public function showArchives(Request $request, BorgService $borg)
     {
-        $rawToken = $request->query('token');
-
-        if (! $rawToken) {
+        $access = $this->validateAccess($request);
+        
+        if (!$access['allowed']) {
             return redirect()->route('login')->with('error', 'Token vereist');
         }
 
-        $token = $this->validateTokenOnly($rawToken);
-        if (! $token) {
-            return view('landing', ['error' => 'Token ongeldig']);
-        }
+        $rawToken = $access['rawToken'];
 
         try {
             $data = $borg->listArchives();
@@ -104,7 +108,6 @@ class RestoreController extends Controller
      */
     public function showFiles(Request $request, string $archive, BorgService $borg)
     {
-        $rawToken = $request->query('token');
         $path = $request->query('path', '');
         $search = $request->query('search');
         $depth = (int) $request->query('depth', 0);
@@ -115,14 +118,13 @@ class RestoreController extends Controller
             return view('landing', ['error' => 'Maximale mapdiepte bereikt']);
         }
 
-        if (! $rawToken) {
+        $access = $this->validateAccess($request);
+        
+        if (!$access['allowed']) {
             return redirect()->route('login')->with('error', 'Token vereist');
         }
 
-        $token = $this->validateTokenOnly($rawToken);
-        if (! $token) {
-            return view('landing', ['error' => 'Token ongeldig']);
-        }
+        $rawToken = $access['rawToken'];
 
         // 👉 FIX: Stel het initiële pad in op de gewenste home directory
         if ($path === '') {
@@ -864,6 +866,36 @@ class RestoreController extends Controller
         }
 
         return array_map('trim', $domains);
+    }
+
+    /**
+     * Validate token or allow authenticated users
+     * Returns: ['allowed' => bool, 'token' => ?RestoreToken, 'rawToken' => string]
+     */
+    private function validateAccess(Request $request): array
+    {
+        $rawToken = $request->query('token');
+
+        // Allow authenticated users (admins) without token
+        if (auth()->check() && (!$rawToken || $rawToken === 'admin-access')) {
+            return [
+                'allowed' => true,
+                'token' => null,
+                'rawToken' => 'admin-access'
+            ];
+        }
+
+        // Regular token validation
+        if (!$rawToken) {
+            return ['allowed' => false, 'token' => null, 'rawToken' => null];
+        }
+
+        $token = $this->validateTokenOnly($rawToken);
+        return [
+            'allowed' => $token !== null,
+            'token' => $token,
+            'rawToken' => $rawToken
+        ];
     }
 
     private function validateTokenOnly(?string $plainToken): ?RestoreToken

@@ -64,12 +64,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 
 /*
 |--------------------------------------------------------------------------
-| Restore portal (TOKEN based, GEEN auth)
+| Restore portal (TOKEN based, or authenticated users)
 |--------------------------------------------------------------------------
 */
 
-// Restore portal should use account login; redirect plain /restore to /login
-Route::redirect('/restore', '/login')->name('restore.login');
+// Restore portal entry point
+Route::get('/restore', [RestoreController::class, 'index'])->name('restore.login');
 
 Route::get('/restore/archives', [RestoreController::class, 'showArchives'])
     ->name('restore.archives');
