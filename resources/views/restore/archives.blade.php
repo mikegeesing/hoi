@@ -1,7 +1,7 @@
 <x-restore-layout>
     <x-slot name="token">{{ $token }}</x-slot>
 
-    <div class="space-y-8" x-data="{ search: '' }">
+    <div class="space-y-8" x-data="{ search: '', type: 'all', timeframe: 'all' }">
         <!-- Hero / Header -->
         <div class="rounded-2xl bg-gradient-to-r from-indigo-50 via-white to-cyan-50 border border-indigo-100/60 shadow-sm px-6 py-5 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
@@ -30,6 +30,21 @@
             </div>
         </div>
 
+        <!-- Filters -->
+        <div class="flex flex-wrap items-center gap-2">
+            <span class="text-xs font-semibold text-slate-500 mr-2">Filter:</span>
+            <!-- Type chips -->
+            <button @click="type = 'all'" :class="{'bg-indigo-600 text-white': type==='all', 'bg-white text-slate-800': type!=='all'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-indigo-50">Alle</button>
+            <button @click="type = 'files'" :class="{'bg-indigo-600 text-white': type==='files', 'bg-white text-slate-800': type!=='files'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-indigo-50">Bestanden</button>
+            <button @click="type = 'db'" :class="{'bg-indigo-600 text-white': type==='db', 'bg-white text-slate-800': type!=='db'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-indigo-50">Database</button>
+            <button @click="type = 'full'" :class="{'bg-indigo-600 text-white': type==='full', 'bg-white text-slate-800': type!=='full'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-indigo-50">Volledige</button>
+            <!-- Timeframe chips -->
+            <span class="ml-4 text-xs font-semibold text-slate-500">Periode:</span>
+            <button @click="timeframe = 'recent'" :class="{'bg-cyan-600 text-white': timeframe==='recent', 'bg-white text-slate-800': timeframe!=='recent'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-cyan-50">7 dagen</button>
+            <button @click="timeframe = 'month'" :class="{'bg-cyan-600 text-white': timeframe==='month', 'bg-white text-slate-800': timeframe!=='month'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-cyan-50">30 dagen</button>
+            <button @click="timeframe = 'all'" :class="{'bg-cyan-600 text-white': timeframe==='all', 'bg-white text-slate-800': timeframe!=='all'}" class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold shadow-sm ring-1 ring-slate-200 hover:bg-cyan-50">Alles</button>
+        </div>
+
         <!-- Archives Grid/List -->
         <div class="grid gap-4">
             @foreach ($archives as $a)
@@ -56,9 +71,25 @@
                         }
                     }
                 @endphp
+                @php
+                    $daysAgo = null;
+                    if (isset($datetime) && $datetime instanceof \DateTime) {
+                        $daysAgo = (int) $datetime->diff(new \DateTime())->format('%a');
+                    }
+                    $typeKey = strtolower(($detectedType ?? 'unknown'));
+                    // map to our filter keys
+                    if ($typeKey === 'db') { $typeKey = 'db'; }
+                    elseif ($typeKey === 'files') { $typeKey = 'files'; }
+                    elseif ($typeKey === 'full') { $typeKey = 'full'; }
+                    else { $typeKey = 'unknown'; }
+                @endphp
                 <div 
                     class="relative flex flex-col gap-4 rounded-2xl border border-slate-200/80 bg-white/90 p-4 shadow-sm hover:shadow-md transition-all duration-150"
-                    x-show="search === '' || '{{ strtolower($name) }}'.includes(search.toLowerCase()) || '{{ strtolower($displayName) }}'.includes(search.toLowerCase())"
+                    x-show="
+                        (search === '' || '{{ strtolower($name) }}'.includes(search.toLowerCase()) || '{{ strtolower($displayName) }}'.includes(search.toLowerCase())) &&
+                        (type === 'all' || type === '{{ $typeKey }}') &&
+                        (timeframe === 'all' || {{ $daysAgo !== null ? $daysAgo : 9999 }} <= (timeframe === 'recent' ? 7 : 30))
+                    "
                     x-transition
                 >
                     <div class="flex gap-4">
@@ -79,6 +110,9 @@
                                     {{ $displayName }}
                                 </a>
                                 <span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">{{ $detectedType }}</span>
+                                @if($daysAgo !== null && $daysAgo <= 2)
+                                    <span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700 ring-1 ring-green-200">Nieuw</span>
+                                @endif
                             </div>
                             <div class="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
                                 @if($dateDisplay)
