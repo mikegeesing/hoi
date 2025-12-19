@@ -14,8 +14,9 @@ use Laragear\WebAuthn\Http\Routes as WebAuthnRoutes;
 |--------------------------------------------------------------------------
 */
 
+// Landing page
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 // WebAuthn routes for passkeys
