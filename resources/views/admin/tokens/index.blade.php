@@ -111,6 +111,12 @@
                     </td>
                     <td class="p-3">{{ $t->expires_at->format('d-m-Y H:i') }}</td>
                     <td class="p-3 text-right space-x-2">
+                        @if($t->plain_token)
+                            <a href="/restore/archives?token={{ $t->plain_token }}" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded text-sm font-semibold shadow">
+                                Test Token
+                            </a>
+                        @endif
+
                         <form class="inline" method="POST" action="/admin/tokens/{{ $t->id }}/regenerate">
                             @csrf
                             <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm font-semibold shadow">Regenerate</button>
