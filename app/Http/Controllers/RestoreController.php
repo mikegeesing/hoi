@@ -22,7 +22,8 @@ class RestoreController extends Controller
      */
     public function showLogin()
     {
-        return view('restore.login');
+        // Token-only login page removed; redirect users to standard account login
+        return redirect()->route('login');
     }
 
     /**
@@ -33,7 +34,7 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
 
         if (! $rawToken) {
-            return redirect()->route('restore.login')->with('error', 'Token vereist');
+            return redirect()->route('login')->with('error', 'Token vereist');
         }
 
         $token = $this->validateTokenOnly($rawToken);
@@ -115,7 +116,7 @@ class RestoreController extends Controller
         }
 
         if (! $rawToken) {
-            return redirect()->route('restore.login')->with('error', 'Token vereist');
+            return redirect()->route('login')->with('error', 'Token vereist');
         }
 
         $token = $this->validateTokenOnly($rawToken);
@@ -356,7 +357,7 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
 
         if (! $rawToken) {
-            return redirect()->route('restore.login')->with('error', 'Token vereist');
+            return redirect()->route('login')->with('error', 'Token vereist');
         }
 
         $token = $this->validateTokenOnly($rawToken);

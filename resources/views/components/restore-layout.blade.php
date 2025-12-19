@@ -58,8 +58,8 @@
                             </div>
                         @endif
                         <div class="border-l pl-4 border-gray-200">
-                            <a href="{{ route('restore.login') }}" class="text-sm font-medium text-gray-500 hover:text-red-600 transition-colors">
-                                Uitloggen
+                            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
+                                Inloggen
                             </a>
                         </div>
                     </div>

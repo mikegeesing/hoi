@@ -52,7 +52,7 @@
                             </div>
                         @endif
                         <div class="ml-4">
-                            <a href="{{ route('restore.login') }}" class="text-sm text-gray-500 hover:text-gray-700">Uitloggen</a>
+                            <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:text-gray-700">Inloggen</a>
                         </div>
                     </div>
                 </div>

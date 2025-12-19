@@ -62,7 +62,7 @@
                 <h1>Borg Restore Portal</h1>
             </a>
             <div class="cta">
-                <a href="{{ route('restore.login') }}" class="btn btn-primary">Herstel starten</a>
+                <a href="{{ route('login') }}" class="btn btn-primary">Herstel starten</a>
                 <a href="{{ route('login') }}" class="btn btn-ghost">Inloggen</a>
             </div>
         </div>
@@ -75,9 +75,9 @@
                     veilig snapshots bekijken en een herstel uitvoeren van bestanden, MySQL-tabellen of complete websites.
                 </p>
                 <div class="links">
-                    <a href="{{ route('restore.archives') }}" class="btn btn-primary">Bekijk snapshots</a>
-                    <a href="{{ route('restore.mysql') }}" class="btn btn-ghost">MySQL herstellen</a>
-                    <a href="{{ route('restore.website') }}" class="btn btn-ghost">Website herstellen</a>
+                    <a href="{{ route('login') }}" class="btn btn-primary">Bekijk snapshots</a>
+                    <a href="{{ route('login') }}" class="btn btn-ghost">MySQL herstellen</a>
+                    <a href="{{ route('login') }}" class="btn btn-ghost">Website herstellen</a>
                 </div>
             </div>
             <div class="panel">
