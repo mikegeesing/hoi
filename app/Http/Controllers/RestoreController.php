@@ -879,6 +879,10 @@ class RestoreController extends Controller
         if ($token->expires_at->isPast()) return null;
         if ($token->used >= $token->max_uses) return null;
 
+        // Update last_used_at timestamp
+        $token->last_used_at = now();
+        $token->save();
+
         return $token;
     }
 
