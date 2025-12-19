@@ -415,22 +415,25 @@ class MySQLService
 
             $args = [$mysqlBinary];
             
-            // Try to read DirectAdmin MySQL config first
-            $daConfigFile = '/usr/local/directadmin/conf/mysql.conf';
-            $username = null;
-            $password = null;
-            $host = null;
-            $socket = null;
+            // Priority 1: Check for restore-specific credentials in .env
+            $username = env('MYSQL_RESTORE_USER');
+            $password = env('MYSQL_RESTORE_PASSWORD');
+            $socket = env('MYSQL_RESTORE_SOCKET');
+            $host = env('MYSQL_RESTORE_HOST');
             
-            if (file_exists($daConfigFile)) {
-                $daConfig = parse_ini_file($daConfigFile);
-                $username = $daConfig['user'] ?? null;
-                $password = $daConfig['passwd'] ?? null;
-                $host = $daConfig['host'] ?? null;
-                $socket = $daConfig['socket'] ?? null;
+            // Priority 2: Try to read DirectAdmin MySQL config if not in .env
+            if (!$username) {
+                $daConfigFile = '/usr/local/directadmin/conf/mysql.conf';
+                if (file_exists($daConfigFile) && is_readable($daConfigFile)) {
+                    $daConfig = parse_ini_file($daConfigFile);
+                    $username = $daConfig['user'] ?? null;
+                    $password = $daConfig['passwd'] ?? null;
+                    $host = $daConfig['host'] ?? null;
+                    $socket = $daConfig['socket'] ?? null;
+                }
             }
             
-            // Fallback to Laravel database config if DA config not found
+            // Priority 3: Fallback to Laravel database config
             if (!$username) {
                 $username = config('database.connections.mysql.username');
                 $password = config('database.connections.mysql.password');
