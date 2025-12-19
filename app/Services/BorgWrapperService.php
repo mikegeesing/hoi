@@ -145,14 +145,8 @@ class BorgWrapperService
             '/usr/bin/borg',
             'extract',
             $this->repositoryPath . '::' . $archive,
+            '--',
         ];
-
-        if ($destination !== '') {
-            $args[] = '--destination';
-            $args[] = $destination;
-        }
-
-        $args[] = '--';
         $args = array_merge($args, $files);
 
         $env = [
@@ -161,15 +155,19 @@ class BorgWrapperService
             'HOME' => $this->homeDir,
         ];
 
+        // Use destination as cwd if provided
+        $cwd = $destination !== '' ? $destination : null;
+
         Log::debug('BorgWrapper extract starting', [
             'archive' => $archive,
             'destination' => $destination,
             'files' => $files,
             'command' => implode(' ', $args),
+            'cwd' => $cwd,
             'env' => $env,
         ]);
 
-        $process = new Process($args, null, $env);
+        $process = new Process($args, $cwd, $env);
         $process->setTimeout(7200);
         $process->run();
 
