@@ -19,18 +19,18 @@ class RestoreController extends Controller
 {
     /**
      * Restore portal entry point
-     * - If authenticated: go to archives (admin doesn't need token)
-     * - If not authenticated: redirect to login
+     * - If authenticated admin: go to archives without token
+     * - Otherwise: show token input page
      */
     public function index(Request $request)
     {
-        // If user is authenticated (admin), redirect to archives without token
-        if (auth()->check()) {
+        // Only admins can access without token
+        if (auth()->check() && auth()->user()->role === 'admin') {
             return redirect()->route('restore.archives', ['token' => 'admin-access']);
         }
         
-        // Not authenticated - redirect to login
-        return redirect()->route('login');
+        // Show token input page for customers
+        return view('restore.token-login');
     }
 
     /**
@@ -869,15 +869,15 @@ class RestoreController extends Controller
     }
 
     /**
-     * Validate token or allow authenticated users
+     * Validate token or allow authenticated admins
      * Returns: ['allowed' => bool, 'token' => ?RestoreToken, 'rawToken' => string]
      */
     private function validateAccess(Request $request): array
     {
         $rawToken = $request->query('token');
 
-        // Allow authenticated users (admins) without token
-        if (auth()->check() && (!$rawToken || $rawToken === 'admin-access')) {
+        // Allow authenticated ADMINS without token
+        if (auth()->check() && auth()->user()->role === 'admin' && (!$rawToken || $rawToken === 'admin-access')) {
             return [
                 'allowed' => true,
                 'token' => null,
@@ -885,7 +885,7 @@ class RestoreController extends Controller
             ];
         }
 
-        // Regular token validation
+        // Regular token validation for customers and regular users
         if (!$rawToken) {
             return ['allowed' => false, 'token' => null, 'rawToken' => null];
         }
