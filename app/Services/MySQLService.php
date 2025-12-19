@@ -392,7 +392,7 @@ class MySQLService
 
         try {
             $process = new Process([
-                'mysql',
+                '/usr/bin/mysql',
                 $database,
             ]);
             
