@@ -136,6 +136,71 @@ class BorgWrapperService
     }
 
     /**
+     * Extract specific files/paths from an archive to an optional destination.
+     * Returns combined stdout/stderr on success, throws on failure.
+     */
+    public function extractFiles(string $archive, array $files, string $destination = ''): string
+    {
+        $args = [
+            'sudo',
+            '/usr/bin/borg',
+            'extract',
+            $this->repositoryPath . '::' . $archive,
+        ];
+
+        if ($destination !== '') {
+            $args[] = '--destination';
+            $args[] = $destination;
+        }
+
+        $args[] = '--';
+        $args = array_merge($args, $files);
+
+        $env = [
+            'BORG_PASSPHRASE' => $this->passphrase,
+            'TMPDIR' => $this->tmpDir,
+            'HOME' => $this->homeDir,
+        ];
+
+        Log::debug('BorgWrapper extract starting', [
+            'archive' => $archive,
+            'destination' => $destination,
+            'files' => $files,
+            'command' => implode(' ', $args),
+            'env' => $env,
+        ]);
+
+        $process = new Process($args, null, $env);
+        $process->setTimeout(7200);
+        $process->run();
+
+        $output = $process->getOutput() . "\n" . $process->getErrorOutput();
+
+        if ($process->isSuccessful()) {
+            Log::info('BorgWrapper extract succeeded', [
+                'archive' => $archive,
+                'destination' => $destination,
+                'files' => $files,
+                'exit_code' => $process->getExitCode(),
+                'stdout_snippet' => substr($process->getOutput(), 0, 300),
+                'stderr_snippet' => substr($process->getErrorOutput(), 0, 300),
+            ]);
+            return $output;
+        }
+
+        Log::error('BorgWrapper extract failed', [
+            'archive' => $archive,
+            'destination' => $destination,
+            'files' => $files,
+            'exit_code' => $process->getExitCode(),
+            'stdout' => $process->getOutput(),
+            'stderr' => $process->getErrorOutput(),
+        ]);
+
+        throw new \RuntimeException(trim($output) ?: 'Borg extract failed');
+    }
+
+    /**
      * Helper voor leesbare groottes
      */
     protected function formatSize(int $bytes): string

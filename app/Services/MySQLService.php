@@ -210,6 +210,32 @@ class MySQLService
                         'error' => $lastError,
                     ]);
                 }
+
+                // Strategy C: try BorgWrapperService using direct borg
+                try {
+                    $wrapper = app(\App\Services\BorgWrapperService::class);
+
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgWrapperService', [
+                        'archive' => $archive,
+                        'path_variant' => $pathVariant,
+                        'temp_dir' => $tempDir,
+                    ]);
+
+                    $wrapper->extractFiles($archive, [$pathVariant], $tempDir);
+
+                    $extractSuccess = true;
+                    \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via BorgWrapperService', [
+                        'archive' => $archive,
+                        'working_path' => $pathVariant,
+                    ]);
+                    break;
+                } catch (\Exception $e) {
+                    $lastError = $e->getMessage();
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed via BorgWrapperService', [
+                        'path' => $pathVariant,
+                        'error' => $lastError,
+                    ]);
+                }
             }
 
             if (!$extractSuccess) {
