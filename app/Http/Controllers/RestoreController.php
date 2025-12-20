@@ -267,16 +267,22 @@ class RestoreController extends Controller
                     '/^maildirsize$/i',        // Maildir size file
                     '/^maildirfolder$/i',      // Maildir folder metadata
                     '/^subscriptions$/i',      // IMAP subscriptions file
-                    '/^cur$/i',                // Maildir "current messages"
-                    '/^new$/i',                // Maildir "new messages"
+                    '/^cur$/i',                // Maildir "current messages" folder
+                    '/^new$/i',                // Maildir "new messages" folder
                     '/^tmp$/i',                // Maildir temp folder (in mail dirs)
                     '/^\.uidvalidity$/i',      // Maildir UID validity
                     '/^\.Trashed$/i',          // Dovecot trash
-                    '/^\d+\.[MX]\d+/',         // Maildir message files (timestamp.M/X + numbers)
-                    '/,S=\d+/',                // Maildir size suffix pattern
-                    '/,W=\d+/',                // Maildir lines suffix pattern
-                    '/:[2]?,[A-Z]*$/',         // Maildir flags suffix pattern
                 ];
+                
+                // Only hide Maildir message files if NOT in an actual Maildir folder
+                $isInMaildirFolder = preg_match('/Maildir\/(cur|new|tmp)\/?$/', rtrim($filePath, '/'));
+                $isMaildirMessageFile = preg_match('/^\d+\.[MX]\d+.+,[SWR]/', $name);
+                
+                if ($isMaildirMessageFile && !$isInMaildirFolder) {
+                    // Hide Maildir message files that are NOT in proper Maildir folders
+                    Log::debug('restore.showFiles: filtered - maildir message outside proper folder', ['path' => $filePath, 'name' => $name]);
+                    return false;
+                }
                 
                 foreach ($skipPatterns as $pattern) {
                     if (preg_match($pattern, $name)) {
