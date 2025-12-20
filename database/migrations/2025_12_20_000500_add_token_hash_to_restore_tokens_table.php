@@ -45,13 +45,14 @@ return new class extends Migration
     private function indexExists(string $table, string $index): bool
     {
         $connection = Schema::getConnection();
+        $driver = $connection->getDriverName();
 
         // SQLite: use PRAGMA index_list
-        if ($connection->getDriverName() === 'sqlite') {
+        if ($driver === 'sqlite') {
             $pdo = $connection->getPdo();
             $stmt = $pdo->query("PRAGMA index_list('".$table."')");
             if (!$stmt) return false;
-            $indexes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $indexes = $stmt->fetchAll(\PDO::FETCH_ASSOC);
             foreach ($indexes as $idx) {
                 if (isset($idx['name']) && $idx['name'] === $index) {
                     return true;
@@ -60,11 +61,30 @@ return new class extends Migration
             return false;
         }
 
-        // Fallback for other drivers using Doctrine if available
-        if (method_exists($connection, 'getDoctrineSchemaManager')) {
-            $schema = $connection->getDoctrineSchemaManager();
-            $indexes = $schema->listTableIndexes($table);
-            return array_key_exists($index, $indexes);
+        // MySQL/MariaDB: use information_schema
+        if ($driver === 'mysql') {
+            $database = $connection->getDatabaseName();
+            $result = DB::select("
+                SELECT COUNT(*) as count 
+                FROM information_schema.statistics 
+                WHERE table_schema = ? 
+                AND table_name = ? 
+                AND index_name = ?
+            ", [$database, $table, $index]);
+            
+            return $result[0]->count > 0;
+        }
+
+        // PostgreSQL: use pg_indexes
+        if ($driver === 'pgsql') {
+            $result = DB::select("
+                SELECT COUNT(*) as count 
+                FROM pg_indexes 
+                WHERE tablename = ? 
+                AND indexname = ?
+            ", [$table, $index]);
+            
+            return $result[0]->count > 0;
         }
 
         return false;
