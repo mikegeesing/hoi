@@ -57,10 +57,21 @@
                                 </span>
                             </div>
                         @endif
-                        <div class="border-l pl-4 border-gray-200">
-                            <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
-                                Inloggen
-                            </a>
+                        <div class="border-l pl-4 border-gray-200 flex items-center gap-3">
+                            @auth
+                                <div class="hidden md:flex flex-col items-end">
+                                    <span class="text-xs text-gray-500 uppercase font-semibold tracking-wider">Ingelogd</span>
+                                    <span class="text-sm font-medium text-gray-700">{{ auth()->user()->name ?? auth()->user()->email }}</span>
+                                </div>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">Uitloggen</button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
+                                    Inloggen
+                                </a>
+                            @endauth
                         </div>
                     </div>
                 </div>

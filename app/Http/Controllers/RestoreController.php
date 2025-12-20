@@ -616,18 +616,23 @@ class RestoreController extends Controller
         $rawToken = $request->query('token');
         $archive = $request->query('archive');
 
-        if (!$rawToken || !$archive) {
+        $isAdmin = $this->isAdminAccess($rawToken);
+
+        if ((!$rawToken && !$isAdmin) || !$archive) {
             return redirect()->route('restore.archives')->with('error', 'Token en archief vereist');
         }
 
-        $token = $this->validateTokenOnly($rawToken);
-        if (!$token) {
-            return view('landing', ['error' => 'Token ongeldig']);
+        $token = null;
+        if (!$isAdmin) {
+            $token = $this->validateTokenOnly($rawToken);
+            if (!$token) {
+                return view('landing', ['error' => 'Token ongeldig']);
+            }
         }
 
         try {
             // Filter SQL files by the token's borg_user
-            $sqlFiles = $mysql->listSqlFiles($archive, $token->borg_user);
+            $sqlFiles = $mysql->listSqlFiles($archive, $token?->borg_user);
         } catch (\Exception $e) {
             Log::error('Failed to list SQL files', ['archive' => $archive, 'error' => $e->getMessage()]);
             return view('restore.mysql-select', [
@@ -657,9 +662,14 @@ class RestoreController extends Controller
         $restoreType = $request->input('restore_type', 'full');
         $tables = $request->input('tables', []);
 
-        $token = $this->validateTokenOnly($rawToken);
-        if (!$token) {
-            return response()->json(['error' => 'Token ongeldig'], 403);
+        $isAdmin = $this->isAdminAccess($rawToken);
+        $token = null;
+
+        if (!$isAdmin) {
+            $token = $this->validateTokenOnly($rawToken);
+            if (!$token) {
+                return response()->json(['error' => 'Token ongeldig'], 403);
+            }
         }
 
         if (!$database || !$sqlFile || !$archive) {
@@ -679,7 +689,7 @@ class RestoreController extends Controller
             $mysql->restoreDatabase($database, $sqlContent);
 
             Log::info('Database restored successfully', [
-                'token_id' => $token->id,
+                'token_id' => $token->id ?? 'admin-access',
                 'archive' => $archive,
                 'database' => $database,
                 'type' => $restoreType,
@@ -713,9 +723,14 @@ class RestoreController extends Controller
         $archive = $request->query('archive');
         $sqlFile = $request->query('file');
 
-        $token = $this->validateTokenOnly($rawToken);
-        if (!$token) {
-            return response()->json(['error' => 'Token ongeldig'], 403);
+        $isAdmin = $this->isAdminAccess($rawToken);
+        $token = null;
+
+        if (!$isAdmin) {
+            $token = $this->validateTokenOnly($rawToken);
+            if (!$token) {
+                return response()->json(['error' => 'Token ongeldig'], 403);
+            }
         }
 
         if (!$archive || !$sqlFile) {
@@ -896,6 +911,11 @@ class RestoreController extends Controller
             'token' => $token,
             'rawToken' => $rawToken
         ];
+    }
+
+    private function isAdminAccess(?string $rawToken): bool
+    {
+        return auth()->check() && auth()->user()->role === 'admin' && (!$rawToken || $rawToken === 'admin-access');
     }
 
     private function validateTokenOnly(?string $plainToken): ?RestoreToken
