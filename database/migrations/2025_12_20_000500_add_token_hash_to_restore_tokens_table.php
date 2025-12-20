@@ -12,9 +12,15 @@ return new class extends Migration
         Schema::table('restore_tokens', function (Blueprint $table) {
             if (!Schema::hasColumn('restore_tokens', 'token_hash')) {
                 $table->string('token_hash', 64)->nullable()->after('token');
-                $table->unique('token_hash', 'restore_tokens_token_hash_unique');
             }
         });
+
+        // Voeg unieke index toe als die nog niet bestaat (SQLite tolerant)
+        if (! $this->indexExists('restore_tokens', 'restore_tokens_token_hash_unique')) {
+            Schema::table('restore_tokens', function (Blueprint $table) {
+                $table->unique('token_hash', 'restore_tokens_token_hash_unique');
+            });
+        }
 
         // Backfill token_hash with existing token values where missing
         if (Schema::hasColumn('restore_tokens', 'token_hash') && Schema::hasColumn('restore_tokens', 'token')) {
@@ -28,9 +34,18 @@ return new class extends Migration
     {
         Schema::table('restore_tokens', function (Blueprint $table) {
             if (Schema::hasColumn('restore_tokens', 'token_hash')) {
-                $table->dropUnique('restore_tokens_token_hash_unique');
+                if ($this->indexExists('restore_tokens', 'restore_tokens_token_hash_unique')) {
+                    $table->dropUnique('restore_tokens_token_hash_unique');
+                }
                 $table->dropColumn('token_hash');
             }
         });
+    }
+
+    private function indexExists(string $table, string $index): bool
+    {
+        $connection = Schema::getConnection()->getDoctrineSchemaManager();
+        $indexes = $connection->listTableIndexes($table);
+        return array_key_exists($index, $indexes);
     }
 };
