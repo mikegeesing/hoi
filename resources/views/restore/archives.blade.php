@@ -107,21 +107,22 @@
                             <div class="flex-1 min-w-0">
                             <div class="flex flex-wrap items-center gap-2">
                                 <a href="{{ route('restore.files', ['archive' => $name, 'token' => $token]) }}" class="text-base font-semibold text-slate-900 hover:text-indigo-700">
-                                    {{ $displayName }}
+                                    @if($dateDisplay)
+                                        📅 {{ $dateDisplay }}
+                                    @else
+                                        {{ $displayName }}
+                                    @endif
                                 </a>
                                 <span class="inline-flex items-center rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 ring-1 ring-slate-200">{{ $detectedType }}</span>
                                 @if($daysAgo !== null && $daysAgo <= 2)
                                     <span class="inline-flex items-center rounded-full bg-green-100 px-2.5 py-1 text-xs font-semibold text-green-700 ring-1 ring-green-200">Nieuw</span>
                                 @endif
                             </div>
-                            <div class="mt-1 flex flex-wrap items-center gap-2 text-xs text-slate-500">
-                                @if($dateDisplay)
-                                    <span class="inline-flex items-center gap-1 rounded-md bg-slate-50 px-2 py-1 ring-1 ring-slate-200">📅 {{ $dateDisplay }}</span>
-                                @endif
-                                @if($relativeDisplay)
-                                    <span class="inline-flex items-center gap-1 rounded-md bg-indigo-50 px-2 py-1 ring-1 ring-indigo-100 text-indigo-700">⏱️ {{ $relativeDisplay }}</span>
-                                @endif
-                            </div>
+                            @if($relativeDisplay)
+                                <div class="mt-1 text-xs text-slate-500">
+                                    ⏱️ {{ $relativeDisplay }}
+                                </div>
+                            @endif
                         </div>
                     </div>
 
