@@ -272,6 +272,10 @@ class RestoreController extends Controller
                     '/^tmp$/i',                // Maildir temp folder (in mail dirs)
                     '/^\.uidvalidity$/i',      // Maildir UID validity
                     '/^\.Trashed$/i',          // Dovecot trash
+                    '/^\d+\.[MX]\d+/',         // Maildir message files (timestamp.M/X + numbers)
+                    '/,S=\d+/',                // Maildir size suffix pattern
+                    '/,W=\d+/',                // Maildir lines suffix pattern
+                    '/:[2]?,[A-Z]*$/',         // Maildir flags suffix pattern
                 ];
                 
                 foreach ($skipPatterns as $pattern) {
