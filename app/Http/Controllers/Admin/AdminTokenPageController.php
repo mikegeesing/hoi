@@ -41,7 +41,7 @@ class AdminTokenPageController extends Controller
         ]);
 
         // 1️⃣ Zorg dat de user bestaat met role 'user' (niet admin!)
-        User::firstOrCreate(
+        $user = User::firstOrCreate(
             ['name' => $data['borg_user']],
             [
                 'email' => $data['borg_user'] . '@localhost',
@@ -52,6 +52,11 @@ class AdminTokenPageController extends Controller
 
         // 2️⃣ Genereer gegarandeerd uniek token
         [$plainToken, $tokenHash] = $this->generateUniqueToken();
+
+        // 2️⃣b Update het user-wachtwoord naar de token, zodat inloggen met token als wachtwoord kan
+        $user->update([
+            'password' => Hash::make($plainToken),
+        ]);
 
         // 3️⃣ Sla token HASH op (nooit plain) en bewaar versleuteld zodat admin deze kan zien
         RestoreToken::create([
@@ -89,6 +94,14 @@ class AdminTokenPageController extends Controller
             'token_encrypted' => Crypt::encryptString($plainToken),
             'used' => 0,
         ]);
+
+        // Zorg dat de gekoppelde user met dezelfde token kan inloggen
+        $linkedUser = User::where('name', $token->borg_user)->first();
+        if ($linkedUser) {
+            $linkedUser->update([
+                'password' => Hash::make($plainToken),
+            ]);
+        }
 
         return back()->with('new_token', $plainToken)->with('status', 'Token opnieuw gegenereerd');
     }
