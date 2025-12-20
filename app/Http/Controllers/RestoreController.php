@@ -573,6 +573,7 @@ class RestoreController extends Controller
             $repositoryPath = config('services.borg.repository') ?? env('BORG_REPOSITORY', 'REPO');
             $password = config('services.borg.passphrase') ?? env('BORG_PASSPHRASE', '');
 
+            // Always dispatch the job - it will run based on QUEUE_CONNECTION setting
             BorgRestoreJob::dispatch($job, $repositoryPath, $password);
         } catch (\Throwable $e) {
             Log::error('Failed dispatching restore job: ' . $e->getMessage());
