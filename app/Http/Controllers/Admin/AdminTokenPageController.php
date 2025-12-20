@@ -56,6 +56,7 @@ class AdminTokenPageController extends Controller
         // 3️⃣ Sla token HASH op (nooit plain) en bewaar versleuteld zodat admin deze kan zien
         RestoreToken::create([
             'token' => $tokenHash,
+            'token_hash' => $tokenHash, // legacy column blijft uniek
             'token_encrypted' => Crypt::encryptString($plainToken),
             'borg_user' => $data['borg_user'],
             'expires_at' => now()->addHours((int)$data['expires_in_hours']),
@@ -84,6 +85,7 @@ class AdminTokenPageController extends Controller
 
         $token->update([
             'token' => $tokenHash,
+            'token_hash' => $tokenHash,
             'token_encrypted' => Crypt::encryptString($plainToken),
             'used' => 0,
         ]);
@@ -102,7 +104,9 @@ class AdminTokenPageController extends Controller
         do {
             $plain = Str::random(64);
             $hash = hash('sha256', $plain);
-            $exists = RestoreToken::where('token', $hash)->exists();
+            $exists = RestoreToken::where('token', $hash)
+                ->orWhere('token_hash', $hash)
+                ->exists();
             $attempts++;
         } while ($exists && $attempts < $maxAttempts);
 

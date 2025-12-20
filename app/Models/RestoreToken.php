@@ -8,6 +8,7 @@ class RestoreToken extends Model
 {
     protected $fillable = [
         'token',
+        'token_hash',
         'token_encrypted',
         'borg_user',
         'expires_at',
