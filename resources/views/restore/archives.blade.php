@@ -57,7 +57,7 @@
                     if (preg_match('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', $name, $matches)) {
                         $datetime = \DateTime::createFromFormat('Y-m-d\TH:i:s', $matches[1] . 'T' . $matches[2]);
                         if ($datetime) {
-                            $dateDisplay = $datetime->format('d-m-Y H:i');
+                            $dateDisplay = $datetime->format('d-m-Y H:i:s');
                             $diff = $datetime->diff(new \DateTime());
                             $days = (int) $diff->format('%a');
                             $hours = (int) $diff->format('%h');
@@ -66,8 +66,6 @@
                             } else {
                                 $relativeDisplay = $hours . ' uur geleden';
                             }
-                            $prefix = substr($name, 0, strpos($name, '-'));
-                            $displayName = $prefix . ' ' . $dateDisplay;
                         }
                     }
                 @endphp
