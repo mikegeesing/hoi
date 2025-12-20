@@ -239,7 +239,7 @@ class RestoreController extends Controller
             // This prevents showing nested subdirectories from deeper levels
             $currentPathDepth = substr_count(rtrim($path, '/'), '/');
             
-            $files = array_filter($files, function ($file) use ($path, $currentPathDepth) {
+            $files = array_filter($files, function ($file) use ($path, $currentPathDepth, $basePath) {
                 $name = $file['name'] ?? '';
                 $filePath = $file['path'] ?? '';
                 $type = $file['type'] ?? 'file';
