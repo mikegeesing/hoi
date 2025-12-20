@@ -235,7 +235,7 @@
     </div>
 
     <script>
-    document.getElementById('openCalendarBtn').addEventListener('click', function(){
+    document.getElementById('openCalendarBtn').addEventListener('click', async function(){
         const checks = Array.from(document.querySelectorAll('.select-file:checked'))
             .map(n => n.value);
 
@@ -244,13 +244,50 @@
             return;
         }
 
-        const token = encodeURIComponent(@json($token));
-        const archive = encodeURIComponent(@json($archive));
-        const files = encodeURIComponent(JSON.stringify(checks));
-        const url = @json(route('restore.calendar'));
+        if (!confirm('Weet je zeker dat je ' + checks.length + ' bestand(en)/map(pen) wilt herstellen?')) {
+            return;
+        }
 
-        // graceful url + nice message
-        window.location.href = url + '?token=' + token + '&archive=' + archive + '&files=' + files;
+        const token = @json($token);
+        const archive = @json($archive);
+
+        try {
+            const response = await fetch('/restore/start', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
+                },
+                body: JSON.stringify({
+                    token: token,
+                    archive: archive,
+                    files: checks
+                })
+            });
+
+            let data;
+            try {
+                data = await response.json();
+            } catch (e) {
+                const text = await response.text();
+                alert('Fout bij herstellen (geen JSON response):\nStatus: ' + response.status + '\nResponse: ' + text.substring(0, 500));
+                console.error('Response text:', text);
+                return;
+            }
+
+            if (!response.ok) {
+                alert('Fout bij herstellen:\nStatus: ' + response.status + '\n' + (data.error || JSON.stringify(data)));
+                console.error('Error response:', data);
+                return;
+            }
+
+            // Redirect naar status pagina
+            window.location.href = '/restore/status/' + data.job_id + '?token=' + encodeURIComponent(token);
+        } catch (error) {
+            alert('Fout bij herstellen: ' + error.message);
+            console.error('Fetch error:', error);
+        }
     });
 
     async function restoreFile(filePath) {
