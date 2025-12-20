@@ -94,11 +94,27 @@ class BorgRestoreJob implements ShouldQueue
             $process = new Process($command, $extractPath, $env, null, 7200); // 2 uur timeout
             $process->run();
 
-            $output = $process->getOutput() . "\n" . $process->getErrorOutput();
+            $stdout = $process->getOutput();
+            $stderr = $process->getErrorOutput();
+            $exitCode = $process->getExitCode();
+            $output = trim($stdout . "\n" . $stderr);
+
+            Log::info('Borg extract process completed', [
+                'job_id' => $this->restoreJob->id,
+                'exit_code' => $exitCode,
+                'stdout_length' => strlen($stdout),
+                'stderr_length' => strlen($stderr),
+                'stdout_preview' => substr($stdout, 0, 500),
+                'stderr_preview' => substr($stderr, 0, 500),
+            ]);
 
             // 6. Controleer het resultaat van de uitvoering
             if (!$process->isSuccessful()) {
-                throw new \RuntimeException($output);
+                $errorMsg = "Exit code: $exitCode\n";
+                if (!empty($stdout)) $errorMsg .= "STDOUT:\n$stdout\n";
+                if (!empty($stderr)) $errorMsg .= "STDERR:\n$stderr\n";
+                if (empty($stdout) && empty($stderr)) $errorMsg .= "No output from command\n";
+                throw new \RuntimeException($errorMsg);
             }
 
             // Check what files were actually extracted/restored
