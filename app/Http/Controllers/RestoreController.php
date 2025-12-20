@@ -126,13 +126,20 @@ class RestoreController extends Controller
 
         $rawToken = $access['rawToken'];
 
-        // 👉 FIX: Stel het initiële pad in op de gewenste home directory
-        if ($path === '') {
-            $path = 'home/onlineho'; // De gewenste startdirectory (zonder leading slash)
+        // Get borg_user from token to determine home directory
+        $borgUser = $access['token']?->borg_user;
+        if (!$borgUser) {
+            // For authenticated admins, use borg_user from authenticated user or default
+            $borgUser = auth()->user()->name ?? 'onlineho';
         }
 
-        // Security: Ensure user stays within home/onlineho
-        $basePath = 'home/onlineho';
+        // 👉 FIX: Stel het initiële pad in op de gewenste home directory (dynamisch)
+        if ($path === '') {
+            $path = "home/{$borgUser}"; // De gewenste startdirectory (zonder leading slash)
+        }
+
+        // Security: Ensure user stays within their home directory
+        $basePath = "home/{$borgUser}";
         $normalizedPath = $path;
         
         // Normalize path: remove leading/trailing slashes for comparison
@@ -282,8 +289,9 @@ class RestoreController extends Controller
                     }
                 }
 
-                // Skip "onlineho" folder when viewing /home/onlineho (prevent self-reference)
-                if ($path === 'home/onlineho' && $name === 'onlineho') {
+                // Skip home folder when viewing /home/{borgUser} (prevent self-reference)
+                $userHomeFolder = basename($basePath);
+                if ($path === $basePath && $name === $userHomeFolder) {
                     Log::debug('restore.showFiles: filtered - self reference');
                     return false;
                 }
