@@ -111,6 +111,12 @@ class BorgService
 
             // Additional check: if path ends with / it's definitely a directory
             $isDirectory = (isset($type) && $type === 'd') || str_ends_with($pathToken, '/');
+            
+            // If it has a file extension, it's probably a file (not a directory)
+            $hasExtension = preg_match('/\.[a-zA-Z0-9]{1,10}$/', basename($pathToken));
+            if ($hasExtension) {
+                $isDirectory = false;
+            }
 
             $file = [
                 'type' => $isDirectory ? 'dir' : 'file',
@@ -126,6 +132,7 @@ class BorgService
                 \Illuminate\Support\Facades\Log::debug('BorgService parsed file', [
                     'raw_line' => $line,
                     'type_detected' => $type ?? 'null',
+                    'hasExtension' => $hasExtension,
                     'isDirectory' => $isDirectory,
                     'parsed' => $file,
                 ]);
