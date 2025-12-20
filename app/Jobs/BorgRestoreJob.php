@@ -59,10 +59,12 @@ class BorgRestoreJob implements ShouldQueue
         // Run borg extract directly (assumes the queue worker runs as the correct user)
         $archiveFullPath = $this->repositoryPath . '::' . $this->restoreJob->archive_name;
         
+        // Use sudo with the borg-runner script (same as other borg commands)
         $command = [
-            '/usr/bin/borg',
+            'sudo',
+            '/usr/local/bin/borg-runner.sh',
             'extract',
-            $archiveFullPath,
+            $this->restoreJob->archive_name,
             ...$this->restoreJob->files_to_restore,
         ];
 
@@ -73,6 +75,8 @@ class BorgRestoreJob implements ShouldQueue
                 'BORG_PASSPHRASE' => $this->restorePassword,
                 'BORG_RELOCATED_REPO_ACCESS_IS_OK' => 'yes',
                 'TMPDIR' => config('filesystems.borg_temp_path', '/tmp'),
+                'HOME' => env('HOME', getenv('HOME') ?: '/home/onlineh'),
+            ],
             ],
             $_ENV
         );
