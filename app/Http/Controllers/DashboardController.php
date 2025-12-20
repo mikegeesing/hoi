@@ -24,6 +24,18 @@ class DashboardController extends Controller
             $data = $borg->listArchives();
             $archives = $data['archives'] ?? [];
 
+            // Sort archives newest first
+            usort($archives, function ($a, $b) {
+                $timeA = isset($a['time']) ? strtotime($a['time']) : null;
+                $timeB = isset($b['time']) ? strtotime($b['time']) : null;
+
+                if ($timeA && $timeB) {
+                    return $timeB <=> $timeA; // newest first
+                }
+
+                return strcmp($b['name'] ?? '', $a['name'] ?? '');
+            });
+
             foreach ($archives as $a) {
                 $name = $a['name'] ?? null;
                 $time = $a['time'] ?? null;
@@ -31,16 +43,25 @@ class DashboardController extends Controller
                 if (!$name) continue;
 
                 $day = null;
-                if ($time) {
+                $displayName = $name;
+                
+                // Extract datetime from archive name (e.g., server-2025-12-14T23:03:13.604073)
+                if (preg_match('/(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2})/', $name, $matches)) {
+                    $datetime = \DateTime::createFromFormat('Y-m-d\TH:i:s', $matches[1] . 'T' . $matches[2]);
+                    if ($datetime) {
+                        $displayName = $datetime->format('d-m-Y H:i:s');
+                        $day = $matches[1]; // Keep original format for 'start' field
+                    }
+                } elseif ($time) {
                     // Borg returns ISO time like 2025-12-17T02:00:00
                     $day = substr($time, 0, 10);
                 }
 
                 $events[] = [
-                    'title' => $name,
+                    'title' => $displayName,
                     'start' => $day,
                     'day' => $day,
-                    'archive' => $name,
+                    'archive' => $displayName,
                 ];
             }
         } catch (\Throwable $e) {
