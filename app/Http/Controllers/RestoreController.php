@@ -263,12 +263,6 @@ class RestoreController extends Controller
                 // Skip hidden system files and system folders
                 $skipPatterns = [
                     '/^\./',                    // Starts with dot (hidden/system folders)
-                    '/^dovecot-/i',            // Dovecot metadata
-                    '/^maildirsize$/i',        // Maildir size file
-                    '/^maildirfolder$/i',      // Maildir folder metadata
-                    '/^subscriptions$/i',      // IMAP subscriptions file
-                    '/^\.uidvalidity$/i',      // Maildir UID validity
-                    '/^\.Trashed$/i',          // Dovecot trash
                 ];
                 
                 // Only hide Maildir message files if NOT in an actual Maildir folder
