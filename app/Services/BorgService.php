@@ -74,6 +74,12 @@ class BorgService
         // like: drwx--x--x onlineho onlineho 0 Wed, 2025-12-03 14:16:44 home/onlineho
         $raw = trim($process->getOutput());
 
+        \Illuminate\Support\Facades\Log::debug('BorgService listFiles raw output', [
+            'archive' => $archive,
+            'path' => $path,
+            'raw_sample' => substr($raw, 0, 500),
+        ]);
+
         $files = [];
         if ($raw === '') {
             return ['files' => []];
@@ -106,12 +112,24 @@ class BorgService
             // Additional check: if path ends with / it's definitely a directory
             $isDirectory = (isset($type) && $type === 'd') || str_ends_with($pathToken, '/');
 
-            $files[] = [
+            $file = [
                 'type' => $isDirectory ? 'dir' : 'file',
                 'size' => (int) ($size ?? 0),
                 'name' => basename(rtrim($pathToken, '/')),
                 'path' => $pathToken,
             ];
+            
+            $files[] = $file;
+            
+            // Log first 5 files for debugging
+            if (count($files) <= 5) {
+                \Illuminate\Support\Facades\Log::debug('BorgService parsed file', [
+                    'raw_line' => $line,
+                    'type_detected' => $type ?? 'null',
+                    'isDirectory' => $isDirectory,
+                    'parsed' => $file,
+                ]);
+            }
         }
 
         return ['files' => $files];
