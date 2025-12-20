@@ -62,12 +62,14 @@ class BorgRestoreJob implements ShouldQueue
         $filesToRestore = implode(' ', $this->restoreJob->files_to_restore);
 
         // Run borg extract directly (assumes the queue worker runs as the correct user)
+        $archiveFullPath = $this->repositoryPath . '::' . $this->restoreJob->archive_name;
+        
         $command = [
             '/usr/bin/borg',
             'extract',
+            $archiveFullPath,
             '--destination',
             $tempPath,
-            $this->repositoryPath . '::' . $this->restoreJob->archive_name,
             ...$this->restoreJob->files_to_restore,
         ];
 
