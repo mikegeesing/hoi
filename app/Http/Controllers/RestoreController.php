@@ -267,9 +267,6 @@ class RestoreController extends Controller
                     '/^maildirsize$/i',        // Maildir size file
                     '/^maildirfolder$/i',      // Maildir folder metadata
                     '/^subscriptions$/i',      // IMAP subscriptions file
-                    '/^cur$/i',                // Maildir "current messages" folder
-                    '/^new$/i',                // Maildir "new messages" folder
-                    '/^tmp$/i',                // Maildir temp folder (in mail dirs)
                     '/^\.uidvalidity$/i',      // Maildir UID validity
                     '/^\.Trashed$/i',          // Dovecot trash
                 ];
