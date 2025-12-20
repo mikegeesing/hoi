@@ -68,8 +68,6 @@ class BorgRestoreJob implements ShouldQueue
             '/usr/bin/borg',
             'extract',
             $archiveFullPath,
-            '--destination',
-            $tempPath,
             ...$this->restoreJob->files_to_restore,
         ];
 
@@ -86,6 +84,7 @@ class BorgRestoreJob implements ShouldQueue
 
         try {
             // 5. Voer het commando uit met behulp van Symfony Process
+            // Set working directory to temp path so files are extracted there
             $process = new Process($command, $tempPath, $env, null, 7200); // 2 uur timeout
             $process->run();
 
