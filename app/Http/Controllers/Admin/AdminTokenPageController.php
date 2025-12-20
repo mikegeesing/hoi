@@ -50,12 +50,12 @@ class AdminTokenPageController extends Controller
             ]
         );
 
-        // 2️⃣ Genereer token
-        $plainToken = Str::random(64);
+        // 2️⃣ Genereer gegarandeerd uniek token
+        [$plainToken, $tokenHash] = $this->generateUniqueToken();
 
         // 3️⃣ Sla token HASH op (nooit plain) en bewaar versleuteld zodat admin deze kan zien
         RestoreToken::create([
-            'token' => hash('sha256', $plainToken),
+            'token' => $tokenHash,
             'token_encrypted' => Crypt::encryptString($plainToken),
             'borg_user' => $data['borg_user'],
             'expires_at' => now()->addHours((int)$data['expires_in_hours']),
@@ -80,14 +80,36 @@ class AdminTokenPageController extends Controller
             abort(403);
         }
 
-        $plainToken = Str::random(64);
+        [$plainToken, $tokenHash] = $this->generateUniqueToken();
 
         $token->update([
-            'token' => hash('sha256', $plainToken),
+            'token' => $tokenHash,
             'token_encrypted' => Crypt::encryptString($plainToken),
             'used' => 0,
         ]);
 
         return back()->with('new_token', $plainToken)->with('status', 'Token opnieuw gegenereerd');
+    }
+
+    /**
+     * Genereer een unieke token/hash combi, retry beperkt aantal keer om collisions te voorkomen.
+     */
+    private function generateUniqueToken(): array
+    {
+        $attempts = 0;
+        $maxAttempts = 5;
+
+        do {
+            $plain = Str::random(64);
+            $hash = hash('sha256', $plain);
+            $exists = RestoreToken::where('token', $hash)->exists();
+            $attempts++;
+        } while ($exists && $attempts < $maxAttempts);
+
+        if ($exists) {
+            throw new \RuntimeException('Kon geen uniek token genereren na meerdere pogingen');
+        }
+
+        return [$plain, $hash];
     }
 }
