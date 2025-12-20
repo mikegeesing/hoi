@@ -31,9 +31,17 @@ return new class extends Migration
         } else {
             // For other databases (MySQL, PostgreSQL)
             Schema::table('restore_jobs', function (Blueprint $table) {
-                $table->dropForeign(['token_id']);
-                $table->foreignId('token_id')
-                    ->constrained('restore_tokens')
+                // Drop existing foreign key if it exists
+                try {
+                    $table->dropForeign(['token_id']);
+                } catch (\Exception $e) {
+                    // Foreign key might not exist
+                }
+                
+                // Re-add with cascade delete (don't add the column again, just the constraint)
+                $table->foreign('token_id')
+                    ->references('id')
+                    ->on('restore_tokens')
                     ->onDelete('cascade');
             });
         }
