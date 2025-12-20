@@ -103,10 +103,13 @@ class BorgService
 
             if (! isset($pathToken) || $pathToken === '') continue;
 
+            // Additional check: if path ends with / it's definitely a directory
+            $isDirectory = (isset($type) && $type === 'd') || str_ends_with($pathToken, '/');
+
             $files[] = [
-                'type' => (isset($type) && $type === 'd') ? 'dir' : 'file',
+                'type' => $isDirectory ? 'dir' : 'file',
                 'size' => (int) ($size ?? 0),
-                'name' => basename($pathToken),
+                'name' => basename(rtrim($pathToken, '/')),
                 'path' => $pathToken,
             ];
         }
