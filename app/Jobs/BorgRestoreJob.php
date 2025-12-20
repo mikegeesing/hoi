@@ -77,7 +77,6 @@ class BorgRestoreJob implements ShouldQueue
                 'TMPDIR' => config('filesystems.borg_temp_path', '/tmp'),
                 'HOME' => env('HOME', getenv('HOME') ?: '/home/onlineh'),
             ],
-            ],
             $_ENV
         );
 
