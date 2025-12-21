@@ -122,7 +122,8 @@ class MySQLService
         
         // Create temp directory for extraction
         $tempDir = sys_get_temp_dir() . '/borg_extract_' . uniqid();
-        mkdir($tempDir, 0755, true);
+        mkdir($tempDir, 0777, true);
+        chmod($tempDir, 0777);
         
         try {
             // Use BorgService for extraction since it has working extractFiles method
@@ -251,6 +252,11 @@ class MySQLService
             
             if (!file_exists($extractedPath)) {
                 // Try to find the file by searching recursively
+                // First ensure temp dir is readable
+                if (!is_readable($tempDir)) {
+                    chmod($tempDir, 0777);
+                }
+                
                 $iterator = new \RecursiveIteratorIterator(
                     new \RecursiveDirectoryIterator($tempDir, \RecursiveDirectoryIterator::SKIP_DOTS)
                 );
@@ -302,12 +308,24 @@ class MySQLService
             return;
         }
 
-        $items = array_diff(scandir($dir), ['.', '..']);
+        // Ensure directory is readable before trying to scan it
+        if (!is_readable($dir)) {
+            chmod($dir, 0777);
+        }
+
+        $items = @scandir($dir);
+        if ($items === false) {
+            // If scandir still fails, try via sudo
+            @system("sudo -n rm -rf " . escapeshellarg($dir));
+            return;
+        }
         
         foreach ($items as $item) {
+            if ($item === '.' || $item === '..') continue;
+            
             $path = $dir . '/' . $item;
             
-            if (is_dir($path)) {
+            if (is_dir($path) && !is_link($path)) {
                 $this->removeDirectory($path);
             } else {
                 @unlink($path);
