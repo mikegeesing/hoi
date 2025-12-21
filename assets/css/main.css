@@ -115,6 +115,10 @@ input[type=number] {
     color:unset;
     text-decoration: none;
   }
+
+  /* Focus on NL audience: hide language selector and popup */
+  .country-select { display: none !important; }
+  #languagePopup { display: none !important; }
   
   h1,
   h2,
