@@ -97,7 +97,7 @@
         <div class="mb-2">
             <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wider">Log output</h3>
         </div>
-        <pre id="log" class="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-auto max-h-96 font-mono">{{ $job->log_output ?? 'Nog geen output - wachten op start van de taak...' }}</pre>
+        <pre id="log" class="bg-gray-900 text-white p-4 rounded-lg text-sm overflow-auto max-h-96 font-mono">{{ $job->log_output ?? 'Nog geen output - wachten op start van de taak...' }}</pre>
 
         <div class="mt-6 pt-6 border-t border-gray-200">
             <a href="/restore?token={{ urlencode($token) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-150">
