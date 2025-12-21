@@ -106,7 +106,7 @@
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/page_optimization.png" alt="services icon">
           </div>
           <h4>Bliksemsnelle website</h4>
-          <p>Onze webapplicatie versneller, aangedreven door Varnish Cache, zorgt te allen tijde voor maximale prestaties van je website!</p>
+          <p>Onze webapplicatie versneller, aangedreven door Redis Cache, zorgt te allen tijde voor maximale prestaties van je website!</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
@@ -517,7 +517,7 @@
             <div class="col-lg-6">
               <div class="section-head">
                 <h2 class="d-none d-lg-block">Boost website speed</h2>
-                <p class="mb-3 mb-lg-0 text-start">Make your website up to 1000% faster with Varnish Caching. Varnish gives your website a performance boost using state-of-the-art caching layer for static websites. With Varnish caching enabled on our Linux Hosting Plans, you can Increase the chances of your website moving up in ranking on search engines due to faster load times.</p>
+                <p class="mb-3 mb-lg-0 text-start">Maak je website tot 1000% sneller met Redis Caching. Redis geeft je website een prestatieboost met geavanceerde caching voor dynamische content. Met Redis caching ingeschakeld op onze Linux Hosting pakketten, vergroot je de kans dat je website hoger scoort in zoekmachines dankzij snellere laadtijden.</p>
               </div>
             </div>
             <div class="col-lg-5 d-none d-lg-block">
