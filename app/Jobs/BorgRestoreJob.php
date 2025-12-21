@@ -60,11 +60,13 @@ class BorgRestoreJob implements ShouldQueue
 
         // Run borg extract directly (assumes the queue worker runs as the correct user)
         // Bouw het commando met alle bestanden als aparte argumenten
+        // Zelfde format als BorgService: 'extract archive -- file1 file2 file3'
         $command = [
             'sudo',
             '/usr/local/bin/borg-runner.sh',
             'extract',
             $this->restoreJob->archive_name,
+            '--',  // Scheidingsteken tussen archive naam en bestanden
         ];
         
         // Voeg alle bestanden toe als aparte argumenten
