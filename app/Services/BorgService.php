@@ -18,6 +18,7 @@ class BorgService
     {
         $process = new Process([
             'sudo',
+            '-n',
             $this->runner,
             'list'
         ]);
@@ -49,6 +50,7 @@ class BorgService
     {
         $args = [
             'sudo',
+            '-n',
             $this->runner,
             'list-files',
             $archive,
