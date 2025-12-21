@@ -189,7 +189,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> </ul> <?php }?>
           <div class="col-6 col-md-8 col-lg-6">
             <div class="header-support">
               <ul class="support-item-web items d-none d-md-inline-block">
-                <li class="call-no">Sales: <strong>Sales.nl</strong>
+                <li class="call-no">Sales: <strong>Sales@onlinehoster.nl</strong>
                 </li>
                 <li class="call-no">Billing: <strong>Support.nl</strong>
                 </li>
@@ -575,7 +575,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> </ul> <?php }?>
           </a>
           <div class="header-support w-100">
             <ul class="support-item-web items d-none d-md-inline-block">
-              <li class="call-no">Sales: <strong>Sales.nl</strong>
+              <li class="call-no">Sales: <strong>Sales@onlinehoster.nl</strong>
               </li>
               <li class="call-no">Billing: <strong>Support.nl</strong>
               </li>
