@@ -18,6 +18,14 @@
                 
                 @if($job->restore_type === 'mysql' && $job->database_name)
                     <p><strong>Database:</strong> {{ $job->database_name }}</p>
+                    @if($job->selected_tables && count($job->selected_tables) > 0)
+                        <p><strong>Geselecteerde tabellen:</strong></p>
+                        <ul class="list-disc list-inside">
+                            @foreach($job->selected_tables as $table)
+                                <li>{{ $table }}</li>
+                            @endforeach
+                        </ul>
+                    @endif
                 @endif
 
                 @if($job->files_to_restore)

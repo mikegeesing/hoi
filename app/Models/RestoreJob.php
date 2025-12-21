@@ -18,11 +18,13 @@ class RestoreJob extends Model
         'archive_name',
         'restore_path',
         'database_name',
+        'selected_tables',
         'log_output',
     ];
 
     protected $casts = [
         'files_to_restore' => 'array',
+        'selected_tables' => 'array',
     ];
 
     public function token()

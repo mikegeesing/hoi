@@ -660,6 +660,7 @@ class RestoreController extends Controller
                 'restore_type' => 'mysql',
                 'archive_name' => $archive,
                 'database_name' => $database,
+                'selected_tables' => ($restoreType === 'table' && !empty($tables)) ? $tables : null,
                 'log_output' => 'Database restore voltooid (' . ($restoreType === 'table' ? 'selectieve tabellen' : 'volledige database') . ')',
             ]);
 
