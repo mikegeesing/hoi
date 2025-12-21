@@ -1090,6 +1090,179 @@ small {
 }
 
 /* ============================================
+   Content Sections Enhancement
+   ============================================ */
+
+.content-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.feature-list-item {
+    transition: all 0.3s ease;
+    padding: 15px;
+    border-radius: var(--radius-sm);
+}
+
+.feature-list-item:hover {
+    background: rgba(53, 177, 94, 0.05);
+    transform: translateX(5px);
+}
+
+.feature-icon {
+    flex-shrink: 0;
+}
+
+.feature-list-item h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #1a202c;
+}
+
+.stats-row .stat-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.stats-row .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+    border-color: rgb(var(--color-primary));
+}
+
+.stat-number {
+    font-size: 2rem;
+    line-height: 1;
+}
+
+.benefits-list {
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: var(--radius-md);
+    border-left: 4px solid rgb(var(--color-primary));
+}
+
+.benefit-item {
+    font-size: 1rem;
+    padding: 8px 0;
+}
+
+.benefit-item i {
+    font-size: 1.1rem;
+}
+
+.image-wrapper {
+    position: relative;
+    animation: fadeInRight 0.8s ease-out;
+}
+
+.image-wrapper img {
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ============================================
+   CTA Wrapper
+   ============================================ */
+
+.cta-wrapper {
+    margin-top: 2rem;
+}
+
+.cta-wrapper .btn {
+    min-width: 200px;
+}
+
+/* ============================================
+   Background Variations
+   ============================================ */
+
+.bg-white {
+    background: #ffffff !important;
+}
+
+.section-gap.bg-white {
+    position: relative;
+}
+
+.section-gap.bg-white::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background-image: radial-gradient(circle at 20% 50%, rgba(53, 177, 94, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(16, 45, 71, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ============================================
+   Enhanced Typography for Content Sections
+   ============================================ */
+
+.content-wrapper h2 {
+    color: #1a202c;
+    line-height: 1.2;
+}
+
+.content-wrapper .lead {
+    color: #4a5568;
+    font-size: 1.15rem;
+}
+
+.content-wrapper p {
+    color: #718096;
+}
+
+/* ============================================
+   Responsive Content Sections
+   ============================================ */
+
+@media (max-width: 991px) {
+    .stats-row .col-6 {
+        margin-bottom: 0.5rem;
+    }
+    
+    .feature-list-item {
+        padding: 10px;
+    }
+    
+    .image-wrapper {
+        margin-top: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-wrapper {
+        width: 100%;
+    }
+    
+    .cta-wrapper .btn {
+        width: 100%;
+        min-width: auto;
+    }
+    
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .benefits-list {
+        padding: 15px;
+    }
+}
+
+/* ============================================
    Additional Premium Effects
    ============================================ */
 
