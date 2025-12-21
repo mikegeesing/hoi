@@ -54,19 +54,23 @@ class BorgRestoreJob implements ShouldQueue
 
         // 3. Bouw het Borg-commando (Extractie)
         // We moeten de bestandenlijst uit het Job-model halen (opgeslagen als JSON array)
-        $filesToRestore = implode(' ', $this->restoreJob->files_to_restore);
+        // Zorg ervoor dat de restore-path wordt opgeslagen voor later
+        $this->restoreJob->restore_path = 'Bestanden hersteld naar originele locatie';
+        $this->restoreJob->save();
 
         // Run borg extract directly (assumes the queue worker runs as the correct user)
-        $archiveFullPath = $this->repositoryPath . '::' . $this->restoreJob->archive_name;
-        
-        // Use sudo with the borg-runner script (same as other borg commands)
+        // Bouw het commando met alle bestanden als aparte argumenten
         $command = [
             'sudo',
             '/usr/local/bin/borg-runner.sh',
             'extract',
             $this->restoreJob->archive_name,
-            ...$this->restoreJob->files_to_restore,
         ];
+        
+        // Voeg alle bestanden toe als aparte argumenten
+        foreach ($this->restoreJob->files_to_restore as $file) {
+            $command[] = $file;
+        }
 
         // 4. Stel de omgevingsvariabele BORG_PASSPHRASE in
         // Dit is de veilige manier om het wachtwoord door te geven aan Borg.
