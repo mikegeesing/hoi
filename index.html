@@ -436,6 +436,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            align-items: stretch;
         }
 
         .pricing-card {
@@ -445,6 +446,16 @@
             padding: 40px 30px;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .pricing-card .pricing-features {
+            flex: 1;
+        }
+        
+        .pricing-card .pricing-cta {
+            margin-top: auto;
         }
 
         .pricing-card:hover {
@@ -1005,7 +1016,7 @@
                     </a>
                 </div>
 
-                <div class="pricing-card" itemscope itemtype="https://schema.org/Product" style="border: 2px solid #35b15e; transform: scale(1.05); box-shadow: 0 10px 30px rgba(53, 177, 94, 0.2);">
+                <div class="pricing-card" itemscope itemtype="https://schema.org/Product" style="border: 2px solid #35b15e; box-shadow: 0 10px 30px rgba(53, 177, 94, 0.2);">
                     <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #35b15e; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">POPULAIR</div>
                     <meta itemprop="name" content="Pro Webhosting">
                     <meta itemprop="description" content="Professioneel hosting pakket met 2GB NVMe, 30GB bandwidth, Cloudflare DDoS">
