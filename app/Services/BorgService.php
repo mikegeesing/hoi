@@ -109,13 +109,22 @@ class BorgService
 
             if (! isset($pathToken) || $pathToken === '') continue;
 
-            // Additional check: if path ends with / it's definitely a directory
-            $isDirectory = (isset($type) && $type === 'd') || str_ends_with($pathToken, '/');
+            // Determine if this is a directory
+            // Priority 1: Type explicitly set to 'd' from borg output
+            // Priority 2: Path ends with /
+            // Priority 3: Only mark as file if it's explicitly type '-' OR has a common file extension
+            $isDirectory = false;
             
-            // If it has a file extension, it's probably a file (not a directory)
-            $hasExtension = preg_match('/\.[a-zA-Z0-9]{1,10}$/', basename($pathToken));
-            if ($hasExtension) {
+            if (isset($type) && $type === 'd') {
+                $isDirectory = true;
+            } elseif (str_ends_with($pathToken, '/')) {
+                $isDirectory = true;
+            } elseif (isset($type) && $type === '-') {
                 $isDirectory = false;
+            } else {
+                // Check for common file extensions (not domain extensions like .nl, .com, etc.)
+                $hasFileExtension = preg_match('/\.(txt|log|php|js|css|html|json|xml|yml|yaml|conf|ini|sh|sql|md|pdf|zip|tar|gz|jpg|jpeg|png|gif|svg)$/i', basename($pathToken));
+                $isDirectory = !$hasFileExtension;
             }
 
             $file = [
@@ -132,7 +141,7 @@ class BorgService
                 \Illuminate\Support\Facades\Log::debug('BorgService parsed file', [
                     'raw_line' => $line,
                     'type_detected' => $type ?? 'null',
-                    'hasExtension' => $hasExtension,
+                    'hasFileExtension' => $hasFileExtension ?? false,
                     'isDirectory' => $isDirectory,
                     'parsed' => $file,
                 ]);
