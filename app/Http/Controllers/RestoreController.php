@@ -672,6 +672,8 @@ class RestoreController extends Controller
                 ], 400);
             }
 
+            // Filter by tables if needed
+            if ($restoreType === 'table' && !empty($tables)) {
                 $sqlContent = $mysql->filterSqlByTables($sqlContent, $tables);
             }
 
