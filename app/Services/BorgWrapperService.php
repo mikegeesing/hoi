@@ -142,8 +142,6 @@ class BorgWrapperService
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
         $args = [
-            'sudo',
-            '-E',
             '/usr/bin/borg',
             'extract',
             $this->repositoryPath . '::' . $archive,

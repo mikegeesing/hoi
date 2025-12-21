@@ -45,19 +45,26 @@ class BorgRestoreJob implements ShouldQueue
         $this->restoreJob->save();
 
         try {
-            // 2. Gebruik BorgService om bestanden te extraheren
+            // 2. Create temp restore directory
+            $tempRestoreDir = '/home/onlineh/tmp/restores/' . $this->restoreJob->id;
+            if (!is_dir($tempRestoreDir)) {
+                mkdir($tempRestoreDir, 0755, true);
+            }
+
+            // 3. Gebruik BorgService om bestanden te extraheren
             // BorgService.extractFiles() handelt alles af: error handling, retry logic, etc.
             Log::info('Starting borg extract via BorgService', [
                 'job_id' => $this->restoreJob->id,
                 'archive' => $this->restoreJob->archive_name,
                 'files_count' => count($this->restoreJob->files_to_restore),
                 'files' => $this->restoreJob->files_to_restore,
+                'temp_dir' => $tempRestoreDir,
             ]);
 
             $output = $borg->extractFiles(
                 $this->restoreJob->archive_name,
                 $this->restoreJob->files_to_restore,
-                '/'  // Extract naar root dus originele locatie
+                $tempRestoreDir  // Extract naar temp directory
             );
 
             Log::info('BorgService extractFiles succeeded', [
@@ -65,17 +72,17 @@ class BorgRestoreJob implements ShouldQueue
                 'output_length' => strlen($output),
             ]);
 
-            // 3. Check wat er daadwerkelijk werd hersteld
+            // 4. Check wat er daadwerkelijk werd hersteld
             $restoredFiles = [];
             foreach ($this->restoreJob->files_to_restore as $filePath) {
-                // Files are restored to their absolute paths
-                $absolutePath = '/' . ltrim($filePath, '/');
-                if (file_exists($absolutePath)) {
-                    $restoredFiles[] = $absolutePath;
+                // Files are restored maintaining their path structure in temp dir
+                $restoredPath = $tempRestoreDir . '/' . ltrim($filePath, '/');
+                if (file_exists($restoredPath)) {
+                    $restoredFiles[] = $restoredPath;
                     // Also check if it's a directory and list its contents
-                    if (is_dir($absolutePath)) {
+                    if (is_dir($restoredPath)) {
                         $iterator = new \RecursiveIteratorIterator(
-                            new \RecursiveDirectoryIterator($absolutePath, \RecursiveDirectoryIterator::SKIP_DOTS),
+                            new \RecursiveDirectoryIterator($restoredPath, \RecursiveDirectoryIterator::SKIP_DOTS),
                             \RecursiveIteratorIterator::SELF_FIRST
                         );
                         foreach ($iterator as $file) {
@@ -91,7 +98,7 @@ class BorgRestoreJob implements ShouldQueue
             $logOutput .= "Herstelde bestanden: " . count($restoredFiles) . "\n\n";
             
             if (!empty($restoredFiles)) {
-                $logOutput .= "Herstelde bestanden naar originele locatie:\n";
+                $logOutput .= "Herstelde bestanden naar tijdelijke locatie:\n";
                 foreach (array_slice($restoredFiles, 0, 50) as $file) {
                     $logOutput .= "  - " . $file . "\n";
                 }
@@ -104,8 +111,8 @@ class BorgRestoreJob implements ShouldQueue
                 $logOutput .= "\nBorg output:\n" . $output;
             }
 
-            // 4. Succes! Markeer de taak en log de output.
-            $this->restoreJob->restore_path = 'Bestanden hersteld naar originele locatie';
+            // 5. Succes! Markeer de taak en log de output.
+            $this->restoreJob->restore_path = $tempRestoreDir;
             $this->restoreJob->status = 'success';
             $this->restoreJob->log_output = $logOutput;
             $this->restoreJob->save();
