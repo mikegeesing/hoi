@@ -155,6 +155,58 @@
                 runningMsg.style.display = (data.status === 'running') ? 'block' : 'none';
             }
 
+            // Show success message
+            if (data.status === 'success') {
+                const successMsg = `
+                    <div class="mb-6 bg-green-50 border-l-4 border-green-400 rounded-r-lg p-4">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-green-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <div class="font-semibold text-green-900">Restore succesvol voltooid!</div>
+                                <div class="text-sm text-green-700">De bestanden zijn hersteld.</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Insert after restore_path section
+                const restorePath = document.getElementById('restore_path');
+                if (restorePath && !document.getElementById('success-message')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.id = 'success-message';
+                    wrapper.innerHTML = successMsg;
+                    restorePath.parentElement.parentElement.insertBefore(wrapper, restorePath.parentElement.nextElementSibling.nextElementSibling);
+                }
+            }
+
+            // Show failed message
+            if (data.status === 'failed') {
+                const failedMsg = `
+                    <div class="mb-6 bg-red-50 border-l-4 border-red-400 rounded-r-lg p-4">
+                        <div class="flex items-center">
+                            <svg class="h-5 w-5 text-red-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <div class="font-semibold text-red-900">Restore mislukt</div>
+                                <div class="text-sm text-red-700">Er is een fout opgetreden tijdens het herstellen.</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Insert after restore_path section
+                const restorePath = document.getElementById('restore_path');
+                if (restorePath && !document.getElementById('failed-message')) {
+                    const wrapper = document.createElement('div');
+                    wrapper.id = 'failed-message';
+                    wrapper.innerHTML = failedMsg;
+                    restorePath.parentElement.parentElement.insertBefore(wrapper, restorePath.parentElement.nextElementSibling.nextElementSibling);
+                }
+            }
+
             if (data.status === 'running' || data.status === 'pending') {
                 setTimeout(fetchStatus, 3000);
             }
