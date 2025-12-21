@@ -16,7 +16,7 @@
             </ul>
             <h4>Don't miss out, check our promos today!</h4>
             <div class="inline-btns mt-3">
-              <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Get Started Now</a>
+              <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Nu starten</a>
             </div>
           </div>
         </div>

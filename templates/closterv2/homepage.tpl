@@ -14,8 +14,8 @@
               <li>4.5 Million Websites Choose Closter v <sup>2</sup>
               </li>
               <li>24/7 Support and much more!</li>
-            </ul> {if $sharedhostingproducts|@count gt 0 && ($sharedhostingproducts.0.monthly gt 0 || $sharedhostingproducts.0.annually gt 0 || $sharedhostingproducts.0.biennially gt 0 || $sharedhostingproducts.0.triennially gt 0)} {foreach $sharedhostingproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Starting Price {$myproduct.prefix}{$myproduct.monthly}/mo</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
-              <a class="btn-01" onClick="document.getElementById('Plans').scrollIntoView();">Get Started Now</a>
+            </ul> {if $sharedhostingproducts|@count gt 0 && ($sharedhostingproducts.0.monthly gt 0 || $sharedhostingproducts.0.annually gt 0 || $sharedhostingproducts.0.biennially gt 0 || $sharedhostingproducts.0.triennially gt 0)} {foreach $sharedhostingproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
+              <a class="btn-01" onClick="document.getElementById('Plans').scrollIntoView();">Nu starten</a>
             </div>
           </div>
         </div>
@@ -35,12 +35,12 @@
         <div class="pricing-item">
           <div class="pricing-heading">
             <div class="name">{$myproduct.name}</div>
-            <h4 class="title"> {$myproduct.prefix}{$myproduct.monthly} <span class="durection">/month</span>
+            <h4 class="title"> {$myproduct.prefix}{$myproduct.monthly} <span class="durection">/maand</span>
             </h4>
           </div>
           <div class="pricing_body">
             <ul> {$myproduct.description} </ul>
-            <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid={$myproduct.relid}">Select Plan</a>
+            <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid={$myproduct.relid}">Selecteer pakket</a>
           </div>
         </div>
       </div> {/foreach} {/if} </div>
@@ -143,7 +143,7 @@
           <h2>Free Website Migration</h2>
           <p>Switching your web host is always a bother and requires special attention as your website’s data is precious. We understand that very well, which is why we offer to do it for you without charging any fees. Our expert support team will provide you their complete assistance while you migrate your website to Our server. We take extra care of your data so that you could have your website the way it was, but with much better hosting than before. </p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onClick="document.getElementById('Plans').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onClick="document.getElementById('Plans').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -164,7 +164,7 @@
           <h2>Host your website at the right place, secure, and fast. </h2>
           <p>Choose the perfect hosting solution for your website: secure, reliable, and blazing-fast servers ensure optimal performance. With top-notch security measures, your data is safe. Enjoy seamless integration, expert support, and lightning-fast speeds, providing visitors with an exceptional browsing experience. Elevate your online presence today!.</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onClick="document.getElementById('Plans').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onClick="document.getElementById('Plans').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>

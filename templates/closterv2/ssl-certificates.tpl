@@ -18,7 +18,7 @@
               <li>Credit cards and identity information</li>
               <li>Getting an SSL certificate is the easiest way</li>
               <li>Increase your customer's confidence</li>
-            </ul> {if count($sslproducts) gt 0 && ($sslproducts.0.monthly gt 0 || $sslproducts.0.annually gt 0 || $sslproducts.0.biennially gt 0 || $sslproducts.0.triennially gt 0)} {foreach $sslproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Starting Price {$myproduct.prefix}{$myproduct.annually}/yr</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
+            </ul> {if count($sslproducts) gt 0 && ($sslproducts.0.monthly gt 0 || $sslproducts.0.annually gt 0 || $sslproducts.0.biennially gt 0 || $sslproducts.0.triennially gt 0)} {foreach $sslproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.annually}/yr</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
               <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">View Plans</a>
             </div>
           </div>
@@ -40,17 +40,17 @@
           <div class="single-radio-box">
             <input name="billingPlan" id="yearly-plan" value="yearly" class="radio" type="radio" checked>
             <label for="yearly-plan">
-              <span class="custom-check"></span> Yearly </label>
+              <span class="custom-check"></span> Jaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="biannual-plan" value="biannual" class="radio" type="radio">
             <label for="biannual-plan">
-              <span class="custom-check"></span> Biannual </label>
+              <span class="custom-check"></span> Tweejaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="triennial-plan" value="triennial" class="radio" type="radio">
             <label for="triennial-plan">
-              <span class="custom-check"></span> Triennial </label>
+              <span class="custom-check"></span> Driejaarlijks </label>
           </div>
         </div>
       </div>
@@ -165,7 +165,7 @@
           <h2>We Are Here For You</h2>
           <p>We're dedicated to supporting you in any way we can. From answering questions to offering guidance, our goal is to make your experience as smooth as possible. Don't hesitate to reach out whenever you need assistance. Your satisfaction is our priority, and we're here to help!</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" href="{$WEB_ROOT}/contact.php">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" href="{$WEB_ROOT}/contact.php">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -186,7 +186,7 @@
           <h2>Host your website at the right place, secure, and fast. </h2>
           <p>Choose the perfect hosting solution for your website: secure, reliable, and blazing-fast servers ensure optimal performance. With top-notch security measures, your data is safe. Enjoy seamless integration, expert support, and lightning-fast speeds, providing visitors with an exceptional browsing experience. Elevate your online presence today!.</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>

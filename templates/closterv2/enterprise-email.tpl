@@ -18,7 +18,7 @@
               <li>Professional Email for Power </li>
               <li>Users with Extra Storage</li>
               <li>Get Additional Storage</li>
-            </ul> {if count($enterpriseemailproducts) gt 0 && ($enterpriseemailproducts.0.monthly gt 0 || $enterpriseemailproducts.0.annually gt 0 || $enterpriseemailproducts.0.biennially gt 0 || $enterpriseemailproducts.0.triennially gt 0)} {foreach $enterpriseemailproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Starting Price {$myproduct.prefix}{$myproduct.monthly}/mo</h4>{/if} {/foreach}{/if} <div class="inline-btns mt-3">
+            </ul> {if count($enterpriseemailproducts) gt 0 && ($enterpriseemailproducts.0.monthly gt 0 || $enterpriseemailproducts.0.annually gt 0 || $enterpriseemailproducts.0.biennially gt 0 || $enterpriseemailproducts.0.triennially gt 0)} {foreach $enterpriseemailproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4>{/if} {/foreach}{/if} <div class="inline-btns mt-3">
               <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">View Plans</a>
             </div>
           </div>
@@ -38,12 +38,12 @@
         <div class="pricing-item">
           <div class="pricing-heading">
             <div class="name">{$myproduct.name}</div>
-            <h4 class="title"> {$myproduct.prefix}{$myproduct.monthly} <span class="durection">/month</span>
+            <h4 class="title"> {$myproduct.prefix}{$myproduct.monthly} <span class="durection">/maand</span>
             </h4>
           </div>
           <div class="pricing_body">
             <ul> {$myproduct.description} </ul>
-            <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid={$myproduct.relid}">Select Plan</a>
+            <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid={$myproduct.relid}">Selecteer pakket</a>
           </div>
         </div>
       </div> {/foreach} {/if} </div>
@@ -118,7 +118,7 @@
           <h2>We Are Here For You</h2>
           <p>We're dedicated to supporting you in any way we can. From answering questions to offering guidance, our goal is to make your experience as smooth as possible. Don't hesitate to reach out whenever you need assistance. Your satisfaction is our priority, and we're here to help!</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" href="{$WEB_ROOT}/contact.php">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" href="{$WEB_ROOT}/contact.php">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>

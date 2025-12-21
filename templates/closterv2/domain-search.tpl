@@ -138,7 +138,7 @@
           <h2>Free Private Registration</h2>
           <p>Enhance your online security with our complimentary Domain Privacy Protection. Shield sensitive information associated with your domain from public access, preventing spam and safeguarding against identity theft. Rest easy knowing your privacy is prioritized. Register now to fortify your online presence with confidence and peace of mind.</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -159,7 +159,7 @@
           <h2>Free Subdomains</h2>
           <p>Unlock the power of subdomains for free! Expand your online presence with our complimentary subdomain service. Create unique web addresses under your main domain, perfect for organizing content or launching new projects. Enjoy the flexibility and convenience without any extra cost. Get started today and harness the full potential of your domain with our user-friendly subdomain feature.</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>
