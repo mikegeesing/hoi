@@ -132,9 +132,6 @@ class MySQLService
         mkdir($tempDir, 0755, true);
         
         try {
-            // Use BorgService for extraction since it has working extractFiles method
-            $borgService = app(\App\Services\BorgService::class);
-            
             // Try different path formats
             $pathsToTry = [
                 $filename,                    // e.g., home/sql_dumps/file.sql
@@ -148,7 +145,59 @@ class MySQLService
             $lastError = '';
             
             foreach ($pathsToTry as $pathVariant) {
-                // Strategy A: use BorgService with temp dir as working directory
+                // Strategy A: Use new extract-for-user mode from runner script (sets proper permissions)
+                try {
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via extract-for-user', [
+                        'archive' => $archive,
+                        'path_variant' => $pathVariant,
+                        'temp_dir' => $tempDir,
+                    ]);
+
+                    $args = [
+                        'sudo',
+                        '-n',
+                        $this->runner,
+                        'extract-for-user',
+                        $archive,
+                        'onlineh',
+                        $pathVariant,
+                    ];
+
+                    $process = new Process($args, $tempDir);
+                    $process->setTimeout(300);
+                    $process->run();
+
+                    if ($process->isSuccessful()) {
+                        $extractSuccess = true;
+                        \Illuminate\Support\Facades\Log::info('SQL extraction succeeded via extract-for-user', [
+                            'archive' => $archive,
+                            'working_path' => $pathVariant,
+                        ]);
+                        break;
+                    }
+
+                    $lastError = trim($process->getOutput() . "\n" . $process->getErrorOutput()) ?: ('No output (exit code ' . $process->getExitCode() . ')');
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (extract-for-user)', [
+                        'path' => $pathVariant,
+                        'exit_code' => $process->getExitCode(),
+                        'stdout' => $process->getOutput(),
+                        'stderr' => $process->getErrorOutput(),
+                    ]);
+                } catch (\Exception $e) {
+                    $lastError = $e->getMessage();
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (extract-for-user exception)', [
+                        'path' => $pathVariant,
+                        'error' => $lastError,
+                    ]);
+                }
+
+                if ($extractSuccess) {
+                    break;
+                }
+
+                // Fallback: Use BorgService for extraction since it has working extractFiles method
+                $borgService = app(\App\Services\BorgService::class);
+                // Strategy B: use BorgService with temp dir as working directory
                 try {
                     \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction via BorgService (cwd)', [
                         'archive' => $archive,
@@ -175,14 +224,15 @@ class MySQLService
                 // Strategy B: without destination flag, but set working directory
                 try {
                     $args = [
+                        'sudo',
+                        '-n',
                         '/usr/local/bin/borg-runner.sh',
-                        'extract',
+                        'extract-multi',
                         $archive,
-                        '--',
                         $pathVariant,
                     ];
 
-                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction (cwd strategy)', [
+                    \Illuminate\Support\Facades\Log::debug('Attempting SQL extraction (extract-multi strategy)', [
                         'archive' => $archive,
                         'path_variant' => $pathVariant,
                         'cwd' => $tempDir,
@@ -195,7 +245,7 @@ class MySQLService
 
                     if ($process->isSuccessful()) {
                         $extractSuccess = true;
-                        \Illuminate\Support\Facades\Log::info('SQL extraction succeeded (cwd strategy)', [
+                        \Illuminate\Support\Facades\Log::info('SQL extraction succeeded (extract-multi strategy)', [
                             'archive' => $archive,
                             'working_path' => $pathVariant,
                         ]);
@@ -203,7 +253,7 @@ class MySQLService
                     }
 
                     $lastError = trim($process->getOutput() . "\n" . $process->getErrorOutput()) ?: ('No output (exit code ' . $process->getExitCode() . ')');
-                    \Illuminate\Support\Facades\Log::debug('Path variant failed (cwd strategy)', [
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (extract-multi strategy)', [
                         'path' => $pathVariant,
                         'exit_code' => $process->getExitCode(),
                         'stdout' => $process->getOutput(),
@@ -211,7 +261,7 @@ class MySQLService
                     ]);
                 } catch (\Exception $e) {
                     $lastError = $e->getMessage();
-                    \Illuminate\Support\Facades\Log::debug('Path variant failed (cwd strategy exception)', [
+                    \Illuminate\Support\Facades\Log::debug('Path variant failed (extract-multi strategy exception)', [
                         'path' => $pathVariant,
                         'error' => $lastError,
                     ]);
