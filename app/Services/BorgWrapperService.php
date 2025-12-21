@@ -27,7 +27,7 @@ class BorgWrapperService
      */
     protected function run(array $args): string
     {
-        $command = array_merge(['/usr/bin/borg'], $args);
+        $command = array_merge(['sudo', '-n', '/usr/bin/borg'], $args);
 
         $env = [
             'BORG_PASSPHRASE' => $this->passphrase,
@@ -142,6 +142,8 @@ class BorgWrapperService
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
         $args = [
+            'sudo',
+            '-n',
             '/usr/bin/borg',
             'extract',
             $this->repositoryPath . '::' . $archive,
