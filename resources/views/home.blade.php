@@ -9,7 +9,6 @@
         .navbar-bg { background-color: #1a1a1a; }
         .btn-green { background-color: #22c55e; }
         .btn-green:hover { background-color: #16a34a; }
-        .logo-circle { background-color: #22c55e; }
         .hero-gradient { background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%); }
     </style>
 </head>
@@ -19,9 +18,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">
-                    <div class="logo-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">
-                        O
-                    </div>
+                    <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
                     <span class="text-xl font-bold">Online Hoster</span>
                 </a>
                 <div class="flex items-center space-x-4">

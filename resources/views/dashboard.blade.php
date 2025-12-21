@@ -9,7 +9,6 @@
         .navbar-bg { background-color: #ffffff; border-bottom: 1px solid #e5e7eb; }
         .btn-green { background-color: #22c55e; }
         .btn-green:hover { background-color: #16a34a; }
-        .logo-circle { background-color: #22c55e; }
         .card-hover { transition: all 0.3s ease; }
         .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
     </style>
@@ -20,9 +19,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">
-                    <div class="logo-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">
-                        O
-                    </div>
+                    <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
                     <span class="text-xl font-bold hidden sm:inline">Online Hoster</span>
                 </a>
                 <div class="flex items-center space-x-4">

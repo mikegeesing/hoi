@@ -29,7 +29,6 @@
         .navbar-bg { background-color: #ffffff; border-bottom: 1px solid #e5e7eb; }
         .btn-green { background-color: #22c55e; }
         .btn-green:hover { background-color: #16a34a; }
-        .logo-circle { background-color: #22c55e; }
     </style>
     <!-- Alpine.js for interactions -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -44,9 +43,7 @@
                 <div class="flex items-center">
                     <a href="/" class="flex items-center gap-3">
                         <!-- Logo -->
-                        <div class="logo-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">
-                            O
-                        </div>
+                        <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
                         <span class="text-xl font-bold hidden sm:inline text-gray-900">Online Hoster</span>
                     </a>
                 </div>
