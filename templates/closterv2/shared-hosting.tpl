@@ -8,10 +8,10 @@
           <div class="banner-heading">
             <h1>Shared Hosting - Eenvoudig en betrouwbaar</h1>
             <ul class="banner-list mb-2">
-              <li>Flexibel, gebruiksvriendelijk controlepaneel</li>
-              <li>Onbeperkte bandbreedte</li>
+              <li>DirectAdmin controlepaneel</li>
+              <li>NVMe SSD opslag</li>
               <li>99% uptime garantie</li>
-              <li>30 dagen geld-terug-garantie</li>
+              <li>Uurlijkse back-ups</li>
             </ul> {if $sharedhostingproducts|@count gt 0 && ($sharedhostingproducts.0.monthly gt 0 || $sharedhostingproducts.0.annually gt 0 || $sharedhostingproducts.0.biennially gt 0 || $sharedhostingproducts.0.triennially gt 0)} {foreach $sharedhostingproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
               <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Nu starten</a>
             </div>
@@ -92,7 +92,7 @@
           <div class="lines">
             <span></span>
           </div>
-          <p>Onbeperkte opslag, onbeperkte bandbreedte, betrouwbare hosting. Alles wat je nodig hebt voor een succesvolle website. Inclusief een gratis domein voor het eerste jaar.</p>
+          <p>Betrouwbare shared hosting met DirectAdmin, NVMe SSD-opslag, uurlijkse back-ups en gratis SSL-certificaat. Snelle prestaties en gebruiksvriendelijk beheer voor je website.</p>
         </div>
       </div>
     </div>
