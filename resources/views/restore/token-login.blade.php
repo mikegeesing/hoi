@@ -14,14 +14,14 @@
 </head>
 <body class="font-sans antialiased text-gray-900">
     <!-- Navigation -->
-    <nav class="navbar-bg text-white shadow-lg">
+    <nav class="bg-white text-gray-900 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">
                     <div class="logo-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">
                         O
                     </div>
-                    <span class="text-xl font-bold hidden sm:inline">Online Hoster</span>
+                    <span class="text-xl font-bold hidden sm:inline text-gray-900">Online Hoster</span>
                 </a>
                 <a href="/" class="btn-green text-white px-6 py-2 rounded font-semibold hover:shadow-lg transition">
                     Inloggen

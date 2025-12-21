@@ -15,7 +15,7 @@
 </head>
 <body class="font-sans antialiased text-gray-900">
     <!-- Navigation -->
-    <nav class="navbar-bg text-white shadow-lg">
+    <nav class="bg-white text-gray-900 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">
@@ -25,7 +25,7 @@
                     <span class="text-xl font-bold">Online Hoster</span>
                 </a>
                 <div class="flex items-center space-x-4">
-                    <a href="{{ route('login') }}" class="text-white hover:text-green-400 transition">Inloggen</a>
+                    <a href="{{ route('login') }}" class="text-gray-600 hover:text-green-600 transition">Inloggen</a>
                     <a href="/restore" class="btn-green text-white px-6 py-2 rounded font-semibold hover:shadow-lg transition">
                         Restore Portal
                     </a>

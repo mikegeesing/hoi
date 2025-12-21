@@ -6,7 +6,7 @@
     <title>Dashboard - Online Hoster</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .navbar-bg { background-color: #1a1a1a; }
+        .navbar-bg { background-color: #ffffff; border-bottom: 1px solid #e5e7eb; }
         .btn-green { background-color: #22c55e; }
         .btn-green:hover { background-color: #16a34a; }
         .logo-circle { background-color: #22c55e; }
@@ -16,7 +16,7 @@
 </head>
 <body class="font-sans antialiased text-gray-900 bg-gray-50">
     <!-- Navigation -->
-    <nav class="navbar-bg text-white shadow-lg sticky top-0 z-50">
+    <nav class="navbar-bg text-gray-900 shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">

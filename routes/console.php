@@ -42,6 +42,7 @@ Artisan::command('sqlite:import {path?} {--tables=*} {--truncate}', function () 
         'restore_tokens',
         'restore_jobs',
         'personal_access_tokens',
+        'webauthn_credentials', // Passkeys (Laragear WebAuthn)
     ];
 
     $tables = !empty($tablesOpt) ? $tablesOpt : $defaultTables;

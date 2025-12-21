@@ -26,7 +26,7 @@
     </script>
     <style>
         [x-cloak] { display: none !important; }
-        .navbar-bg { background-color: #1a1a1a; }
+        .navbar-bg { background-color: #ffffff; border-bottom: 1px solid #e5e7eb; }
         .btn-green { background-color: #22c55e; }
         .btn-green:hover { background-color: #16a34a; }
         .logo-circle { background-color: #22c55e; }
@@ -38,7 +38,7 @@
 </head>
 <body class="font-sans antialiased text-gray-900 bg-gray-50">
     <!-- Navigation -->
-    <nav class="navbar-bg text-white shadow-lg sticky top-0 z-50">
+    <nav class="navbar-bg text-gray-900 shadow-sm sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-20">
                 <div class="flex items-center">
@@ -47,21 +47,21 @@
                         <div class="logo-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">
                             O
                         </div>
-                        <span class="text-xl font-bold hidden sm:inline">Online Hoster</span>
+                        <span class="text-xl font-bold hidden sm:inline text-gray-900">Online Hoster</span>
                     </a>
                 </div>
                 <div class="flex items-center gap-4">
                     @if(isset($token))
                         <div class="hidden md:flex flex-col items-end text-right">
-                            <span class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Token</span>
-                            <span class="text-sm font-mono text-green-400">{{ substr($token, 0, 8) }}...</span>
+                            <span class="text-xs text-gray-500 uppercase font-semibold tracking-wider">Token</span>
+                            <span class="text-sm font-mono text-green-600">{{ substr($token, 0, 8) }}...</span>
                         </div>
                     @endif
                     <div class="flex items-center gap-3">
                         @auth
                             <div class="hidden md:flex flex-col items-end">
-                                <span class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Ingelogd</span>
-                                <span class="text-sm font-medium text-white">{{ auth()->user()->name ?? auth()->user()->email }}</span>
+                                <span class="text-xs text-gray-500 uppercase font-semibold tracking-wider">Ingelogd</span>
+                                <span class="text-sm font-medium text-gray-900">{{ auth()->user()->name ?? auth()->user()->email }}</span>
                             </div>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
