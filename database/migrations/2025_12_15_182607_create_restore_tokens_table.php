@@ -25,7 +25,7 @@ return new class extends Migration
         $table->string('token_hash', 64)->unique(); // SHA-256 hash van de token
         $table->string('borg_user', 32); // De onlineh gebruiker
         $table->unsignedSmallInteger('total_uses')->default(1);
-        $table->unsignedSmallInteger('uses_left');
+        $table->unsignedSmallInteger('uses_left')->default(1);
         $table->timestamp('expires_at')->nullable();
         $table->timestamps(); // created_at en updated_at
     });
