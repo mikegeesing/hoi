@@ -97,18 +97,13 @@ case "$CMD" in
     # Extract files
     /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@"
     
-    # Fix permissions: make extracted files readable/writable by the user
-    for FILE in "$@"; do
-        # Remove leading 'home/' to get the relative path in CWD
-        REL_PATH="${FILE#home/}"
-        FULL_PATH="$CWD/$REL_PATH"
-        
-        if [[ -e "$FULL_PATH" ]]; then
-            chown -R "$USERNAME:$USERNAME" "$FULL_PATH" 2>/dev/null || true
-            chmod -R u+rw "$FULL_PATH" 2>/dev/null || true
-        fi
-    done
+    # Fix permissions on the entire home/ directory structure
+    if [[ -d "$CWD/home" ]]; then
+        chown -R "$USERNAME:$USERNAME" "$CWD/home" 2>/dev/null || true
+        chmod -R u+rwX,g-rwx,o-rwx "$CWD/home" 2>/dev/null || true
+    fi
     ;;
+
 
   *)
     echo "Invalid command. Use: list, list-files, extract-multi, or extract-for-user"
