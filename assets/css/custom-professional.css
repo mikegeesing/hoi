@@ -1263,6 +1263,154 @@ small {
 }
 
 /* ============================================
+   Professional Hosting Section
+   ============================================ */
+
+.hosting-image-wrapper {
+    position: relative;
+    animation: floatSmooth 6s ease-in-out infinite;
+}
+
+@keyframes floatSmooth {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+}
+
+.stat-card-pro {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    background: #ffffff !important;
+    border: 1px solid #e9ecef !important;
+}
+
+.stat-card-pro:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(53, 177, 94, 0.15);
+    border-color: rgb(var(--color-primary)) !important;
+}
+
+.stat-card-pro i {
+    transition: all 0.3s ease;
+}
+
+.stat-card-pro:hover i {
+    transform: scale(1.2);
+}
+
+.stat-card-pro .stat-number {
+    color: #1a202c;
+    font-size: 2rem;
+}
+
+.stat-card-pro .stat-label {
+    color: #718096;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.feature-card-pro {
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.feature-card-pro:hover {
+    background: #ffffff !important;
+    border-color: rgb(var(--color-primary));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transform: translateX(5px);
+}
+
+.feature-icon-pro {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(53, 177, 94, 0.1);
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.feature-card-pro:hover .feature-icon-pro {
+    background: rgb(var(--color-primary));
+}
+
+.feature-card-pro:hover .feature-icon-pro i {
+    color: #ffffff !important;
+}
+
+.feature-card-pro h6 {
+    color: #1a202c;
+    margin-bottom: 0.25rem;
+}
+
+.feature-card-pro p {
+    color: #718096;
+    line-height: 1.4;
+}
+
+.stats-grid,
+.features-grid {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Stagger animation for cards */
+.stat-card-pro:nth-child(1) { animation-delay: 0.1s; }
+.stat-card-pro:nth-child(2) { animation-delay: 0.2s; }
+.stat-card-pro:nth-child(3) { animation-delay: 0.3s; }
+.stat-card-pro:nth-child(4) { animation-delay: 0.4s; }
+
+.feature-card-pro:nth-child(1) { animation-delay: 0.2s; }
+.feature-card-pro:nth-child(2) { animation-delay: 0.3s; }
+.feature-card-pro:nth-child(3) { animation-delay: 0.4s; }
+.feature-card-pro:nth-child(4) { animation-delay: 0.5s; }
+
+/* Responsive improvements */
+@media (max-width: 991px) {
+    .hosting-image-wrapper {
+        margin-bottom: 2rem;
+    }
+    
+    .hosting-image-wrapper img {
+        max-width: 70% !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .stat-card-pro {
+        padding: 1.25rem !important;
+    }
+    
+    .stat-card-pro i {
+        font-size: 1.5rem !important;
+    }
+    
+    .stat-card-pro .stat-number {
+        font-size: 1.5rem;
+    }
+    
+    .feature-icon-pro {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .feature-icon-pro i {
+        font-size: 1.25rem !important;
+    }
+}
+
+/* ============================================
    Additional Premium Effects
    ============================================ */
 
