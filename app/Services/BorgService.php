@@ -110,21 +110,27 @@ class BorgService
             if (! isset($pathToken) || $pathToken === '') continue;
 
             // Determine if this is a directory
-            // Priority 1: Type explicitly set to 'd' from borg output
-            // Priority 2: Path ends with /
-            // Priority 3: Only mark as file if it's explicitly type '-' OR has a common file extension
             $isDirectory = false;
+            $basename = basename(rtrim($pathToken, '/'));
             
-            if (isset($type) && $type === 'd') {
+            // Priority 1: Check for file extensions first (most reliable for files)
+            // Common file extensions (not domain extensions like .nl, .com, etc.)
+            $hasFileExtension = preg_match('/\.(txt|log|php|js|css|html|htm|json|xml|yml|yaml|conf|ini|sh|sql|md|pdf|zip|tar|gz|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|eot|mp3|mp4|avi|mov|doc|docx|xls|xlsx|ppt|pptx|csv|bak|old|tmp|lock|htaccess|gitignore|env|moved|htmls)$/i', $basename);
+            
+            if ($hasFileExtension) {
+                $isDirectory = false;
+            } elseif (isset($type) && $type === 'd') {
+                // Priority 2: Type explicitly set to 'd' from borg output
                 $isDirectory = true;
             } elseif (str_ends_with($pathToken, '/')) {
+                // Priority 3: Path ends with /
                 $isDirectory = true;
             } elseif (isset($type) && $type === '-') {
+                // Priority 4: Type explicitly set to '-' (file)
                 $isDirectory = false;
             } else {
-                // Check for common file extensions (not domain extensions like .nl, .com, etc.)
-                $hasFileExtension = preg_match('/\.(txt|log|php|js|css|html|json|xml|yml|yaml|conf|ini|sh|sql|md|pdf|zip|tar|gz|jpg|jpeg|png|gif|svg)$/i', basename($pathToken));
-                $isDirectory = !$hasFileExtension;
+                // Default: assume it's a directory (for things like domain names without extensions)
+                $isDirectory = true;
             }
 
             $file = [
