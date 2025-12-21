@@ -163,98 +163,16 @@ class BorgService
      */
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
-        $env = [
-            'TMPDIR' => env('TMPDIR', sys_get_temp_dir()),
-            'HOME' => env('HOME', getenv('HOME') ?: '/home/onlineh'),
-        ];
+        // Delegate to BorgWrapperService to avoid runner script execution issues
+        $wrapper = app(\App\Services\BorgWrapperService::class);
 
-        $attemptErrors = [];
-
-        $attempt = function (bool $useDestination, ?string $cwd) use ($archive, $files, $destination, $env, &$attemptErrors): string {
-            $args = [
-                $this->runner,
-                'extract',
-                $archive,
-                '--',
-            ];
-            $args = array_merge($args, $files);
-
-            $label = $useDestination ? 'cwd-with-destination' : 'no-destination';
-
-            Log::debug('Borg extract starting', [
-                'archive' => $archive,
-                'destination' => $useDestination ? $destination : null,
-                'files' => $files,
-                'command' => implode(' ', $args),
-                'cwd' => $cwd,
-                'label' => $label,
-                'env' => $env,
-            ]);
-
-            $process = new Process($args, $cwd, $env);
-            $process->setTimeout(7200);
-            $process->run();
-
-            $output = $process->getOutput() . "\n" . $process->getErrorOutput();
-
-            if ($process->isSuccessful()) {
-                Log::info('Borg extract succeeded', [
-                    'archive' => $archive,
-                    'destination' => $useDestination ? $destination : null,
-                    'files' => $files,
-                    'exit_code' => $process->getExitCode(),
-                    'stdout_snippet' => substr($process->getOutput(), 0, 300),
-                    'stderr_snippet' => substr($process->getErrorOutput(), 0, 300),
-                    'label' => $label,
-                ]);
-                return $output;
-            }
-
-            $attemptErrors[] = [
-                'label' => $label,
-                'exit_code' => $process->getExitCode(),
-                'stdout' => $process->getOutput(),
-                'stderr' => $process->getErrorOutput(),
-                'message' => trim($output) ?: 'Borg extract failed',
-            ];
-
-            Log::warning('Borg extract attempt failed', [
-                'label' => $label,
-                'archive' => $archive,
-                'destination' => $useDestination ? $destination : null,
-                'files' => $files,
-                'exit_code' => $process->getExitCode(),
-                'stdout' => $process->getOutput(),
-                'stderr' => $process->getErrorOutput(),
-            ]);
-
-            throw new \RuntimeException($attemptErrors[array_key_last($attemptErrors)]['message']);
-        };
-
-        // First try with cwd set to destination if provided
-        try {
-            return $attempt(true, $destination !== '' ? $destination : null);
-        } catch (\Throwable $e) {
-            // Retry without cwd override
-            try {
-                return $attempt(false, null);
-            } catch (\Throwable $e2) {
-                // Fall through to combined error handling below
-            }
-        }
-
-        // If we reach here, all attempts failed
-        Log::error('Borg extract failed after retries', [
+        Log::debug('BorgService delegating extract to BorgWrapperService', [
             'archive' => $archive,
             'destination' => $destination,
             'files' => $files,
-            'attempt_errors' => $attemptErrors,
         ]);
 
-        $messages = array_map(fn($err) => "[{$err['label']}] exit {$err['exit_code']}: {$err['message']}", $attemptErrors);
-        $message = implode(' | ', $messages) ?: 'Borg extract failed';
-
-        throw new \RuntimeException($message);
+        return $wrapper->extractFiles($archive, $files, $destination);
     }
 }
 
