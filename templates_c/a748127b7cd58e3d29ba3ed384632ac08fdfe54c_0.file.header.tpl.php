@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-10-28 01:41:57
+/* Smarty version 3.1.48, created on 2025-12-21 14:45:14
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/header.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_69001155320b43_43314541',
+  'unifunc' => 'content_694807fa7b7898_12171996',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a748127b7cd58e3d29ba3ed384632ac08fdfe54c' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/header.tpl',
-      1 => 1761612114,
+      1 => 1766328299,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69001155320b43_43314541 (Smarty_Internal_Template $_smarty_tpl) {
+function content_694807fa7b7898_12171996 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -189,10 +189,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> </ul> <?php }?>
           <div class="col-6 col-md-8 col-lg-6">
             <div class="header-support">
               <ul class="support-item-web items d-none d-md-inline-block">
-                <li class="call-no">Sales: <strong>Sales@onlinehoster.nl</strong>
+                <li class="call-no">Sales: <strong> | Sales@onlinehoster.nl</strong>
                 </li>
-                <li class="call-no">Support: <strong> |</strong></li>
-                <li class="call-no"><strong>Support@onlinehoster.nl</strong>
+                <li class="call-no">Support: <strong> | Support@onlinehoster.nl</strong>
                 </li>
               </ul>
               <a class="call-mob items d-md-none" href="tel:+911234567890">
@@ -577,10 +576,9 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> </ul> <?php }?>
           </a>
           <div class="header-support w-100">
             <ul class="support-item-web items d-none d-md-inline-block">
-              <li class="call-no">Sales: <strong>Sales@onlinehoster.nl</strong>
+              <li class="call-no">Sales: <strong> | Sales@onlinehoster.nl</strong>
               </li>
-              <li class="call-no">Support: <strong> |</strong></li>
-              <li class="call-no"><strong>Support@onlinehoster.nl</strong>
+              <li class="call-no">Support: <strong> | Support@onlinehoster.nl</strong>
               </li>
             </ul>
             <a class="cart-icon items" href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>

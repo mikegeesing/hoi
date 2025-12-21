@@ -1,1 +1,19 @@
 whmcs_v8.13.1.zip
+# Template cache files (generated automatically)
+templates_c/
+*.php~
+
+# Environment & logs
+.env
+.env.local
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
