@@ -5,34 +5,39 @@
     <title>Restore status</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <style>
-        body { font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; padding: 24px; }
-        .card { background:#fff; padding:16px; border-radius:8px; box-shadow:0 6px 20px rgba(0,0,0,0.06); }
-        pre { background:#0f172a; color:#e6eef8; padding:12px; border-radius:6px; overflow:auto; }
-    </style>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-<div class="max-w-3xl mx-auto">
-    <div class="bg-white shadow rounded-lg p-6">
-        <div class="flex items-start justify-between">
+<body class="bg-gray-50">
+<div class="max-w-4xl mx-auto px-4 py-8">
+    <div class="bg-white shadow-lg rounded-lg p-6">
+        <div class="flex items-start justify-between mb-6">
             <div>
-                <h1 class="text-2xl font-bold">Herstel job #{{ $job->id }}</h1>
-                <div class="text-sm text-gray-600">Aangemaakt: {{ $job->created_at->diffForHumans() }}</div>
+                <h1 class="text-3xl font-bold text-gray-900">Herstel job #{{ $job->id }}</h1>
+                <div class="text-sm text-gray-500 mt-1">Aangemaakt: {{ $job->created_at->diffForHumans() }}</div>
             </div>
             <div class="text-right">
-                <div class="text-sm text-gray-500">Status</div>
-                <div class="mt-1 font-semibold" id="status">{{ $job->status }}</div>
+                <div class="text-xs uppercase tracking-wider text-gray-500 mb-1">Status</div>
+                <div class="mt-1">
+                    <span id="status" class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium
+                        @if($job->status === 'success') bg-green-100 text-green-800
+                        @elseif($job->status === 'failed') bg-red-100 text-red-800
+                        @elseif($job->status === 'running') bg-blue-100 text-blue-800
+                        @else bg-gray-100 text-gray-800
+                        @endif">
+                        {{ ucfirst($job->status) }}
+                    </span>
+                </div>
             </div>
         </div>
 
-        <div class="mt-4">
-            <div class="text-sm text-gray-600">Restore path</div>
-            <div class="font-mono mt-1 text-sm" id="restore_path">{{ $job->restore_path ?? '—' }}</div>
+        <div class="bg-gray-50 rounded-lg p-4 mb-6">
+            <div class="text-xs uppercase tracking-wider text-gray-500 mb-2">Restore pad</div>
+            <div class="font-mono text-sm text-gray-900 break-all" id="restore_path">{{ $job->restore_path ?? '—' }}</div>
         </div>
 
         <!-- Wacht bericht voor pending jobs -->
         @if($job->status === 'pending')
-            <div class="mt-6 bg-blue-50 border border-blue-200 rounded-lg p-4" id="pending-message">
+            <div class="mb-6 bg-blue-50 border-l-4 border-blue-400 rounded-r-lg p-4" id="pending-message">
                 <div class="flex items-center">
                     <svg class="animate-spin h-5 w-5 text-blue-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -47,7 +52,7 @@
         @endif
 
         @if($job->status === 'running')
-            <div class="mt-6 bg-green-50 border border-green-200 rounded-lg p-4" id="running-message">
+            <div class="mb-6 bg-green-50 border-l-4 border-green-400 rounded-r-lg p-4" id="running-message">
                 <div class="flex items-center">
                     <svg class="animate-spin h-5 w-5 text-green-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -61,11 +66,46 @@
             </div>
         @endif
 
-        <h3 class="mt-6 mb-2 text-sm font-semibold">Log</h3>
-        <pre id="log" class="bg-gray-900 text-white p-3 rounded h-56 overflow-auto">{{ $job->log_output ?? 'Nog geen output - wachten op start van de taak...' }}</pre>
+        @if($job->status === 'success')
+            <div class="mb-6 bg-green-50 border-l-4 border-green-400 rounded-r-lg p-4">
+                <div class="flex items-center">
+                    <svg class="h-5 w-5 text-green-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                        <div class="font-semibold text-green-900">Restore succesvol voltooid!</div>
+                        <div class="text-sm text-green-700">De bestanden zijn hersteld.</div>
+                    </div>
+                </div>
+            </div>
+        @endif
 
-        <div class="mt-4">
-            <a class="text-blue-600" href="/restore?token={{ urlencode($token) }}">Terug naar portal</a>
+        @if($job->status === 'failed')
+            <div class="mb-6 bg-red-50 border-l-4 border-red-400 rounded-r-lg p-4">
+                <div class="flex items-center">
+                    <svg class="h-5 w-5 text-red-600 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <div>
+                        <div class="font-semibold text-red-900">Restore mislukt</div>
+                        <div class="text-sm text-red-700">Er is een fout opgetreden tijdens het herstellen.</div>
+                    </div>
+                </div>
+            </div>
+        @endif
+
+        <div class="mb-2">
+            <h3 class="text-sm font-semibold text-gray-700 uppercase tracking-wider">Log output</h3>
+        </div>
+        <pre id="log" class="bg-gray-900 text-gray-100 p-4 rounded-lg text-sm overflow-auto max-h-96 font-mono">{{ $job->log_output ?? 'Nog geen output - wachten op start van de taak...' }}</pre>
+
+        <div class="mt-6 pt-6 border-t border-gray-200">
+            <a href="/restore?token={{ urlencode($token) }}" class="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-150">
+                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+                </svg>
+                Terug naar portal
+            </a>
         </div>
     </div>
 </div>
@@ -75,13 +115,32 @@
     const jobId = {{ $job->id }};
     const token = "{{ $token }}";
 
+    function updateStatusBadge(status) {
+        const badge = document.getElementById('status');
+        badge.className = 'inline-flex items-center px-3 py-1 rounded-full text-sm font-medium';
+        
+        if (status === 'success') {
+            badge.className += ' bg-green-100 text-green-800';
+            badge.textContent = 'Success';
+        } else if (status === 'failed') {
+            badge.className += ' bg-red-100 text-red-800';
+            badge.textContent = 'Failed';
+        } else if (status === 'running') {
+            badge.className += ' bg-blue-100 text-blue-800';
+            badge.textContent = 'Running';
+        } else {
+            badge.className += ' bg-gray-100 text-gray-800';
+            badge.textContent = status.charAt(0).toUpperCase() + status.slice(1);
+        }
+    }
+
     function fetchStatus(){
         fetch('/restore/status/' + jobId + '?token=' + encodeURIComponent(token), {
             headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(r => r.json())
         .then(data => {
-            document.getElementById('status').textContent = data.status || '—';
+            updateStatusBadge(data.status || 'unknown');
             document.getElementById('restore_path').textContent = data.restore_path || '—';
             document.getElementById('log').textContent = data.log || 'Nog geen output - wachten op start van de taak...';
 
