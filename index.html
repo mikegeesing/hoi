@@ -3,9 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Professionele Nederlandse webhosting vanaf €1/maand. 99.9% uptime garantie, OpenLiteSpeed servers, uurlijke backups, Imunify360 beveiliging, Cloudflare DDoS-bescherming. 7 dagen geld-terug-garantie.">
-    <meta name="keywords" content="webhosting nederland, goedkope hosting, openlitespeed hosting, directadmin, uurlijke backups, imunify360, cloudflare hosting, shared hosting, vps hosting, reseller hosting">
-    <title>Webhosting Nederland | 99.9% Uptime, Uurlijke Backups, vanaf €1/maand</title>
+    <meta name="description" content="OnlineHoster - Professionele Nederlandse webhosting vanaf €1/maand met 99.9% uptime garantie. OpenLiteSpeed servers, uurlijke backups, Imunify360 beveiliging, Cloudflare DDoS-bescherming, DirectAdmin panel en gratis SSL certificaten.">
+    <meta name="keywords" content="webhosting nederland, goedkope hosting, openlitespeed hosting, directadmin, uurlijke backups, imunify360, cloudflare hosting, shared hosting, reseller hosting, website hosting, nederlandse hosting provider, snelle servers, veilige hosting">
+    <meta name="author" content="OnlineHoster">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="OnlineHoster - Professionele Webhosting Nederland">
+    <meta property="og:description" content="Webhosting met 99.9% uptime, uurlijke backups, OpenLiteSpeed servers en 24/7 support. Vanaf €1/maand.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://onlinehoster.nl">
+    
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "OnlineHoster",
+        "url": "https://onlinehoster.nl",
+        "logo": "https://onlinehoster.nl/assets/images/logo.png",
+        "description": "Professionele Nederlandse webhosting met 99.9% uptime, OpenLiteSpeed servers, Imunify360 beveiliging en uurlijke backups",
+        "sameAs": [
+            "https://facebook.com/onlinehoster",
+            "https://twitter.com/onlinehoster"
+        ],
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Customer Service",
+            "telephone": "+31-123-456-789",
+            "email": "support@onlinehoster.nl"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Straatnaam 123",
+            "addressLocality": "Amsterdam",
+            "postalCode": "1000 AA",
+            "addressCountry": "NL"
+        }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "OnlineHoster",
+        "image": "https://onlinehoster.nl/assets/images/logo.png",
+        "description": "Nederlandse webhosting provider met 99.9% uptime garantie",
+        "url": "https://onlinehoster.nl",
+        "telephone": "+31-123-456-789",
+        "areaServed": "NL",
+        "priceRange": "€1-€5"
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://onlinehoster.nl"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Hosting Pakketten",
+                "item": "https://onlinehoster.nl#pricing"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": "Features",
+                "item": "https://onlinehoster.nl#features"
+            }
+        ]
+    }
+    </script>
+    <title>OnlineHoster | Professionele Webhosting Nederland 99.9% Uptime | Vanaf €1/maand</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,21 +142,27 @@
         .navbar {
             background: white;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            padding: 16px 0;
+            padding: 12px 0;
         }
 
         .navbar-brand {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 800;
             color: #102d47 !important;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
         }
 
         .navbar-brand img {
-            height: 40px;
+            height: 45px;
             width: auto;
+            max-width: 200px;
+        }
+
+        .navbar-brand span {
+            display: none;
         }
 
         .nav-link {
@@ -275,6 +357,27 @@
             font-size: 0.85rem;
             color: rgba(255, 255, 255, 0.7);
             margin: 0;
+        }
+
+        .hero-illustration {
+            position: relative;
+            z-index: 2;
+            animation: floatAnimation 4s ease-in-out infinite;
+        }
+
+        .hero-illustration svg {
+            max-width: 100%;
+            height: auto;
+            filter: drop-shadow(0 20px 40px rgba(53, 177, 94, 0.2));
+        }
+
+        @keyframes floatAnimation {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
         }
 
         /* ============================================
@@ -648,8 +751,9 @@
             }
         }
 
-        .pricing-card {
+            .pricing-card {
             animation: fadeInUp 0.6s ease-out;
+            position: relative;
         }
 
         .feature-item {
@@ -686,11 +790,11 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="index.html">
-                <i class="fas fa-server" style="color: #35b15e; font-size: 1.5rem;"></i>
-                OnlineHoster
+            <a class="navbar-brand" href="index.html" title="OnlineHoster - Professionele Nederlandse webhosting">
+                <img src="assets/images/logo.png" alt="OnlineHoster Logo - Professionele webhosting Nederland">
+                <span>OnlineHoster</span>
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -705,21 +809,24 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" itemscope itemtype="https://schema.org/WebHostingService">
+        <meta itemprop="name" content="OnlineHoster Webhosting">
+        <meta itemprop="description" content="Professionele Nederlandse webhosting met 99.9% uptime garantie">
+        <meta itemprop="url" content="https://onlinehoster.nl">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
                     <div class="hero-content">
                         <div class="hero-badge">
                             <i class="fas fa-certificate"></i> Nederlandse Hosting Provider
                         </div>
-                        <h1>Professionele Webhosting met 99.9% Uptime</h1>
-                        <p class="hero-subtitle">Enterprise-grade beveiliging, bliksemsnelle OpenLiteSpeed servers en 24/7 support. Alles wat je nodig hebt voor succes, vanaf €1/maand.</p>
+                        <h1>Professionele Webhosting met 99.9% Uptime Garantie</h1>
+                        <p class="hero-subtitle">OnlineHoster biedt enterprise-grade webhosting met ultrasnelle OpenLiteSpeed servers, real-time beveiliging via Imunify360, uurlijke automatische backups en 24/7 Nederlandse support. Ideaal voor kleine en middelgrote bedrijven die betrouwbare hosting zoeken. Al meer dan 10 jaar jouw partner in webhosting excellence.</p>
                         <div class="hero-buttons">
-                            <a href="#pricing" class="btn-primary-large">
+                            <a href="#pricing" class="btn-primary-large" title="Bekijk onze hosting pakketten">
                                 <i class="fas fa-rocket"></i> Bekijk Pakketten
                             </a>
-                            <a href="contact.php" class="btn-secondary-large">
+                            <a href="contact.php" class="btn-secondary-large" title="Neem contact met ons op voor meer informatie">
                                 <i class="fas fa-phone"></i> Neem Contact Op
                             </a>
                         </div>
@@ -728,7 +835,7 @@
                                 <i class="fas fa-shield-alt"></i>
                                 <div>
                                     <h4>99.9% Uptime</h4>
-                                    <p>Gegarandeerd</p>
+                                    <p>SLA Gegarandeerd</p>
                                 </div>
                             </div>
                             <div class="hero-feature">
@@ -755,6 +862,51 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-6 d-none d-lg-block">
+                    <div class="hero-illustration">
+                        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Server -->
+                            <rect x="80" y="100" width="240" height="200" rx="20" fill="#1a3a52" stroke="#35b15e" stroke-width="3"/>
+                            
+                            <!-- Server top -->
+                            <rect x="90" y="110" width="220" height="30" rx="5" fill="#35b15e" opacity="0.3"/>
+                            <circle cx="110" cy="125" r="4" fill="#35b15e"/>
+                            <circle cx="130" cy="125" r="4" fill="#35b15e"/>
+                            <circle cx="150" cy="125" r="4" fill="#35b15e"/>
+                            <circle cx="170" cy="125" r="4" fill="#35b15e"/>
+                            
+                            <!-- Screens -->
+                            <rect x="100" y="160" width="80" height="100" rx="5" fill="#ffffff" opacity="0.1" stroke="#35b15e" stroke-width="2"/>
+                            <line x1="110" y1="180" x2="160" y2="180" stroke="#35b15e" stroke-width="2" opacity="0.6"/>
+                            <line x1="110" y1="200" x2="160" y2="200" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                            <line x1="110" y1="220" x2="160" y2="220" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                            
+                            <rect x="220" y="160" width="80" height="100" rx="5" fill="#ffffff" opacity="0.1" stroke="#35b15e" stroke-width="2"/>
+                            <line x1="230" y1="180" x2="280" y2="180" stroke="#35b15e" stroke-width="2" opacity="0.6"/>
+                            <line x1="230" y1="200" x2="280" y2="200" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                            <line x1="230" y1="220" x2="280" y2="220" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                            
+                            <!-- Lights -->
+                            <circle cx="120" cy="80" r="6" fill="#35b15e"/>
+                            <circle cx="150" cy="75" r="5" fill="#35b15e" opacity="0.6"/>
+                            <circle cx="180" cy="78" r="6" fill="#35b15e"/>
+                            <circle cx="210" cy="76" r="5" fill="#35b15e" opacity="0.6"/>
+                            <circle cx="240" cy="80" r="6" fill="#35b15e"/>
+                            <circle cx="270" cy="77" r="5" fill="#35b15e" opacity="0.6"/>
+                            
+                            <!-- Bottom accent -->
+                            <rect x="90" y="280" width="220" height="10" rx="5" fill="#35b15e" opacity="0.4"/>
+                            
+                            <!-- Cables -->
+                            <path d="M 100 300 Q 80 320 60 350" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4"/>
+                            <path d="M 200 300 Q 200 330 200 360" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4"/>
+                            <path d="M 300 300 Q 320 320 340 350" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4"/>
+                            
+                            <!-- Glowing effect -->
+                            <circle cx="200" cy="200" r="150" fill="#35b15e" opacity="0.05" r="160"/>
+                        </svg>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -766,60 +918,78 @@
                 <div class="section-badge">
                     <i class="fas fa-tag"></i> HOSTING PAKKETTEN
                 </div>
-                <h2>Kies de Perfecte Hosting</h2>
-                <p>Alle pakketten inclusief gratis SSL certificaat, DirectAdmin controlepaneel en uurlijke backups</p>
+                <h2>Kies de Perfecte Hosting voor Jouw Website</h2>
+                <p>Alle OnlineHoster pakketten inclusief gratis SSL-certificaat, intuïtief DirectAdmin controlepaneel, uurlijke automatische backups en volledige ondersteuning. Geen verborgen kosten, zuiver transparante prijzen.</p>
             </div>
             <div class="pricing-cards">
-                <div class="pricing-card">
+                <div class="pricing-card" itemscope itemtype="https://schema.org/Product">
+                    <meta itemprop="name" content="Starter Webhosting">
+                    <meta itemprop="description" content="Beginners webhosting pakket met 1GB NVMe, 10GB bandwidth">
                     <div class="pricing-name">Starter</div>
-                    <div class="pricing-price">€1.00</div>
+                    <div class="pricing-price" itemprop="price">€1.00</div>
                     <div class="pricing-period">/maand</div>
+                    <p style="color: #718096; font-size: 0.85rem; margin-bottom: 15px;">Perfect voor kleine websites en blogs</p>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 1 Website</li>
-                        <li><i class="fas fa-check"></i> 1 GB NVMe SSD</li>
-                        <li><i class="fas fa-check"></i> 10 GB Bandwidth</li>
-                        <li><i class="fas fa-check"></i> 2 E-mail Accounts</li>
-                        <li><i class="fas fa-check"></i> DirectAdmin Panel</li>
-                        <li><i class="fas fa-check"></i> Gratis SSL</li>
-                        <li><i class="fas fa-check"></i> Imunify360</li>
+                        <li><i class="fas fa-check"></i> 1 Website hosten</li>
+                        <li><i class="fas fa-check"></i> 1 GB NVMe SSD opslag</li>
+                        <li><i class="fas fa-check"></i> 10 GB maandelijkse bandwidth</li>
+                        <li><i class="fas fa-check"></i> 2 E-mailaccounts</li>
+                        <li><i class="fas fa-check"></i> DirectAdmin controlepaneel</li>
+                        <li><i class="fas fa-check"></i> Gratis SSL certificaat (HTTPS)</li>
+                        <li><i class="fas fa-check"></i> Imunify360 beveiliging</li>
+                        <li><i class="fas fa-check"></i> Uurlijke & dagelijkse backups</li>
+                        <li><i class="fas fa-check"></i> 24/7 Nederlands support</li>
                     </ul>
-                    <a href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-starter&language=dutch" class="pricing-cta">
+                    <a href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-starter&language=dutch" class="pricing-cta" title="Kies het Starter pakket">
                         Kies dit pakket
                     </a>
                 </div>
 
-                <div class="pricing-card">
+                <div class="pricing-card" itemscope itemtype="https://schema.org/Product" style="border: 2px solid #35b15e; transform: scale(1.05); box-shadow: 0 10px 30px rgba(53, 177, 94, 0.2);">
+                    <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #35b15e; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">POPULAIR</div>
+                    <meta itemprop="name" content="Pro Webhosting">
+                    <meta itemprop="description" content="Professioneel hosting pakket met 2GB NVMe, 30GB bandwidth, Cloudflare DDoS">
                     <div class="pricing-name">Pro</div>
-                    <div class="pricing-price">€2.00</div>
+                    <div class="pricing-price" itemprop="price">€2.00</div>
                     <div class="pricing-period">/maand</div>
+                    <p style="color: #718096; font-size: 0.85rem; margin-bottom: 15px;">Meest gekozen voor professionele websites</p>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 2 Websites</li>
-                        <li><i class="fas fa-check"></i> 2 GB NVMe SSD</li>
-                        <li><i class="fas fa-check"></i> 30 GB Bandwidth</li>
-                        <li><i class="fas fa-check"></i> 5 E-mail Accounts</li>
-                        <li><i class="fas fa-check"></i> DirectAdmin Panel</li>
-                        <li><i class="fas fa-check"></i> Gratis SSL</li>
-                        <li><i class="fas fa-check"></i> Imunify360 + Cloudflare</li>
+                        <li><i class="fas fa-check"></i> 2 Websites hosten</li>
+                        <li><i class="fas fa-check"></i> 2 GB NVMe SSD opslag</li>
+                        <li><i class="fas fa-check"></i> 30 GB maandelijkse bandwidth</li>
+                        <li><i class="fas fa-check"></i> 5 E-mailaccounts</li>
+                        <li><i class="fas fa-check"></i> DirectAdmin controlepaneel</li>
+                        <li><i class="fas fa-check"></i> Gratis SSL certificaat (HTTPS)</li>
+                        <li><i class="fas fa-check"></i> Imunify360 beveiliging</li>
+                        <li><i class="fas fa-check"></i> Cloudflare DDoS-bescherming</li>
+                        <li><i class="fas fa-check"></i> Uurlijke & dagelijkse backups</li>
+                        <li><i class="fas fa-check"></i> Prioritaire 24/7 support</li>
                     </ul>
-                    <a href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-pro&language=dutch" class="pricing-cta">
+                    <a href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-pro&language=dutch" class="pricing-cta" title="Kies het Pro pakket">
                         Kies dit pakket
                     </a>
                 </div>
 
-                <div class="pricing-card">
+                <div class="pricing-card" itemscope itemtype="https://schema.org/Product">
+                    <meta itemprop="name" content="Expert Webhosting">
+                    <meta itemprop="description" content="Premium hosting pakket met 5GB NVMe, 100GB bandwidth, premium support">
                     <div class="pricing-name">Expert</div>
-                    <div class="pricing-price">€5.00</div>
+                    <div class="pricing-price" itemprop="price">€5.00</div>
                     <div class="pricing-period">/maand</div>
+                    <p style="color: #718096; font-size: 0.85rem; margin-bottom: 15px;">Voor ambitieuze online projecten</p>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> 5 Websites</li>
-                        <li><i class="fas fa-check"></i> 5 GB NVMe SSD</li>
-                        <li><i class="fas fa-check"></i> 100 GB Bandwidth</li>
-                        <li><i class="fas fa-check"></i> Unlimited E-mail</li>
-                        <li><i class="fas fa-check"></i> DirectAdmin Panel</li>
-                        <li><i class="fas fa-check"></i> Gratis SSL</li>
-                        <li><i class="fas fa-check"></i> Premium Support</li>
+                        <li><i class="fas fa-check"></i> 5 Websites hosten</li>
+                        <li><i class="fas fa-check"></i> 5 GB NVMe SSD opslag</li>
+                        <li><i class="fas fa-check"></i> 100 GB maandelijkse bandwidth</li>
+                        <li><i class="fas fa-check"></i> Unlimited E-mailaccounts</li>
+                        <li><i class="fas fa-check"></i> DirectAdmin controlepaneel</li>
+                        <li><i class="fas fa-check"></i> Gratis SSL certificaat (HTTPS)</li>
+                        <li><i class="fas fa-check"></i> Imunify360 beveiliging</li>
+                        <li><i class="fas fa-check"></i> Cloudflare DDoS-bescherming</li>
+                        <li><i class="fas fa-check"></i> Uurlijke & dagelijkse backups</li>
+                        <li><i class="fas fa-check"></i> VIP 24/7 support</li>
                     </ul>
-                    <a href="#" class="pricing-cta">
+                    <a href="#" class="pricing-cta" title="Kies het Expert pakket">
                         Kies dit pakket
                     </a>
                 </div>
@@ -832,47 +1002,121 @@
         <div class="container">
             <div class="section-header" style="color: white;">
                 <div class="section-badge" style="background: rgba(53, 177, 94, 0.2); color: #35b15e;">
-                    <i class="fas fa-star"></i> ONZE KRACHT
+                    <i class="fas fa-star"></i> ONZE TECHNOLOGIE
                 </div>
-                <h2 style="color: white;">Waarom OnlineHoster Kiezen?</h2>
-                <p style="color: rgba(255, 255, 255, 0.7);">Professionele hosting met alles wat je nodig hebt</p>
+                <h2 style="color: white;">Waarom OnlineHoster de Beste Keuze is</h2>
+                <p style="color: rgba(255, 255, 255, 0.7);">Wij bieden de meest geavanceerde hostingtechnologie met wereldklasse ondersteuning en beveiliging</p>
             </div>
             <div class="features-grid">
                 <div class="feature-item">
                     <i class="fas fa-clock"></i>
                     <h3>Uurlijke Backups</h3>
-                    <p>Automatische backups elk uur en dagelijks voor maximale veiligheid van je data.</p>
+                    <p>Automatische back-ups van je website en databases elk uur, plus dagelijkse backups voor maximale gegevensveiligheid. Herstel je website in seconden.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Imunify360 Security</h3>
-                    <p>Real-time malware scanning en bescherming tegen alle bedreigingen 24/7.</p>
+                    <p>Real-time malware scanning, Web Application Firewall (WAF) en proactieve bescherming tegen alle cyberbedreigingen. Uw websites zijn 24/7 beveiligd.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-bolt"></i>
-                    <h3>OpenLiteSpeed</h3>
-                    <p>Bliksemsnelle webservers geoptimaliseerd voor maximale performance.</p>
+                    <h3>OpenLiteSpeed Servers</h3>
+                    <p>Ultrasnelle webservers geoptimaliseerd voor maximale prestaties en bliksemsnelle laadtijden. PageSpeed scores van 90+.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-cog"></i>
                     <h3>DirectAdmin Panel</h3>
-                    <p>Gebruiksvriendelijk controlepaneel voor eenvoudig website beheer.</p>
+                    <p>Intuïtief en gebruiksvriendelijk controlepaneel voor eenvoudig domein-, database- en e-mailbeheer. Geen technische kennis vereist.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-cloud"></i>
                     <h3>Cloudflare DDoS</h3>
-                    <p>Automatische DDoS bescherming voor ononderbroken website beschikbaarheid.</p>
+                    <p>Automatische DDoS-aanvalsbeveiliging en global CDN voor ononderbroken website beschikbaarheid. Je site blijft altijd online.</p>
                 </div>
                 <div class="feature-item">
                     <i class="fas fa-headset"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Persoonlijke Nederlandse support team altijd klaar om te helpen.</p>
+                    <h3>24/7 Nederlandstalig Support</h3>
+                    <p>Persoonlijke Nederlandse supportteam bereikbaar 24 uur per dag, 7 dagen per week. Snelle antwoorden op je vragen.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
+    <!-- Information Section -->
+    <section style="padding: 100px 0; background: #f8f9fa;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; color: #1a202c;">Waarom Kiezen Duizenden voor OnlineHoster</h2>
+                <p style="font-size: 1.1rem; color: #718096; max-width: 600px; margin: 0 auto;">OnlineHoster is sinds 2010 dé betrouwbare partner voor professionele webhosting in Nederland.</p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-bottom: 60px;">
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: #35b15e; font-size: 1.3rem; margin-bottom: 15px;"><i class="fas fa-euro-sign"></i> Betaalbaarheid</h3>
+                    <p style="color: #718096;">Professionele hosting vanaf slechts €1 per maand. Geen verborgen kosten, geen setup fees. Transparante prijzen voor iedereen.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: #35b15e; font-size: 1.3rem; margin-bottom: 15px;"><i class="fas fa-tachometer-alt"></i> Snelheid</h3>
+                    <p style="color: #718096;">OpenLiteSpeed servers zorgen voor bliksemsnelle laadtijden. Jouw website rankt beter in Google en bezoekers zijn tevreder.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: #35b15e; font-size: 1.3rem; margin-bottom: 15px;"><i class="fas fa-lock-open"></i> Veiligheid</h3>
+                    <p style="color: #718096;">Imunify360 beveiliging, Cloudflare DDoS-bescherming en gratis SSL-certificaten. Je gegevens zijn altijd veilig.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: #35b15e; font-size: 1.3rem; margin-bottom: 15px;"><i class="fas fa-redo"></i> Betrouwbaarheid</h3>
+                    <p style="color: #718096;">99.9% uptime SLA garantie. Uurlijke backups zorgen ervoor dat je website altijd beschikbaar is.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: #35b15e; font-size: 1.3rem; margin-bottom: 15px;"><i class="fas fa-users"></i> Support</h3>
+                    <p style="color: #718096;">Persoonlijke, Nederlandse support 24/7. Geen wachtlijnen, geen wachttijden. Wij zijn er voor jou.</p>
+                </div>
+                
+                <div style="background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                    <h3 style="color: #35b15e; font-size: 1.3rem; margin-bottom: 15px;"><i class="fas fa-arrows-alt"></i> Migratie</h3>
+                    <p style="color: #718096;">Gratis migratie van je huidige hosting zonder downtime. Wij regelen alles voor je.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section style="padding: 100px 0; background: white;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 60px;">
+                <h2 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 20px; color: #1a202c;">Veelgestelde Vragen</h2>
+                <p style="font-size: 1.1rem; color: #718096;">Antwoorden op de meest gestelde vragen over OnlineHoster</p>
+            </div>
+            
+            <div style="max-width: 800px; margin: 0 auto;">
+                <details style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px;">
+                    <summary style="cursor: pointer; font-weight: 600; color: #1a202c; font-size: 1rem;">Kan ik mijn huidige website naar OnlineHoster migreren?</summary>
+                    <p style="color: #718096; margin-top: 15px;">Ja! OnlineHoster migreert je website, databases en e-mailadressen volledig gratis. Wij zorgen voor nul downtime en handleiding door het hele proces.</p>
+                </details>
+                
+                <details style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px;">
+                    <summary style="cursor: pointer; font-weight: 600; color: #1a202c; font-size: 1rem;">Welke systemen worden ondersteund?</summary>
+                    <p style="color: #718096; margin-top: 15px;">OnlineHoster ondersteunt WordPress, Joomla, Drupal, PHP, Python, Node.js en veel meer. Met Installatron kun je meer dan 400 applicaties installeren.</p>
+                </details>
+                
+                <details style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px;">
+                    <summary style="cursor: pointer; font-weight: 600; color: #1a202c; font-size: 1rem;">Is SSL-certificaat echt gratis?</summary>
+                    <p style="color: #718096; margin-top: 15px;">Ja, volledig gratis! Alle pakketten inclusief Let's Encrypt SSL-certificaat. Je website is automatisch beveiligd met HTTPS.</p>
+                </details>
+                
+                <details style="margin-bottom: 20px; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px;">
+                    <summary style="cursor: pointer; font-weight: 600; color: #1a202c; font-size: 1rem;">Wat gebeurt er als ik niet tevreden ben?</summary>
+                    <p style="color: #718096; margin-top: 15px;">We bieden een geld-terug-garantie. Ben je niet tevreden? Dan betaal je niets. Nee, echt waar - geen gedoe, geen vragen.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
@@ -908,36 +1152,56 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" itemscope itemtype="https://schema.org/Organization">
+        <meta itemprop="name" content="OnlineHoster">
+        <meta itemprop="url" content="https://onlinehoster.nl">
+        <meta itemprop="telephone" content="+31 (0) 123 456 789">
+        <meta itemprop="email" content="info@onlinehoster.nl">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-column">
                     <h4>OnlineHoster</h4>
-                    <p>Professionele Nederlandse webhosting sinds 2010. Met OpenLiteSpeed servers, Imunify360 en 99.9% uptime garantie.</p>
+                    <p>OnlineHoster is sinds 2010 dé betrouwbare Nederlandse webhosting provider. We bieden professionele hosting met OpenLiteSpeed servers, Imunify360 beveiliging, 99.9% uptime garantie en 24/7 Nederlandstalig support.</p>
                 </div>
                 <div class="footer-column">
-                    <h4>Services</h4>
+                    <h4>Hosting Services</h4>
                     <a href="#">Shared Hosting</a>
                     <a href="#">Reseller Hosting</a>
                     <a href="#">VPS Hosting</a>
-                    <a href="#">Domeinen</a>
+                    <a href="#">Domeinen Registratie</a>
+                    <a href="#">Website Migratie</a>
+                    <a href="#">SSL Certificaten</a>
                 </div>
                 <div class="footer-column">
                     <h4>Bedrijf</h4>
-                    <a href="contact.php">Contact</a>
-                    <a href="#">Over Ons</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Status</a>
+                    <a href="contact.php">Contact Opnemen</a>
+                    <a href="#">Over OnlineHoster</a>
+                    <a href="#">Blog & Tutorials</a>
+                    <a href="#">Status Pagina</a>
+                    <a href="#">Kennisbank</a>
+                    <a href="#">Community</a>
                 </div>
                 <div class="footer-column">
                     <h4>Contact</h4>
-                    <a href="mailto:sales@onlinehoster.nl">Sales: Sales@onlinehoster.nl</a>
-                    <a href="mailto:support@onlinehoster.nl">Support: Support@onlinehoster.nl</a>
-                    <a href="#">Phone: +31 (0) 123 456 789</a>
+                    <p style="margin-bottom: 10px;">
+                        <strong>Sales:</strong><br>
+                        <a href="mailto:sales@onlinehoster.nl">sales@onlinehoster.nl</a>
+                    </p>
+                    <p style="margin-bottom: 10px;">
+                        <strong>Support:</strong><br>
+                        <a href="mailto:support@onlinehoster.nl">support@onlinehoster.nl</a>
+                    </p>
+                    <p>
+                        <strong>Telefoon:</strong><br>
+                        <a href="tel:+31123456789">+31 (0) 123 456 789</a>
+                    </p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2010 - 2025 OnlineHoster. Alle rechten voorbehouden. | <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a></p>
+                <p>&copy; 2010 - 2025 OnlineHoster. Alle rechten voorbehouden. | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a> | 
+                <a href="#" style="color: rgba(255,255,255,0.7);">Algemene Voorwaarden</a> |
+                <a href="#" style="color: rgba(255,255,255,0.7);">Cookiebeleid</a></p>
             </div>
         </div>
     </footer>
