@@ -674,9 +674,9 @@ class RestoreController extends Controller
                     'sql_file' => $sqlFile,
                     'requested_database' => $requestedDatabase,
                 ]);
-                return response()->json([
-                    'error' => 'Kon database naam niet bepalen uit de backup',
-                ], 400);
+                return view('restore.mysql-error', [
+                    'error' => 'Kon database naam niet bepalen uit de backup. De SQL file lijkt beschadigd te zijn.',
+                ]);
             }
 
             // SECURITY: Verify requested database matches the backup
@@ -688,9 +688,9 @@ class RestoreController extends Controller
                     'archive' => $archive,
                     'sql_file' => $sqlFile,
                 ]);
-                return response()->json([
+                return view('restore.mysql-error', [
                     'error' => 'De database naam in jouw backup is: ' . $database . '. Je kunt niet naar ' . $requestedDatabase . ' herstellen.',
-                ], 403);
+                ]);
             }
 
             // Filter by tables if needed
