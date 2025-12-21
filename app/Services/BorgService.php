@@ -113,6 +113,14 @@ class BorgService
             $isDirectory = false;
             $basename = basename(rtrim($pathToken, '/'));
             
+            // Log what we received from borg
+            \Illuminate\Support\Facades\Log::debug('BorgService type detection', [
+                'line' => $line,
+                'pathToken' => $pathToken,
+                'basename' => $basename,
+                'type_from_borg' => $type ?? 'null',
+            ]);
+            
             // Priority 1: Check for file extensions first (most reliable for files)
             // Common file extensions (not domain extensions like .nl, .com, etc.)
             $hasFileExtension = preg_match('/\.(txt|log|php|js|css|html|htm|json|xml|yml|yaml|conf|ini|sh|sql|md|pdf|zip|tar|gz|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|eot|mp3|mp4|avi|mov|doc|docx|xls|xlsx|ppt|pptx|csv|bak|old|tmp|lock|htaccess|gitignore|env|moved|htmls)$/i', $basename);
@@ -132,6 +140,12 @@ class BorgService
                 // Default: assume it's a directory (for things like domain names without extensions)
                 $isDirectory = true;
             }
+            
+            \Illuminate\Support\Facades\Log::debug('BorgService type result', [
+                'basename' => $basename,
+                'hasFileExtension' => $hasFileExtension,
+                'isDirectory' => $isDirectory,
+            ]);
 
             $file = [
                 'type' => $isDirectory ? 'dir' : 'file',
