@@ -3,15 +3,14 @@
 namespace App\Jobs;
 
 use App\Models\RestoreJob;
+use App\Services\BorgService;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Bus\Queueable;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 
 class BorgRestoreJob implements ShouldQueue
@@ -39,100 +38,34 @@ class BorgRestoreJob implements ShouldQueue
     /**
      * Voer de taak uit. Dit is waar de Borg-extractie plaatsvindt.
      */
-    public function handle(): void
+    public function handle(BorgService $borg): void
     {
         // 1. Markeer de taak als "running"
         $this->restoreJob->status = 'running';
         $this->restoreJob->save();
 
-        // 2. Extract naar root zodat bestanden op hun originele locatie komen
-        $extractPath = '/';
-
-        // Zorg ervoor dat de restore-path wordt opgeslagen voor later
-        $this->restoreJob->restore_path = 'Bestanden hersteld naar originele locatie';
-        $this->restoreJob->save();
-
-        // 3. Bouw het Borg-commando (Extractie)
-        // We moeten de bestandenlijst uit het Job-model halen (opgeslagen als JSON array)
-        // Zorg ervoor dat de restore-path wordt opgeslagen voor later
-        $this->restoreJob->restore_path = 'Bestanden hersteld naar originele locatie';
-        $this->restoreJob->save();
-
-        // Run borg extract directly (assumes the queue worker runs as the correct user)
-        // Bouw het commando met alle bestanden als aparte argumenten
-        // Zelfde format als BorgService: 'extract archive -- file1 file2 file3'
-        $command = [
-            'sudo',
-            '/usr/local/bin/borg-runner.sh',
-            'extract',
-            $this->restoreJob->archive_name,
-            '--',  // Scheidingsteken tussen archive naam en bestanden
-        ];
-        
-        // Voeg alle bestanden toe als aparte argumenten
-        foreach ($this->restoreJob->files_to_restore as $file) {
-            $command[] = $file;
-        }
-
-        // 4. Stel de omgevingsvariabele BORG_PASSPHRASE in
-        // Dit is de veilige manier om het wachtwoord door te geven aan Borg.
-        $env = array_merge(
-            [
-                'BORG_PASSPHRASE' => $this->restorePassword,
-                'BORG_RELOCATED_REPO_ACCESS_IS_OK' => 'yes',
-                'TMPDIR' => config('filesystems.borg_temp_path', '/tmp'),
-                'HOME' => env('HOME', getenv('HOME') ?: '/home/onlineh'),
-            ],
-            $_ENV
-        );
-
         try {
-            // 5. Voer het commando uit met behulp van Symfony Process
-            // Set working directory to root so files are extracted to their original location
-            Log::info('Starting borg extract', [
+            // 2. Gebruik BorgService om bestanden te extraheren
+            // BorgService.extractFiles() handelt alles af: error handling, retry logic, etc.
+            Log::info('Starting borg extract via BorgService', [
                 'job_id' => $this->restoreJob->id,
-                'command' => implode(' ', $command),
-                'cwd' => $extractPath,
                 'archive' => $this->restoreJob->archive_name,
+                'files_count' => count($this->restoreJob->files_to_restore),
                 'files' => $this->restoreJob->files_to_restore,
             ]);
-            
-            $process = new Process($command, $extractPath, $env, null, 7200); // 2 uur timeout
-            $process->run();
 
-            $stdout = $process->getOutput();
-            $stderr = $process->getErrorOutput();
-            $exitCode = $process->getExitCode();
-            $output = trim($stdout . "\n" . $stderr);
+            $output = $borg->extractFiles(
+                $this->restoreJob->archive_name,
+                $this->restoreJob->files_to_restore,
+                '/'  // Extract naar root dus originele locatie
+            );
 
-            Log::info('Borg extract process completed', [
+            Log::info('BorgService extractFiles succeeded', [
                 'job_id' => $this->restoreJob->id,
-                'exit_code' => $exitCode,
-                'stdout_length' => strlen($stdout),
-                'stderr_length' => strlen($stderr),
-                'stdout_preview' => substr($stdout, 0, 500),
-                'stderr_preview' => substr($stderr, 0, 500),
+                'output_length' => strlen($output),
             ]);
 
-            // 6. Controleer het resultaat van de uitvoering
-            if (!$process->isSuccessful()) {
-                $errorMsg = "Exit code: $exitCode\n";
-                $errorMsg .= "STDOUT:\n$stdout\n";
-                $errorMsg .= "STDERR:\n$stderr\n";
-                
-                // Log full output for debugging
-                Log::error('Borg extract failed - full output', [
-                    'job_id' => $this->restoreJob->id,
-                    'exit_code' => $exitCode,
-                    'stdout' => $stdout,
-                    'stderr' => $stderr,
-                    'command' => implode(' ', $command),
-                ]);
-                
-                throw new \RuntimeException($errorMsg);
-            }
-
-            // Check what files were actually extracted/restored
+            // 3. Check wat er daadwerkelijk werd hersteld
             $restoredFiles = [];
             foreach ($this->restoreJob->files_to_restore as $filePath) {
                 // Files are restored to their absolute paths
@@ -171,24 +104,29 @@ class BorgRestoreJob implements ShouldQueue
                 $logOutput .= "\nBorg output:\n" . $output;
             }
 
-            // 7. Succes! Markeer de taak en log de output.
+            // 4. Succes! Markeer de taak en log de output.
+            $this->restoreJob->restore_path = 'Bestanden hersteld naar originele locatie';
             $this->restoreJob->status = 'success';
             $this->restoreJob->log_output = $logOutput;
             $this->restoreJob->save();
 
-            Log::info('Borg extract completed', [
+            Log::info('Borg extract completed successfully', [
                 'job_id' => $this->restoreJob->id,
                 'restored_files' => count($restoredFiles),
             ]);
 
         } catch (\Exception $e) {
-            // 8. Fout! Markeer de taak als failed.
+            // 5. Fout! Markeer de taak als failed.
             $this->restoreJob->status = 'failed';
             $this->restoreJob->log_output = 'Fout bij Borg-extractie: ' . $e->getMessage();
             $this->restoreJob->save();
 
             // Log de fout ook in Laravel's logs
-            Log::error('Borg Restore Failed: ' . $e->getMessage(), ['job_id' => $this->restoreJob->id]);
+            Log::error('Borg Restore Failed: ' . $e->getMessage(), [
+                'job_id' => $this->restoreJob->id,
+                'archive' => $this->restoreJob->archive_name,
+                'files' => $this->restoreJob->files_to_restore,
+            ]);
 
             // Gooi de uitzondering opnieuw zodat de Job Queue het kan afhandelen (bijv. retries)
             throw $e;
