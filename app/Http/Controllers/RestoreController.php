@@ -501,6 +501,7 @@ class RestoreController extends Controller
                 $job = RestoreJob::create([
                     'token_id' => $t->id,
                     'status' => 'pending',
+                    'restore_type' => 'file',
                     'files_to_restore' => $files,
                     'archive_name' => $archive,
                 ]);
@@ -650,11 +651,22 @@ class RestoreController extends Controller
             // Execute restore
             $mysql->restoreDatabase($database, $sqlContent);
 
+            // Create restore job record for tracking
+            $jobRecord = RestoreJob::create([
+                'token_id' => $token?->id,
+                'status' => 'completed',
+                'restore_type' => 'mysql',
+                'archive_name' => $archive,
+                'database_name' => $database,
+                'log_output' => 'Database restore voltooid (' . ($restoreType === 'table' ? 'selectieve tabellen' : 'volledige database') . ')',
+            ]);
+
             Log::info('Database restored successfully', [
                 'token_id' => $token->id ?? 'admin-access',
                 'archive' => $archive,
                 'database' => $database,
                 'type' => $restoreType,
+                'job_id' => $jobRecord->id,
             ]);
 
             return view('restore.mysql-success', [

@@ -12,9 +12,11 @@ class RestoreJob extends Model
     protected $fillable = [
         'token_id',
         'status',
+        'restore_type',
         'files_to_restore',
         'archive_name',
         'restore_path',
+        'database_name',
         'log_output',
     ];
 

@@ -117,6 +117,7 @@
                                         <tr>
                                             <th class="px-4 py-2">ID</th>
                                             <th class="px-4 py-2">Archive</th>
+                                            <th class="px-4 py-2">Type</th>
                                             <th class="px-4 py-2">Status</th>
                                             <th class="px-4 py-2">Aangemaakt</th>
                                             <th class="px-4 py-2"></th>
@@ -127,6 +128,13 @@
                                         <tr class="border-b hover:bg-gray-50">
                                             <td class="px-4 py-2">#{{ $r->id }}</td>
                                             <td class="px-4 py-2 font-medium">{{ $r->archive_name }}</td>
+                                            <td class="px-4 py-2">
+                                                @if($r->restore_type === 'mysql')
+                                                    <span class="bg-amber-100 text-amber-800 px-2 py-1 rounded text-xs">🗄️ Database</span>
+                                                @else
+                                                    <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">📁 Bestanden</span>
+                                                @endif
+                                            </td>
                                             <td class="px-4 py-2">
                                                 @if($r->status === 'completed')
                                                     <span class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">✓ Voltooid</span>
