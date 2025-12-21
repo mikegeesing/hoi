@@ -5,10 +5,10 @@ define("CLIENTAREA",true);
 require("init.php");
 
 $ca = new WHMCS_ClientArea();
-$ca->setPageTitle("About Us");
+$ca->setPageTitle("Over ons");
 
 $ca->addToBreadCrumb('index.php',$whmcs->get_lang('globalsystemname'));
-$ca->addToBreadCrumb('about-us.php','About Us');
+$ca->addToBreadCrumb('about-us.php','Over ons');
 $ca->initPage();
 
 //$ca->requireLogin(); // Uncomment this line to require a login to access this page

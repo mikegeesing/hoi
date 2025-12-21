@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-10-27 11:59:17
+/* Smarty version 3.1.48, created on 2025-12-21 15:51:55
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/about-us.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_68ff5085c21355_45422969',
+  'unifunc' => 'content_6948179be8a8d0_45827138',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'e2ef5ab073e696a975176910219adb6ae992d7f1' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/about-us.tpl',
-      1 => 1761561845,
+      1 => 1766332310,
       2 => 'file',
     ),
   ),
@@ -20,15 +20,15 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6948179be8a8d0_45827138 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <div class="banner-one">
   <div class="banner-section bottom-up">
     <div class="container">
       <div class="row align-items-center justify-content-between">
         <div class="col-lg-6">
           <div class="banner-heading">
-            <h1> About Us </h1>
-            <p>We're committed to excellence, offering top-quality products and exceptional service. With a passion for innovation and customer satisfaction, we strive to exceed expectations every step of the way.</p>
+            <h1> Over ons </h1>
+            <p>We zijn toegewijd aan uitmuntendheid en bieden producten van topkwaliteit en uitzonderlijke service. Met passie voor innovatie en klanttevredenheid streven we ernaar verwachtingen op elk moment te overtreffen.</p>
           </div>
         </div>
         <div class="col-lg-5 d-none d-lg-block">
@@ -47,8 +47,8 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
     <div class="row gy-4 gy-lg-0">
       <div class="col-xl-6 col-lg-5">
         <div class="section-head">
-          <h2>Our Dream to worldwide Customer Satifaction </h2>
-          <p>Our aspiration is to achieve universal customer satisfaction across the globe, transcending borders and cultures, by delivering unparalleled products and services that exceed expectations and inspire loyalty. </p>
+          <h2>Onze droom voor wereldwijde klanttevredenheid </h2>
+          <p>Onze ambitie is universele klanttevredenheid wereldwijd te bereiken, voorbij grenzen en culturen, door ongeëvenaard producten en diensten te leveren die verwachtingen overtreffen en loyaliteit inspireren. </p>
         </div>
       </div>
       <div class="col-xl-6 col-lg-7">
@@ -66,7 +66,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
 /custom/assets/images/company.png" alt="Banner image" width="50">
                 </div>
               </div>
-              <div>Yrs Eatablished</div>
+              <div>Jaren in werking</div>
             </div>
           </div>
           <div class="col-lg-5 col-md-6">
@@ -81,7 +81,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
 /custom/assets/images/branch.png" alt="Banner image" width="50">
                 </div>
               </div>
-              <div>Opened Branches</div>
+              <div>Geopende filialen</div>
             </div>
           </div>
           <div class="col-lg-5 col-md-6">
@@ -97,7 +97,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
 /custom/assets/images/costumer.png" alt="Banner image" width="50">
                 </div>
               </div>
-              <div>Satisfied Customer</div>
+              <div>Tevreden klanten</div>
             </div>
           </div>
           <div class="col-lg-5 col-md-6">
@@ -113,7 +113,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
 /custom/assets/images/awards.png" alt="Banner image" width="50">
                 </div>
               </div>
-              <div>Our Awards</div>
+              <div>Onze prijzen</div>
             </div>
           </div>
         </div>
@@ -126,9 +126,9 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
     <div class="row align-items-center flex-lg-row-reverse gy-4 gy-lg-0">
       <div class="col-lg-6">
         <div class="section-head">
-          <h2>About Us</h2>
-          <p>With a rich history spanning 16 years, ClosterV2 Hosting, located in India, stands as a beacon of excellence in the web hosting industry. Our journey has been defined by a relentless pursuit of superior service, powered by the latest technology and unwavering customer support. </p>
-          <p>At ClosterV2 Hosting, we understand that every client is unique, which is why we offer a diverse range of hosting solutions tailored to meet individual needs. Whether you're a small business or a large enterprise, we have the expertise and resources to cater to your specific requirements. </p>
+          <h2>Over ons</h2>
+          <p>Met een rijke geschiedenis staat OnlineHoster, gevestigd in Nederland, als een baken van uitmuntendheid in de webhostingindustrie. Onze reis wordt gekenmerkt door een onvermoeibare streven naar superieure service, ondersteund door de nieuwste technologie en onwrikbare klantenondersteuning. </p>
+          <p>Bij OnlineHoster begrijpen we dat elke klant uniek is, daarom bieden we een diverse reeks hostingoplossingen op maat gemaakt voor individuele behoeften. Of je nu een klein bedrijf bent of een groot bedrijf, we hebben de expertise en middelen om aan jouw specifieke vereisten tegemoet te komen. </p>
         </div>
       </div>
       <div class="col-lg-6">
@@ -153,11 +153,11 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
       </div>
       <div class="col-lg-6">
         <div class="section-head">
-          <h2>Our Network</h2>
-          <p>Discover our global branches, strategically located to serve you better. With expert teams in key regions, we offer personalized solutions and seamless support to meet your needs wherever you are.</p>
+          <h2>Ons netwerk</h2>
+          <p>Ontdek onze wereldwijde filialen, strategisch gepositioneerd om je beter van dienst te zijn. Met deskundige teams in sleutelregio's bieden we persoonlijke oplossingen en naadloze ondersteuning om aan jouw behoeften tegemoet te komen waar je ook bent.</p>
           <div class="inline-btns mt-3">
             <a class="btn-01" href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/contact.php">Contact Us <i class="fas fa-long-arrow-right"></i>
+/contact.php">Neem contact op <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -170,11 +170,11 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
     <div class="row justify-content-center">
       <div class="col-12 col-xl-7 col-lg-8">
         <div class="section-head gap-bottom center with-line">
-          <h2>What happy clients says about us?</h2>
+          <h2>Wat blije klanten over ons zeggen?</h2>
           <div class="lines">
             <span></span>
           </div>
-          <p>Delighted customers rave about our exceptional service and support.</p>
+          <p>Tevreden klanten zijn enthousiast over onze uitzonderlijke service en ondersteuning.</p>
         </div>
       </div>
     </div>
@@ -187,7 +187,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
                 <img src="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
 /templates/<?php echo $_smarty_tpl->tpl_vars['template']->value;?>
 /custom/assets/images/quote.svg" alt="testimonilas icon" class="icon">
-                <p>Podcasting operational change management inside of workflows to establish a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality.</p>
+                <p>Podcasting operationeel verandermanagement binnen workflows om een framework op te stellen. Naadloze prestatiesindicatoren offline nemen om de lange staart te maximaliseren. Je oog op de bal houden terwijl je een grondige analyse doet op de start-up-mentaliteit.</p>
               </div>
               <div class="testimonial-author">
                 <div class="author-thumb">
@@ -206,7 +206,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
                 <img src="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
 /templates/<?php echo $_smarty_tpl->tpl_vars['template']->value;?>
 /custom/assets/images/quote.svg" alt="testimonilas icon" class="icon">
-                <p>Operational podcasting change management inside of workflows to establish a framework . Keeping your eye on the ball while performing a deep dive on the start-up mentality. Taking seamless key performance indicators offline to maximize the long tail.</p>
+                <p>Operationeel podcasting verandermanagement binnen workflows om een framework op te stellen. Je oog op de bal houden terwijl je een grondige analyse doet op de start-up-mentaliteit. Naadloze prestatiesindicatoren offline nemen om de lange staart te maximaliseren.</p>
               </div>
               <div class="testimonial-author">
                 <div class="author-thumb">
@@ -225,7 +225,7 @@ function content_68ff5085c21355_45422969 (Smarty_Internal_Template $_smarty_tpl)
                 <img src="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
 /templates/<?php echo $_smarty_tpl->tpl_vars['template']->value;?>
 /custom/assets/images/quote.svg" alt="testimonilas icon" class="icon">
-                <p>Operational establish to Podcasting change management inside of workflows a framework. Taking seamless key performance indicators offline to maximise the long tail. Keeping your eye on the ball while performing a deep dive on the start-up mentality.</p>
+                <p>Operationeel zet podcasting verandermanagement vast in workflows een framework op. Naadloze prestatiesindicatoren offline nemen om de lange staart te maximaliseren. Je oog op de bal houden terwijl je een grondige analyse doet op de start-up-mentaliteit.</p>
               </div>
               <div class="testimonial-author">
                 <div class="author-thumb">

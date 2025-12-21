@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-10-27 11:57:30
+/* Smarty version 3.1.48, created on 2025-12-21 15:40:09
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/footer.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_68ff501a033769_66284320',
+  'unifunc' => 'content_694814d90ac6f5_52838231',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0986be76243f6fbd6c9ae6b5398f16f3000afc05' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/footer.tpl',
-      1 => 1761561846,
+      1 => 1766331582,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68ff501a033769_66284320 (Smarty_Internal_Template $_smarty_tpl) {
+function content_694814d90ac6f5_52838231 (Smarty_Internal_Template $_smarty_tpl) {
 ?> <?php if ($_smarty_tpl->tpl_vars['filename']->value != 'cloud-hosting' && $_smarty_tpl->tpl_vars['filename']->value != 'dedicated-server' && $_smarty_tpl->tpl_vars['filename']->value != 'domain-search' && $_smarty_tpl->tpl_vars['filename']->value != 'legal-agreement' && $_smarty_tpl->tpl_vars['filename']->value != 'privacy-policy' && $_smarty_tpl->tpl_vars['filename']->value != 'reseller-hosting' && $_smarty_tpl->tpl_vars['filename']->value != 'shared-hosting' && $_smarty_tpl->tpl_vars['filename']->value != 'transfer-domain' && $_smarty_tpl->tpl_vars['filename']->value != 'vps-server' && $_smarty_tpl->tpl_vars['filename']->value != 'wordpress-hosting' && $_smarty_tpl->tpl_vars['filename']->value != 'business-email' && $_smarty_tpl->tpl_vars['filename']->value != 'codeguard' && $_smarty_tpl->tpl_vars['filename']->value != 'domain-promos' && $_smarty_tpl->tpl_vars['filename']->value != 'enterprise-email' && $_smarty_tpl->tpl_vars['filename']->value != 'google-workspace' && $_smarty_tpl->tpl_vars['filename']->value != 'sitelock' && $_smarty_tpl->tpl_vars['filename']->value != 'about-us' && $_smarty_tpl->tpl_vars['filename']->value != 'contact' && $_smarty_tpl->tpl_vars['filename']->value != 'ssl-certificates') {
 if ($_smarty_tpl->tpl_vars['templatefile']->value == 'homepage') {
 } else { ?>
@@ -83,15 +83,15 @@ if ($_smarty_tpl->tpl_vars['templatefile']->value == 'homepage') {
        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5 g-3 gy-4">
            <div class="col">
                <div class="footer-list">
-                   <h5>Domains</h5>
+                   <h5>Domeinen</h5>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/domain-search.php">Domain Search</a>
+/domain-search.php">Domein zoeken</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/clientarea.php?action=domains">My Domains</a>
+/clientarea.php?action=domains">Mijn domeinen</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/cart/domain/renew">Renew Domains</a>
+/cart/domain/renew">Domeinen verlengen</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/transfer-domain.php">Transfer your Domain</a>
+/transfer-domain.php">Domein verhuizen</a>
                    
                    
                </div>
@@ -100,56 +100,56 @@ if ($_smarty_tpl->tpl_vars['templatefile']->value == 'homepage') {
                <div class="footer-list">
                    <h5>Hosting</h5>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/shared-hosting.php">Linux Hosting</a>
+/shared-hosting.php">Linux-hosting</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/wordpress-hosting.php">WordPress Hosting</a>
+/wordpress-hosting.php">WordPress hosting</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/reseller-hosting.php">Linux Reseller Hosting</a>
+/reseller-hosting.php">Linux-reseller hosting</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/dedicated-server.php">Dedicated Servers</a>
+/dedicated-server.php">Dedicated servers</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/cloud-hosting.php">Cloud Hosting</a>
+/cloud-hosting.php">Cloud hosting</a>
                    
                </div>
            </div>
            <div class="col">
                <div class="footer-list">
-                   <h5>Email & Security</h5>
+                   <h5>E-mail & beveiliging</h5>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/business-email.php">Business Email</a>
+/business-email.php">Zakelijke e-mail</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/enterprise-email.php">Enterprices Email</a>
+/enterprise-email.php">Enterprise e-mail</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
 /google-workspace.php">Google Workspace</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/ssl-certificates.php">SSl Certificate</a>
+/ssl-certificates.php">SSL-certificaat</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
 /sitelock.php">Sitelock</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/codeguard.php">Codeguard Website Backup</a>
+/codeguard.php">CodeGuard website back-up</a>
                </div>
            </div>
 
            <div class="col">
                <div class="footer-list">
-                   <h5>Infrastructure</h5>
-                   <a href="#">Datacenter Details</a>
-                   <a href="#">Hosting Security</a>
-                   <a href="#">24 x 7 Servers Monitoring</a>
-                   <a href="#">Backup and Recovery</a>
+                   <h5>Infrastructuur</h5>
+                   <a href="#">Datacenter details</a>
+                   <a href="#">Hosting beveiliging</a>
+                   <a href="#">24 x 7 servers monitoring</a>
+                   <a href="#">Back-up en herstel</a>
                </div>
            </div>
            <div class="col">
                <div class="footer-list">
-                   <h5>Support</h5>
+                   <h5>Ondersteuning</h5>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/knowledgebase">View Knowledge Base</a>
+/knowledgebase">Bekijk kennisbank</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/contact.php">Contact Support</a>
+/contact.php">Contacteer ondersteuning</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/contact.php">Report Abuse</a>
+/contact.php">Misbruik rapporteren</a>
                    <a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/contact.php">Join Reseller Program</a>
+/contact.php">Doe mee aan reseller-programma</a>
                    
                </div>
            </div>
@@ -166,7 +166,7 @@ if ($_smarty_tpl->tpl_vars['templatefile']->value == 'homepage') {
 /custom/assets/images/logo_white.png" alt="logo">
                        </a>
                        <!-- company info -->
-                       <p class="company-info">Unlimited Domain & Hosting in One Platform A ton of website hosting options, 99.9% uptime guarantee, free SSL certificate, easy WordPress installs.</p>
+                       <p class="company-info">Onbeperkte domeinen & hosting in één platform. Veel webhostingopties, 99,9% uptime garantie, gratis SSL-certificaat, eenvoudig WordPress installeren.</p>
                    </div>
                    <div class="col-lg-6">
                        <div
@@ -222,19 +222,19 @@ if ($_smarty_tpl->tpl_vars['templatefile']->value == 'homepage') {
            <div class="col-12">
                <ul class="legal-link my-2 mb-3">
                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/about-us.php">About us</a></li>
+/about-us.php">Over ons</a></li>
                    <li><a href="#">Blog</a></li>
                    <li><a href="#">Sitemap</a></li>
-                   <li><a href="#">Careers</a></li>
+                   <li><a href="#">Carrières</a></li>
                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/legal-agreement.php">Legal Agreements</a></li>
+/legal-agreement.php">Juridische overeenkomsten</a></li>
                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/privacy-policy.php">Privacy Policy</a></li>
+/privacy-policy.php">Privacybeleid</a></li>
                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/index.php?rp=/login">Login</a></li>
+/index.php?rp=/login">Inloggen</a></li>
                    <li><a href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
-/contact.php">Contact Us</a></li>
-                   <li><a href="#">Payment Option</a></li>
+/contact.php">Neem contact met ons op</a></li>
+                   <li><a href="#">Betalingsoptie</a></li>
                </ul>
            </div>
        </div>
