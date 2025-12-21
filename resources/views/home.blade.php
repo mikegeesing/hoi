@@ -153,7 +153,7 @@
                 <div>
                     <h4 class="text-white font-bold mb-4">Support</h4>
                     <ul class="text-sm space-y-2">
-                        <li><a href="mailto:support@onlinehoter.nl" class="hover:text-green-400">E-mail Support</a></li>
+                        <li><a href="mailto:support@onlinehoster.nl" class="hover:text-green-400">E-mail Support</a></li>
                         <li><a href="/" class="hover:text-green-400">Kennisbank</a></li>
                         <li><a href="/" class="hover:text-green-400">FAQ</a></li>
                     </ul>
@@ -162,7 +162,7 @@
                     <h4 class="text-white font-bold mb-4">Contact</h4>
                     <p class="text-sm">
                         <strong>E-mail:</strong><br>
-                        <a href="mailto:support@onlinehoter.nl" class="hover:text-green-400">Support@onlinehoter.nl</a>
+                        <a href="mailto:support@onlinehoster.nl" class="hover:text-green-400">Support@onlinehoster.nl</a>
                     </p>
                 </div>
             </div>

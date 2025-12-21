@@ -92,7 +92,7 @@
                 <p class="font-semibold text-white mb-2">Online Hoster - Backup Restore Portal</p>
                 <p class="text-sm text-gray-400 mb-4">&copy; {{ date('Y') }} Alle rechten voorbehouden.</p>
                 <p class="text-xs text-gray-500">
-                    Support: <a href="mailto:support@onlinehoter.nl" class="hover:text-green-400 transition">Support@onlinehoter.nl</a>
+                    Support: <a href="mailto:support@onlinehoster.nl" class="hover:text-green-400 transition">Support@onlinehoster.nl</a>
                 </p>
             </div>
         </div>

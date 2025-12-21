@@ -103,7 +103,7 @@
                         <div class="mt-6 pt-6 border-t border-gray-200">
                             <p class="text-xs text-gray-500">
                                 <strong>Heeft u geen token ontvangen?</strong><br>
-                                Neem contact op met <a href="mailto:support@onlinehoter.nl" class="text-green-600 hover:underline">Support@onlinehoter.nl</a>
+                                Neem contact op met <a href="mailto:support@onlinehoster.nl" class="text-green-600 hover:underline">Support@onlinehoster.nl</a>
                             </p>
                         </div>
                     </div>
