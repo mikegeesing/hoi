@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row text-center">
             <div class="section-head gap-bottom center">
-                <h2>Login Your Account</h2>
+                <h2>Log in op je account</h2>
             </div>
         </div>
        
@@ -24,7 +24,7 @@
                 </div>
               </div>
               <div class="col-sm-6 col-12 mb-2">
-                <span class="d-block text-md-end text-start"><a class="Forget-pass another-link" href="{routePath('password-reset-begin')}">Forgot Password</a></span>
+                <span class="d-block text-md-end text-start"><a class="Forget-pass another-link" href="{routePath('password-reset-begin')}">Wachtwoord vergeten</a></span>
               </div>
 
             </div>
@@ -35,10 +35,10 @@
           {/if}
 
           <div class="text-center justify-content-center d-flex">
-            <button type="submit" class="btn-01 w-100 {$captcha->getButtonClass($captchaForm)}" id="login" value="{$LANG.loginbutton}">Log In</button></div>
+            <button type="submit" class="btn-01 w-100 {$captcha->getButtonClass($captchaForm)}" id="login" value="{$LANG.loginbutton}\">Inloggen</button></div>
 
           <div class="for-signup mt-3">
-              <span>Create an acocunt?</span> <a class="fw-5" href="{$WEB_ROOT}/register.php">Register Now</a>
+              <span>Account aanmaken?</span> <a class="fw-5" href="{$WEB_ROOT}/register.php\">Nu registreren</a>
             </div>
         </div>
       </form>
