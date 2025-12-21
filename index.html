@@ -875,7 +875,94 @@
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
                     <div class="hero-illustration" style="display: flex; align-items: center; justify-content: center; padding: 20px;">
-                        <img src="assets/images/server.png" alt="Professionele Server Datacenter Infrastructuur" style="max-width: 100%; height: auto; filter: drop-shadow(0 20px 40px rgba(53, 177, 94, 0.2)); animation: floatAnimation 4s ease-in-out infinite;">
+                        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="max-width: 100%; height: auto; animation: floatAnimation 4s ease-in-out infinite; filter: drop-shadow(0 20px 40px rgba(53, 177, 94, 0.2));">
+                            <defs>
+                                <linearGradient id="serverGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#35b15e;stop-opacity:0.15" />
+                                    <stop offset="100%" style="stop-color:#102d47;stop-opacity:0.05" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Background circle -->
+                            <circle cx="250" cy="250" r="240" fill="url(#serverGradient)" opacity="0.6"/>
+                            
+                            <!-- Decorative dots -->
+                            <circle cx="120" cy="100" r="6" fill="#35b15e" opacity="0.3"/>
+                            <circle cx="380" cy="120" r="5" fill="#35b15e" opacity="0.2"/>
+                            <circle cx="430" cy="380" r="7" fill="#35b15e" opacity="0.25"/>
+                            
+                            <!-- Main server rack with 3D effect -->
+                            <g filter="url(#glow)">
+                                <!-- Outer frame -->
+                                <rect x="100" y="80" width="300" height="340" rx="20" fill="none" stroke="#35b15e" stroke-width="3" opacity="0.9"/>
+                                
+                                <!-- Top panel with lights -->
+                                <rect x="110" y="95" width="280" height="35" rx="10" fill="#1a3a52" stroke="#35b15e" stroke-width="2" opacity="0.8"/>
+                                <circle cx="145" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="175" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="205" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="235" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="265" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="295" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="325" cy="112" r="4" fill="#35b15e"/>
+                                <circle cx="355" cy="112" r="4" fill="#35b15e"/>
+                                
+                                <!-- Server slot 1 -->
+                                <rect x="115" y="145" width="270" height="50" rx="8" fill="#102d47" stroke="#35b15e" stroke-width="2" opacity="0.85"/>
+                                <rect x="125" y="155" width="130" height="30" rx="5" fill="#2a8d4a" opacity="0.4"/>
+                                <text x="190" y="176" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#35b15e">PHP 8.4</text>
+                                <circle cx="275" cy="165" r="4" fill="#35b15e" opacity="0.8"/>
+                                <circle cx="290" cy="165" r="4" fill="#35b15e" opacity="0.6"/>
+                                <circle cx="305" cy="165" r="4" fill="#35b15e" opacity="0.4"/>
+                                <circle cx="320" cy="165" r="4" fill="#35b15e" opacity="0.6"/>
+                                <circle cx="335" cy="165" r="4" fill="#35b15e" opacity="0.8"/>
+                                
+                                <!-- Server slot 2 -->
+                                <rect x="115" y="205" width="270" height="50" rx="8" fill="#102d47" stroke="#35b15e" stroke-width="2" opacity="0.85"/>
+                                <rect x="125" y="215" width="130" height="30" rx="5" fill="#2a8d4a" opacity="0.5"/>
+                                <text x="190" y="236" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#35b15e">PHP 8.3</text>
+                                <circle cx="275" cy="225" r="4" fill="#35b15e" opacity="0.9"/>
+                                <circle cx="290" cy="225" r="4" fill="#35b15e" opacity="0.7"/>
+                                <circle cx="305" cy="225" r="4" fill="#35b15e" opacity="0.5"/>
+                                <circle cx="320" cy="225" r="4" fill="#35b15e" opacity="0.7"/>
+                                <circle cx="335" cy="225" r="4" fill="#35b15e" opacity="0.9"/>
+                                
+                                <!-- Server slot 3 -->
+                                <rect x="115" y="265" width="270" height="50" rx="8" fill="#102d47" stroke="#35b15e" stroke-width="2" opacity="0.85"/>
+                                <rect x="125" y="275" width="130" height="30" rx="5" fill="#2a8d4a" opacity="0.3"/>
+                                <text x="190" y="296" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#35b15e">PHP 8.2</text>
+                                <circle cx="275" cy="285" r="4" fill="#35b15e" opacity="0.7"/>
+                                <circle cx="290" cy="285" r="4" fill="#35b15e" opacity="0.5"/>
+                                <circle cx="305" cy="285" r="4" fill="#35b15e" opacity="0.4"/>
+                                <circle cx="320" cy="285" r="4" fill="#35b15e" opacity="0.5"/>
+                                <circle cx="335" cy="285" r="4" fill="#35b15e" opacity="0.7"/>
+                                
+                                <!-- Power bar -->
+                                <rect x="115" y="330" width="270" height="12" rx="6" fill="#1a3a52" stroke="#35b15e" stroke-width="1.5" opacity="0.7"/>
+                                <rect x="120" y="333" width="120" height="6" rx="3" fill="#35b15e" opacity="0.8"/>
+                                
+                                <!-- Bottom panel -->
+                                <rect x="110" y="350" width="280" height="35" rx="10" fill="#1a3a52" stroke="#35b15e" stroke-width="2" opacity="0.8"/>
+                                <text x="250" y="373" font-family="Inter, sans-serif" font-size="12" font-weight="700" fill="#35b15e" text-anchor="middle">OpenLiteSpeed</text>
+                            </g>
+                            
+                            <!-- Network cables -->
+                            <path d="M 140 390 Q 110 420 90 460" stroke="#35b15e" stroke-width="2.5" fill="none" opacity="0.35" stroke-linecap="round"/>
+                            <path d="M 250 390 Q 250 430 250 470" stroke="#35b15e" stroke-width="2.5" fill="none" opacity="0.35" stroke-linecap="round"/>
+                            <path d="M 360 390 Q 390 420 410 460" stroke="#35b15e" stroke-width="2.5" fill="none" opacity="0.35" stroke-linecap="round"/>
+                            
+                            <!-- Connection points -->
+                            <circle cx="90" cy="460" r="3" fill="#35b15e" opacity="0.6"/>
+                            <circle cx="250" cy="470" r="3" fill="#35b15e" opacity="0.6"/>
+                            <circle cx="410" cy="460" r="3" fill="#35b15e" opacity="0.6"/>
+                        </svg>
                     </div>
                 </div>
             </div>
