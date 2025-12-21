@@ -39,7 +39,7 @@
                 <!-- Logo -->
                 <div class="flex items-center">
                     <a href="/" class="flex items-center space-x-3">
-                        <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
+                        <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-10">
                     </a>
                 </div>
 

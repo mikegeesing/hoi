@@ -43,7 +43,7 @@
                 <div class="flex items-center">
                     <a href="/" class="flex items-center gap-3">
                         <!-- Logo -->
-                        <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
+                        <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-10">
                         <span class="text-xl font-bold hidden sm:inline text-gray-900">Online Hoster</span>
                     </a>
                 </div>
