@@ -1,0 +1,393 @@
+/* 
+ * OnlineHoster Professional Style Enhancements
+ * Verbetert de visuele uitstraling zonder de basis layout te wijzigen
+ */
+
+/* ============================================
+   Typography Improvements
+   ============================================ */
+
+body {
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.3;
+}
+
+h1 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.2rem); }
+h3 { font-size: clamp(1.4rem, 3vw, 1.8rem); }
+
+p {
+    line-height: 1.7;
+    color: #555;
+}
+
+/* ============================================
+   Button Enhancements
+   ============================================ */
+
+.btn-01, .btn-02, .btn-03 {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-01:hover, .btn-02:hover, .btn-03:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(53, 177, 94, 0.3);
+}
+
+.btn-01::before, .btn-02::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.btn-01:hover::before, .btn-02:hover::before {
+    left: 100%;
+}
+
+/* ============================================
+   Card Improvements
+   ============================================ */
+
+.pricing-item, .services-one, .services-two {
+    transition: all 0.3s ease;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    background: #fff;
+}
+
+.pricing-item:hover, .services-one:hover, .services-two:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
+}
+
+.pricing-item {
+    border: 1px solid #e9ecef;
+}
+
+.pricing-item:hover {
+    border-color: rgb(var(--color-primary));
+}
+
+/* ============================================
+   Icon Styling
+   ============================================ */
+
+.icon img {
+    transition: transform 0.3s ease;
+}
+
+.services-one:hover .icon img,
+.services-two:hover .icon img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* ============================================
+   Number Boxes
+   ============================================ */
+
+.number-box {
+    background: linear-gradient(135deg, rgb(var(--color-primary)) 0%, rgb(var(--color-primary-dark)) 100%);
+    box-shadow: 0 4px 12px rgba(53, 177, 94, 0.2);
+    border-radius: 8px;
+}
+
+/* ============================================
+   Section Headers
+   ============================================ */
+
+.section-head h2 {
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-head .lines {
+    height: 4px;
+    background: linear-gradient(90deg, transparent, rgb(var(--color-primary)), transparent);
+    border-radius: 2px;
+}
+
+.section-head .lines span {
+    background: rgb(var(--color-primary));
+    height: 4px;
+    width: 80px;
+    display: block;
+    margin: 0 auto;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(53, 177, 94, 0.4);
+}
+
+/* ============================================
+   Banner Enhancements
+   ============================================ */
+
+.banner-one {
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-one::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(53, 177, 94, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+.banner-heading h1 {
+    background: linear-gradient(135deg, #102D47 0%, rgb(var(--color-primary)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ============================================
+   List Styling
+   ============================================ */
+
+.banner-list li {
+    position: relative;
+    padding-left: 30px;
+}
+
+.banner-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: rgb(var(--color-primary));
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* ============================================
+   Feature Lists
+   ============================================ */
+
+.list-item {
+    transition: all 0.3s ease;
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff;
+    margin-bottom: 15px;
+}
+
+.list-item:hover {
+    background: #f8f9fa;
+    transform: translateX(10px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================
+   Pricing Tables
+   ============================================ */
+
+.pricing-heading {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px 12px 0 0;
+    padding: 25px 20px;
+}
+
+.pricing-heading .name {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #102D47;
+    margin-bottom: 10px;
+}
+
+.pricing-heading .title {
+    color: rgb(var(--color-primary));
+    font-weight: 700;
+}
+
+.pricing_body ul li {
+    padding: 12px 0;
+    border-bottom: 1px solid #f1f3f5;
+    transition: all 0.2s ease;
+}
+
+.pricing_body ul li:hover {
+    padding-left: 10px;
+    color: rgb(var(--color-primary));
+}
+
+.pricing_body ul li:last-child {
+    border-bottom: none;
+}
+
+/* ============================================
+   Top Bar Enhancement
+   ============================================ */
+
+.top-bar {
+    background: #102D47;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.top-bar .items {
+    transition: all 0.2s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.top-bar .items:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* ============================================
+   Logo Enhancement
+   ============================================ */
+
+.logo img, .logo-mob img {
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.logo:hover img, .logo-mob:hover img {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   Navigation Menu
+   ============================================ */
+
+.menu-bar ul li a {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.menu-bar ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: rgb(var(--color-primary));
+    transition: width 0.3s ease;
+}
+
+.menu-bar ul li a:hover::after {
+    width: 80%;
+}
+
+/* ============================================
+   Footer Enhancement
+   ============================================ */
+
+footer {
+    background: linear-gradient(135deg, #0a1f33 0%, #102D47 100%);
+}
+
+/* ============================================
+   Tooltip Styling
+   ============================================ */
+
+.tootips-list span {
+    background: #102D47;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(53, 177, 94, 0.2);
+}
+
+/* ============================================
+   Badge/Label Enhancement
+   ============================================ */
+
+.badge, .label {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   Loading Animation
+   ============================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-gap > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+/* ============================================
+   Mobile Responsiveness
+   ============================================ */
+
+@media (max-width: 768px) {
+    .pricing-item {
+        margin-bottom: 20px;
+    }
+    
+    .section-gap {
+        padding: 40px 0;
+    }
+    
+    .banner-heading h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* ============================================
+   Accessibility Improvements
+   ============================================ */
+
+a:focus, button:focus, input:focus {
+    outline: 2px solid rgb(var(--color-primary));
+    outline-offset: 2px;
+}
+
+/* High contrast focus for keyboard navigation */
+*:focus-visible {
+    outline: 3px solid rgb(var(--color-primary));
+    outline-offset: 3px;
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+    .top-bar, .menu-bar, footer {
+        display: none;
+    }
+    
+    body {
+        color: #000;
+        background: #fff;
+    }
+}
