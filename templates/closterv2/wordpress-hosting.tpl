@@ -19,8 +19,8 @@
               <li>SEO-friendly</li>
               <li>Mobile Compatible</li>
               <li>Blazing-Fast Load Time</li>
-            </ul> {if count($wprdpressroducts) gt 0 && ($wprdpressroducts.0.monthly gt 0 || $wprdpressroducts.0.annually gt 0 || $wprdpressroducts.0.biennially gt 0 || $wprdpressroducts.0.triennially gt 0)} {foreach $wprdpressroducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Starting Price {$myproduct.prefix}{$myproduct.monthly}/mo</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
-              <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Get Started Now</a>
+            </ul> {if count($wprdpressroducts) gt 0 && ($wprdpressroducts.0.monthly gt 0 || $wprdpressroducts.0.annually gt 0 || $wprdpressroducts.0.biennially gt 0 || $wprdpressroducts.0.triennially gt 0)} {foreach $wprdpressroducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
+              <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Nu starten</a>
             </div>
           </div>
         </div>
@@ -41,22 +41,22 @@
           <div class="single-radio-box">
             <input name="billingPlan" id="monthly-plan" value="monthly" class="radio" type="radio" checked>
             <label for="monthly-plan">
-              <span class="custom-check"></span> Monthly </label>
+              <span class="custom-check"></span> Maandelijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="yearly-plan" value="yearly" class="radio" type="radio">
             <label for="yearly-plan">
-              <span class="custom-check"></span> Yearly </label>
+              <span class="custom-check"></span> Jaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="biannual-plan" value="biannual" class="radio" type="radio">
             <label for="biannual-plan">
-              <span class="custom-check"></span> Biannual </label>
+              <span class="custom-check"></span> Tweejaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="triennial-plan" value="triennial" class="radio" type="radio">
             <label for="triennial-plan">
-              <span class="custom-check"></span> Triennial </label>
+              <span class="custom-check"></span> Driejaarlijks </label>
           </div>
         </div>
       </div>

@@ -19,7 +19,7 @@
                 <li>High-memory servers</li>
                 <li>New Generation Processors</li>
                 <li>Get started within minutes</li>
-              </ul> {if count($dedicatedproducts) gt 0 && ($dedicatedproducts.0.monthly gt 0 || $dedicatedproducts.0.annually gt 0 || $dedicatedproducts.0.biennially gt 0 || $dedicatedproducts.0.triennially gt 0)} {foreach $dedicatedproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Starting Price {$myproduct.prefix}{$myproduct.monthly}/mo</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
+              </ul> {if count($dedicatedproducts) gt 0 && ($dedicatedproducts.0.monthly gt 0 || $dedicatedproducts.0.annually gt 0 || $dedicatedproducts.0.biennially gt 0 || $dedicatedproducts.0.triennially gt 0)} {foreach $dedicatedproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
                 <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">View Plans</a>
               </div>
             </div>
@@ -41,22 +41,22 @@
             <div class="single-radio-box">
               <input name="billingPlan" id="monthly-plan" value="monthly" class="radio" type="radio" checked>
               <label for="monthly-plan">
-                <span class="custom-check"></span> Monthly </label>
+                <span class="custom-check"></span> Maandelijks </label>
             </div>
             <div class="single-radio-box">
               <input name="billingPlan" id="yearly-plan" value="yearly" class="radio" type="radio">
               <label for="yearly-plan">
-                <span class="custom-check"></span> Yearly </label>
+                <span class="custom-check"></span> Jaarlijks </label>
             </div>
             <div class="single-radio-box">
               <input name="billingPlan" id="biannual-plan" value="biannual" class="radio" type="radio">
               <label for="biannual-plan">
-                <span class="custom-check"></span> Biannual </label>
+                <span class="custom-check"></span> Tweejaarlijks </label>
             </div>
             <div class="single-radio-box">
               <input name="billingPlan" id="triennial-plan" value="triennial" class="radio" type="radio">
               <label for="triennial-plan">
-                <span class="custom-check"></span> Triennial </label>
+                <span class="custom-check"></span> Driejaarlijks </label>
             </div>
           </div>
         </div>
@@ -187,7 +187,7 @@
             <h2>We Are Here For You</h2>
             <p>We're dedicated to supporting you in any way we can. From answering questions to offering guidance, our goal is to make your experience as smooth as possible. Don't hesitate to reach out whenever you need assistance. Your satisfaction is our priority, and we're here to help!</p>
             <div class="inline-btns mt-3">
-              <a class="btn-01" href="{$WEB_ROOT}/contact.php">Get Started Now <i class="fas fa-long-arrow-right"></i>
+              <a class="btn-01" href="{$WEB_ROOT}/contact.php">Nu starten <i class="fas fa-long-arrow-right"></i>
               </a>
             </div>
           </div>

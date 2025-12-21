@@ -6,14 +6,14 @@
       <div class="row align-items-center justify-content-between">
         <div class="col-lg-6">
           <div class="banner-heading">
-            <h1>Shared Hosting - At it's Simplest Best</h1>
+            <h1>Shared Hosting - Eenvoudig en betrouwbaar</h1>
             <ul class="banner-list mb-2">
-              <li>Flexible, Easy to Use Control Panel</li>
-              <li>Unmetered Bandwidth</li>
-              <li>99% Uptime Guarantee</li>
-              <li>30-Day Money-Back Guarantee</li>
-            </ul> {if $sharedhostingproducts|@count gt 0 && ($sharedhostingproducts.0.monthly gt 0 || $sharedhostingproducts.0.annually gt 0 || $sharedhostingproducts.0.biennially gt 0 || $sharedhostingproducts.0.triennially gt 0)} {foreach $sharedhostingproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Starting Price {$myproduct.prefix}{$myproduct.monthly}/mo</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
-              <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Get Started Now</a>
+              <li>Flexibel, gebruiksvriendelijk controlepaneel</li>
+              <li>Onbeperkte bandbreedte</li>
+              <li>99% uptime garantie</li>
+              <li>30 dagen geld-terug-garantie</li>
+            </ul> {if $sharedhostingproducts|@count gt 0 && ($sharedhostingproducts.0.monthly gt 0 || $sharedhostingproducts.0.annually gt 0 || $sharedhostingproducts.0.biennially gt 0 || $sharedhostingproducts.0.triennially gt 0)} {foreach $sharedhostingproducts as $productKey => $myproduct} {if $productKey eq 0} <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4> {/if} {/foreach}{/if} <div class="inline-btns mt-3">
+              <a class="btn-01" onclick="document.getElementById('Plans').scrollIntoView();">Nu starten</a>
             </div>
           </div>
         </div>
@@ -34,22 +34,22 @@
           <div class="single-radio-box">
             <input name="billingPlan" id="monthly-plan" value="monthly" class="radio" type="radio" checked>
             <label for="monthly-plan">
-              <span class="custom-check"></span> Monthly </label>
+              <span class="custom-check"></span> Maandelijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="yearly-plan" value="yearly" class="radio" type="radio">
             <label for="yearly-plan">
-              <span class="custom-check"></span> Yearly </label>
+              <span class="custom-check"></span> Jaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="biannual-plan" value="biannual" class="radio" type="radio">
             <label for="biannual-plan">
-              <span class="custom-check"></span> Biannual </label>
+              <span class="custom-check"></span> Tweejaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="triennial-plan" value="triennial" class="radio" type="radio">
             <label for="triennial-plan">
-              <span class="custom-check"></span> Triennial </label>
+              <span class="custom-check"></span> Driejaarlijks </label>
           </div>
         </div>
       </div>
@@ -59,25 +59,25 @@
           <div class="pricing-heading">
             <div class="name">{$myproduct.name} </div>
             <div class="monthly-price">
-              <h4 class="title "> {$myproduct.prefix}{$myproduct.monthly} <span class="durection">/month</span>
+              <h4 class="title "> {$myproduct.prefix}{$myproduct.monthly} <span class="durection">/maand</span>
               </h4>
             </div>
             <div class="yearly-price">
-              <h4 class="title "> {$myproduct.prefix}{$myproduct.annually} <span class="durection">/Year</span>
+              <h4 class="title "> {$myproduct.prefix}{$myproduct.annually} <span class="durection">/jaar</span>
               </h4>
             </div>
             <div class="biannual-price">
-              <h4 class="title "> {$myproduct.prefix}{$myproduct.biennially} <span class="durection">/2 Years</span>
+              <h4 class="title "> {$myproduct.prefix}{$myproduct.biennially} <span class="durection">/2 jaar</span>
               </h4>
             </div>
             <div class="triennial-price">
-              <h4 class="title "> {$myproduct.prefix}{$myproduct.triennially} <span class="durection">/3 Years</span>
+              <h4 class="title "> {$myproduct.prefix}{$myproduct.triennially} <span class="durection">/3 jaar</span>
               </h4>
             </div>
           </div>
           <div class="pricing_body">
             <ul> {$myproduct.description} </ul>
-            <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid={$myproduct.relid}">Select Plan</a>
+            <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid={$myproduct.relid}">Selecteer pakket</a>
           </div>
         </div>
       </div> {/foreach} {/if} </div>
@@ -88,11 +88,11 @@
     <div class="row justify-content-center">
       <div class="col-12 col-xl-8 col-lg-8">
         <div class="section-head gap-bottom center with-line">
-          <h2> Just what you need for a Basic Web Presence</h2>
+          <h2> Precies wat je nodig hebt voor een basis webpresentie</h2>
           <div class="lines">
             <span></span>
           </div>
-          <p>Unlimited storage, unmetered bandwidth, unbeatable hosting. This gator's got ya covered. And we'll throw in a free domain for a year, too. </p>
+          <p>Onbeperkte opslag, onbeperkte bandbreedte, onverslaanbare hosting. Wij hebben je gedekt. En we gooien er een gratis domein bij voor een jaar. </p>
         </div>
       </div>
     </div>
@@ -105,8 +105,8 @@
           <div class="icon">
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/page_optimization.png" alt="services icon">
           </div>
-          <h4>Lightning Fast Website</h4>
-          <p>Our web application accelerator, powered by Varnish Cache, ensures the maximum performance of your website at all times!</p>
+          <h4>Bliksemsnelle website</h4>
+          <p>Onze webapplicatie versneller, aangedreven door Varnish Cache, zorgt te allen tijde voor maximale prestaties van je website!</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
@@ -117,8 +117,8 @@
           <div class="icon">
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/mail.png" alt="services icon">
           </div>
-          <h4>Email included</h4>
-          <p>Advanced email management features in cPanel allow you manage your emails, mailing lists and more without any hassles.</p>
+          <h4>E-mail inbegrepen</h4>
+          <p>Geavanceerde e-mailbeheerfuncties in cPanel stellen je in staat om je e-mails, mailinglijsten en meer te beheren zonder gedoe.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
@@ -129,8 +129,8 @@
           <div class="icon">
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/tools.png" alt="services icon">
           </div>
-          <h4>cPanel for Management</h4>
-          <p>cPanel, an intuitive and powerful control panel, is available on all plans which makes your hosting package management a breeze!</p>
+          <h4>cPanel voor beheer</h4>
+          <p>cPanel, een intuïtief en krachtig controlepaneel, is beschikbaar op alle pakketten, wat het beheer van je hostingpakket een makkie maakt!</p>
         </div>
       </div>
     </div>
@@ -141,11 +141,11 @@
     <div class="row justify-content-center">
       <div class="col-12 col-xl-7 col-lg-8">
         <div class="section-head gap-bottom center with-line">
-          <h2>Why choose Linux Shared Web Hosting</h2>
+          <h2>Waarom kiezen voor Linux Shared Web Hosting</h2>
           <div class="lines">
             <span></span>
           </div>
-          <p>Linux Shared Web Hosting offers cost-effective, reliable hosting with robust security, customizable features, and compatibility with popular web technologies.</p>
+          <p>Linux Shared Web Hosting biedt kosteneffectieve, betrouwbare hosting met robuuste beveiliging, aanpasbare functies en compatibiliteit met populaire webtechnologieën.</p>
         </div>
       </div>
     </div>
@@ -157,8 +157,8 @@
               <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/page_optimization.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>Lightning Fast Websites</h3>
-              <p>Super-quick page loads</p>
+              <h3>Bliksemsnelle websites</h3>
+              <p>Superschnelle pagina laadtijden</p>
             </div>
           </li>
           <li class="list-item">
@@ -166,8 +166,8 @@
               <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/tools.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>Free DirectAdmin</h3>
-              <p>Linux Web Hosting Management simplified</p>
+              <h3>Gratis DirectAdmin</h3>
+              <p>Linux webhosting beheer vereenvoudigd</p>
             </div>
           </li>
           <li class="list-item ">
@@ -175,8 +175,8 @@
               <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/html.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>SNI enabled</h3>
-              <p>SSL certificate installation made easy</p>
+              <h3>SNI ingeschakeld</h3>
+              <p>SSL certificaat installatie gemakkelijk gemaakt</p>
             </div>
           </li>
           <li class="list-item">
@@ -184,8 +184,8 @@
               <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/helpdesk.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>24x7 Support</h3>
-              <p>Your websites are our priority, we are here to serve you</p>
+              <h3>24x7 ondersteuning</h3>
+              <p>Jouw websites zijn onze prioriteit, we zijn er om je te helpen</p>
             </div>
           </li>
           <li class="list-item">
@@ -193,8 +193,8 @@
               <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/click.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>Easy 1-click-installer</h3>
-              <p>400+ ready-to-install apps powered by Softaculous </p>
+              <h3>Eenvoudige 1-klik installer</h3>
+              <p>400+ kant-en-klare apps aangedreven door Softaculous </p>
             </div>
           </li>
           <li class="list-item">

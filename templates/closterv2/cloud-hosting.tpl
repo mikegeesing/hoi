@@ -27,7 +27,7 @@
 {foreach $cloudproducts as $productKey => $myproduct}
 
 {if $productKey eq 0}
-                        <h4>Starting Price {$myproduct.prefix}{$myproduct.monthly}/mo</h4>{/if}
+                        <h4>Vanaf {$myproduct.prefix}{$myproduct.monthly}/mnd</h4>{/if}
 
 {/foreach}{/if}
                         <div class="inline-btns mt-3">
