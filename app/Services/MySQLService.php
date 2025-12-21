@@ -312,7 +312,7 @@ class MySQLService
         $items = @scandir($dir);
         if ($items === false) {
             // If scandir fails, try to remove via shell
-            @system("rm -rf " . escapeshellarg($dir) . " 2>/dev/null");
+            @shell_exec("rm -rf " . escapeshellarg($dir) . " 2>/dev/null");
             return;
         }
         
