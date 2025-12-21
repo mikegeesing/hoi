@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
   <head>
     <meta charset="{$charset}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -39,7 +39,7 @@
         <div class="row align-items-center">
           <div class="col-6">
             <p class="country-select" id="toggleButtoncountry">
-              <i class="bi bi-translate"></i>Select Country
+              <i class="bi bi-translate"></i>Kies taal
             </p>
           </div>
           <div class="col-6">
@@ -104,7 +104,7 @@
             <span id="closeButtoncountry">
               <i class="ri-close-line"></i>
             </span>
-            <h4 class="title">Choose your Country/Region</h4> {if $languagechangeenabled && count($locales) > 1} <ul class="country-list"> {foreach $locales as $locale} <li>
+            <h4 class="title">Kies je taal/regio</h4> {if $languagechangeenabled && count($locales) > 1} <ul class="country-list"> {foreach $locales as $locale} <li>
                 <a href="{$currentpagelinkback}language={$locale.language}">{$locale.localisedName}</a>
               </li> {/foreach} </ul> {/if}
           </div>
@@ -123,9 +123,9 @@
           <div class="col-6 col-md-8 col-lg-6">
             <div class="header-support">
               <ul class="support-item-web items d-none d-md-inline-block">
-                <li class="call-no">Sales: <strong> | Sales@onlinehoster.nl</strong>
+                <li class="call-no">Sales: <strong><a href="mailto:Sales@onlinehoster.nl">Sales@onlinehoster.nl</a></strong>
                 </li>
-                <li class="call-no">Support: <strong> | Support@onlinehoster.nl</strong>
+                <li class="call-no">Support: <strong><a href="mailto:Support@onlinehoster.nl">Support@onlinehoster.nl</a></strong>
                 </li>
               </ul>
               <a class="call-mob items d-md-none" href="tel:+911234567890">
@@ -154,20 +154,20 @@
             </li>
             <li>
               <a href="{$WEB_ROOT}/about-us.php">
-                <span>About</span>
+                <span>Over ons</span>
               </a>
             </li>
             <li class="dropdown">
               <a href="#">
-                <span>Domain</span>
+                <span>Domein</span>
                 <i class="bi bi-chevron-down dropdown-indicator"></i>
               </a>
               <ul class="menu-item"> {if $loggedin} <li>
                   <a href="{$WEB_ROOT}/clientarea.php?action=domains">
                     <i class="fal fa-coins"></i>
                     <span class="info">
-                      <span class="heading">My Domains</span>
-                      <span class="content">Manage, protect, and thrive with My Domains.</span>
+                      <span class="heading">Mijn domeinen</span>
+                      <span class="content">Beheer, bescherm en groei met jouw domeinen.</span>
                     </span>
                   </a>
                 </li>
@@ -175,16 +175,16 @@
                   <a href="{$WEB_ROOT}/cart/domain/renew">
                     <i class="fal fa-sign-in"></i>
                     <span class="info">
-                      <span class="heading">Renew Domains</span>
-                      <span class="content">Secure your online presence, renew domains today.</span>
+                      <span class="heading">Domeinen verlengen</span>
+                      <span class="content">Beveilig je online aanwezigheid, verleng vandaag je domeinen.</span>
                     </span>
                   </a>
                 </li>{/if} <li>
                   <a href="{$WEB_ROOT}/domain-search.php">
                     <i class="fal fa-globe"></i>
                     <span class="info">
-                      <span class="heading">Domain Search</span>
-                      <span class="content">Book your domain here</span>
+                      <span class="heading">Domein zoeken</span>
+                      <span class="content">Registreer je domein hier</span>
                     </span>
                   </a>
                 </li>
@@ -192,8 +192,8 @@
                   <a href="{$WEB_ROOT}/transfer-domain.php">
                     <i class="fal fa-sign-in"></i>
                     <span class="info">
-                      <span class="heading">Transfer your Domain</span>
-                      <span class="content">Move in your existing Domains</span>
+                      <span class="heading">Domein verhuizen</span>
+                      <span class="content">Verhuis je bestaande domeinen</span>
                     </span>
                   </a>
                 </li>
@@ -201,8 +201,8 @@
                   <a href="{$WEB_ROOT}/domain-promos.php">
                     <i class="fal fa-sign-in"></i>
                     <span class="info">
-                      <span class="heading">Domain Promos</span>
-                      <span class="content">Check domain promos</span>
+                      <span class="heading">Domeinacties</span>
+                      <span class="content">Bekijk domeinacties</span>
                     </span>
                   </a>
                 </li>
@@ -226,16 +226,16 @@
                   <a href="{$WEB_ROOT}/cart.php?gid=addons">
                     <i class="fas fa-gem"></i>
                     <span class="info">
-                      <span class="heading">Available Addons</span>
-                      <span class="content">Explore options for enhancing your experience.</span>
+                      <span class="heading">Beschikbare add-ons</span>
+                      <span class="content">Ontdek opties om je ervaring uit te breiden.</span>
                     </span>
                   </a>
                 </li> {/if} <li>
                   <a href="{$WEB_ROOT}/shared-hosting.php">
                     <i class="fal fa-server"></i>
                     <span class="info">
-                      <span class="heading">Shared Hosting</span>
-                      <span class="content">Low Cost Hosting</span>
+                      <span class="heading">Webhosting</span>
+                      <span class="content">Goedkope hostingoplossingen</span>
                     </span>
                   </a>
                 </li>
@@ -243,8 +243,8 @@
                   <a href="{$WEB_ROOT}/wordpress-hosting.php">
                     <i class="fab fa-wordpress"></i>
                     <span class="info">
-                      <span class="heading">Wordpress Hosting</span>
-                      <span class="content">Optimized hosting for WordPress sites.</span>
+                      <span class="heading">WordPress hosting</span>
+                      <span class="content">Geoptimaliseerde hosting voor WordPress-sites.</span>
                     </span>
                   </a>
                 </li>
@@ -252,8 +252,8 @@
                   <a href="{$WEB_ROOT}/reseller-hosting.php">
                     <i class="fal fa-eye"></i>
                     <span class="info">
-                      <span class="heading">Reseller Hosting</span>
-                      <span class="content">Launch your hosting business today!</span>
+                      <span class="heading">Reseller hosting</span>
+                      <span class="content">Start vandaag je hostingbedrijf!</span>
                     </span>
                   </a>
                 </li>
@@ -269,8 +269,8 @@
                   <a href="{$WEB_ROOT}/vps-server.php">
                     <i class="fal fa-database"></i>
                     <span class="info">
-                      <span class="heading">VPS Server</span>
-                      <span class="content">Flexible VPS solutions for you.</span>
+                      <span class="heading">VPS-server</span>
+                      <span class="content">Flexibele VPS-oplossingen voor jou.</span>
                     </span>
                   </a>
                 </li>
@@ -278,8 +278,8 @@
                   <a href="{$WEB_ROOT}/dedicated-server.php">
                     <i class="fal fa-server"></i>
                     <span class="info">
-                      <span class="heading">Deicated Server</span>
-                      <span class="content">Powerful servers for dedicated performance.</span>
+                      <span class="heading">Dedicated server</span>
+                      <span class="content">Krachtige servers voor toegewijde prestaties.</span>
                     </span>
                   </a>
                 </li>
@@ -287,7 +287,7 @@
             </li>
             <li class="dropdown">
               <a href="#">
-                <span>Email</span>
+                <span>E-mail</span>
                 <i class="bi bi-chevron-down dropdown-indicator"></i>
               </a>
               <ul class="menu-item">
@@ -295,8 +295,8 @@
                   <a href="{$WEB_ROOT}/business-email.php">
                     <i class="fal fa-mail-bulk"></i>
                     <span class="info">
-                      <span class="heading">Business Email</span>
-                      <span class="content">Professional email solutions for businesses.</span>
+                      <span class="heading">Zakelijke e-mail</span>
+                      <span class="content">Professionele e-mailoplossingen voor bedrijven.</span>
                     </span>
                   </a>
                 </li>
@@ -304,8 +304,8 @@
                   <a href="{$WEB_ROOT}/enterprise-email.php">
                     <i class="fas fa-envelope-open-text"></i>
                     <span class="info">
-                      <span class="heading">Enterprices Email</span>
-                      <span class="content">Enterprise-grade email solutions for businesses.</span>
+                      <span class="heading">Enterprise e-mail</span>
+                      <span class="content">E-mailoplossingen op ondernemingsniveau voor bedrijven.</span>
                     </span>
                   </a>
                 </li>
@@ -314,7 +314,7 @@
                     <i class="fab fa-google"></i>
                     <span class="info">
                       <span class="heading">Google Workspace</span>
-                      <span class="content">Boost productivity with Google Workspace.</span>
+                      <span class="content">Verhoog de productiviteit met Google Workspace.</span>
                     </span>
                   </a>
                 </li>
@@ -322,7 +322,7 @@
             </li>
             <li class="dropdown">
               <a href="#">
-                <span>Security</span>
+                <span>Beveiliging</span>
                 <i class="bi bi-chevron-down dropdown-indicator"></i>
               </a>
               <ul class="menu-item">
@@ -330,8 +330,8 @@
                   <a href="{$WEB_ROOT}/ssl-certificates.php">
                     <i class="far fa-lock"></i>
                     <span class="info">
-                      <span class="heading">SSL Certificate</span>
-                      <span class="content">Secure your site with SSL.</span>
+                      <span class="heading">SSL-certificaat</span>
+                      <span class="content">Beveilig je site met SSL.</span>
                     </span>
                   </a>
                 </li>
@@ -340,7 +340,7 @@
                     <i class="fal fa-shield-alt"></i>
                     <span class="info">
                       <span class="heading">Sitelock</span>
-                      <span class="content">Protect your website with Sitelock.</span>
+                      <span class="content">Bescherm je website met Sitelock.</span>
                     </span>
                   </a>
                 </li>
@@ -348,15 +348,15 @@
                   <a href="{$WEB_ROOT}/codeguard.php">
                     <i class="far fa-cloud-download"></i>
                     <span class="info">
-                      <span class="heading">Codeguard</span>
-                      <span class="content">Backup and secure your website.</span>
+                      <span class="heading">CodeGuard</span>
+                      <span class="content">Back-up en beveilig je website.</span>
                     </span>
                   </a>
                 </li>
               </ul>
             </li> {if $loggedin} <li class="dropdown">
               <a href="#">
-                <span>Billing</span>
+                <span>Facturering</span>
                 <i class="bi bi-chevron-down dropdown-indicator"></i>
               </a>
               <ul class="menu-item">
@@ -364,8 +364,8 @@
                   <a href="{$WEB_ROOT}/clientarea.php?action=invoices">
                     <i class="fal fa-server"></i>
                     <span class="info">
-                      <span class="heading">My Invoices</span>
-                      <span class="content">Track, manage, and pay invoices easily.</span>
+                      <span class="heading">Mijn facturen</span>
+                      <span class="content">Volg, beheer en betaal facturen eenvoudig.</span>
                     </span>
                   </a>
                 </li>
@@ -373,8 +373,8 @@
                   <a href="{$WEB_ROOT}/clientarea.php?action=quotes">
                     <i class="fab fa-wordpress"></i>
                     <span class="info">
-                      <span class="heading">My Quotes</span>
-                      <span class="content">Request, review, and approve quotes conveniently.</span>
+                      <span class="heading">Mijn offertes</span>
+                      <span class="content">Vraag aan, bekijk en keur offertes gemakkelijk goed.</span>
                     </span>
                   </a>
                 </li>
@@ -382,8 +382,8 @@
                   <a href="{$WEB_ROOT}/clientarea.php?action=masspay&amp;all=true">
                     <i class="fal fa-sun"></i>
                     <span class="info">
-                      <span class="heading">Mass Payment</span>
-                      <span class="content">Simplify payments with mass transactions.</span>
+                      <span class="heading">Massale betaling</span>
+                      <span class="content">Vereenvoudig betalingen met groepstransacties.</span>
                     </span>
                   </a>
                 </li>
@@ -392,14 +392,14 @@
                     <i class="far fa-box"></i>
                     <span class="info">
                       <span class="heading">Affiliates</span>
-                      <span class="content">Grow together with our affiliates program.</span>
+                      <span class="content">Groeien samen met ons affiliateprogramma.</span>
                     </span>
                   </a>
                 </li>
               </ul>
             </li>{/if} {if $loggedin} <li class="dropdown">
               <a href="#">
-                <span>Support</span>
+                <span>Ondersteuning</span>
                 <i class="bi bi-chevron-down dropdown-indicator"></i>
               </a>
               <ul class="menu-item">
@@ -407,8 +407,8 @@
                   <a href="{$WEB_ROOT}/submitticket.php">
                     <i class="far fa-lock"></i>
                     <span class="info">
-                      <span class="heading">Open Ticket</span>
-                      <span class="content">Submit and track support tickets easily.</span>
+                      <span class="heading">Ticket openen</span>
+                      <span class="content">Dien ondersteuningstickets eenvoudig in en volg deze.</span>
                     </span>
                   </a>
                 </li>
@@ -417,7 +417,7 @@
                     <i class="fal fa-shield-alt"></i>
                     <span class="info">
                       <span class="heading">Tickets</span>
-                      <span class="content">Easily manage and track tickets.</span>
+                      <span class="content">Beheer en volg tickets eenvoudig.</span>
                     </span>
                   </a>
                 </li>
@@ -425,8 +425,8 @@
                   <a href="{$WEB_ROOT}/announcements">
                     <i class="far fa-cloud-download"></i>
                     <span class="info">
-                      <span class="heading">Announcements</span>
-                      <span class="content">Stay informed with our announcements.</span>
+                      <span class="heading">Aankondigingen</span>
+                      <span class="content">Blijf op de hoogte met onze aankondigingen.</span>
                     </span>
                   </a>
                 </li>
@@ -434,8 +434,8 @@
                   <a href="{$WEB_ROOT}/knowledgebase">
                     <i class="fal fa-boxes-alt"></i>
                     <span class="info">
-                      <span class="heading">Knowledgebase</span>
-                      <span class="content">View Our Knowledgebase.</span>
+                      <span class="heading">Kennisbank</span>
+                      <span class="content">Bekijk onze kennisbank.</span>
                     </span>
                   </a>
                 </li>
@@ -443,8 +443,8 @@
                   <a href="{$WEB_ROOT}/serverstatus.php">
                     <i class="far fa-globe-stand"></i>
                     <span class="info">
-                      <span class="heading">Network Status</span>
-                      <span class="content">Check real-time network status</span>
+                      <span class="heading">Netwerkstatus</span>
+                      <span class="content">Controleer realtime netwerkstatus</span>
                     </span>
                   </a>
                 </li>
@@ -455,11 +455,11 @@
               </a>
             </li>{/if} {if $loggedin} <li>
               <a href="{$WEB_ROOT}/logout.php" class="menu-account-btn">
-                <span>Log Out</span>
+                <span>Uitloggen</span>
               </a>
             </li>{else} <li>
               <a href="{$WEB_ROOT}/index.php?rp=/login" class="menu-account-btn">
-                <span>Login</span>
+                <span>Inloggen</span>
               </a>
             </li>{/if}
           </ul>
@@ -471,9 +471,9 @@
           </a>
           <div class="header-support w-100">
             <ul class="support-item-web items d-none d-md-inline-block">
-              <li class="call-no">Sales: <strong> | Sales@onlinehoster.nl</strong>
+              <li class="call-no">Sales: <strong><a href="mailto:Sales@onlinehoster.nl">Sales@onlinehoster.nl</a></strong>
               </li>
-              <li class="call-no">Support: <strong> | Support@onlinehoster.nl</strong>
+              <li class="call-no">Support: <strong><a href="mailto:Support@onlinehoster.nl">Support@onlinehoster.nl</a></strong>
               </li>
             </ul>
             <a class="cart-icon items" href="{$WEB_ROOT}/checkout.php">
@@ -490,61 +490,61 @@
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/shared-hosting.php" class="slide-item">
               <i class="fal fa-server"></i>
-              <span>Shared Hosting</span>
+              <span>Webhosting</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/windows-hosting.php" class="slide-item">
               <i class="fab fa-wordpress-simple"></i>
-              <span>Wordpress Hosting</span>
+              <span>WordPress Hosting</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/reseller-hosting.php" class="slide-item">
               <i class="fal fa-cabinet-filing"></i>
-              <span>Reseller Hosting</span>
+              <span>Reseller hosting</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/cloud-hosting.php" class="slide-item">
               <i class="fal fa-cloud"></i>
-              <span>Cloud Hosting</span>
+              <span>Cloud hosting</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/dedicated-server.php" class="slide-item">
               <i class="fal fa-server"></i>
-              <span>Dedicated Server</span>
+              <span>Dedicated server</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/vps-server.php" class="slide-item">
               <i class="fal fa-database"></i>
-              <span>VPS Hosting</span>
+              <span>VPS hosting</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/ssl-certificates.php" class="slide-item">
               <i class="fal fa-lock-alt"></i>
-              <span>SSl Certificate</span>
+              <span>SSL-certificaat</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/codeguard.php" class="slide-item">
               <i class="fal fa-cloud-download"></i>
-              <span>Coudguard Backup</span>
+              <span>CodeGuard back-up</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/business-email.php" class="slide-item">
               <i class="fal fa-envelope-open-text"></i>
-              <span>Business Email</span>
+              <span>Zakelijke e-mail</span>
             </a>
           </div>
           <div class="swiper-slide">
             <a href="{$WEB_ROOT}/enterprise-email.php" class="slide-item">
               <i class="fal fa-envelope"></i>
-              <span>Enterprices Email</span>
+              <span>Enterprise e-mail</span>
             </a>
           </div>
           <div class="swiper-slide">
