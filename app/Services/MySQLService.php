@@ -311,8 +311,7 @@ class MySQLService
 
         $items = @scandir($dir);
         if ($items === false) {
-            // If scandir fails, try to remove via shell
-            @\shell_exec("rm -rf " . escapeshellarg($dir) . " 2>/dev/null");
+            // If scandir fails, skip deletion (temp dir will be cleaned up eventually)
             return;
         }
         
