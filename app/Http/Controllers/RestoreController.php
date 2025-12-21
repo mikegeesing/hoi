@@ -657,9 +657,10 @@ class RestoreController extends Controller
                 'type' => $restoreType,
             ]);
 
-            return response()->json([
-                'success' => true,
-                'message' => 'Database succesvol hersteld',
+            return view('restore.mysql-success', [
+                'database' => $database,
+                'archive' => $archive,
+                'restoreType' => $restoreType,
             ]);
         } catch (\Exception $e) {
             Log::error('Database restore failed', [
