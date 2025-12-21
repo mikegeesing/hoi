@@ -371,8 +371,8 @@
             <p>No, Multisite is not supported.</p>
           </li>
           <li>
-            <a> Can I access the cPanel for my hosting plan? </a>
-            <p>No, cPanel access is not provided with WordPress Hosting.</p>
+            <a> Can I access the DirectAdmin panel for my hosting plan? </a>
+            <p>No, DirectAdmin access is not provided with WordPress Hosting.</p>
           </li>
           <li>
             <a> Is an SSL Certificate included with the plan?</a>

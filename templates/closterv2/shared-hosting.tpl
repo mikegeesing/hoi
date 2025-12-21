@@ -118,7 +118,7 @@
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/mail.png" alt="services icon">
           </div>
           <h4>E-mail inbegrepen</h4>
-          <p>Geavanceerde e-mailbeheerfuncties in cPanel stellen je in staat om je e-mails, mailinglijsten en meer te beheren zonder gedoe.</p>
+          <p>Geavanceerde e-mailbeheerfuncties in DirectAdmin stellen je in staat om je e-mails, mailinglijsten en meer te beheren zonder gedoe.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
@@ -129,8 +129,8 @@
           <div class="icon">
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/tools.png" alt="services icon">
           </div>
-          <h4>cPanel voor beheer</h4>
-          <p>cPanel, een intuïtief en krachtig controlepaneel, is beschikbaar op alle pakketten, wat het beheer van je hostingpakket een makkie maakt!</p>
+          <h4>DirectAdmin voor beheer</h4>
+          <p>DirectAdmin, een intuïtief en krachtig controlepaneel, is beschikbaar op alle pakketten, wat het beheer van je hostingpakket een makkie maakt!</p>
         </div>
       </div>
     </div>
@@ -158,7 +158,7 @@
             </div>
             <div class="feature-content">
               <h3>Bliksemsnelle websites</h3>
-              <p>Superschnelle pagina laadtijden</p>
+              <p>Supersnelle pagina laadtijden</p>
             </div>
           </li>
           <li class="list-item">
@@ -481,7 +481,7 @@
             <div class="col-lg-6">
               <div class="section-head">
                 <h2 class="d-none d-lg-block">Free Website Transfers</h2>
-                <p class="mb-3 mb-lg-0 text-start">Moving your website from another Web Host? Chat with us and our Account Manager will do the cPanel to cPanel website migration for you, completely Free of charge! Also, you can upgrade between plans on Linux Shared Hosting by yourself from your panel.</p>
+                <p class="mb-3 mb-lg-0 text-start">Je website verhuizen van een andere webhoster? Chat met ons en onze Account Manager zal de DirectAdmin naar DirectAdmin website migratie voor je uitvoeren, volledig gratis! Ook kun je zelf tussen pakketten upgraden op Linux Shared Hosting vanuit je panel.</p>
               </div>
             </div>
             <div class="col-lg-5 d-none d-lg-block">
@@ -582,7 +582,7 @@
           </li>
           <li>
             <a> Can I host multiple Web sites within one Shared Hosting plan? </a>
-            <p>Yes! Our Pro and Business shared hosting plans allow you to host more than one Website, by adding secondary domains through your hosting control panel i.e. cPanel. </p>
+            <p>Yes! Our Pro and Business shared hosting plans allow you to host more than one Website, by adding secondary domains through your hosting control panel i.e. DirectAdmin. </p>
           </li>
           <li>
             <a> Is there a Money Back Guarantee? </a>

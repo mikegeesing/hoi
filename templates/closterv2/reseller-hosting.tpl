@@ -267,7 +267,7 @@
           <div class="icon">
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/settings_icon.png" alt="services icon">
           </div>
-          <h4>WHM (Admin Control Panel) Features</h4>
+          <h4>DirectAdmin (Admin Control Panel) Features</h4>
           <ul class="banner-list mb-2">
             <li>Create Hosting Plans</li>
             <li>Set up and Modify Customer Accounts</li>
@@ -284,7 +284,7 @@
           <div class="icon">
             <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/customer_experience.png" alt="services icon">
           </div>
-          <h4>cPanel (Client Control Panel) Features</h4>
+          <h4>DirectAdmin (Client Control Panel) Features</h4>
           <ul class="banner-list mb-2">
             <li>Upload and Manage Web Pages</li>
             <li>View Website Statistics with AWstats</li>
@@ -352,15 +352,15 @@
         <ul class="accordion">
           <li>
             <a> What is reseller hosting?</a>
-            <p>Reseller Hosting allows you to create sub-packages within the allotted Disk Space and Bandwidth of your main Hosting package. You can use WHM to create Individual Custom packages (each with cPanel) and provision them to your Customers. Additionally, you can use WHMCS for billing (Not supported on the base plan). </p>
+            <p>Reseller Hosting allows you to create sub-packages within the allotted Disk Space and Bandwidth of your main Hosting package. You can use DirectAdmin to create Individual Custom packages and provision them to your Customers. Additionally, you can use WHMCS for billing (Not supported on the base plan). </p>
           </li>
           <li>
             <a> Which Control Panels do I get with a Reseller Hosting package? </a>
-            <p>All Reseller Hosting packages come with 2 separate Control Panels - WHM and cPanel. WHM gives you administrative control of your Reseller Hosting package and cPanel allows your Customers to manage their individual Hosting packages. </p>
+            <p>All Reseller Hosting packages come with DirectAdmin Control Panel. DirectAdmin gives you administrative control of your Reseller Hosting package and allows your Customers to manage their individual Hosting packages. </p>
           </li>
           <li>
             <a> How can I create Sub-Packages and manage them? </a>
-            <p>Your WHM Control Panel allows you to create individual Hosting packages and completely manage them. </p>
+            <p>Your DirectAdmin Control Panel allows you to create individual Hosting packages and completely manage them. </p>
           </li>
           <li>
             <a> Does Linux Reseller Hosting come with any client billing solution? </a>
@@ -368,7 +368,7 @@
           </li>
           <li>
             <a> How can my Customers manage their Individual Packages? </a>
-            <p>Your Customers will be able to manage their own packages using cPanel. </p>
+            <p>Your Customers will be able to manage their own packages using DirectAdmin. </p>
           </li>
           <li>
             <a> What are the advantages of reseller hosting?</a>
