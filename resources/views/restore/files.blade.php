@@ -133,16 +133,6 @@
                             $fileSize = $f['size'] ?? 0;
                             $filePath = $f['path'] ?? ($f['name'] ?? '');
                             $isDir = $fileType === 'dir';
-                            
-                            // Debug: log what we're rendering
-                            if (in_array($fileName, ['index.html', 'index.php', 'index.html.moved', 'index.htmls'])) {
-                                \Log::debug('View rendering file', [
-                                    'fileName' => $fileName,
-                                    'fileType' => $fileType,
-                                    'isDir' => $isDir,
-                                    'raw_f' => $f
-                                ]);
-                            }
                         @endphp
                         <li class="relative hover:bg-gray-50 transition-colors group">
                             <div class="px-4 py-3 sm:px-6 sm:grid sm:grid-cols-12 sm:gap-4 sm:items-center">
