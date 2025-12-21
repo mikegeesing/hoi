@@ -117,9 +117,18 @@ class BorgRestoreJob implements ShouldQueue
             // 6. Controleer het resultaat van de uitvoering
             if (!$process->isSuccessful()) {
                 $errorMsg = "Exit code: $exitCode\n";
-                if (!empty($stdout)) $errorMsg .= "STDOUT:\n$stdout\n";
-                if (!empty($stderr)) $errorMsg .= "STDERR:\n$stderr\n";
-                if (empty($stdout) && empty($stderr)) $errorMsg .= "No output from command\n";
+                $errorMsg .= "STDOUT:\n$stdout\n";
+                $errorMsg .= "STDERR:\n$stderr\n";
+                
+                // Log full output for debugging
+                Log::error('Borg extract failed - full output', [
+                    'job_id' => $this->restoreJob->id,
+                    'exit_code' => $exitCode,
+                    'stdout' => $stdout,
+                    'stderr' => $stderr,
+                    'command' => implode(' ', $command),
+                ]);
+                
                 throw new \RuntimeException($errorMsg);
             }
 
