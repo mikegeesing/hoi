@@ -1,1431 +1,964 @@
 <!DOCTYPE html>
 <html lang="nl">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="description" content="Professionele Nederlandse webhosting vanaf €1/maand. 99.9% uptime garantie, OpenLiteSpeed servers, uurlijke backups, Imunify360 beveiliging, Cloudflare DDoS-bescherming. 7 dagen geld-terug-garantie.">
-      <meta name="keywords" content="webhosting nederland, goedkope hosting, openlitespeed hosting, directadmin, uurlijke backups, imunify360, cloudflare hosting, shared hosting, vps hosting, reseller hosting">
-      <title>Webhosting Nederland | 99.9% Uptime, Uurlijke Backups, vanaf €1/maand</title>
-      <meta name="apple-mobile-web-app-title" content="OnlineHoster">
-      <meta name="application-name" content="OnlineHoster">
-      <meta property="og:title" content="Professionele Webhosting Nederland | 99.9% Uptime Garantie">
-      <meta property="og:site_name" content="OnlineHoster.nl">
-      <meta property="og:url" content="https://onlinehoster.nl/">
-      <meta property="og:description" content="Ruime ervaring in hosting, Nginx servers, uurlijke backups (24u) + dagelijks, Imunify360 malware bescherming, Cloudflare bot-beveiliging. Betaalbare prijzen vanaf €1/maand.">
-      <meta property="og:image" content="https://onlinehoster.nl/images/og-image.jpg">
-      <meta property="og:type" content="website">
-      <meta property="og:image" content="assets/images/favicon.png">
-      <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MGSWWL5YV4"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professionele Nederlandse webhosting vanaf €1/maand. 99.9% uptime garantie, OpenLiteSpeed servers, uurlijke backups, Imunify360 beveiliging, Cloudflare DDoS-bescherming. 7 dagen geld-terug-garantie.">
+    <meta name="keywords" content="webhosting nederland, goedkope hosting, openlitespeed hosting, directadmin, uurlijke backups, imunify360, cloudflare hosting, shared hosting, vps hosting, reseller hosting">
+    <title>Webhosting Nederland | 99.9% Uptime, Uurlijke Backups, vanaf €1/maand</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link href="assets/vendor/font-awesome-icons/fontawesome-all.min.css" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  gtag('config', 'G-MGSWWL5YV4');
-</script>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1a202c;
+            line-height: 1.6;
+            background: #ffffff;
+        }
 
-      <!-- Favicons -->
-      <link href="assets/images/favicon.png" rel="icon">
-      <link href="assets/images/favicon.png" rel="apple-touch-icon">
-      <!-- Google Fonts -->
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link
-         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-         rel="stylesheet">
-      <!-- bootstrap CSS -->
-      <link href="assets/vendor/bootstrap/css/bootstrap.min.css"
-         rel="stylesheet">
-      <!-- bootstrap icons -->
-      <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
-         rel="stylesheet">
-      <!-- Fontawesome icons -->
-      <link href="assets/vendor/font-awesome-icons/fontawesome-all.min.css"
-         rel="stylesheet">
-      <!-- remix Icons -->
-      <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-      <!-- swiper-slider CSS -->
-      <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-      <!-- Main Style CSS -->
-      <link href="assets/css/main.css" rel="stylesheet">
-      <!-- Professional Enhancements CSS -->
-      <link href="assets/css/custom-professional.css" rel="stylesheet">
-      <!-- Modern Middle CSS -->
-      <link href="assets/css/modern-middle.css" rel="stylesheet">
-      <!-- jquery js -->
-      <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
-   </head>
-   <body>
-      <div class="top-bar">
-         <div class="container">
-            <div class="row align-items-center">
-               <div class="col-6">
-             
-               </div>
-               <div class="col-6">
-                  <div class="support-item">
-                     <a class="items" href="login.php"><i
-                           class="fas fa-user"></i> Inloggen</a>
-                     <a class="items d-none d-sm-block" href="contact.php"><i
-                           class="fas fa-comments-alt"></i>
-                        Ondersteuning</a>
-                     <a class="items" href><i class="fab fa-blogger"></i>
-                        Blog</a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <div id="languagePopup" class="theme-language-popup">
-         <div class="content-wrap">
-            <div class="inner container">
-               <div class="inner-content position-relative">
-                  <span id="closeButtoncountry"><i
-                        class="ri-close-line"></i></span>
-                  
-               </div>
-            </div>
-         </div>
-      </div>
-      <div class="main-header d-none d-xl-block">
-         <div class="container">
-            <div class="row align-items-center">
-               <div class="col-6 col-md-4 col-lg-6">
-                  <a href="index.html" class="logo">
-                     <!-- logo -->
-                     <img src="assets/images/logo.png" alt="logo">
-                  </a>
-               </div>
-               <div class="col-6 col-md-8 col-lg-6">
-                  <div class="header-support">
-                     <ul
-                        class="support-item-web items d-none d-md-inline-block">
-                        <li class="call-no">Sales: <strong>
-                              <a href="mailto:Sales@onlinehoster.nl">Sales@onlinehoster.nl</a></strong></li>
-                        <li class="call-no">Support: <strong>
-                              <a href="mailto:Support@onlinehoster.nl">Support@onlinehoster.nl</a></strong></li>
-                     </ul>
-                     <a class="call-mob items d-md-none"
-                        href="tel:+911234567890"><i
-                           class="fas fa-phone-alt"></i></a>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <header class="header">
-         <div
-            class="container d-flex align-items-center justify-content-between position-relative">
-            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-            <nav class="navbar mb-0">
-               <ul>
-                  <li><a href="index.html"><span>Home</span></a></li>
-                  <li><a href="about-us.php"><span>Over ons</span></a></li>
-                  <li class="dropdown megamenu">
-                     <a href="#"><span>Domein</span><i
-                           class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul class="mega-menu">
-                        <span class="row g-0">
-                           <span class="col-xl-4">
-                              <span class="mega-menu-item">
-                                 <li>
-                                    <a href="domain-search.php">
-                                       <i class="fal fa-globe"></i>
-                                       <span class="info">
-                                          <span class="heading">Domein zoeken</span>
-                                          <span class="content">Registreer je domein hier</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="far fa-book"></i>
-                                       <span class="info">
-                                          <span class="heading">Bulk domeinzoeken</span>
-                                          <span class="content">Bulk
-                                             Registrations at lower rates</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="far fa-globe-stand"></i>
-                                       <span class="info">
-                                          <span class="heading">IDN domeinzoeken</span>
-                                          <span class="content">Zoek IDN
-                                             Domains Now!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="fal fa-boxes-alt"></i>
-                                       <span class="info">
-                                          <span class="heading">Gratis bij elk domein</span>
-                                          <span class="content">Gratis add-ons met domein!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                              </span>
-                           </span>
-                           <span class="col-xl-4">
-                              <span class="mega-menu-item">
-                                 <li>
-                                    <a href="#">
-                                       <i class="far fa-box"></i>
-                                       <span class="info">
-                                          <span class="heading">Nieuwe domeinextensies</span>
-                                          <span class="content">Ontdek nieuwe domeinextensies!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="fal fa-sun"></i>
-                                       <span class="info">
-                                          <span class="heading">Sunrise domeinen</span>
-                                          <span class="content">Kom omhoog met een perfecte domeinnaam!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="fas fa-gem"></i>
-                                       <span class="info">
-                                          <span class="heading">Premium domeinen</span>
-                                          <span class="content">Verken premium domeinselect!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="fal fa-coins"></i>
-                                       <span class="info">
-                                          <span class="heading">Naamvoorstelgereedschap</span>
-                                          <span class="content">Noem je bedrijf gemakkelijk!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                              </span>
-                           </span>
-                           <span class="col-xl-4">
-                              <span class="mega-menu-item">
-                                 <li>
-                                    <a href="trasfer-domain.html">
-                                       <i class="fal fa-sign-in"></i>
-                                       <span class="info">
-                                          <span class="heading">Domein verhuizen</span>
-                                          <span class="content">Verhuis je bestaande domeinen</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="fal fa-globe"></i>
-                                       <span class="info">
-                                          <span class="heading">Bulk domein
-                                             Transfer</span>
-                                          <span class="content">Bespaar door domeinen in bulk te verhuizen</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="domain-promos.html">
-                                       <i class="fal fa-badge-percent"></i>
-                                       <span class="info">
-                                          <span class="heading">Domeinacties</span>
-                                          <span class="content">Grote besparingen. Handelen snel!</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                                 <li>
-                                    <a href="#">
-                                       <i class="fal fa-eye"></i>
-                                       <span class="info">
-                                          <span class="heading">Whois-lookup</span>
-                                          <span class="content">Voer een Whois-zoeking uit</span>
-                                       </span>
-                                    </a>
-                                 </li>
-                              </span>
-                           </span>
-                        </span>
-                     </ul>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#"><span>Hosting</span><i
-                           class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul class="menu-item">
-                        <li><a href="shared-hosting.php">
-                              <i class="fal fa-server"></i>
-                              <span class="info">
-                                 <span class="heading">Webhosting</span>
-                                 <span class="content">Goedkope hostingoplossingen</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="windows-hosting.html">
-                              <i class="fab fa-windows"></i>
-                              <span class="info">
-                                 <span class="heading">Windows hosting</span>
-                                 <span class="content">Windows-gebaseerde hosting voor jouw behoeften.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="wordpress-hosting.html">
-                              <i class="fab fa-wordpress"></i>
-                              <span class="info">
-                                 <span class="heading">WordPress hosting</span>
-                                 <span class="content">Geoptimaliseerde hosting voor WordPress-sites.</span>
-                              </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#"><span>Server</span><i
-                           class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul class="menu-item">
-                        <li><a href="vps-server.html">
-                              <i class="fal fa-database"></i>
-                              <span class="info">
-                                 <span class="heading">VPS-server</span>
-                                 <span class="content">Flexibele VPS-oplossingen voor jou.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="dedicated-server.html">
-                              <i class="fal fa-server"></i>
-                              <span class="info">
-                                 <span class="heading">Dedicated server</span>
-                                 <span class="content">Krachtige servers voor toegewijde prestaties.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="windows-server.html">
-                              <i class="fab fa-windows"></i>
-                              <span class="info">
-                                 <span class="heading">Windows Deicated
-                                    Server</span>
-                                 <span class="content">Windows-based dedicated
-                                    servers for performance.</span>
-                              </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#"><span>Reseller</span><i
-                           class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul class="menu-item">
-                        <li><a href="reseller-hosting.html">
-                              <i class="far fa-globe"></i>
-                              <span class="info">
-                                 <span class="heading">Reseller hosting</span>
-                                 <span class="content">Start vandaag je hostingbedrijf!</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="windows-reseller.html">
-                              <i class="fab fa-windows"></i>
-                              <span class="info">
-                                 <span class="heading">Windows Reseller
-                                    Hosting</span>
-                                 <span class="content">Windows-based reseller
-                                    hosting for entrepreneurs.</span>
-                              </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </li>
-                  <li class="dropdown">
-                     <a href="#"><span>E-mail</span><i
-                           class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul class="menu-item">
-                        <li><a href="business-email.html">
-                              <i class="fal fa-mail-bulk"></i>
-                              <span class="info">
-                                 <span class="heading">Zakelijke e-mail</span>
-                                 <span class="content">Professionele e-mailoplossingen voor bedrijven.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="enterprices-email.html">
-                              <i class="fas fa-envelope-open-text"></i>
-                              <span class="info">
-                                 <span class="heading">Enterprise e-mail</span>
-                                 <span class="content">E-mailoplossingen op ondernemingsniveau voor bedrijven.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="gapps.html">
-                              <i class="fab fa-google"></i>
-                              <span class="info">
-                                 <span class="heading">Google Workspace</span>
-                                 <span class="content">Boost productivity with
-                                    Google Workspace.</span>
-                              </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </li>
+        :root {
+            --primary: #35b15e;
+            --primary-dark: #2a8d4a;
+            --secondary: #102d47;
+            --light: #f8f9fa;
+            --gray: #718096;
+            --border: #e2e8f0;
+        }
 
-                  <li class="dropdown">
-                     <a href="#"><span>Beveiliging</span><i
-                           class="bi bi-chevron-down dropdown-indicator"></i></a>
-                     <ul class="menu-item">
-                        <li><a href="ssl.html">
-                              <i class="far fa-lock"></i>
-                              <span class="info">
-                                 <span class="heading">SSL-certificaat</span>
-                                 <span class="content">Beveilig je site met SSL.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="sitelock.html">
-                              <i class="fal fa-shield-alt"></i>
-                              <span class="info">
-                                 <span class="heading">Sitelock</span>
-                                 <span class="content">Protect your website with
-                                    Sitelock.</span>
-                              </span>
-                           </a>
-                        </li>
-                        <li><a href="codeguard.html">
-                              <i class="far fa-cloud-download"></i>
-                              <span class="info">
-                                 <span class="heading">CodeGuard</span>
-                                 <span class="content">Back-up en beveilig je website.</span>
-                              </span>
-                           </a>
-                        </li>
-                     </ul>
-                  </li>
+        /* ============================================
+           HEADER & NAVIGATION
+           ============================================ */
 
-                  <li><a href="contact.php"><span>Contact</span></a></li>
-                  <li><a href="index.php?rp=/login" class="menu-account-btn"><span>Inloggen</span></a></li>
-               </ul>
-            </nav>
-            <div class="d-flex align-items-center d-xl-none w-100">
-               <a href="index.html" class="logo-mob">
-                  <!-- logo -->
-                  <img src="assets/images/logo.png" alt="logo">
-               </a>
-               <div class="header-support w-100">
-                  <ul class="support-item-web items d-none d-md-inline-block">
-                       <li class="call-no">Sales: <strong><a href="mailto:Sales@onlinehoster.nl">Sales@onlinehoster.nl</a></strong></li>
-                     <li class="call-no">Support: <strong><a href="mailto:Support@onlinehoster.nl">Support@onlinehoster.nl</a></strong></li>
-                  </ul>
-                  <a class="cart-icon items" href>
-                     <img src="assets/images/cart.svg" alt="cart icon">
-                     <span class="count">0</span>
-                  </a>
-               </div>
-            </div>
-         </div>
-      </header>
-      <div class="mob-secreen-page-slider d-sm-none user-select-none">
-         <div class="swiper swiper-hader-link">
-            <div class="swiper-wrapper">
-               <div class="swiper-slide">
-                  <a href="shared-hosting.html" class="slide-item">
-                     <i class="fal fa-server"></i>
-                     <span>Webhosting</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="windows-hosting.html" class="slide-item">
-                     <i class="fab fa-windows"></i>
-                     <span>Windows hosting</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="windows-hosting.html" class="slide-item">
-                     <i class="fab fa-wordpress-simple"></i>
-                     <span>WordPress hosting</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="reseller-hosting.html" class="slide-item">
-                     <i class="fal fa-cabinet-filing"></i>
-                     <span>Reseller hosting</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="cloud.html" class="slide-item">
-                     <i class="fal fa-cloud"></i>
-                     <span>Cloud hosting</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="dedicated-server.html" class="slide-item">
-                     <i class="fal fa-server"></i>
-                     <span>Dedicated server</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="vps.html" class="slide-item">
-                     <i class="fal fa-database"></i>
-                     <span>VPS hosting</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="ssl.html" class="slide-item">
-                     <i class="fal fa-lock-alt"></i>
-                     <span>SSL-certificaat</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="codeguard.html" class="slide-item">
-                     <i class="fal fa-cloud-download"></i>
-                     <span>CodeGuard back-up</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="business-email.html" class="slide-item">
-                     <i class="fal fa-envelope-open-text"></i>
-                     <span>Zakelijke e-mail</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="enterprices-email.html" class="slide-item">
-                     <i class="fal fa-envelope"></i>
-                     <span>Enterprise e-mail</span>
-                  </a>
-               </div>
-               <div class="swiper-slide">
-                  <a href="gapps.html" class="slide-item">
-                     <i class="fab fa-google"></i>
-                     <span>Google Workspace</span>
-                  </a>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- header end -->
+        .header-top {
+            background: #102d47;
+            color: white;
+            padding: 12px 0;
+            font-size: 0.9rem;
+        }
 
+        .header-top a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            margin: 0 20px;
+        }
 
-<!-- banner start -->
-<div class="modern-hero-section">
-    <div class="hero-gradient-bg"></div>
-    <div class="container py-5">
-        <!-- Compact Trust Bar -->
-        <div class="modern-trust-bar d-flex flex-wrap justify-content-center align-items-center gap-4 mb-5">
-            <div class="trust-item">
-                <i class="fas fa-check-circle"></i>
-                <span>99.9% Uptime</span>
-            </div>
-            <div class="trust-item">
-                <i class="fas fa-shield-alt"></i>
-                <span>Imunify360</span>
-            </div>
-            <div class="trust-item">
-                <i class="fas fa-clock"></i>
-                <span>Uurlijkse Backups</span>
-            </div>
-            <div class="trust-item">
-                <i class="fas fa-headset"></i>
-                <span>24/7 Support</span>
-            </div>
-        </div>
+        .header-top a:hover {
+            color: #35b15e;
+        }
 
-        <div class="row align-items-center">
-            <div class="col-lg-7">
-                <div class="hero-content">
-                    <div class="hero-badge mb-3">
-                        <i class="fas fa-server me-2"></i>
-                        Nederlandse Hosting Provider • 15+ Jaar Ervaring
-                    </div>
-                    <h1 class="hero-title">Professionele Webhosting<br><span class="gradient-text">vanaf €1/maand</span></h1>
-                    <p class="hero-subtitle">Enterprise-grade beveiliging, OpenLiteSpeed servers en DirectAdmin control panel. Alles wat je nodig hebt voor een succesvolle website.</p>
-                    
-                    <div class="hero-features">
-                        <div class="row g-3">
-                            <div class="col-sm-6">
-                                <div class="feature-compact">
-                                    <i class="fas fa-bolt"></i>
-                                    <span>OpenLiteSpeed Performance</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="feature-compact">
-                                    <i class="fas fa-lock"></i>
-                                    <span>Gratis SSL Certificaat</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="feature-compact">
-                                    <i class="fas fa-database"></i>
-                                    <span>NVMe SSD Storage</span>
-                                </div>
-                            </div>
-                            <div class="col-sm-6">
-                                <div class="feature-compact">
-                                    <i class="fas fa-cog"></i>
-                                    <span>DirectAdmin Panel</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            padding: 16px 0;
+        }
 
-                    <div class="hero-cta d-flex gap-3 flex-wrap">
-                        <a class="btn-modern-primary" onClick="document.getElementById('Plans').scrollIntoView();">
-                            Bekijk Pakketten
-                            <i class="fas fa-arrow-right ms-2"></i>
-                        </a>
-                        <a class="btn-modern-secondary" href="contact.php">
-                            Contact
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 d-none d-lg-block">
-                <div class="hero-visual">
-                    <div class="visual-card">
-                        <div class="stat-row">
-                            <div class="stat-box">
-                                <div class="stat-icon bg-success-subtle">
-                                    <i class="fas fa-server text-success"></i>
-                                </div>
-                                <div>
-                                    <div class="stat-value">99.9%</div>
-                                    <div class="stat-label">Uptime</div>
-                                </div>
-                            </div>
-                            <div class="stat-box">
-                                <div class="stat-icon bg-primary-subtle">
-                                    <i class="fas fa-tachometer-alt text-primary"></i>
-                                </div>
-                                <div>
-                                    <div class="stat-value">Fast</div>
-                                    <div class="stat-label">Performance</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="server-illustration">
-                            <img src="assets/images/performance.svg" alt="Hosting" class="img-fluid">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- banner end -->
+        .navbar-brand {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #102d47 !important;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-<section class="modern-pricing-section py-5" id="Plans">
-    <div class="container">
-        <div class="text-center mb-5">
-            <div class="section-badge">Hosting Pakketten</div>
-            <h2 class="section-title">Kies het Perfecte Pakket</h2>
-            <p class="section-subtitle">Alle pakketten inclusief gratis SSL, uurlijkse backups en DirectAdmin</p>
-        </div>
-        <div class="pricing-cards-wrapper">
-        <div class="row gy-4 gy-xl-0 justify-content-between">
-            <div class="col-lg-5 col-xl-4 col-md-6">
-                <div class="pricing-item">
-                    <div class="pricing-heading">
-                        <div class="name">Webhosting Starter</div>
-                        <h4 class="title">
-                            €1,00 <span class="durection">/maand</span>
-                        </h4>
-                    </div>
-                    <div class="pricing_body">
-                        <ul>
-                            <li>1 Website</li>
-                            <li>1 GB NVMe-webruimte</li>
-                            <li>10 GB dataverkeer</li>
-                            <li>2 e-mailaccounts</li>
-                            <li>Uurlijkse back-ups</li>
-                            <li>Installatron</li>
-                            <li>DirectAdmin controlepaneel</li>
-                            <li>PHP 7.4 t/m 8.4</li>
-                            <li>Imunify360 (bot bescherming)</li>
-                            <li>Redis cache</li>
-                            <li class="tootips-list">Gratis SSL-certificaat
-                                <span>Al onze Shared Hosting pakketten worden geleverd met een vooraf geïnstalleerd SSL-certificaat van Let’s Encrypt.
-                                                                                        <br> Dit betekent dat je website automatisch wordt aangemerkt als ‘veilig’, en dat alle informatie die via de site wordt verzonden volledig versleuteld is.</span>
-                            </li>
-                        </ul>
-                        <a class="btn-01 d-block mt-3 w-100" href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-starter&language=dutch">Kies dit pakket</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-xl-4 col-md-6">
-                <div class="pricing-item">
-                    <div class="pricing-heading">
-                        <div class="name">Webhosting Pro</div>
-                        <h4 class="title">
-                            €2,00 <span class="durection">/maand</span>
-                        </h4>
-                    </div>
-                    <div class="pricing_body">
-                        <ul>
-                            <li>2 websites</li>
-                            <li>2 GB NVMe-webruimte</li>
-                            <li>30 GB dataverkeer</li>
-                            <li>5 e-mailaccounts</li>
-                            <li>Uurlijkse back-ups</li>
-                            <li>Installatron</li>
-                            <li>DirectAdmin controlepaneel</li>
-                            <li>PHP 7.4 t/m 8.4</li>                     
-                            <li>Imunify360 (bot bescherming)</li>
-                            <li>Redis cache</li>
-                            <li class="tootips-list">Gratis SSL-certificaat
-                                <span>Al onze Shared Hosting pakketten worden geleverd met een vooraf geïnstalleerd SSL-certificaat van Let’s Encrypt.
-                                                                                        <br> Dit betekent dat je website automatisch wordt aangemerkt als ‘veilig’, en dat alle informatie die via de site wordt verzonden volledig versleuteld is.</span>
-                            </li>
-                        </ul>
-                        <a class="btn-01 d-block mt-3 w-100" href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-pro&language=dutch">Kies dit pakket</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 col-xl-4 col-md-6">
-                <div class="pricing-item">
-                    <div class="pricing-heading">
-                        <div class="name">Webhosting Expert</div>
-                        <h4 class="title">
-                            €5,00 <span class="durection">/maand</span>
-                        </h4>
-                    </div>
-                    <div class="pricing_body">
-                        <ul>
-                            <li>5 websites</li>
-                            <li>5 GB NVMe-webruimte</li>
-                            <li>100 GB dataverkeer</li>
-                            <li>Onbeperkt e-mailaccounts</li>
-                            <li>Uurlijkse back-ups</li>
-                            <li>Installatron</li>
-                            <li>DirectAdmin controlepaneel</li>
-                            <li>PHP 7.4 t/m 8.4</li>
-                            <li>Imunify360 (bot bescherming)</li>
-                            <li>Redis cache</li>
-                            <li class="tootips-list">Gratis SSL-certificaat
-                                <span>Al onze Shared Hosting pakketten worden geleverd met een vooraf geïnstalleerd SSL-certificaat van Let’s Encrypt.
-                                                                                        <br> Dit betekent dat je website automatisch wordt aangemerkt als ‘veilig’, en dat alle informatie die via de site wordt verzonden volledig versleuteld is.</span>
-                            </li>
-                        </ul>
-                        <a class="btn-01 d-block mt-3 w-100" href>Kies dit pakket</a>
-                    </div>
+        .navbar-brand img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-link {
+            color: #1a202c !important;
+            font-weight: 500;
+            margin: 0 12px;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-link:hover {
+            color: #35b15e !important;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #35b15e;
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .btn-login {
+            background: #35b15e;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background: #2a8d4a;
+            transform: translateY(-2px);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+
+        .hero {
+            background: linear-gradient(135deg, #102d47 0%, #1a3a52 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(53, 177, 94, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(53, 177, 94, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(53, 177, 94, 0.2);
+            border: 1px solid rgba(53, 177, 94, 0.4);
+            color: #35b15e;
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 30px;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .btn-primary-large {
+            background: linear-gradient(135deg, #35b15e, #2a8d4a);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(53, 177, 94, 0.3);
+        }
+
+        .btn-primary-large:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(53, 177, 94, 0.4);
+            color: white;
+        }
+
+        .btn-secondary-large {
+            background: transparent;
+            color: white;
+            padding: 16px 40px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all 0.3s;
+            border: 2px solid white;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-secondary-large:hover {
+            background: white;
+            color: #35b15e;
+            transform: translateY(-3px);
+        }
+
+        .hero-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .hero-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .hero-feature i {
+            font-size: 1.5rem;
+            color: #35b15e;
+            flex-shrink: 0;
+        }
+
+        .hero-feature h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .hero-feature p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin: 0;
+        }
+
+        /* ============================================
+           PRICING SECTION
+           ============================================ */
+
+        .pricing-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-badge {
+            display: inline-block;
+            background: rgba(53, 177, 94, 0.1);
+            color: #35b15e;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #1a202c;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #718096;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pricing-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 40px 30px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .pricing-card:hover {
+            border-color: #35b15e;
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(53, 177, 94, 0.15);
+        }
+
+        .pricing-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: #35b15e;
+            margin-bottom: 5px;
+        }
+
+        .pricing-period {
+            color: #718096;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            color: #1a202c;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pricing-features li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-features li i {
+            color: #35b15e;
+            font-size: 0.9rem;
+        }
+
+        .pricing-cta {
+            background: linear-gradient(135deg, #35b15e, #2a8d4a);
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .pricing-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(53, 177, 94, 0.3);
+            color: white;
+        }
+
+        /* ============================================
+           FEATURES SECTION
+           ============================================ */
+
+        .features-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #102d47 0%, #1a3a52 100%);
+            color: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(53, 177, 94, 0.3);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-item:hover {
+            border-color: #35b15e;
+            background: rgba(53, 177, 94, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(53, 177, 94, 0.2);
+        }
+
+        .feature-item i {
+            font-size: 2.5rem;
+            color: #35b15e;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-item h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .feature-item p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ============================================
+           CTA SECTION
+           ============================================ */
+
+        .cta-section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        .cta-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .cta-text h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1a202c;
+        }
+
+        .cta-text p {
+            font-size: 1.1rem;
+            color: #718096;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .cta-checklist {
+            list-style: none;
+            margin-bottom: 40px;
+        }
+
+        .cta-checklist li {
+            padding: 12px 0;
+            color: #1a202c;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-weight: 500;
+        }
+
+        .cta-checklist li i {
+            color: #35b15e;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .cta-image {
+            text-align: center;
+        }
+
+        .cta-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+
+        .footer {
+            background: #102d47;
+            color: white;
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h4 {
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #35b15e;
+        }
+
+        .footer-column a,
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #35b15e;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 2.75rem;
+            }
+
+            .section-header h2 {
+                font-size: 2.25rem;
+            }
+
+            .cta-text h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 991px) {
+            .hero {
+                padding: 60px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary-large,
+            .btn-secondary-large {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .cta-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .cta-text h2 {
+                font-size: 1.75rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 0;
+            }
+
+            .hero h1 {
+                font-size: 1.75rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .pricing-section,
+            .features-section,
+            .cta-section {
+                padding: 60px 0;
+            }
+
+            .section-header h2 {
+                font-size: 1.75rem;
+            }
+
+            .pricing-cards,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pricing-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .feature-item {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .pricing-card:nth-child(1) { animation-delay: 0.1s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .feature-item:nth-child(1) { animation-delay: 0.1s; }
+        .feature-item:nth-child(2) { animation-delay: 0.2s; }
+        .feature-item:nth-child(3) { animation-delay: 0.3s; }
+        .feature-item:nth-child(4) { animation-delay: 0.4s; }
+        .feature-item:nth-child(5) { animation-delay: 0.5s; }
+        .feature-item:nth-child(6) { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+
+    <!-- Header Top -->
+    <div class="header-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <a href="login.php"><i class="fas fa-user"></i> Inloggen</a>
+                    <a href="contact.php"><i class="fas fa-comments"></i> Ondersteuning</a>
+                    <a href="#"><i class="fas fa-blog"></i> Blog</a>
                 </div>
             </div>
         </div>
     </div>
-</section>
 
-<section class="modern-features-section py-5 bg-dark">
-    <div class="container">
-        <div class="text-center mb-5">
-            <div class="section-badge-dark">Waarom OnlineHoster</div>
-            <h2 class="section-title-dark">Enterprise Features, Betaalbare Prijzen</h2>
-            <p class="section-subtitle-dark">Professionele hosting met alle tools die je nodig hebt</p>
-        </div>
-        <div class="features-grid-new">
-            <div class="feature-card-new">
-                <div class="feature-card-header">
-                    <img src="assets/images/backup.png" alt="Backup service icon" class="feature-icon-new">
-                    <h3>Backups</h3>
-                </div>
-                <h4>Uurlijke + Dagelijkse Backups</h4>
-                <p>Automatische backups elk uur en dagelijks voor maximale zekerheid van je data.</p>
-            </div>
-            <div class="feature-card-new">
-                <div class="feature-card-header">
-                    <img src="assets/images/viruses.png" alt="Security protection icon" class="feature-icon-new">
-                    <h3>Beveiliging</h3>
-                </div>
-                <h4>Imunify360 + Cloudflare</h4>
-                <p>Real-time malware scanning en DDoS bescherming tegen alle bedreigingen.</p>
-            </div>
-            <div class="feature-card-new">
-                <div class="feature-card-header">
-                    <img src="assets/images/rocket.png" alt="High performance server icon" class="feature-icon-new">
-                    <h3>Snelheid</h3>
-                </div>
-                <h4>OpenLiteSpeed Servers</h4>
-                <p>Bliksemsnelle webservers met 99.9% uptime garantie voor optimale prestaties.</p>
-            </div>
-            <div class="feature-card-new">
-                <div class="feature-card-header">
-                    <img src="assets/images/tools.png" alt="Installation tools icon" class="feature-icon-new">
-                    <h3>Installaties</h3>
-                </div>
-                <h4>1-Klik Installaties</h4>
-                <p>400+ applicaties inclusief WordPress, WooCommerce en Joomla met één klik.</p>
-            </div>
-            <div class="feature-card-new">
-                <div class="feature-card-header">
-                    <img src="assets/images/Firewall.png" alt="Security firewall icon" class="feature-icon-new">
-                    <h3>Firewall</h3>
-                </div>
-                <h4>Advanced Security</h4>
-                <p>24/7 monitoring met real-time malware scanning en proactieve beveiliging.</p>
-            </div>
-            <div class="feature-card-new">
-                <div class="feature-card-header">
-                    <img src="assets/images/customer_experience.png" alt="Customer support icon" class="feature-icon-new">
-                    <h3>Support</h3>
-                </div>
-                <h4>Persoonlijke Support</h4>
-                <p>Nederlandse support team klaar om je 24/7 te helpen met al je vragen.</p>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-server" style="color: #35b15e; font-size: 1.5rem;"></i>
+                OnlineHoster
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#pricing">Pakketten</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.php">Contact</a></li>
+                    <li class="nav-item"><a class="btn-login" href="login.php">Inloggen</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
-<section class="modern-cta-section py-5" style="background: linear-gradient(135deg, #35b15e 0%, #2a8d4a 100%);">
-    <div class="container">
-        <div class="row align-items-center gy-4">
-            <div class="col-lg-7">
-                <div>
-                    <h2 style="color: white; margin-bottom: 1rem;">Website verhuizen?</h2>
-                    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 1.5rem;">Wij regelen alles gratis voor je. Volledige migratie van website, database en e-mail met nul downtime.</p>
-                    <div class="d-flex gap-3 flex-wrap">
-                        <a class="btn-modern-white" onClick="document.getElementById('Plans').scrollIntoView();">
-                            <i class="fas fa-shopping-cart me-2"></i>Bekijk Pakketten
-                        </a>
-                        <a class="btn-modern-outline" href="contact.php">
-                            <i class="fas fa-phone me-2"></i>Neem Contact Op
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-5 d-none d-lg-block">
-                <img src="assets/images/manage.svg" alt="Migration" style="max-width: 100%; height: auto;">
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="modern-info-section py-5">
-    <div class="container">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 d-none d-lg-block">
-                <img src="assets/images/website.png" alt="Hosting" style="max-width: 100%; height: auto;">
-            </div>
-            <div class="col-lg-6">
-                <h2 style="margin-bottom: 1.5rem; color: #102d47;">Waarom Klanten voor OnlineHoster Kiezen</h2>
-                <div class="info-list">
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-check-circle"></i>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="hero-content">
+                        <div class="hero-badge">
+                            <i class="fas fa-certificate"></i> Nederlandse Hosting Provider
                         </div>
-                        <div>
-                            <h5>Professioneel Beheer</h5>
-                            <p>DirectAdmin control panel voor eenvoudig website beheer</p>
+                        <h1>Professionele Webhosting met 99.9% Uptime</h1>
+                        <p class="hero-subtitle">Enterprise-grade beveiliging, bliksemsnelle OpenLiteSpeed servers en 24/7 support. Alles wat je nodig hebt voor succes, vanaf €1/maand.</p>
+                        <div class="hero-buttons">
+                            <a href="#pricing" class="btn-primary-large">
+                                <i class="fas fa-rocket"></i> Bekijk Pakketten
+                            </a>
+                            <a href="contact.php" class="btn-secondary-large">
+                                <i class="fas fa-phone"></i> Neem Contact Op
+                            </a>
                         </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div>
-                            <h5>Volledige Beveiliging</h5>
-                            <p>Imunify360 + Cloudflare bescherming tegen alle bedreigingen</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div>
-                            <h5>Snelle Servers</h5>
-                            <p>OpenLiteSpeed voor bliksemsnelle website performance</p>
-                        </div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div>
-                            <h5>Gegarandeerde Uptime</h5>
-                            <p>99.9% uptime garantie met uurlijke + dagelijkse backups</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-gap section-bg bg1">
-            <div class="col-lg-4 col-md-6">
-                <div class="services-one h-100 bg-white">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="number-box me-3">
-                            <span>02</span>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/images/viruses.png" alt="Security protection icon" style="max-width: 60px;">
-                        </div>
-                    </div>
-                    <h4 class="mb-3">Imunify360 + Cloudflare</h4>
-                    <p class="text-muted">Volledige bescherming tegen malware, bots en aanvallen. <strong>Imunify360</strong> scant real-time op malware en <strong>Cloudflare</strong> filtert bot-verkeer en DDoS-aanvallen.</p>
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark"><i class="fas fa-shield-alt me-1"></i> Real-time scanning</span>
-                        <span class="badge bg-light text-dark"><i class="fas fa-lock me-1"></i> DDoS bescherming</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-one h-100 bg-white">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="number-box me-3">
-                            <span>03</span>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/images/rocket.png" alt="High performance server icon" style="max-width: 60px;">
-                        </div>
-                    </div>
-                    <h4 class="mb-3">OpenLiteSpeed Servers</h4>
-                    <p class="text-muted">Onze hosting draait op <strong>OpenLiteSpeed webservers</strong> — bekend om hun snelheid en stabiliteit. Met <strong>99.9% uptime garantie</strong> en minimale downtime.</p>
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark"><i class="fas fa-tachometer-alt me-1"></i> Bliksemsnelle</span>
-                        <span class="badge bg-light text-dark"><i class="fas fa-check-circle me-1"></i> 99.9% Uptime</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-one h-100 bg-white">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="number-box me-3">
-                            <span>04</span>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/images/tools.png" alt="Installation tools icon" style="max-width: 60px;">
-                        </div>
-                    </div>
-            <div class="col-lg-6">
-                <div class="content-wrapper">
-                    <span class="badge badge-primary mb-3">
-                        <i class="fas fa-rocket me-2"></i>Gratis Migratie Service
-                    </span>
-                    <h2 class="display-5 fw-bold mb-4">Website verhuizen? Wij regelen het!</h2>
-                    <p class="lead mb-4">Stap over zonder zorgen. Onze experts migreren je website, e-mail en databases volledig gratis naar onze snelle servers.</p>
-                    
-                    <div class="feature-list mb-4">
-                        <div class="feature-list-item d-flex align-items-start mb-3">
-                            <div class="feature-icon me-3">
-                                <i class="fas fa-check-circle text-success fa-lg"></i>
-                            </div>
-                            <div>
-                                <h5 class="mb-1">Gratis migratie service</h5>
-                                <p class="text-muted mb-0">Bij onze Premium pakketten verhuizen wij je volledige website inclusief databases en e-mail gratis</p>
-                            </div>
-                        </div>
-                        <div class="feature-list-item d-flex align-items-start mb-3">
-                            <div class="feature-icon me-3">
-                                <i class="fas fa-check-circle text-success fa-lg"></i>
-                            </div>
-                            <div>
-                                <h5 class="mb-1">Nul downtime</h5>
-                                <p class="text-muted mb-0">We zorgen voor een naadloze overstap zonder dat je website offline gaat</p>
-                            </div>
-                        </div>
-                        <div class="feature-list-item d-flex align-items-start mb-3">
-                            <div class="feature-icon me-3">
-                                <i class="fas fa-check-circle text-success fa-lg"></i>
-                            </div>
-                            <div>
-                                <h5 class="mb-1">Persoonlijke begeleiding</h5>
-                                <p class="text-muted mb-0">Ons team helpt je stap voor stap met de hele migratie</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="cta-wrapper d-flex gap-3 flex-wrap">
-                        <a class="btn btn-01 btn-lg px-4" onClick="document.getElementById('Plans').scrollIntoView();">
-                            <i class="fas fa-shopping-cart me-2"></i>Bekijk Pakketten
-                        </a>
-                        <a class="btn btn-outline-primary btn-lg px-4" href="contact.php">
-                            <i class="fas fa-phone me-2"></i>Neem Contact Op
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="image-wrapper text-center">
-                    <img src="assets/images/manage.svg" alt="Website migratie service" class="img-fluid" style="max-width: 85%;">
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-gap bg-white position-relative">
-    <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-lg-8 text-center">
-                <span class="badge badge-primary mb-3">
-                    <i class="fas fa-shield-alt me-2"></i>Premium Hosting Oplossing
-                </span>
-                <h2 class="display-5 fw-bold mb-3">Snelle en Veilige Hosting voor Jouw Succes</h2>
-                <p class="lead text-muted mb-0">Enterprise-grade beveiliging, bliksemsnelle prestaties en betrouwbare uptime voor jouw website.</p>
-            </div>
-        </div>
-
-        <div class="row align-items-center gy-5">
-            <div class="col-lg-5">
-                <div class="hosting-image-wrapper text-center">
-                    <img src="assets/images/website.png" alt="Veilige en snelle hosting" class="img-fluid" style="max-width: 60%;">
-                </div>
-            </div>
-            <div class="col-lg-7">
-                <div class="stats-grid row g-3 mb-4">
-                    <div class="col-sm-6 col-6">
-                        <div class="stat-card-pro text-center p-4 bg-white border rounded h-100">
-                            <i class="fas fa-check-circle text-success mb-2" style="font-size: 2rem;"></i>
-                            <div class="stat-number text-dark fw-bold h2 mb-1">99.9%</div>
-                            <div class="stat-label text-muted">Uptime Garantie</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-6">
-                        <div class="stat-card-pro text-center p-4 bg-white border rounded h-100">
-                            <i class="fas fa-clock text-primary mb-2" style="font-size: 2rem;"></i>
-                            <div class="stat-number text-dark fw-bold h2 mb-1">24/7</div>
-                            <div class="stat-label text-muted">Monitoring</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-6">
-                        <div class="stat-card-pro text-center p-4 bg-white border rounded h-100">
-                            <i class="fas fa-users text-warning mb-2" style="font-size: 2rem;"></i>
-                            <div class="stat-number text-dark fw-bold h2 mb-1">1000+</div>
-                            <div class="stat-label text-muted">Tevreden Klanten</div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-6">
-                        <div class="stat-card-pro text-center p-4 bg-white border rounded h-100">
-                            <i class="fas fa-award text-success mb-2" style="font-size: 2rem;"></i>
-                            <div class="stat-number text-dark fw-bold h2 mb-1">15+</div>
-                            <div class="stat-label text-muted">Jaar Ervaring</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="features-grid row g-3">
-                    <div class="col-sm-6">
-                        <div class="feature-card-pro p-3 bg-light rounded h-100">
-                            <div class="d-flex align-items-start">
-                                <div class="feature-icon-pro me-3">
-                                    <i class="fas fa-bolt text-warning" style="font-size: 1.5rem;"></i>
-                                </div>
+                        <div class="hero-features">
+                            <div class="hero-feature">
+                                <i class="fas fa-shield-alt"></i>
                                 <div>
-                                    <h6 class="fw-bold mb-1">Maximale Snelheid</h6>
-                                    <p class="text-muted small mb-0">OpenLiteSpeed webserver</p>
+                                    <h4>99.9% Uptime</h4>
+                                    <p>Gegarandeerd</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="feature-card-pro p-3 bg-light rounded h-100">
-                            <div class="d-flex align-items-start">
-                                <div class="feature-icon-pro me-3">
-                                    <i class="fas fa-shield-alt text-success" style="font-size: 1.5rem;"></i>
-                                </div>
+                            <div class="hero-feature">
+                                <i class="fas fa-bolt"></i>
                                 <div>
-                                    <h6 class="fw-bold mb-1">Complete Beveiliging</h6>
-                                    <p class="text-muted small mb-0">Imunify360 + Cloudflare</p>
+                                    <h4>OpenLiteSpeed</h4>
+                                    <p>Bliksemsnelle servers</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="feature-card-pro p-3 bg-light rounded h-100">
-                            <div class="d-flex align-items-start">
-                                <div class="feature-icon-pro me-3">
-                                    <i class="fas fa-database text-info" style="font-size: 1.5rem;"></i>
-                                </div>
+                            <div class="hero-feature">
+                                <i class="fas fa-lock"></i>
                                 <div>
-                                    <h6 class="fw-bold mb-1">Automatische Backups</h6>
-                                    <p class="text-muted small mb-0">Uurlijks + dagelijks</p>
+                                    <h4>Imunify360</h4>
+                                    <p>Real-time beveiliging</p>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="feature-card-pro p-3 bg-light rounded h-100">
-                            <div class="d-flex align-items-start">
-                                <div class="feature-icon-pro me-3">
-                                    <i class="fas fa-headset text-primary" style="font-size: 1.5rem;"></i>
-                                </div>
+                            <div class="hero-feature">
+                                <i class="fas fa-clock"></i>
                                 <div>
-                                    <h6 class="fw-bold mb-1">Nederlandse Support</h6>
-                                    <p class="text-muted small mb-0">Altijd persoonlijke hulp</p>
+                                    <h4>Uurlijke Backups</h4>
+                                    <p>24 uur + dagelijks</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="text-center text-lg-start mt-4">
-                    <a class="btn btn-01 btn-lg px-5" onClick="document.getElementById('Plans').scrollIntoView();">
-                        <i class="fas fa-rocket me-2"></i>Bekijk Hosting Pakketten
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">
+                    <i class="fas fa-tag"></i> HOSTING PAKKETTEN
+                </div>
+                <h2>Kies de Perfecte Hosting</h2>
+                <p>Alle pakketten inclusief gratis SSL certificaat, DirectAdmin controlepaneel en uurlijke backups</p>
+            </div>
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-name">Starter</div>
+                    <div class="pricing-price">€1.00</div>
+                    <div class="pricing-period">/maand</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 1 Website</li>
+                        <li><i class="fas fa-check"></i> 1 GB NVMe SSD</li>
+                        <li><i class="fas fa-check"></i> 10 GB Bandwidth</li>
+                        <li><i class="fas fa-check"></i> 2 E-mail Accounts</li>
+                        <li><i class="fas fa-check"></i> DirectAdmin Panel</li>
+                        <li><i class="fas fa-check"></i> Gratis SSL</li>
+                        <li><i class="fas fa-check"></i> Imunify360</li>
+                    </ul>
+                    <a href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-starter&language=dutch" class="pricing-cta">
+                        Kies dit pakket
+                    </a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-name">Pro</div>
+                    <div class="pricing-price">€2.00</div>
+                    <div class="pricing-period">/maand</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 2 Websites</li>
+                        <li><i class="fas fa-check"></i> 2 GB NVMe SSD</li>
+                        <li><i class="fas fa-check"></i> 30 GB Bandwidth</li>
+                        <li><i class="fas fa-check"></i> 5 E-mail Accounts</li>
+                        <li><i class="fas fa-check"></i> DirectAdmin Panel</li>
+                        <li><i class="fas fa-check"></i> Gratis SSL</li>
+                        <li><i class="fas fa-check"></i> Imunify360 + Cloudflare</li>
+                    </ul>
+                    <a href="https://onlinehoster.nl/index.php?rp=/store/hosting/webhosting-pro&language=dutch" class="pricing-cta">
+                        Kies dit pakket
+                    </a>
+                </div>
+
+                <div class="pricing-card">
+                    <div class="pricing-name">Expert</div>
+                    <div class="pricing-price">€5.00</div>
+                    <div class="pricing-period">/maand</div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-check"></i> 5 Websites</li>
+                        <li><i class="fas fa-check"></i> 5 GB NVMe SSD</li>
+                        <li><i class="fas fa-check"></i> 100 GB Bandwidth</li>
+                        <li><i class="fas fa-check"></i> Unlimited E-mail</li>
+                        <li><i class="fas fa-check"></i> DirectAdmin Panel</li>
+                        <li><i class="fas fa-check"></i> Gratis SSL</li>
+                        <li><i class="fas fa-check"></i> Premium Support</li>
+                    </ul>
+                    <a href="#" class="pricing-cta">
+                        Kies dit pakket
                     </a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section-gap section-bg bg2">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-xl-7 col-lg-8">
-                <div class="section-head gap-bottom center with-line">
-                    <h2>World Data Centers</h2>
-                    <div class="lines"> <span></span> </div>
-                    <p>Easily organise your infrastructure with Projects. And
-                        with Teams, everyone can get their own account, with
-                        just the privileges they need to do their jobs.</p>
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header" style="color: white;">
+                <div class="section-badge" style="background: rgba(53, 177, 94, 0.2); color: #35b15e;">
+                    <i class="fas fa-star"></i> ONZE KRACHT
+                </div>
+                <h2 style="color: white;">Waarom OnlineHoster Kiezen?</h2>
+                <p style="color: rgba(255, 255, 255, 0.7);">Professionele hosting met alles wat je nodig hebt</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>Uurlijke Backups</h3>
+                    <p>Automatische backups elk uur en dagelijks voor maximale veiligheid van je data.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Imunify360 Security</h3>
+                    <p>Real-time malware scanning en bescherming tegen alle bedreigingen 24/7.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bolt"></i>
+                    <h3>OpenLiteSpeed</h3>
+                    <p>Bliksemsnelle webservers geoptimaliseerd voor maximale performance.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-cog"></i>
+                    <h3>DirectAdmin Panel</h3>
+                    <p>Gebruiksvriendelijk controlepaneel voor eenvoudig website beheer.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-cloud"></i>
+                    <h3>Cloudflare DDoS</h3>
+                    <p>Automatische DDoS bescherming voor ononderbroken website beschikbaarheid.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-headset"></i>
+                    <h3>24/7 Support</h3>
+                    <p>Persoonlijke Nederlandse support team altijd klaar om te helpen.</p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="text-center">
-                    <img src="assets/images/datacenter_location.png"
-                        alt="Data center">
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <div>
+                    <h2>Website Migratie</h2>
+                    <p>Wij migreren jouw website, databases en e-mail volledig gratis. Nul downtime, nul gedoe.</p>
+                    <ul class="cta-checklist">
+                        <li><i class="fas fa-check-circle"></i> Gratis volledige migratie</li>
+                        <li><i class="fas fa-check-circle"></i> Nul downtime garantie</li>
+                        <li><i class="fas fa-check-circle"></i> Persoonlijke begeleiding</li>
+                        <li><i class="fas fa-check-circle"></i> Ondersteuning bij DNS</li>
+                    </ul>
+                    <a href="contact.php" class="btn-primary-large" style="display: inline-flex; margin-top: 20px;">
+                        <i class="fas fa-arrow-right"></i> Meer Informatie
+                    </a>
+                </div>
+                <div class="cta-image">
+                    <svg width="100%" viewBox="0 0 400 400" style="max-width: 400px;">
+                        <rect x="50" y="50" width="300" height="300" rx="20" fill="#f8f9fa" stroke="#35b15e" stroke-width="2"/>
+                        <rect x="80" y="80" width="240" height="30" rx="5" fill="#35b15e" opacity="0.2"/>
+                        <circle cx="100" cy="100" r="4" fill="#35b15e"/>
+                        <circle cx="120" cy="100" r="4" fill="#35b15e"/>
+                        <circle cx="140" cy="100" r="4" fill="#35b15e"/>
+                        <rect x="80" y="140" width="240" height="120" rx="5" fill="#e2e8f0"/>
+                        <line x1="100" y1="160" x2="300" y2="160" stroke="#35b15e" stroke-width="2"/>
+                        <line x1="100" y1="190" x2="300" y2="190" stroke="#35b15e" stroke-width="2" opacity="0.6"/>
+                        <line x1="100" y1="220" x2="280" y2="220" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                        <rect x="80" y="290" width="240" height="30" rx="5" fill="#35b15e"/>
+                    </svg>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section-gap">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-xl-7 col-lg-8">
-                <div class="section-head gap-bottom center with-line">
-                    <h2>Veelgestelde Vragen (FAQ)</h2>
-                    <div class="lines"> <span></span> </div>
-                    <p>Vind snel antwoord op de meest gestelde vragen over onze hostingdiensten.</p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>OnlineHoster</h4>
+                    <p>Professionele Nederlandse webhosting sinds 2010. Met OpenLiteSpeed servers, Imunify360 en 99.9% uptime garantie.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Services</h4>
+                    <a href="#">Shared Hosting</a>
+                    <a href="#">Reseller Hosting</a>
+                    <a href="#">VPS Hosting</a>
+                    <a href="#">Domeinen</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Bedrijf</h4>
+                    <a href="contact.php">Contact</a>
+                    <a href="#">Over Ons</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Status</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contact</h4>
+                    <a href="mailto:sales@onlinehoster.nl">Sales: Sales@onlinehoster.nl</a>
+                    <a href="mailto:support@onlinehoster.nl">Support: Support@onlinehoster.nl</a>
+                    <a href="#">Phone: +31 (0) 123 456 789</a>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <ul class="accordion">
-                    <li><a> Wat is webhosting? </a>
-                        <p>Webhosting is een service waarbij opslagruimte en infrastructuur worden geboden om websites toegankelijk te maken via internet. Onze hosting zorgt ervoor dat jouw website 24/7 bereikbaar is met hoge snelheid en beveiliging dankzij Nginx servers en Cloudflare CDN.</p>
-                    </li>
-                    <li><a> Welke soorten hosting bieden jullie aan? </a>
-                        <p>Wij bieden <strong>Shared Hosting</strong> (vanaf €1/maand), <strong>VPS Hosting</strong> (dedicated resources), en <strong>Reseller Hosting</strong> (voor het doorverkopen van hosting). Elke optie heeft verschillende specificaties op het gebied van snelheid, controle en schaalbaarheid.</p>
-                    </li>
-                    <li><a> Wat is shared hosting? </a>
-                        <p>Shared hosting betekent dat meerdere websites gebruik maken van dezelfde server en resources. Dit is zeer kosteneffectief en ideaal voor kleine tot middelgrote websites. Bij OnlineHoster gebruiken we Nginx webservers, Imunify360 malware scanning en uurlijkse backups voor maximale veiligheid en prestaties.</p>
-                    </li>
-                    <li><a> Wat is Reseller hosting? </a>
-                        <p>Met reseller hosting kun je hostingpakketten inkopen en deze doorverkopen aan jouw eigen klanten. Je krijgt een WHM/cPanel controlepaneel waarmee je meerdere accounts beheert, prijzen instelt en whitelabel hosting aanbiedt. Perfect voor webdesigners, developers en digitale marketing bureaus.</p>
-                    </li>
-                    <li><a> Wat is VPS hosting? </a>
-                        <p>VPS (Virtual Private Server) biedt dedicated resources binnen een gedeelde omgeving. Je krijgt root-toegang, je eigen besturingssysteem en gegarandeerde CPU/RAM/opslag. Ideaal voor websites met hoog verkeer, webshops of applicaties die meer kracht en controle vereisen.</p>
-                    </li>
-                            a physical server into virtual compartments,
-                            providing dedicated resources to each user.
-                            It offers more control, flexibility, and
-                            customization than shared hosting, making it
-                            suitable for websites with moderate to high traffic
-                            or specific technical requirements.
-                        </p>
-                    </li>
-                    <li><a> What is dedicated hosting? </a>
-                        <p>Dedicated hosting involves having an entire physical
-                            server
-                            exclusively for one user or organization. This type
-                            of hosting provides maximum control,
-                            customization, and performance, making it ideal for
-                            high-traffic websites or specific
-                            applications.</p>
-                    </li>
-                    <li><a> What is cloud hosting? </a>
-                        <p>Cloud hosting utilizes a network of interconnected
-                            virtual and
-                            physical servers to host websites. It offers
-                            scalability, flexibility, and reliability
-                            as resources can be dynamically allocated, ensuring
-                            optimal performance and uptime.</p>
-                    </li>
-                    <li><a> What is managed hosting? </a>
-                        <p>Managed hosting is a service where the hosting
-                            provider takes care
-                            of server maintenance tasks, security, updates, and
-                            technical support. This allows
-                            clients to focus on their websites or applications
-                            without the need for in-depth server
-                            management, making it convenient and
-                            hassle-free.</p>
-                    </li>
-                </ul>
+            <div class="footer-bottom">
+                <p>&copy; 2010 - 2025 OnlineHoster. Alle rechten voorbehouden. | <a href="#" style="color: rgba(255,255,255,0.7);">Privacy Policy</a></p>
             </div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<section class="section-gap testmonilas-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-12 col-xl-7 col-lg-8">
-                <div class="section-head gap-bottom center with-line">
-                    <h2>What happy clients says about us?</h2>
-                    <div class="lines"> <span></span> </div>
-                    <p>Delighted customers rave about our exceptional service
-                        and support.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row align-items-center">
-            <div class="col-12">
-                <div class="swiper swiper-testimonilas">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <div class="testimonilas_item">
-                                <img src="assets/images/quote.svg"
-                                    alt="testimonilas icon" class="icon">
-                                <p>OnlineHoster heeft ons hosting ervaring compleet
-                                    veranderd. Hun technische ondersteuning is
-                                    uitzonderlijk en hun servers zijn altijd
-                                    betrouwbaar. Wij raden OnlineHoster zeker aan
-                                    aan iedereen die op zoek is naar kwaliteit.</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-thumb">
-                                    <img src="assets/images/testi1.jpg"
-                                        alt="testimonial-author">
-                                </div>
-                                <div class="author-content">
-                                    <h5>Ribeiro Nicolas</h5>
-                                    <span>HR, Envato</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonilas_item">
-                                <img src="assets/images/quote.svg"
-                                    alt="testimonilas icon" class="icon">
-                                <p>De service van OnlineHoster is onvergetelijk.
-                                    Hun team is snel, professioneel en altijd
-                                    bereid om te helpen. Ons bedrijf groeit nu veel
-                                    sneller dankzij hun betrouwbare
-                                    infrastructuur.</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-thumb">
-                                    <img src="assets/images/testi2.jpg"
-                                        alt="testimonial-author">
-                                </div>
-                                <div class="author-content">
-                                    <h5>Taylor Matthew</h5>
-                                    <span>SEO & Founder, Facebook</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="testimonilas_item">
-                                <img src="assets/images/quote.svg"
-                                    alt="testimonilas icon" class="icon">
-                                <p>Perfect timing en perfecte service - dat is wat
-                                    OnlineHoster biedt. Hun hosting oplossingen zijn
-                                    exact wat wij nodig hadden. Dankzij hen kunnen
-                                    wij ons volledig concentreren op ons
-                                    kernbedrijf.</p>
-                            </div>
-                            <div class="testimonial-author">
-                                <div class="author-thumb">
-                                    <img src="assets/images/testi3.jpg"
-                                        alt="testimonial-author">
-                                </div>
-                                <div class="author-content">
-                                    <h5>Howard Esther</h5>
-                                    <span>CEO, Bribbble LLC</span>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swiper-slide"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-<footer class="footer-main">
-   <div class="container">
-       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5 g-3 gy-4">
-           <div class="col">
-               <div class="footer-list">
-                   <h5>Domeinen</h5>
-                   <a href="#">Domeinprijzen bekijken</a>
-                   <a href="#">Bulk domein registratie</a>
-                   <a href="#">Bulk domein verhuizing</a>
-                   <a href="#">Nieuwe domeinextensies</a>
-                   <a href="#">Sunrise domeinen</a>
-                   <a href="#">Premium domeinen</a>
-                   <a href="#">IDN domein registratie</a>
-                   <a href="#">Gratis bij elk domein</a>
-                   <a href="#">Naamvoorstelgereedschap</a>
-                   <a href="#">Whois-lookup</a>
-                   <a href="domain-promos.html">Bekijk acties</a>
-               </div>
-           </div>
-           <div class="col">
-               <div class="footer-list">
-                   <h5>Hosting</h5>
-                   <a href="shared-hosting.html">Linux Hosting</a>
-                   <a href="windows-hosting.html">Windows Hosting</a>
-                   <a href="wordpress-hosting.html">WordPress Hosting</a>
-                   <a href="reseller-hosting.html">Linux Reseller Hosting</a>
-                   <a href="windows-reseller.html">Windows Reseller Hosting</a>
-                   <a href="dedicated-server.html">Dedicated Servers</a>
-                   <a href="windows-server.html">Windows Dedicated Servers</a>
-                   <a href="cloud-hosting.html">Cloud Hosting</a>
-                   <a href="pro-cloud.html">Professional Cloud Hosting</a>
-                   <a href="website-builder.html">Website Builder</a>
-                   
-               </div>
-           </div>
-           <div class="col">
-               <div class="footer-list">
-                   <h5>Email & Security</h5>
-                   <a href="business-email.html">Business Email</a>
-                   <a href="enterprices-email.html">Enterprices Email</a>
-                   <a href="gapps.html">Google Workspace</a>
-                   <a href="ssl.html">SSl Certificate</a>
-                   <a href="sitelock.html">Sitelock</a>
-                   <a href="codeguard.html">Codeguard Website Backup</a>
-                   <a href="combo-plan.html">Combo Plans</a>
-               </div>
-           </div>
-
-           <div class="col">
-               <div class="footer-list">
-                   <h5>Infrastructure</h5>
-                   <a href="datacenter-detail.html">Datacenter Details</a>
-                   <a href="hosting-security.html">Hosting Security</a>
-                   <a href="server-mitering.html">24 x 7 Servermonitoring</a>
-                   <a href="backup-recovery.html">Backup en herstel</a>
-               </div>
-           </div>
-           <div class="col">
-               <div class="footer-list">
-                   <h5>Ondersteuning</h5>
-                   <a href="#">Bekijk kennisbank</a>
-                   <a href="contact.html">Neem contact op</a>
-                   <a href="contact.html">Report Abuse</a>
-                   <a href="#">Word reseller</a>
-                   
-               </div>
-           </div>
-       </div>
-       <div class="row">
-           <div class="col-12 mt-5 mb-3 py-3 border-top border-bottom">
-               <div class="row justify-content-between align-items-center gy-3 gy-lg-0">
-                   <div class="col-lg-4">
-                       <!-- logo -->
-                       <a href="index.html" class="footer-logo">
-                           <img src="assets/images/logo_white.png" alt="logo">
-                       </a>
-                       <!-- company info -->
-                       <p class="company-info">Unlimited Domain & Hosting in One Platform A ton of website hosting
-                           options, 99.9% uptime guarantee, free SSL certificate, easy WordPress installs.</p>
-                   </div>
-                   <div class="col-lg-6">
-                       <div
-                           class="align-items-center footer-social-media justify-content-center justify-content-lg-end">
-                           <!-- Facebook icon -->
-                           <a href="" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                   width="10" viewBox="0 0 320 512">
-                                   <path
-                                       d="M80 299.3V512H196V299.3h86.5l18-97.8H196V166.9c0-51.7 20.3-71.5 72.7-71.5c16.3 0 29.4 .4 37 1.2V7.9C291.4 4 256.4 0 236.2 0C129.3 0 80 50.5 80 159.4v42.1H14v97.8H80z">
-                                   </path>
-                               </svg></a>
-                               <!-- Twitter icon -->
-                           <a href="" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                   width="16" viewBox="0 0 512 512">
-                                   <path
-                                       d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z">
-                                   </path>
-                               </svg></a>
-                               <!-- Instagram icon -->
-                           <a href="" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                   width="14" viewBox="0 0 448 512">
-                                   <path
-                                       d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z">
-                                   </path>
-                               </svg></a>
-                               <!-- Youtube icon -->
-                           <a href="" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                   width="18" viewBox="0 0 576 512">
-                                   <path
-                                       d="M549.7 124.1c-6.3-23.7-24.8-42.3-48.3-48.6C458.8 64 288 64 288 64S117.2 64 74.6 75.5c-23.5 6.3-42 24.9-48.3 48.6-11.4 42.9-11.4 132.3-11.4 132.3s0 89.4 11.4 132.3c6.3 23.7 24.8 41.5 48.3 47.8C117.2 448 288 448 288 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zm-317.5 213.5V175.2l142.7 81.2-142.7 81.2z">
-                                   </path>
-                               </svg></a>
-                               <!-- Linkedin icon -->
-                           <a href="" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                   width="14" viewBox="0 0 448 512">
-                                   <path
-                                       d="M100.3 448H7.4V148.9h92.9zM53.8 108.1C24.1 108.1 0 83.5 0 53.8a53.8 53.8 0 0 1 107.6 0c0 29.7-24.1 54.3-53.8 54.3zM447.9 448h-92.7V302.4c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7V448h-92.8V148.9h89.1v40.8h1.3c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3V448z">
-                                   </path>
-                               </svg></a>
-                               <!-- Blogger icon -->
-                           <a href="" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" height="16"
-                                   width="14" viewBox="0 0 448 512">
-                                   <path
-                                       d="M446.6 222.7c-1.8-8-6.8-15.4-12.5-18.5-1.8-1-13-2.2-25-2.7-20.1-.9-22.3-1.3-28.7-5-10.1-5.9-12.8-12.3-12.9-29.5-.1-33-13.8-63.7-40.9-91.3-19.3-19.7-40.9-33-65.5-40.5-5.9-1.8-19.1-2.4-63.3-2.9-69.4-.8-84.8 .6-108.4 10C45.9 59.5 14.7 96.1 3.3 142.9 1.2 151.7 .7 165.8 .2 246.8c-.6 101.5 .1 116.4 6.4 136.5 15.6 49.6 59.9 86.3 104.4 94.3 14.8 2.7 197.3 3.3 216 .8 32.5-4.4 58-17.5 81.9-41.9 17.3-17.7 28.1-36.8 35.2-62.1 4.9-17.6 4.5-142.8 2.5-151.7zm-322.1-63.6c7.8-7.9 10-8.2 58.8-8.2 43.9 0 45.4 .1 51.8 3.4 9.3 4.7 13.4 11.3 13.4 21.9 0 9.5-3.8 16.2-12.3 21.6-4.6 2.9-7.3 3.1-50.3 3.3-26.5 .2-47.7-.4-50.8-1.2-16.6-4.7-22.8-28.5-10.6-40.8zm191.8 199.8l-14.9 2.4-77.5 .9c-68.1 .8-87.3-.4-90.9-2-7.1-3.1-13.8-11.7-14.9-19.4-1.1-7.3 2.6-17.3 8.2-22.4 7.1-6.4 10.2-6.6 97.3-6.7 89.6-.1 89.1-.1 97.6 7.8 12.1 11.3 9.5 31.2-4.9 39.4z">
-                                   </path>
-                               </svg></a>
-                       </div>
-                   </div>
-               </div>
-           </div>
-       </div>
-       <div class="row align-items-center">
-           <div class="col-12">
-               <ul class="legal-link my-2 mb-3">
-                   <li><a href="about.html">Over ons</a></li>
-                   <li><a href="#">Blog</a></li>
-                   <li><a href="#">Sitemap</a></li>
-                   <li><a href="#">Careers</a></li>
-                   <li><a href="legal.html">Legal Agreements</a></li>
-                   <li><a href="privacy.html">Privacy Policy</a></li>
-                   <li><a href="login.php">Login</a></li>
-                   <li><a href="contact.html">Neem contact op</a></li>
-                   <li><a href="payment-option.html">Payment Option</a></li>
-               </ul>
-           </div>
-       </div>
-       <div class="row align-items-center pt-2">
-           <div class="col-12 text-center copyright-text">Copyright © <span id="copyright-year">2025</span> OnlineHoster. All Right Reserved.</div>
-           <div class="col-12 col-lg-6">
-           </div>
-       </div>
-   </div>
-</footer>
-
-<!-- Back to top button -->
-<button id="scrolltoTop" class="scroll-top d-flex align-items-center justify-content-center"><i
-       class="bi bi-arrow-up-short"></i></button>
-<!-- loader -->
-<div id="preloader">
-   <div class="custom-loader"></div>
-</div>
-
-
-<!-- bootstrap js -->
-<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!-- carousel js -->
-<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-<!-- pure counter JS File -->
-<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-<!-- Main JS File -->
-<script src="assets/js/theme.js"></script>
-<script src="assets/js/main.js"></script>
-
+    <!-- Bootstrap JS -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Smooth Scroll -->
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
-
 </html>

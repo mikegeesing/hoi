@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-10-30 17:51:22
+/* Smarty version 3.1.48, created on 2025-12-21 17:24:42
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/sitelock.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_6903978a175854_06243950',
+  'unifunc' => 'content_69482d5a48c8f4_30752939',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '2a945c6bfc341956befbb692c03e18ca072d8ae8' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/sitelock.tpl',
-      1 => 1761561846,
+      1 => 1766333101,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6903978a175854_06243950 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69482d5a48c8f4_30752939 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- banner start -->
 <div class="banner-one">
   <div class="banner-section bottom-up">
@@ -41,9 +41,9 @@ $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->t
 $_smarty_tpl->tpl_vars['myproduct']->do_else = true;
 if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['productKey']->value => $_smarty_tpl->tpl_vars['myproduct']->value) {
 $_smarty_tpl->tpl_vars['myproduct']->do_else = false;
-?> <?php if ($_smarty_tpl->tpl_vars['productKey']->value == 0) {?> <h4>Starting Price <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
+?> <?php if ($_smarty_tpl->tpl_vars['productKey']->value == 0) {?> <h4>Vanaf <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
 echo $_smarty_tpl->tpl_vars['myproduct']->value['monthly'];?>
-/mo</h4><?php }?> <?php
+/mnd</h4><?php }?> <?php
 }
 $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
 }?> <div class="inline-btns mt-3">
@@ -70,22 +70,22 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);
           <div class="single-radio-box">
             <input name="billingPlan" id="monthly-plan" value="monthly" class="radio" type="radio" checked>
             <label for="monthly-plan">
-              <span class="custom-check"></span> Monthly </label>
+              <span class="custom-check"></span> Maandelijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="yearly-plan" value="yearly" class="radio" type="radio">
             <label for="yearly-plan">
-              <span class="custom-check"></span> Yearly </label>
+              <span class="custom-check"></span> Jaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="biannual-plan" value="biannual" class="radio" type="radio">
             <label for="biannual-plan">
-              <span class="custom-check"></span> Biannual </label>
+              <span class="custom-check"></span> Tweejaarlijks </label>
           </div>
           <div class="single-radio-box">
             <input name="billingPlan" id="triennial-plan" value="triennial" class="radio" type="radio">
             <label for="triennial-plan">
-              <span class="custom-check"></span> Triennial </label>
+              <span class="custom-check"></span> Driejaarlijks </label>
           </div>
         </div>
       </div>
@@ -103,25 +103,25 @@ $_smarty_tpl->tpl_vars['myproduct']->do_else = false;
             <div class="monthly-price">
               <h4 class="title "> <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
 echo $_smarty_tpl->tpl_vars['myproduct']->value['monthly'];?>
- <span class="durection">/month</span>
+ <span class="durection">/maand</span>
               </h4>
             </div>
             <div class="yearly-price">
               <h4 class="title "> <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
 echo $_smarty_tpl->tpl_vars['myproduct']->value['annually'];?>
- <span class="durection">/Year</span>
+ <span class="durection">/jaar</span>
               </h4>
             </div>
             <div class="biannual-price">
               <h4 class="title "> <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
 echo $_smarty_tpl->tpl_vars['myproduct']->value['biennially'];?>
- <span class="durection">/2 Years</span>
+ <span class="durection">/2 jaar</span>
               </h4>
             </div>
             <div class="triennial-price">
               <h4 class="title "> <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
 echo $_smarty_tpl->tpl_vars['myproduct']->value['triennially'];?>
- <span class="durection">/3 Years</span>
+ <span class="durection">/3 jaar</span>
               </h4>
             </div>
           </div>
@@ -129,7 +129,7 @@ echo $_smarty_tpl->tpl_vars['myproduct']->value['triennially'];?>
             <ul> <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['description'];?>
  </ul>
             <a class="btn-01 d-block mt-3 w-100" href="cart.php?a=add&pid=<?php echo $_smarty_tpl->tpl_vars['myproduct']->value['relid'];?>
-">Select Plan</a>
+">Selecteer pakket</a>
           </div>
         </div>
       </div> <?php
