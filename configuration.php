@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+ini_set('display_errors', 0);
+ini_set('display_startup_errors', 0);
+error_reporting(E_ERROR);
 
 $license = 'b6ffb6699450271d58b12a01c1e6c5a2';
 $db_host = 'localhost';
@@ -18,4 +18,4 @@ $db_tls_verify_cert = '';
 $cc_encryption_hash = 'uVXZ2ceTEi3nrhCX7JflT50Nu4u37yZtGEbWL0Jo7tVqrQebXFIcjRqULJFUFNIZ';
 $templates_compiledir = 'templates_c';
 $mysql_charset = 'utf8';
-$display_errors = true;
+$display_errors = false;
