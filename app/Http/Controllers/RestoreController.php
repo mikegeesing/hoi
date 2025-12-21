@@ -621,7 +621,7 @@ class RestoreController extends Controller
     {
         $rawToken = $request->input('token');
         $archive = $request->input('archive');
-        $database = $request->input('database_name');
+        $requestedDatabase = $request->input('database_name');
         $sqlFile = $request->input('database');
         $restoreType = $request->input('restore_type', 'full');
         $tables = $request->input('tables', []);
@@ -636,7 +636,7 @@ class RestoreController extends Controller
             }
         }
 
-        if (!$database || !$sqlFile || !$archive) {
+        if (!$requestedDatabase || !$sqlFile || !$archive) {
             return response()->json(['error' => 'Ontbrekende parameters'], 400);
         }
 
@@ -658,18 +658,39 @@ class RestoreController extends Controller
             // Extract SQL from archive
             $sqlContent = $mysql->extractSqlFile($archive, $sqlFile);
 
-            // SECURITY: Validate database name matches what's in the SQL file
-            $sqlDatabaseName = $mysql->extractDatabaseNameFromSQL($sqlContent);
-            if ($sqlDatabaseName && $sqlDatabaseName !== $database) {
-                Log::warning('Database name mismatch in restore attempt', [
-                    'token_id' => $token?->id ?? 'admin-access',
-                    'requested_database' => $database,
-                    'sql_database' => $sqlDatabaseName,
+            // SECURITY: Determine the actual database name from the SQL backup
+            // Priority 1: Database name from SQL content (CREATE DATABASE or USE statement)
+            $database = $mysql->extractDatabaseNameFromSQL($sqlContent);
+            
+            // Priority 2: Database name from filename (last resort)
+            if (!$database) {
+                $database = $mysql->extractDatabaseNameFromFilename($sqlFile);
+            }
+            
+            // SECURITY: Must have a database name from the backup
+            if (!$database) {
+                Log::error('Could not determine database name from SQL backup', [
                     'archive' => $archive,
+                    'sql_file' => $sqlFile,
+                    'requested_database' => $requestedDatabase,
                 ]);
                 return response()->json([
-                    'error' => 'Database naam komt niet overeen met de SQL backup',
+                    'error' => 'Kon database naam niet bepalen uit de backup',
                 ], 400);
+            }
+
+            // SECURITY: Verify requested database matches the backup
+            if ($requestedDatabase !== $database) {
+                Log::warning('Database name mismatch - user tried to restore to wrong database', [
+                    'token_id' => $token?->id ?? 'admin-access',
+                    'requested_database' => $requestedDatabase,
+                    'backup_database' => $database,
+                    'archive' => $archive,
+                    'sql_file' => $sqlFile,
+                ]);
+                return response()->json([
+                    'error' => 'De database naam in jouw backup is: ' . $database . '. Je kunt niet naar ' . $requestedDatabase . ' herstellen.',
+                ], 403);
             }
 
             // Filter by tables if needed

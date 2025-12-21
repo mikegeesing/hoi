@@ -573,4 +573,24 @@ class MySQLService
         
         return null;
     }
-}
+
+    /**
+     * Extract database name from SQL filename
+     * Files are typically named like: onlineh_db.sql or username_dbname.sql
+     * Returns the part after the underscore
+     */
+    public function extractDatabaseNameFromFilename(string $filename): ?string
+    {
+        // Remove path and extension: home/sql_dumps/onlineh_db.sql -> onlineh_db
+        $baseName = basename($filename);
+        $dbName = preg_replace('/\.sql$/', '', $baseName);
+        
+        // If it has underscore, take everything after the username prefix
+        // e.g., "onlineh_wp461" -> extract "wp461" as the part after username
+        // But for now, return the full name without .sql
+        if (!empty($dbName) && $dbName !== $filename) {
+            return $dbName;
+        }
+        
+        return null;
+    }
