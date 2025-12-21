@@ -1,0 +1,209 @@
+<!-- Organization Schema Markup - Add to every page header -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Online Hoster",
+  "url": "https://onlinehoster.nl",
+  "logo": "https://onlinehoster.nl/logo.png",
+  "sameAs": [
+    "https://www.facebook.com/onlinehoster",
+    "https://twitter.com/onlinehoster",
+    "https://www.linkedin.com/company/online-hoster"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "email": "Sales@onlinehoster.nl"
+  },
+  "telephone": "+31-70-XXXXXXX"
+}
+</script>
+
+<!-- Local Business Schema - Add to homepage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Online Hoster",
+  "image": "https://onlinehoster.nl/logo.png",
+  "description": "Professional web hosting solutions in the Netherlands",
+  "url": "https://onlinehoster.nl",
+  "telephone": "+31-70-XXXXXXX",
+  "email": "Support@onlinehoster.nl",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "[Your Street Address]",
+    "addressLocality": "[Your City]",
+    "postalCode": "[Postal Code]",
+    "addressCountry": "NL"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "[latitude]",
+    "longitude": "[longitude]"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    "opens": "09:00",
+    "closes": "17:30"
+  }
+}
+</script>
+
+<!-- Product Schema - For hosting plans -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Shared Hosting Plan",
+  "description": "Professional shared hosting with 99.9% uptime guarantee",
+  "url": "https://onlinehoster.nl/shared-hosting.php",
+  "image": "https://onlinehoster.nl/images/shared-hosting.jpg",
+  "brand": {
+    "@type": "Brand",
+    "name": "Online Hoster"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "[price]",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock",
+    "url": "https://onlinehoster.nl/shared-hosting.php"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "[number of reviews]"
+  }
+}
+</script>
+
+<!-- Breadcrumb Schema - For navigation -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://onlinehoster.nl"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Hosting",
+      "item": "https://onlinehoster.nl/hosting"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Shared Hosting",
+      "item": "https://onlinehoster.nl/shared-hosting.php"
+    }
+  ]
+}
+</script>
+
+<!-- FAQ Schema - For knowledge base / FAQ pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What hosting plan do I need?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most small to medium websites, shared hosting is sufficient..."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is your uptime guarantee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We guarantee 99.9% uptime with automatic failover..."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer free SSL certificates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all hosting plans include free Let's Encrypt SSL..."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Service Schema - For service pages -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Web Hosting",
+  "description": "Professional web hosting services with 99.9% uptime",
+  "provider": {
+    "@type": "Organization",
+    "name": "Online Hoster",
+    "url": "https://onlinehoster.nl"
+  },
+  "areaServed": "NL",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Hosting Plans",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Shared Hosting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "VPS Hosting"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "Dedicated Server"
+        }
+      }
+    ]
+  }
+}
+</script>
+
+<!-- Review Schema - For customer testimonials -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Review",
+  "reviewRating": {
+    "@type": "Rating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "[Customer Name]"
+  },
+  "reviewBody": "[Customer review text]",
+  "itemReviewed": {
+    "@type": "Product",
+    "name": "Online Hoster Shared Hosting"
+  }
+}
+</script>

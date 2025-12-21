@@ -1,0 +1,23 @@
+# OnlineHoster.nl Robots.txt
+# Allow search engines to crawl and index the site
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /config/
+Disallow: /templates_c/
+Disallow: /backups/
+Disallow: /*.pdf$
+Disallow: /checkout
+Disallow: /cart
+
+# Specify sitemap location
+Sitemap: https://onlinehoster.nl/sitemap.xml
+
+# Crawl delay for slow bots (optional)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
