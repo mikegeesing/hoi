@@ -87,11 +87,11 @@
        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5 g-3 gy-4">
            <div class="col">
                <div class="footer-list">
-                   <h5>Domains</h5>
-                   <a href="{$WEB_ROOT}/domain-search.php">Domain Search</a>
-                   <a href="{$WEB_ROOT}/clientarea.php?action=domains">My Domains</a>
-                   <a href="{$WEB_ROOT}/cart/domain/renew">Renew Domains</a>
-                   <a href="{$WEB_ROOT}/transfer-domain.php">Transfer your Domain</a>
+                   <h5>Domeinen</h5>
+                   <a href="{$WEB_ROOT}/domain-search.php">Domein zoeken</a>
+                   <a href="{$WEB_ROOT}/clientarea.php?action=domains">Mijn domeinen</a>
+                   <a href="{$WEB_ROOT}/cart/domain/renew">Domeinen verlengen</a>
+                   <a href="{$WEB_ROOT}/transfer-domain.php">Domein verhuizen</a>
                    
                    
                </div>
@@ -99,42 +99,42 @@
            <div class="col">
                <div class="footer-list">
                    <h5>Hosting</h5>
-                   <a href="{$WEB_ROOT}/shared-hosting.php">Linux Hosting</a>
-                   <a href="{$WEB_ROOT}/wordpress-hosting.php">WordPress Hosting</a>
-                   <a href="{$WEB_ROOT}/reseller-hosting.php">Linux Reseller Hosting</a>
-                   <a href="{$WEB_ROOT}/dedicated-server.php">Dedicated Servers</a>
-                   <a href="{$WEB_ROOT}/cloud-hosting.php">Cloud Hosting</a>
+                   <a href="{$WEB_ROOT}/shared-hosting.php">Linux-hosting</a>
+                   <a href="{$WEB_ROOT}/wordpress-hosting.php">WordPress hosting</a>
+                   <a href="{$WEB_ROOT}/reseller-hosting.php">Linux-reseller hosting</a>
+                   <a href="{$WEB_ROOT}/dedicated-server.php">Dedicated servers</a>
+                   <a href="{$WEB_ROOT}/cloud-hosting.php">Cloud hosting</a>
                    
                </div>
            </div>
            <div class="col">
                <div class="footer-list">
-                   <h5>Email & Security</h5>
-                   <a href="{$WEB_ROOT}/business-email.php">Business Email</a>
-                   <a href="{$WEB_ROOT}/enterprise-email.php">Enterprices Email</a>
+                   <h5>E-mail & beveiliging</h5>
+                   <a href="{$WEB_ROOT}/business-email.php">Zakelijke e-mail</a>
+                   <a href="{$WEB_ROOT}/enterprise-email.php">Enterprise e-mail</a>
                    <a href="{$WEB_ROOT}/google-workspace.php">Google Workspace</a>
-                   <a href="{$WEB_ROOT}/ssl-certificates.php">SSl Certificate</a>
+                   <a href="{$WEB_ROOT}/ssl-certificates.php">SSL-certificaat</a>
                    <a href="{$WEB_ROOT}/sitelock.php">Sitelock</a>
-                   <a href="{$WEB_ROOT}/codeguard.php">Codeguard Website Backup</a>
+                   <a href="{$WEB_ROOT}/codeguard.php">CodeGuard website back-up</a>
                </div>
            </div>
 
            <div class="col">
                <div class="footer-list">
-                   <h5>Infrastructure</h5>
-                   <a href="#">Datacenter Details</a>
-                   <a href="#">Hosting Security</a>
-                   <a href="#">24 x 7 Servers Monitoring</a>
-                   <a href="#">Backup and Recovery</a>
+                   <h5>Infrastructuur</h5>
+                   <a href="#">Datacenter details</a>
+                   <a href="#">Hosting beveiliging</a>
+                   <a href="#">24 x 7 servers monitoring</a>
+                   <a href="#">Back-up en herstel</a>
                </div>
            </div>
            <div class="col">
                <div class="footer-list">
-                   <h5>Support</h5>
-                   <a href="{$WEB_ROOT}/knowledgebase">View Knowledge Base</a>
-                   <a href="{$WEB_ROOT}/contact.php">Contact Support</a>
-                   <a href="{$WEB_ROOT}/contact.php">Report Abuse</a>
-                   <a href="{$WEB_ROOT}/contact.php">Join Reseller Program</a>
+                   <h5>Ondersteuning</h5>
+                   <a href="{$WEB_ROOT}/knowledgebase">Bekijk kennisbank</a>
+                   <a href="{$WEB_ROOT}/contact.php">Contacteer ondersteuning</a>
+                   <a href="{$WEB_ROOT}/contact.php">Misbruik rapporteren</a>
+                   <a href="{$WEB_ROOT}/contact.php">Doe mee aan reseller-programma</a>
                    
                </div>
            </div>
@@ -148,7 +148,7 @@
                            <img src="{$WEB_ROOT}/templates/{$template}/custom/assets/images/logo_white.png" alt="logo">
                        </a>
                        <!-- company info -->
-                       <p class="company-info">Unlimited Domain & Hosting in One Platform A ton of website hosting options, 99.9% uptime guarantee, free SSL certificate, easy WordPress installs.</p>
+                       <p class="company-info">Onbeperkte domeinen & hosting in één platform. Veel webhostingopties, 99,9% uptime garantie, gratis SSL-certificaat, eenvoudig WordPress installeren.</p>
                    </div>
                    <div class="col-lg-6">
                        <div
@@ -203,15 +203,15 @@
        <div class="row align-items-center">
            <div class="col-12">
                <ul class="legal-link my-2 mb-3">
-                   <li><a href="{$WEB_ROOT}/about-us.php">About us</a></li>
+                   <li><a href="{$WEB_ROOT}/about-us.php">Over ons</a></li>
                    <li><a href="#">Blog</a></li>
                    <li><a href="#">Sitemap</a></li>
-                   <li><a href="#">Careers</a></li>
-                   <li><a href="{$WEB_ROOT}/legal-agreement.php">Legal Agreements</a></li>
-                   <li><a href="{$WEB_ROOT}/privacy-policy.php">Privacy Policy</a></li>
-                   <li><a href="{$WEB_ROOT}/index.php?rp=/login">Login</a></li>
-                   <li><a href="{$WEB_ROOT}/contact.php">Contact Us</a></li>
-                   <li><a href="#">Payment Option</a></li>
+                   <li><a href="#">Carrières</a></li>
+                   <li><a href="{$WEB_ROOT}/legal-agreement.php">Juridische overeenkomsten</a></li>
+                   <li><a href="{$WEB_ROOT}/privacy-policy.php">Privacybeleid</a></li>
+                   <li><a href="{$WEB_ROOT}/index.php?rp=/login">Inloggen</a></li>
+                   <li><a href="{$WEB_ROOT}/contact.php">Neem contact met ons op</a></li>
+                   <li><a href="#">Betalingsoptie</a></li>
                </ul>
            </div>
        </div>
