@@ -97,9 +97,9 @@
           <div class="col-6 col-md-8 col-lg-6">
             <div class="header-support">
               <ul class="support-item-web items d-none d-md-inline-block">
-                <li class="call-no">Sales: <strong>+1234567890 | Sales.nl</strong>
+                <li class="call-no">Sales: <strong>Sales.nl</strong>
                 </li>
-                <li class="call-no">Billing: <strong>+1234567890 | Billing@domainname.com</strong>
+                <li class="call-no">Billing: <strong>Support.nl</strong>
                 </li>
               </ul>
               <a class="call-mob items d-md-none" href="tel:+911234567890">
@@ -445,9 +445,9 @@
           </a>
           <div class="header-support w-100">
             <ul class="support-item-web items d-none d-md-inline-block">
-              <li class="call-no">Sales: <strong>+1234567890 | Sales.nl</strong>
+              <li class="call-no">Sales: <strong>Sales.nl</strong>
               </li>
-              <li class="call-no">Billing: <strong>+1234567890 | Billing@domainname.com</strong>
+              <li class="call-no">Billing: <strong>Support.nl</strong>
               </li>
             </ul>
             <a class="cart-icon items" href="{$WEB_ROOT}/checkout.php">
