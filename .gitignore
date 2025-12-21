@@ -17,3 +17,29 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Backups
+backups/
+*.sql
+*.sql.gz
+*.tar.gz
+*.zip.backup
+
+# Temporary files
+tmp/
+temp/
+cache/
+
+# Security
+*.pem
+*.key
+*.crt
+id_rsa*
+
+# Upload directories
+uploads/
+downloads/attachments/
+
+# Config backups
+configuration.php.backup
+.env.backup

@@ -19,6 +19,10 @@ php_value disable_functions ""
     Header set X-Frame-Options "SAMEORIGIN"
     # Referrer policy
     Header set Referrer-Policy "strict-origin-when-cross-origin"
+    # Content Security Policy (adjust domains as needed)
+    Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.google-analytics.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com; frame-src 'self'"
+    # Permissions Policy
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
 </IfModule>
 
 # ============================================

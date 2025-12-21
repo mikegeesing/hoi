@@ -3,7 +3,33 @@
   <head>
     <meta charset="{$charset}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> {include file="$template/includes/head.tpl"} {include file="$template/includes/redcheap-seo.tpl"} {$headoutput}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {literal}
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Online Hoster",
+      "url": "https://onlinehoster.nl",
+      "logo": "https://onlinehoster.nl/templates/closterv2/custom/assets/images/logo.png",
+      "description": "Professional web hosting solutions in the Netherlands",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Sales",
+        "email": "Sales@onlinehoster.nl"
+      },
+      "sameAs": [
+        "https://www.facebook.com/onlinehoster",
+        "https://twitter.com/onlinehoster",
+        "https://www.linkedin.com/company/online-hoster"
+      ]
+    }
+    {/literal}
+    </script>
+    
+    {include file="$template/includes/head.tpl"} {include file="$template/includes/redcheap-seo.tpl"} {$headoutput}
   </head>
   <body data-phone-cc-input="{$phoneNumberInputStyle}">
     {if $captcha}{$captcha->getMarkup()}{/if}

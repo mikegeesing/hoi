@@ -1,0 +1,49 @@
+<!--
+  Resource Hints for Performance Optimization
+  Add these to <head> section of your pages
+-->
+
+<!-- DNS Prefetch: Resolve DNS for external domains early -->
+<link rel="dns-prefetch" href="//www.google-analytics.com">
+<link rel="dns-prefetch" href="//www.googletagmanager.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+<!-- Preconnect: Establish early connection to important origins -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://www.google-analytics.com">
+
+<!-- Preload: High priority resources needed for current page -->
+<link rel="preload" href="/css/style.css" as="style">
+<link rel="preload" href="/js/main.js" as="script">
+<link rel="preload" href="/fonts/main-font.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/images/logo.png" as="image">
+
+<!-- Prefetch: Low priority resources for future navigation -->
+<link rel="prefetch" href="/shared-hosting.html">
+<link rel="prefetch" href="/vps-server.html">
+<link rel="prefetch" href="/css/product-page.css">
+
+<!-- Favicon and Icons -->
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta name="theme-color" content="#0066cc">
+
+<!-- 
+  Performance Impact:
+  - DNS Prefetch: Saves 20-120ms per domain
+  - Preconnect: Saves 100-500ms for HTTPS connections
+  - Preload: Ensures critical resources load ASAP
+  - Prefetch: Speeds up future page loads
+  
+  Usage Guidelines:
+  1. Only preload critical resources (< 3 items)
+  2. Use dns-prefetch for external domains
+  3. Use preconnect for critical external resources
+  4. Use prefetch for likely next-page resources
+-->
