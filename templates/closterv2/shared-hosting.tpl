@@ -92,7 +92,7 @@
           <div class="lines">
             <span></span>
           </div>
-          <p>Onbeperkte opslag, onbeperkte bandbreedte, onverslaanbare hosting. Wij hebben je gedekt. En we gooien er een gratis domein bij voor een jaar. </p>
+          <p>Onbeperkte opslag, onbeperkte bandbreedte, betrouwbare hosting. Alles wat je nodig hebt voor een succesvolle website. Inclusief een gratis domein voor het eerste jaar.</p>
         </div>
       </div>
     </div>
