@@ -99,8 +99,12 @@ case "$CMD" in
     
     # Fix permissions on the entire home/ directory structure
     if [[ -d "$CWD/home" ]]; then
+        # First, ensure directories are traversable (execute permission needed)
+        find "$CWD/home" -type d -exec chmod u+rwx {} \;
+        # Then ensure files are readable/writable
+        find "$CWD/home" -type f -exec chmod u+rw {} \;
+        # Finally, fix ownership
         chown -R "$USERNAME:$USERNAME" "$CWD/home" 2>/dev/null || true
-        chmod -R u+rwX,g-rwx,o-rwx "$CWD/home" 2>/dev/null || true
     fi
     ;;
 
