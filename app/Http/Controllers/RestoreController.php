@@ -176,66 +176,16 @@ class RestoreController extends Controller
                 'files_preview' => array_slice($files['files'] ?? [], 0, 50)
             ]);
 
-            // Normalise different service return shapes into an array of
-            // ['type','size','name','path'] entries for the view.
-            $normalized = [];
-
-            // If wrapper returns an envelope
+            // BorgService already returns normalized data with correct types
+            // Just extract the files array if it's wrapped
             if (is_array($files) && isset($files['files']) && is_array($files['files'])) {
                 $files = $files['files'];
             }
-
-            // If a single object was returned, make it an array
-            if ($files && ! is_array($files)) {
-                $files = [$files];
+            
+            // Ensure it's an array
+            if (!is_array($files)) {
+                $files = [];
             }
-
-            if (is_array($files)) {
-                foreach ($files as $item) {
-                    // Allow stdClass / objects
-                    if (is_object($item)) {
-                        $item = (array) $item;
-                    }
-
-                    // If it's a plain string path
-                    if (is_string($item)) {
-                        $p = $item;
-                        $normalized[] = [
-                            'type' => 'file',
-                            'size' => 0,
-                            'name' => basename($p),
-                            'path' => $p,
-                        ];
-                        continue;
-                    }
-
-                    if (is_array($item)) {
-                        // try common keys
-                        $p = $item['path'] ?? $item['name'] ?? ($item['filename'] ?? null);
-                        $name = $item['name'] ?? $item['filename'] ?? ($p ? basename($p) : 'N/A');
-                        $type = $item['type'] ?? ($item['is_dir'] ?? null) ? 'dir' : ($item['filetype'] ?? ($item['mode'] ?? 'file'));
-                        $size = $item['size'] ?? $item['bytes'] ?? 0;
-
-                        // normalize type value
-                        if ($type === true || $type === 'dir' || stripos((string)$type, 'dir') !== false) {
-                            $type = 'dir';
-                        } else {
-                            $type = 'file';
-                        }
-
-                        // Trust the type from BorgService - it already handles directory detection properly
-
-                        $normalized[] = [
-                            'type' => $type,
-                            'size' => (int) $size,
-                            'name' => $name,
-                            'path' => $p ?? $name,
-                        ];
-                    }
-                }
-            }
-
-            $files = $normalized;
 
             // Filter: Only show items that are direct children of the current path
             // This prevents showing nested subdirectories from deeper levels
