@@ -641,11 +641,37 @@ class RestoreController extends Controller
         }
 
         try {
+            // SECURITY: Validate that the SQL file belongs to this token's user
+            // Get list of allowed SQL files for this user
+            $allowedFiles = $mysql->listSqlFiles($archive, $token?->borg_user);
+            
+            if (!in_array($sqlFile, $allowedFiles)) {
+                Log::warning('Unauthorized database restore attempt', [
+                    'token_id' => $token?->id ?? 'admin-access',
+                    'archive' => $archive,
+                    'requested_file' => $sqlFile,
+                    'allowed_files' => $allowedFiles,
+                ]);
+                return response()->json(['error' => 'Ongeautoriseerde database restore poging'], 403);
+            }
+
             // Extract SQL from archive
             $sqlContent = $mysql->extractSqlFile($archive, $sqlFile);
 
-            // Filter by tables if needed
-            if ($restoreType === 'table' && !empty($tables)) {
+            // SECURITY: Validate database name matches what's in the SQL file
+            $sqlDatabaseName = $mysql->extractDatabaseNameFromSQL($sqlContent);
+            if ($sqlDatabaseName && $sqlDatabaseName !== $database) {
+                Log::warning('Database name mismatch in restore attempt', [
+                    'token_id' => $token?->id ?? 'admin-access',
+                    'requested_database' => $database,
+                    'sql_database' => $sqlDatabaseName,
+                    'archive' => $archive,
+                ]);
+                return response()->json([
+                    'error' => 'Database naam komt niet overeen met de SQL backup',
+                ], 400);
+            }
+
                 $sqlContent = $mysql->filterSqlByTables($sqlContent, $tables);
             }
 

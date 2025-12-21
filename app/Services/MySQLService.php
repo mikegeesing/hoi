@@ -550,4 +550,27 @@ class MySQLService
             @unlink($tmpFile);
         }
     }
+
+    /**
+     * Extract database name from SQL content
+     * Looks for "CREATE DATABASE" or "USE" statements
+     * This helps validate the database name user is trying to restore to
+     */
+    public function extractDatabaseNameFromSQL(string $sqlContent): ?string
+    {
+        // Look for CREATE DATABASE or USE statements
+        // e.g., "CREATE DATABASE `onlineh_db`" or "USE onlineh_db"
+        
+        // Try CREATE DATABASE pattern first
+        if (preg_match('/CREATE DATABASE\s+`?([^`\s;]+)`?/i', $sqlContent, $matches)) {
+            return $matches[1];
+        }
+        
+        // Try USE pattern
+        if (preg_match('/USE\s+`?([^`\s;]+)`?/i', $sqlContent, $matches)) {
+            return $matches[1];
+        }
+        
+        return null;
+    }
 }
