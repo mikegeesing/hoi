@@ -191,7 +191,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> </ul> <?php }?>
               <ul class="support-item-web items d-none d-md-inline-block">
                 <li class="call-no">Sales: <strong>Sales@onlinehoster.nl</strong>
                 </li>
-                <li class="call-no">Billing: <strong>Support.nl</strong>
+                <li class="call-no">Support: <strong> |</strong></li>
+                <li class="call-no"><strong>Support@onlinehoster.nl</strong>
                 </li>
               </ul>
               <a class="call-mob items d-md-none" href="tel:+911234567890">
@@ -578,7 +579,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> </ul> <?php }?>
             <ul class="support-item-web items d-none d-md-inline-block">
               <li class="call-no">Sales: <strong>Sales@onlinehoster.nl</strong>
               </li>
-              <li class="call-no">Billing: <strong>Support.nl</strong>
+              <li class="call-no">Support: <strong> |</strong></li>
+              <li class="call-no"><strong>Support@onlinehoster.nl</strong>
               </li>
             </ul>
             <a class="cart-icon items" href="<?php echo $_smarty_tpl->tpl_vars['WEB_ROOT']->value;?>
