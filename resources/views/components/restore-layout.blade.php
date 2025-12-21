@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full bg-gray-50">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Borg Restore') }}</title>
+    <title>{{ config('app.name', 'Restore Portal') }} - Online Hoster</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
 
-    <!-- Tailwind via CDN for simplicity -->
+    <!-- Tailwind via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -26,55 +26,57 @@
     </script>
     <style>
         [x-cloak] { display: none !important; }
+        .navbar-bg { background-color: #1a1a1a; }
+        .btn-green { background-color: #22c55e; }
+        .btn-green:hover { background-color: #16a34a; }
+        .logo-circle { background-color: #22c55e; }
     </style>
-    <!-- Alpine.js for simple interactions -->
+    <!-- Alpine.js for interactions -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     
     {{ $head ?? '' }}
 </head>
-<body class="h-full font-sans antialiased text-gray-900">
-    <div class="min-h-full flex flex-col">
-        <nav class="bg-white border-b border-gray-200 sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between h-16">
-                    <div class="flex">
-                        <div class="flex-shrink-0 flex items-center gap-3">
-                            <!-- Logo / Brand -->
-                            <div class="bg-indigo-600 p-2 rounded-lg text-white">
-                                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" />
-                                </svg>
-                            </div>
-                            <span class="text-xl font-bold text-gray-900 tracking-tight">Borg Restore</span>
+<body class="font-sans antialiased text-gray-900 bg-gray-50">
+    <!-- Navigation -->
+    <nav class="navbar-bg text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <a href="/" class="flex items-center gap-3">
+                        <!-- Logo -->
+                        <div class="logo-circle w-10 h-10 rounded-full flex items-center justify-center font-bold text-white">
+                            O
                         </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        @if(isset($token))
+                        <span class="text-xl font-bold hidden sm:inline">Online Hoster</span>
+                    </a>
+                </div>
+                <div class="flex items-center gap-4">
+                    @if(isset($token))
+                        <div class="hidden md:flex flex-col items-end text-right">
+                            <span class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Token</span>
+                            <span class="text-sm font-mono text-green-400">{{ substr($token, 0, 8) }}...</span>
+                        </div>
+                    @endif
+                    <div class="flex items-center gap-3">
+                        @auth
                             <div class="hidden md:flex flex-col items-end">
-                                <span class="text-xs text-gray-500 uppercase font-semibold tracking-wider">Huidige sessie</span>
-                                <span class="text-sm font-mono font-medium text-gray-700">
-                                    {{ substr($token, 0, 8) }}...
-                                </span>
+                                <span class="text-xs text-gray-400 uppercase font-semibold tracking-wider">Ingelogd</span>
+                                <span class="text-sm font-medium text-white">{{ auth()->user()->name ?? auth()->user()->email }}</span>
                             </div>
-                        @endif
-                        <div class="border-l pl-4 border-gray-200 flex items-center gap-3">
-                            @auth
-                                <div class="hidden md:flex flex-col items-end">
-                                    <span class="text-xs text-gray-500 uppercase font-semibold tracking-wider">Ingelogd</span>
-                                    <span class="text-sm font-medium text-gray-700">{{ auth()->user()->name ?? auth()->user()->email }}</span>
-                                </div>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">Uitloggen</button>
-                                </form>
-                            @else
-                                <a href="{{ route('login') }}" class="text-sm font-medium text-gray-500 hover:text-indigo-600 transition-colors">
-                                    Inloggen
-                                </a>
-                            @endauth
-                        </div>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="btn-green text-white px-4 py-2 rounded font-semibold text-sm hover:shadow-lg transition">
+                                    Uitloggen
+                                </button>
+                            </form>
+                        @else
+                            <a href="{{ route('login') }}" class="btn-green text-white px-4 py-2 rounded font-semibold text-sm hover:shadow-lg transition">
+                                Inloggen
+                            </a>
+                        @endauth
                     </div>
                 </div>
+            </div>
             </div>
         </nav>
 
@@ -84,11 +86,13 @@
             </div>
         </main>
 
-        <footer class="bg-white border-t border-gray-200 mt-auto">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <p class="text-center text-sm text-gray-500">
-                    &copy; {{ date('Y') }} Borg Restore Portal. Alle rechten voorbehouden.
-                </p>
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300 mt-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="text-center">
+                    <p class="font-semibold text-white">Online Hoster - Backup Restore Portal</p>
+                    <p class="text-sm text-gray-400 mt-2">&copy; {{ date('Y') }} Alle rechten voorbehouden.</p>
+                </div>
             </div>
         </footer>
     </div>
