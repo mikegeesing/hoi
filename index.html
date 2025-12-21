@@ -51,6 +51,8 @@
       <link href="assets/css/main.css" rel="stylesheet">
       <!-- Professional Enhancements CSS -->
       <link href="assets/css/custom-professional.css" rel="stylesheet">
+      <!-- Modern Style CSS -->
+      <link href="assets/css/modern-style.css" rel="stylesheet">
       <!-- jquery js -->
       <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
    </head>
@@ -506,122 +508,104 @@
 
 
 <!-- banner start -->
-<div class="banner-one">
-    <div class="banner-section bottom-up">
-        <div class="container">
-            <!-- Trust Badges -->
-            <div class="row justify-content-center mb-4">
-                <div class="col-12">
-                    <div class="trust-badges d-flex flex-wrap justify-content-center gap-4 mb-4">
-                        <div class="badge-item text-center">
-                            <div class="badge-icon">
-                                <i class="fas fa-shield-check fa-2x text-primary"></i>
+<div class="modern-hero-section">
+    <div class="hero-gradient-bg"></div>
+    <div class="container py-5">
+        <!-- Compact Trust Bar -->
+        <div class="modern-trust-bar d-flex flex-wrap justify-content-center align-items-center gap-4 mb-5">
+            <div class="trust-item">
+                <i class="fas fa-check-circle"></i>
+                <span>99.9% Uptime</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-shield-alt"></i>
+                <span>Imunify360</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-clock"></i>
+                <span>Uurlijkse Backups</span>
+            </div>
+            <div class="trust-item">
+                <i class="fas fa-headset"></i>
+                <span>24/7 Support</span>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-7">
+                <div class="hero-content">
+                    <div class="hero-badge mb-3">
+                        <i class="fas fa-server me-2"></i>
+                        Nederlandse Hosting Provider • 15+ Jaar Ervaring
+                    </div>
+                    <h1 class="hero-title">Professionele Webhosting<br><span class="gradient-text">vanaf €1/maand</span></h1>
+                    <p class="hero-subtitle">Enterprise-grade beveiliging, OpenLiteSpeed servers en DirectAdmin control panel. Alles wat je nodig hebt voor een succesvolle website.</p>
+                    
+                    <div class="hero-features">
+                        <div class="row g-3">
+                            <div class="col-sm-6">
+                                <div class="feature-compact">
+                                    <i class="fas fa-bolt"></i>
+                                    <span>OpenLiteSpeed Performance</span>
+                                </div>
                             </div>
-                            <div class="badge-text mt-2">
-                                <strong>99.9%</strong>
-                                <small class="d-block">Uptime Garantie</small>
+                            <div class="col-sm-6">
+                                <div class="feature-compact">
+                                    <i class="fas fa-lock"></i>
+                                    <span>Gratis SSL Certificaat</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-compact">
+                                    <i class="fas fa-database"></i>
+                                    <span>NVMe SSD Storage</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="feature-compact">
+                                    <i class="fas fa-cog"></i>
+                                    <span>DirectAdmin Panel</span>
+                                </div>
                             </div>
                         </div>
-                        <div class="badge-item text-center">
-                            <div class="badge-icon">
-                                <i class="fas fa-server fa-2x text-primary"></i>
-                            </div>
-                            <div class="badge-text mt-2">
-                                <strong>15+ Jaar</strong>
-                                <small class="d-block">Ervaring</small>
-                            </div>
-                        </div>
-                        <div class="badge-item text-center">
-                            <div class="badge-icon">
-                                <i class="fas fa-clock fa-2x text-primary"></i>
-                            </div>
-                            <div class="badge-text mt-2">
-                                <strong>Uurlijks</strong>
-                                <small class="d-block">Backups</small>
-                            </div>
-                        </div>
-                        <div class="badge-item text-center">
-                            <div class="badge-icon">
-                                <i class="fas fa-headset fa-2x text-primary"></i>
-                            </div>
-                            <div class="badge-text mt-2">
-                                <strong>24/7</strong>
-                                <small class="d-block">Support</small>
-                            </div>
-                        </div>
+                    </div>
+
+                    <div class="hero-cta d-flex gap-3 flex-wrap">
+                        <a class="btn-modern-primary" onClick="document.getElementById('Plans').scrollIntoView();">
+                            Bekijk Pakketten
+                            <i class="fas fa-arrow-right ms-2"></i>
+                        </a>
+                        <a class="btn-modern-secondary" href="contact.php">
+                            Contact
+                        </a>
                     </div>
                 </div>
             </div>
-
-            <div class="row align-items-center justify-content-between">
-                <div class="col-lg-6">
-                    <div class="banner-heading">
-                        <span class="badge badge-primary mb-3">🇳🇱 Nederlandse Hosting Provider</span>
-                        <h1 class="display-4 fw-bold mb-4">Webhosting Nederland met 99.9% Uptime Garantie</h1>
-                        <p class="lead mb-4">Professionele hosting met enterprise-grade beveiliging en maximale prestaties vanaf €1/maand</p>
-                        
-                        <div class="feature-highlights mb-4">
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <div class="feature-item d-flex align-items-start">
-                                        <i class="fas fa-check-circle text-success me-2 mt-1"></i>
-                                        <div>
-                                            <strong>OpenLiteSpeed servers</strong>
-                                            <p class="small mb-0 text-muted">Maximale snelheid en stabiliteit</p>
-                                        </div>
-                                    </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <div class="hero-visual">
+                    <div class="visual-card">
+                        <div class="stat-row">
+                            <div class="stat-box">
+                                <div class="stat-icon bg-success-subtle">
+                                    <i class="fas fa-server text-success"></i>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="feature-item d-flex align-items-start">
-                                        <i class="fas fa-check-circle text-success me-2 mt-1"></i>
-                                        <div>
-                                            <strong>Imunify360 bescherming</strong>
-                                            <p class="small mb-0 text-muted">Real-time malware scanning</p>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <div class="stat-value">99.9%</div>
+                                    <div class="stat-label">Uptime</div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="feature-item d-flex align-items-start">
-                                        <i class="fas fa-check-circle text-success me-2 mt-1"></i>
-                                        <div>
-                                            <strong>Cloudflare DDoS</strong>
-                                            <p class="small mb-0 text-muted">Complete bot-bescherming</p>
-                                        </div>
-                                    </div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-icon bg-primary-subtle">
+                                    <i class="fas fa-tachometer-alt text-primary"></i>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="feature-item d-flex align-items-start">
-                                        <i class="fas fa-check-circle text-success me-2 mt-1"></i>
-                                        <div>
-                                            <strong>DirectAdmin panel</strong>
-                                            <p class="small mb-0 text-muted">Gebruiksvriendelijk beheer</p>
-                                        </div>
-                                    </div>
+                                <div>
+                                    <div class="stat-value">Fast</div>
+                                    <div class="stat-label">Performance</div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="inline-btns d-flex gap-3 flex-wrap">
-                            <a class="btn btn-01 btn-lg px-4" onClick="document.getElementById('Plans').scrollIntoView();">
-                                <i class="fas fa-rocket me-2"></i>Bekijk Pakketten
-                            </a>
-                            <a class="btn btn-outline-primary btn-lg px-4" href="contact.php">
-                                <i class="fas fa-comments me-2"></i>Contact
-                            </a>
-                        </div>
-
-                        <div class="trust-indicators mt-4">
-                            <small class="text-muted d-flex align-items-center gap-2">
-                                <i class="fas fa-shield-alt text-success"></i>
-                                7 dagen geld-terug-garantie • SSL certificaat inbegrepen
-                            </small>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-5 d-none d-lg-block">
-                    <div class="text-center text-lg-end position-relative">
-                        <div class="hero-image-wrapper">
-                            <img src="assets/images/performance.svg" alt="High Performance Hosting" style="max-width: 100%; height: auto;" class="img-fluid">
+                        <div class="server-illustration">
+                            <img src="assets/images/performance.svg" alt="Hosting" class="img-fluid">
                         </div>
                     </div>
                 </div>
@@ -629,11 +613,16 @@
         </div>
     </div>
 </div>
-
 <!-- banner end -->
 
-<section class="top-up-banner pb-4" id="Plans">
-    <div class="container upside rounded bg-white shadow p-4">
+<section class="modern-pricing-section py-5" id="Plans">
+    <div class="container">
+        <div class="text-center mb-5">
+            <div class="section-badge">Hosting Pakketten</div>
+            <h2 class="section-title">Kies het Perfecte Pakket</h2>
+            <p class="section-subtitle">Alle pakketten inclusief gratis SSL, uurlijkse backups en DirectAdmin</p>
+        </div>
+        <div class="pricing-cards-wrapper">
         <div class="row gy-4 gy-xl-0 justify-content-between">
             <div class="col-lg-5 col-xl-4 col-md-6">
                 <div class="pricing-item">
@@ -726,17 +715,12 @@
     </div>
 </section>
 
-<section class="section-gap bg-light">
+<section class="modern-features-section py-5">
     <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-12 col-xl-8 col-lg-10">
-                <div class="section-head text-center">
-                    <span class="badge badge-primary mb-3">Onze Services</span>
-                    <h2 class="display-5 fw-bold mb-3">Waarom kiezen voor OnlineHoster?</h2>
-                    <div class="lines mx-auto mb-4" style="max-width: 100px;"> <span></span> </div>
-                    <p class="lead text-muted">Professionele Nederlandse hosting met enterprise-grade beveiliging, maximale uptime en persoonlijke support</p>
-                </div>
-            </div>
+        <div class="text-center mb-5">
+            <div class="section-badge">Waarom OnlineHoster</div>
+            <h2 class="section-title">Enterprise Features, Betaalbare Prijzen</h2>
+            <p class="section-subtitle">Professionele hosting met alle tools die je nodig hebt</p>
         </div>
         <div class="row g-4">
             <div class="col-lg-4 col-md-6">

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-10-27 11:59:21
+/* Smarty version 3.1.48, created on 2025-12-21 16:22:31
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/domain-search.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_68ff5089056c22_40547308',
+  'unifunc' => 'content_69481ec7af4719_12093883',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'a56fc47a75baef883e5df7ba789e6e1b05cf3149' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/domain-search.tpl',
-      1 => 1761561846,
+      1 => 1766333101,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_68ff5089056c22_40547308 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69481ec7af4719_12093883 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- banner start -->
 <div class="banner-one">
   <div class="banner-section bottom-up">
@@ -249,7 +249,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           <h2>Free Private Registration</h2>
           <p>Enhance your online security with our complimentary Domain Privacy Protection. Shield sensitive information associated with your domain from public access, preventing spam and safeguarding against identity theft. Rest easy knowing your privacy is prioritized. Register now to fortify your online presence with confidence and peace of mind.</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>
@@ -272,7 +272,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
           <h2>Free Subdomains</h2>
           <p>Unlock the power of subdomains for free! Expand your online presence with our complimentary subdomain service. Create unique web addresses under your main domain, perfect for organizing content or launching new projects. Enjoy the flexibility and convenience without any extra cost. Get started today and harness the full potential of your domain with our user-friendly subdomain feature.</p>
           <div class="inline-btns mt-3">
-            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Get Started Now <i class="fas fa-long-arrow-right"></i>
+            <a class="btn-01" onClick="document.getElementById('Domain').scrollIntoView();">Nu starten <i class="fas fa-long-arrow-right"></i>
             </a>
           </div>
         </div>

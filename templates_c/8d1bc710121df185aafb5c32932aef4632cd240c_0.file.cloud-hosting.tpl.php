@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-11-03 18:10:19
+/* Smarty version 3.1.48, created on 2025-12-21 16:21:21
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/cloud-hosting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_6908e1fb991914_72701338',
+  'unifunc' => 'content_69481e8108fa87_76837015',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '8d1bc710121df185aafb5c32932aef4632cd240c' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/cloud-hosting.tpl',
-      1 => 1761561846,
+      1 => 1766333063,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6908e1fb991914_72701338 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69481e8108fa87_76837015 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <!-- banner start -->
 <div class="banner-one">
@@ -49,9 +49,9 @@ $_smarty_tpl->tpl_vars['myproduct']->do_else = false;
 ?>
 
 <?php if ($_smarty_tpl->tpl_vars['productKey']->value == 0) {?>
-                        <h4>Starting Price <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
+                        <h4>Vanaf <?php echo $_smarty_tpl->tpl_vars['myproduct']->value['prefix'];
 echo $_smarty_tpl->tpl_vars['myproduct']->value['monthly'];?>
-/mo</h4><?php }?>
+/mnd</h4><?php }?>
 
 <?php
 }

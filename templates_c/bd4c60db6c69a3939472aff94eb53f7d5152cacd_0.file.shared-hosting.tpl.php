@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-12-21 16:03:27
+/* Smarty version 3.1.48, created on 2025-12-21 16:16:54
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/shared-hosting.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_69481a4fdee682_16437211',
+  'unifunc' => 'content_69481d76e88f54_75892234',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'bd4c60db6c69a3939472aff94eb53f7d5152cacd' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/shared-hosting.tpl',
-      1 => 1766333006,
+      1 => 1766333781,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_69481a4fdee682_16437211 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69481d76e88f54_75892234 (Smarty_Internal_Template $_smarty_tpl) {
 ?><!-- banner start -->
 <div class="banner-one">
   <div class="banner-section bottom-up">
@@ -30,10 +30,10 @@ function content_69481a4fdee682_16437211 (Smarty_Internal_Template $_smarty_tpl)
           <div class="banner-heading">
             <h1>Shared Hosting - Eenvoudig en betrouwbaar</h1>
             <ul class="banner-list mb-2">
-              <li>Flexibel, gebruiksvriendelijk controlepaneel</li>
-              <li>Onbeperkte bandbreedte</li>
+              <li>DirectAdmin controlepaneel</li>
+              <li>NVMe SSD opslag</li>
               <li>99% uptime garantie</li>
-              <li>30 dagen geld-terug-garantie</li>
+              <li>Uurlijkse back-ups</li>
             </ul> <?php if (count($_smarty_tpl->tpl_vars['sharedhostingproducts']->value) > 0 && ($_smarty_tpl->tpl_vars['sharedhostingproducts']->value[0]['monthly'] > 0 || $_smarty_tpl->tpl_vars['sharedhostingproducts']->value[0]['annually'] > 0 || $_smarty_tpl->tpl_vars['sharedhostingproducts']->value[0]['biennially'] > 0 || $_smarty_tpl->tpl_vars['sharedhostingproducts']->value[0]['triennially'] > 0)) {?> <?php
 $_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['sharedhostingproducts']->value, 'myproduct', false, 'productKey');
 $_smarty_tpl->tpl_vars['myproduct']->do_else = true;
@@ -140,11 +140,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
     <div class="row justify-content-center">
       <div class="col-12 col-xl-8 col-lg-8">
         <div class="section-head gap-bottom center with-line">
-          <h2> Just what you need for a Basic Web Presence</h2>
+          <h2> Precies wat je nodig hebt voor een basis webpresentie</h2>
           <div class="lines">
             <span></span>
           </div>
-          <p>Unlimited storage, unmetered bandwidth, unbeatable hosting. This gator's got ya covered. And we'll throw in a free domain for a year, too. </p>
+          <p>Betrouwbare shared hosting met DirectAdmin, NVMe SSD-opslag, uurlijkse back-ups en gratis SSL-certificaat. Snelle prestaties en gebruiksvriendelijk beheer voor je website.</p>
         </div>
       </div>
     </div>
@@ -159,8 +159,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /templates/<?php echo $_smarty_tpl->tpl_vars['template']->value;?>
 /custom/assets/images/page_optimization.png" alt="services icon">
           </div>
-          <h4>Lightning Fast Website</h4>
-          <p>Our web application accelerator, powered by Varnish Cache, ensures the maximum performance of your website at all times!</p>
+          <h4>Bliksemsnelle website</h4>
+          <p>Onze webapplicatie versneller, aangedreven door Redis Cache, zorgt te allen tijde voor maximale prestaties van je website!</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
@@ -173,8 +173,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /templates/<?php echo $_smarty_tpl->tpl_vars['template']->value;?>
 /custom/assets/images/mail.png" alt="services icon">
           </div>
-          <h4>Email included</h4>
-          <p>Advanced email management features in cPanel allow you manage your emails, mailing lists and more without any hassles.</p>
+          <h4>E-mail inbegrepen</h4>
+          <p>Geavanceerde e-mailbeheerfuncties in DirectAdmin stellen je in staat om je e-mails, mailinglijsten en meer te beheren zonder gedoe.</p>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-12">
@@ -187,8 +187,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /templates/<?php echo $_smarty_tpl->tpl_vars['template']->value;?>
 /custom/assets/images/tools.png" alt="services icon">
           </div>
-          <h4>cPanel for Management</h4>
-          <p>cPanel, an intuitive and powerful control panel, is available on all plans which makes your hosting package management a breeze!</p>
+          <h4>DirectAdmin voor beheer</h4>
+          <p>DirectAdmin, een intuïtief en krachtig controlepaneel, is beschikbaar op alle pakketten, wat het beheer van je hostingpakket een makkie maakt!</p>
         </div>
       </div>
     </div>
@@ -199,11 +199,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
     <div class="row justify-content-center">
       <div class="col-12 col-xl-7 col-lg-8">
         <div class="section-head gap-bottom center with-line">
-          <h2>Why choose Linux Shared Web Hosting</h2>
+          <h2>Waarom kiezen voor Linux Shared Web Hosting</h2>
           <div class="lines">
             <span></span>
           </div>
-          <p>Linux Shared Web Hosting offers cost-effective, reliable hosting with robust security, customizable features, and compatibility with popular web technologies.</p>
+          <p>Linux Shared Web Hosting biedt kosteneffectieve, betrouwbare hosting met robuuste beveiliging, aanpasbare functies en compatibiliteit met populaire webtechnologieën.</p>
         </div>
       </div>
     </div>
@@ -217,8 +217,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /custom/assets/images/page_optimization.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>Lightning Fast Websites</h3>
-              <p>Super-quick page loads</p>
+              <h3>Bliksemsnelle websites</h3>
+              <p>Superschnelle pagina laadtijden</p>
             </div>
           </li>
           <li class="list-item">
@@ -228,8 +228,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /custom/assets/images/tools.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>Free DirectAdmin</h3>
-              <p>Linux Web Hosting Management simplified</p>
+              <h3>Gratis DirectAdmin</h3>
+              <p>Linux webhosting beheer vereenvoudigd</p>
             </div>
           </li>
           <li class="list-item ">
@@ -239,8 +239,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /custom/assets/images/html.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>SNI enabled</h3>
-              <p>SSL certificate installation made easy</p>
+              <h3>SNI ingeschakeld</h3>
+              <p>SSL certificaat installatie gemakkelijk gemaakt</p>
             </div>
           </li>
           <li class="list-item">
@@ -250,8 +250,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /custom/assets/images/helpdesk.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>24x7 Support</h3>
-              <p>Your websites are our priority, we are here to serve you</p>
+              <h3>24x7 ondersteuning</h3>
+              <p>Jouw websites zijn onze prioriteit, we zijn er om je te helpen</p>
             </div>
           </li>
           <li class="list-item">
@@ -261,8 +261,8 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
 /custom/assets/images/click.png" alt="features icon">
             </div>
             <div class="feature-content">
-              <h3>Easy 1-click-installer</h3>
-              <p>400+ ready-to-install apps powered by Softaculous </p>
+              <h3>Eenvoudige 1-klik installer</h3>
+              <p>400+ kant-en-klare apps aangedreven door Installatron </p>
             </div>
           </li>
           <li class="list-item">
@@ -334,7 +334,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
           <div class="lines">
             <span></span>
           </div>
-          <p>a Blog or any other module in just 1 click 50+ Plugins - Powered by Softaculous</p>
+          <p>a Blog or any other module in just 1 click 50+ Plugins - Powered by Installatron</p>
         </div>
       </div>
     </div>
@@ -407,7 +407,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
         <div class="underhood-content">
           <h4>Software</h4>
           <ul>
-            <li>Softaculous</li>
+            <li>Installatron</li>
             <li>Perl</li>
             <li>Python 2.7 and 3.6</li>
             <li>PHP 8.3, 8.2 & 8.1</li>
@@ -463,7 +463,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
                     <div class="underhood-content">
                       <h4>Software</h4>
                       <ul>
-                        <li>Softaculous</li>
+                        <li>Installatron</li>
                         <li>Perl</li>
                         <li>Python 2.7 and 3.6</li>
                         <li>PHP 8.3, 8.2 & 8.1</li>
@@ -593,7 +593,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
             <div class="col-lg-6">
               <div class="section-head">
                 <h2 class="d-none d-lg-block">Free Website Transfers</h2>
-                <p class="mb-3 mb-lg-0 text-start">Moving your website from another Web Host? Chat with us and our Account Manager will do the cPanel to cPanel website migration for you, completely Free of charge! Also, you can upgrade between plans on Linux Shared Hosting by yourself from your panel.</p>
+                <p class="mb-3 mb-lg-0 text-start">Je website verhuizen van een andere webhoster? Chat met ons en onze Account Manager zal de DirectAdmin naar DirectAdmin website migratie voor je uitvoeren, volledig gratis! Ook kun je zelf tussen pakketten upgraden op Linux Shared Hosting vanuit je panel.</p>
               </div>
             </div>
             <div class="col-lg-5 d-none d-lg-block">
@@ -633,7 +633,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
             <div class="col-lg-6">
               <div class="section-head">
                 <h2 class="d-none d-lg-block">Boost website speed</h2>
-                <p class="mb-3 mb-lg-0 text-start">Make your website up to 1000% faster with Varnish Caching. Varnish gives your website a performance boost using state-of-the-art caching layer for static websites. With Varnish caching enabled on our Linux Hosting Plans, you can Increase the chances of your website moving up in ranking on search engines due to faster load times.</p>
+                <p class="mb-3 mb-lg-0 text-start">Maak je website tot 1000% sneller met Redis Caching. Redis geeft je website een prestatieboost met geavanceerde caching voor dynamische content. Met Redis caching ingeschakeld op onze Linux Hosting pakketten, vergroot je de kans dat je website hoger scoort in zoekmachines dankzij snellere laadtijden.</p>
               </div>
             </div>
             <div class="col-lg-5 d-none d-lg-block">
@@ -704,7 +704,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?> <?php }?> </div
           </li>
           <li>
             <a> Can I host multiple Web sites within one Shared Hosting plan? </a>
-            <p>Yes! Our Pro and Business shared hosting plans allow you to host more than one Website, by adding secondary domains through your hosting control panel i.e. cPanel. </p>
+            <p>Yes! Our Pro and Business shared hosting plans allow you to host more than one Website, by adding secondary domains through your hosting control panel i.e. DirectAdmin. </p>
           </li>
           <li>
             <a> Is there a Money Back Guarantee? </a>

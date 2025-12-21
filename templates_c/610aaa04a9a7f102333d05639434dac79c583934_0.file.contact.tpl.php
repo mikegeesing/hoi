@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.48, created on 2025-12-21 15:40:38
+/* Smarty version 3.1.48, created on 2025-12-21 16:08:32
   from '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/contact.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.48',
-  'unifunc' => 'content_694814f6b2f3d4_24723832',
+  'unifunc' => 'content_69481b80158d55_25442747',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '610aaa04a9a7f102333d05639434dac79c583934' => 
     array (
       0 => '/home/onlineh/domains/onlinehoster.nl/public_html/templates/closterv2/contact.tpl',
-      1 => 1766331610,
+      1 => 1766331717,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_694814f6b2f3d4_24723832 (Smarty_Internal_Template $_smarty_tpl) {
+function content_69481b80158d55_25442747 (Smarty_Internal_Template $_smarty_tpl) {
 if ($_smarty_tpl->tpl_vars['sent']->value) {?> <?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['template']->value)."/includes/alert.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('type'=>"success",'msg'=>$_smarty_tpl->tpl_vars['LANG']->value['contactsent'],'textcenter'=>true), 0, true);
 ?> <?php }?> <?php if ($_smarty_tpl->tpl_vars['errormessage']->value) {?> <?php $_smarty_tpl->_subTemplateRender(((string)$_smarty_tpl->tpl_vars['template']->value)."/includes/alert.tpl", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array('type'=>"error",'errorshtml'=>$_smarty_tpl->tpl_vars['errormessage']->value), 0, true);
 ?> <?php }?> <?php if (!$_smarty_tpl->tpl_vars['sent']->value) {?>
