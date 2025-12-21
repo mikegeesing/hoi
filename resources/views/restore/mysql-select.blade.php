@@ -20,9 +20,46 @@
         </div>
 
         @if(isset($error))
-            <div class="rounded-md bg-red-50 p-4">
-                <p class="text-sm font-medium text-red-800">{{ $error }}</p>
-            </div>
+            @if(str_contains($error, 'lock.exclusive'))
+                <!-- Backup in progress message -->
+                <div class="rounded-md bg-amber-50 border-l-4 border-amber-400 p-4">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="animate-spin h-5 w-5 text-amber-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </div>
+                        <div class="ml-3 flex-1">
+                            <h3 class="text-sm font-medium text-amber-800 mb-1">
+                                Er wordt momenteel een backup gemaakt
+                            </h3>
+                            <p class="text-sm text-amber-700 mb-3">
+                                De backup server is bezig met het maken van een backup. Dit kan enkele minuten duren.
+                            </p>
+                            <p class="text-xs text-amber-600">
+                                Deze pagina vernieuwt automatisch over <span id="countdown">5</span> seconden...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    let seconds = 5;
+                    setInterval(() => {
+                        seconds--;
+                        const countdownEl = document.getElementById('countdown');
+                        if (countdownEl) countdownEl.textContent = seconds;
+                        if (seconds === 0) {
+                            window.location.reload();
+                        }
+                    }, 1000);
+                </script>
+            @else
+                <div class="rounded-md bg-red-50 p-4">
+                    <p class="text-sm font-medium text-red-800">{{ $error }}</p>
+                </div>
+            @endif
         @endif
 
         <!-- SQL Files -->
