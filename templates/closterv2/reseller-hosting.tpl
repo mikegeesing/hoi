@@ -208,7 +208,7 @@
           <div class="lines">
             <span></span>
           </div>
-          <p>a Blog or any other module in just 1 click 50+ Plugins - Powered by Softaculous</p>
+          <p>a Blog or any other module in just 1 click 50+ Plugins - Powered by Installatron</p>
         </div>
       </div>
     </div>
@@ -289,7 +289,7 @@
             <li>Upload and Manage Web Pages</li>
             <li>View Website Statistics with AWstats</li>
             <li>Brandable with your Company's Logo </li>
-            <li>Install Over 250 Scripts with the Softaculous Script Library</li>
+            <li>Install Over 250 Scripts with the Installatron Script Library</li>
           </ul>
         </div>
       </div>
@@ -380,7 +380,7 @@
           </li>
           <li>
             <a> Do your Reseller Hosting plans include a One-Click Installer? </a>
-            <p>Yes, all our Reseller Hosting plans come integrated with Softaculous - a popular and easy to use One-Click Installer. </p>
+            <p>Yes, all our Reseller Hosting plans come integrated with Installatron - a popular and easy to use One-Click Installer. </p>
           </li>
         </ul>
       </div>

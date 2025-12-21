@@ -194,7 +194,7 @@
             </div>
             <div class="feature-content">
               <h3>Eenvoudige 1-klik installer</h3>
-              <p>400+ kant-en-klare apps aangedreven door Softaculous </p>
+              <p>400+ kant-en-klare apps aangedreven door Installatron </p>
             </div>
           </li>
           <li class="list-item">
@@ -256,7 +256,7 @@
           <div class="lines">
             <span></span>
           </div>
-          <p>a Blog or any other module in just 1 click 50+ Plugins - Powered by Softaculous</p>
+          <p>a Blog or any other module in just 1 click 50+ Plugins - Powered by Installatron</p>
         </div>
       </div>
     </div>
@@ -311,7 +311,7 @@
         <div class="underhood-content">
           <h4>Software</h4>
           <ul>
-            <li>Softaculous</li>
+            <li>Installatron</li>
             <li>Perl</li>
             <li>Python 2.7 and 3.6</li>
             <li>PHP 8.3, 8.2 & 8.1</li>
@@ -367,7 +367,7 @@
                     <div class="underhood-content">
                       <h4>Software</h4>
                       <ul>
-                        <li>Softaculous</li>
+                        <li>Installatron</li>
                         <li>Perl</li>
                         <li>Python 2.7 and 3.6</li>
                         <li>PHP 8.3, 8.2 & 8.1</li>
