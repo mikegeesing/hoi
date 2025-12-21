@@ -51,8 +51,8 @@
       <link href="assets/css/main.css" rel="stylesheet">
       <!-- Professional Enhancements CSS -->
       <link href="assets/css/custom-professional.css" rel="stylesheet">
-      <!-- Modern Style CSS -->
-      <link href="assets/css/modern-style.css" rel="stylesheet">
+      <!-- Modern Middle CSS -->
+      <link href="assets/css/modern-middle.css" rel="stylesheet">
       <!-- jquery js -->
       <script src="assets/vendor/jquery/jquery-3.7.1.js"></script>
    </head>
@@ -715,32 +715,142 @@
     </div>
 </section>
 
-<section class="modern-features-section py-5">
+<section class="modern-features-section py-5 bg-dark">
     <div class="container">
         <div class="text-center mb-5">
-            <div class="section-badge">Waarom OnlineHoster</div>
-            <h2 class="section-title">Enterprise Features, Betaalbare Prijzen</h2>
-            <p class="section-subtitle">Professionele hosting met alle tools die je nodig hebt</p>
+            <div class="section-badge-dark">Waarom OnlineHoster</div>
+            <h2 class="section-title-dark">Enterprise Features, Betaalbare Prijzen</h2>
+            <p class="section-subtitle-dark">Professionele hosting met alle tools die je nodig hebt</p>
         </div>
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
-                <div class="services-one h-100 bg-white">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="number-box me-3">
-                            <span>01</span>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/images/backup.png" alt="Backup service icon" style="max-width: 60px;">
-                        </div>
-                    </div>
-                    <h4 class="mb-3">Uurlijke + Dagelijkse Backups</h4>
-                    <p class="text-muted">Maximale beveiliging van jouw data: wij maken <strong>elk uur automatisch een backup</strong> van je website, e-mail en databases gedurende de afgelopen 24 uur. Daarnaast worden er <strong>dagelijkse backups</strong> bewaard voor langere termijn herstel.</p>
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark"><i class="fas fa-clock me-1"></i> Elk uur</span>
-                        <span class="badge bg-light text-dark"><i class="fas fa-calendar me-1"></i> Dagelijks</span>
+        <div class="features-grid-new">
+            <div class="feature-card-new">
+                <div class="feature-card-header">
+                    <img src="assets/images/backup.png" alt="Backup service icon" class="feature-icon-new">
+                    <h3>Backups</h3>
+                </div>
+                <h4>Uurlijke + Dagelijkse Backups</h4>
+                <p>Automatische backups elk uur en dagelijks voor maximale zekerheid van je data.</p>
+            </div>
+            <div class="feature-card-new">
+                <div class="feature-card-header">
+                    <img src="assets/images/viruses.png" alt="Security protection icon" class="feature-icon-new">
+                    <h3>Beveiliging</h3>
+                </div>
+                <h4>Imunify360 + Cloudflare</h4>
+                <p>Real-time malware scanning en DDoS bescherming tegen alle bedreigingen.</p>
+            </div>
+            <div class="feature-card-new">
+                <div class="feature-card-header">
+                    <img src="assets/images/rocket.png" alt="High performance server icon" class="feature-icon-new">
+                    <h3>Snelheid</h3>
+                </div>
+                <h4>OpenLiteSpeed Servers</h4>
+                <p>Bliksemsnelle webservers met 99.9% uptime garantie voor optimale prestaties.</p>
+            </div>
+            <div class="feature-card-new">
+                <div class="feature-card-header">
+                    <img src="assets/images/tools.png" alt="Installation tools icon" class="feature-icon-new">
+                    <h3>Installaties</h3>
+                </div>
+                <h4>1-Klik Installaties</h4>
+                <p>400+ applicaties inclusief WordPress, WooCommerce en Joomla met één klik.</p>
+            </div>
+            <div class="feature-card-new">
+                <div class="feature-card-header">
+                    <img src="assets/images/Firewall.png" alt="Security firewall icon" class="feature-icon-new">
+                    <h3>Firewall</h3>
+                </div>
+                <h4>Advanced Security</h4>
+                <p>24/7 monitoring met real-time malware scanning en proactieve beveiliging.</p>
+            </div>
+            <div class="feature-card-new">
+                <div class="feature-card-header">
+                    <img src="assets/images/customer_experience.png" alt="Customer support icon" class="feature-icon-new">
+                    <h3>Support</h3>
+                </div>
+                <h4>Persoonlijke Support</h4>
+                <p>Nederlandse support team klaar om je 24/7 te helpen met al je vragen.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="modern-cta-section py-5" style="background: linear-gradient(135deg, #35b15e 0%, #2a8d4a 100%);">
+    <div class="container">
+        <div class="row align-items-center gy-4">
+            <div class="col-lg-7">
+                <div>
+                    <h2 style="color: white; margin-bottom: 1rem;">Website verhuizen?</h2>
+                    <p style="color: rgba(255,255,255,0.9); font-size: 1.1rem; margin-bottom: 1.5rem;">Wij regelen alles gratis voor je. Volledige migratie van website, database en e-mail met nul downtime.</p>
+                    <div class="d-flex gap-3 flex-wrap">
+                        <a class="btn-modern-white" onClick="document.getElementById('Plans').scrollIntoView();">
+                            <i class="fas fa-shopping-cart me-2"></i>Bekijk Pakketten
+                        </a>
+                        <a class="btn-modern-outline" href="contact.php">
+                            <i class="fas fa-phone me-2"></i>Neem Contact Op
+                        </a>
                     </div>
                 </div>
             </div>
+            <div class="col-lg-5 d-none d-lg-block">
+                <img src="assets/images/manage.svg" alt="Migration" style="max-width: 100%; height: auto;">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="modern-info-section py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 d-none d-lg-block">
+                <img src="assets/images/website.png" alt="Hosting" style="max-width: 100%; height: auto;">
+            </div>
+            <div class="col-lg-6">
+                <h2 style="margin-bottom: 1.5rem; color: #102d47;">Waarom Klanten voor OnlineHoster Kiezen</h2>
+                <div class="info-list">
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Professioneel Beheer</h5>
+                            <p>DirectAdmin control panel voor eenvoudig website beheer</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Volledige Beveiliging</h5>
+                            <p>Imunify360 + Cloudflare bescherming tegen alle bedreigingen</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Snelle Servers</h5>
+                            <p>OpenLiteSpeed voor bliksemsnelle website performance</p>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h5>Gegarandeerde Uptime</h5>
+                            <p>99.9% uptime garantie met uurlijke + dagelijkse backups</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section-gap section-bg bg1">
             <div class="col-lg-4 col-md-6">
                 <div class="services-one h-100 bg-white">
                     <div class="d-flex align-items-center mb-3">
@@ -787,57 +897,6 @@
                             <img src="assets/images/tools.png" alt="Installation tools icon" style="max-width: 60px;">
                         </div>
                     </div>
-                    <h4 class="mb-3">1-Klik Installaties</h4>
-                    <p class="text-muted">Met Installatron installeer je eenvoudig WordPress, WooCommerce, Joomla en meer dan 400 andere applicaties met één klik.</p>
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark"><i class="fas fa-mouse-pointer me-1"></i> 400+ Apps</span>
-                        <span class="badge bg-light text-dark"><i class="fab fa-wordpress me-1"></i> WordPress</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-one h-100 bg-white">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="number-box me-3">
-                            <span>05</span>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/images/Firewall.png" alt="Security firewall icon" style="max-width: 60px;">
-                        </div>
-                    </div>
-                    <h4 class="mb-3">Advanced Security</h4>
-                    <p class="text-muted">Jouw website wordt <strong>24/7 actief bewaakt</strong> door Imunify360 met real-time malware scanning en proactieve firewall-filters.</p>
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark"><i class="fas fa-eye me-1"></i> 24/7 Monitoring</span>
-                        <span class="badge bg-light text-dark"><i class="fas fa-fire me-1"></i> Firewall</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="services-one h-100 bg-white">
-                    <div class="d-flex align-items-center mb-3">
-                        <div class="number-box me-3">
-                            <span>06</span>
-                        </div>
-                        <div class="icon">
-                            <img src="assets/images/customer_experience.png" alt="Customer support icon" style="max-width: 60px;">
-                        </div>
-                    </div>
-                    <h4 class="mb-3">Persoonlijke Support</h4>
-                    <p class="text-muted">Onze support staat klaar om je te helpen met vragen rondom hosting, e-mail, DNS, WordPress en beveiliging. Snel en professioneel.</p>
-                    <div class="mt-3">
-                        <span class="badge bg-light text-dark"><i class="fas fa-headset me-1"></i> Support</span>
-                        <span class="badge bg-light text-dark"><i class="fas fa-users me-1"></i> Persoonlijk</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="section-gap section-bg bg1">
-    <div class="container">
-        <div class="row align-items-center gy-5">
             <div class="col-lg-6">
                 <div class="content-wrapper">
                     <span class="badge badge-primary mb-3">
