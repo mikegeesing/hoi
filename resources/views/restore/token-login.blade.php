@@ -18,7 +18,6 @@
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">
                     <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
-                    <span class="text-xl font-bold hidden sm:inline text-gray-900">Online Hoster</span>
                 </a>
                 <a href="/" class="btn-green text-white px-6 py-2 rounded font-semibold hover:shadow-lg transition">
                     Inloggen
