@@ -119,6 +119,7 @@
                                             <th class="px-4 py-2">Archive</th>
                                             <th class="px-4 py-2">Type</th>
                                             <th class="px-4 py-2">Status</th>
+                                            <th class="px-4 py-2">Gebruiker</th>
                                             <th class="px-4 py-2">Aangemaakt</th>
                                             <th class="px-4 py-2"></th>
                                         </tr>
@@ -143,8 +144,13 @@
                                                 @else
                                                     <span class="bg-yellow-100 text-yellow-800 px-2 py-1 rounded text-xs">⏳ {{ ucfirst($r->status) }}</span>
                                                 @endif
-                                            </td>
-                                            <td class="px-4 py-2">{{ $r->created_at->diffForHumans() }}</td>
+                                            </td>                                            <td class=\"px-4 py-2\">
+                                                @if($r->user)
+                                                    {{ $r->user->name }}
+                                                @else
+                                                    <span class=\"text-gray-400\">-</span>
+                                                @endif
+                                            </td>                                            <td class="px-4 py-2">{{ $r->created_at->diffForHumans() }}</td>
                                             <td class="px-4 py-2"><a href="/admin/restore/jobs/{{ $r->id }}" class="text-blue-600 hover:underline">Bekijk</a></td>
                                         </tr>
                                     @endforeach

@@ -56,4 +56,12 @@ class User extends Authenticatable implements WebAuthnAuthenticatableContract
     {
         return $this->role === 'admin';
     }
+
+    /**
+     * Get restore jobs initiated by this user
+     */
+    public function restoreJobs()
+    {
+        return $this->hasMany(RestoreJob::class);
+    }
 }

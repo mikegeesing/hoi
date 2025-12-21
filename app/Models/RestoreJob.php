@@ -10,6 +10,7 @@ class RestoreJob extends Model
     protected $table = 'restore_jobs';
 
     protected $fillable = [
+        'user_id',
         'token_id',
         'status',
         'restore_type',
@@ -27,5 +28,10 @@ class RestoreJob extends Model
     public function token()
     {
         return $this->belongsTo(RestoreToken::class, 'token_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

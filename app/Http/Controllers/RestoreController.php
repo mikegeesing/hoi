@@ -499,6 +499,7 @@ class RestoreController extends Controller
                 $t->save();
 
                 $job = RestoreJob::create([
+                    'user_id' => auth()->id(),
                     'token_id' => $t->id,
                     'status' => 'pending',
                     'restore_type' => 'file',
@@ -653,6 +654,7 @@ class RestoreController extends Controller
 
             // Create restore job record for tracking
             $jobRecord = RestoreJob::create([
+                'user_id' => auth()->id(),
                 'token_id' => $token?->id,
                 'status' => 'completed',
                 'restore_type' => 'mysql',
@@ -791,6 +793,7 @@ class RestoreController extends Controller
 
                 // Create restore job
                 $job = RestoreJob::create([
+                    'user_id' => auth()->id(),
                     'token_id' => $t->id,
                     'status' => 'pending',
                     'archive' => $archive,
