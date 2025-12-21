@@ -223,11 +223,7 @@ class RestoreController extends Controller
                             $type = 'file';
                         }
 
-                        // If it has a file extension, it's definitely a file (not a directory)
-                        $hasExtension = preg_match('/\.[a-zA-Z0-9]{1,10}$/', $name);
-                        if ($hasExtension) {
-                            $type = 'file';
-                        }
+                        // Trust the type from BorgService - it already handles directory detection properly
 
                         $normalized[] = [
                             'type' => $type,
