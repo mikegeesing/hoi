@@ -11,6 +11,7 @@ class BorgWrapperService
     protected string $passphrase;
     protected string $tmpDir;
     protected string $homeDir;
+    protected string $runner = '/usr/local/bin/borg-runner.sh';
 
     public function __construct(string $repositoryPath, string $passphrase)
     {
@@ -141,13 +142,13 @@ class BorgWrapperService
      */
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
+        // Use borg-runner.sh for secure, validated extraction
         $args = [
             'sudo',
             '-n',
-            '/usr/bin/borg',
-            'extract',
-            $this->repositoryPath . '::' . $archive,
-            '--',
+            $this->runner,
+            'extract-multi',
+            $archive,
         ];
         $args = array_merge($args, $files);
 
@@ -160,13 +161,13 @@ class BorgWrapperService
         // Use destination as cwd if provided
         $cwd = $destination !== '' ? $destination : null;
 
-        Log::debug('BorgWrapper extract starting', [
+        Log::debug('BorgWrapper extract starting (via runner)', [
             'archive' => $archive,
             'destination' => $destination,
             'files' => $files,
             'command' => implode(' ', $args),
             'cwd' => $cwd,
-            'env' => $env,
+            'runner' => $this->runner,
         ]);
 
         $process = new Process($args, $cwd, $env);
