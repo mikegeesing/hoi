@@ -1,0 +1,16 @@
+:root {
+  --sidebar-w: 140px;
+}
+
+.wdes-wrap-theme {
+  width: 100%;
+}
+
+// Default
+@import "./layouts/default";
+
+// Minimize Sidebar
+@import "./layouts/minimize";
+
+// Full Sidebar
+@import "./layouts/full";

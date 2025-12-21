@@ -1,0 +1,263 @@
+.promo-container {
+  margin-bottom: var(--block-spacing);
+  position: relative;
+
+  .header {
+    > h3 {
+      display: none;
+    }
+    // Controllers
+    .promotions-slider-control {
+      width: 100%;
+
+      a {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.1);
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;
+        color: #fff;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+
+        &:first-child {
+          left: var(--spacing-3x);
+          @media screen and (max-width: 767px) {
+            right: var(--spacing-9x);
+            left: initial;
+          }
+        }
+
+        &:last-child {
+          right: var(--spacing-3x);
+        }
+
+        @media screen and (max-width: 767px) {
+          top: var(--spacing-6x);
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+  }
+}
+
+.promo-banner {
+  background-color: var(--brand-primary);
+  border: 0;
+  border-top: 0 !important;
+  border-radius: var(--block-radius);
+  display: flex;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+
+  &::after {
+    content: "\f015";
+    position: absolute;
+    bottom: 50px;
+    right: 100px;
+    font-family: "Font Awesome 5 Pro";
+    font-weight: 100;
+    font-size: 300px;
+    opacity: 0.1;
+    color: #fff;
+    transform: rotate(-10deg);
+  }
+
+  .panel-body {
+    padding: var(--spacing-10x) var(--spacing-14x);
+    width: 100%;
+    @media screen and (max-width: 767px) {
+      padding-left: var(--spacing-4x);
+      padding-right: var(--spacing-4x);
+    }
+  }
+
+  .icon-left {
+    display: none;
+  }
+
+  .content {
+    margin: 0;
+    > h3 {
+      font-size: var(--font-size-h4);
+      line-height: var(--line-height-h4);
+      font-weight: var(--font-weight-bold);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      @media screen and (max-width: 767px) {
+        flex-flow: column;
+        align-items: flex-start;
+      }
+
+      // Learn more
+      a {
+        background-color: rgba(0, 0, 0, 0.1);
+        border-radius: var(--button-radius);
+        padding: var(--spacing-1x) var(--spacing-2x);
+        font-weight: var(--button-weight);
+        font-size: var(--button-size);
+        color: #fff;
+        text-decoration: none;
+        display: inline-flex;
+      }
+    }
+    h4 {
+      font-size: var(--font-size-h5);
+      line-height: var(--line-height-h5);
+      color: #fff;
+      opacity: 0.7;
+      margin: var(--spacing-1x) 0 0;
+    }
+
+    > ul {
+      display: none;
+    }
+
+    form {
+      @media screen and (max-width: 767px) {
+        text-align: left;
+      }
+      .btn {
+        background-color: #fff;
+        border: 0;
+        border-radius: var(--button-radius);
+        padding: var(--spacing-2x) var(--spacing-3x);
+        color: var(--brand-primary);
+        margin: var(--spacing-4x) 0 0;
+        font-weight: var(--font-weight-semi-bold);
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          opacity: 0.7;
+        }
+        &:focus {
+          outline: none;
+        }
+        @media screen and (max-width: 767px) {
+          white-space: normal;
+        }
+      }
+    }
+  }
+
+  // Icons
+  &.promo-rapidssl_rapidssl {
+    &::after {
+      content: "\f30d";
+    }
+  }
+
+  &.upsell-threesixtymonitoring_personal {
+    &::after {
+      content: "\f06e";
+    }
+  }
+
+  &.promo-nordvpn_standard {
+    &::after {
+      content: "\f3ed";
+    }
+  }
+
+  &.promo-spamexperts_incoming {
+    &::after {
+      content: "\f813";
+    }
+  }
+
+  &.promo-xovinow_starter {
+    &::after {
+      content: "\f643";
+    }
+  }
+
+  &.promo-ox_standard {
+    &::after {
+      content: "\f0e0";
+    }
+  }
+
+  &.upsell-sitebuilder_onepage {
+    &::after {
+      content: "\f37e";
+    }
+  }
+
+  &.promo-marketgoo_lite {
+    &::after {
+      content: "\f7ee";
+    }
+  }
+
+  &.promo-codeguard_lite {
+    &::after {
+      content: "\f0ed";
+    }
+  }
+
+  &.upsell-sitelock_find {
+    &::after {
+      content: "\f30d";
+    }
+  }
+
+  &.upsell-weebly_starter {
+    &::after {
+      content: "\f5fd";
+    }
+  }
+}
+
+// Product/Service Page
+#mc-promo-widgets {
+  .panel {
+    .panel-heading {
+      background-color: transparent;
+      padding: 0;
+      border: 0;
+    }
+    .panel-body {
+      padding: 0;
+      margin-top: 10px;
+    }
+  }
+}
+
+.hooks-area {
+  #mc-promo-widgets {
+    .panel {
+      padding: 25px;
+      .panel-heading {
+        background-color: transparent;
+      }
+      .panel-title {
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.mc-promo-login .panel,
+.mc-promo-manage .panel {
+  padding: 20px;
+}
+
+#frmCreateEmailAccount {
+  button[type="submit"] {
+    padding: 11px 0;
+  }
+}

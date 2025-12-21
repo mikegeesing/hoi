@@ -1,0 +1,31 @@
+.md-editor {
+  border: var(--panel-divider);
+  border-radius: var(--panel-radius);
+  overflow: hidden;
+
+  &:active {
+    border-color: var(--brand-primary);
+  }
+
+  .md-header {
+    .btn-default {
+      padding: 15px 10px;
+      border: 0;
+      color: var(--text-body-color);
+    }
+  }
+
+  .md-footer {
+    background-color: var(--panel-title-bg);
+    .markdown-editor-status {
+      text-align: left;
+      color: var(--text-body-color);
+    }
+  }
+}
+
+.md-editor > .md-preview,
+.md-editor > textarea.markdown-editor {
+  border-top-color: var(--gray-lighter-4) !important;
+  border-bottom-color: var(--gray-lighter-4) !important;
+}

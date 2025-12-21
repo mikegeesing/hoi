@@ -1,0 +1,43 @@
+div[menuitemname="Recent Tickets"] {
+  .list-group {
+    border: var(--block-border);
+    border-radius: var(--block-radius);
+    box-shadow: var(--block-box-shadow);
+  }
+}
+
+div#autoAnswerSuggestions {
+  background-color: var(--block-bg);
+  border: var(--block-border);
+  border-radius: var(--block-radius);
+  padding: var(--spacing-4x) var(--spacing-3x);
+  box-shadow: var(--block-box-shadow);
+
+  h3 {
+    margin: 0;
+    font-size: var(--font-size-h5);
+  }
+
+  > p {
+    margin: var(--spacing-2x) 0;
+    color: var(--text-body-color);
+  }
+
+  .kbarticles {
+    p {
+      margin-bottom: 0;
+      font-size: var(--font-size-sm);
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-1x);
+        color: var(--brand-primary);
+        font-weight: var(--font-weight-normal);
+        font-size: inherit;
+        span {
+          color: var(--gray-icons);
+        }
+      }
+    }
+  }
+}

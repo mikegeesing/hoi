@@ -1,0 +1,358 @@
+section#header
+  .wdes-header
+  section#main-menu
+  .navbar-main
+  .navbar-nav
+  ul.dropdown-menu {
+  right: 10px;
+  left: initial;
+}
+
+ul.top-nav {
+  float: left;
+}
+
+section#header .wdes-header ul.top-nav > li {
+  margin-left: 20px;
+  margin-right: initial;
+}
+
+section#main-body
+  section#home-banner
+  .wdes-domain-info
+  .wdes-input-group
+  input.form-control {
+  margin-left: 10px;
+  margin-right: initial;
+}
+
+section#main-body section#home-banner .wdes-domain-img {
+  padding-left: initial;
+  padding-right: 70px;
+}
+
+section#main-body
+  .wdes-tweets-block
+  .wdes-items-blocks
+  div.announcement-single
+  .wdes-announcement-date
+  i {
+  padding-left: 5px;
+  padding-right: initial;
+}
+
+section#footer a.wdes-back-to-top {
+  float: left;
+}
+
+.wdes-page-login
+  section#main-body
+  .main-content
+  .logincontainer
+  form.login-form,
+.wdes-page-pwreset section#main-body .main-content .logincontainer form,
+.wdes-page-register
+  section#main-body
+  .main-content
+  .wdes-wrap-register
+  #registration
+  .sub-heading {
+  text-align: right;
+}
+
+.wdes-page-login
+  section#main-body
+  .main-content
+  .logincontainer
+  form.login-form
+  label
+  a.wdes-btn-forget {
+  float: left;
+}
+
+#registration .prepend-icon .field {
+  padding-right: 36px;
+  padding-left: 12px;
+}
+
+.intl-tel-input.allow-dropdown .flag-container,
+.intl-tel-input.separate-dial-code .flag-container {
+  left: auto;
+  right: 0;
+}
+
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input,
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input[type="tel"],
+.intl-tel-input.separate-dial-code.allow-dropdown.iti-sdc-2 input[type="text"] {
+  padding-right: 76px;
+  padding-left: 12px;
+}
+
+.intl-tel-input.separate-dial-code .selected-dial-code {
+  padding-left: 0;
+  padding-right: 28px;
+}
+
+.intl-tel-input .selected-flag .iti-arrow {
+  left: 6px;
+  right: initial;
+}
+
+.intl-tel-input .selected-flag {
+  padding: 0 8px 0 0;
+}
+
+.intl-tel-input .country-list {
+  text-align: right;
+}
+
+.intl-tel-input .country-list .country-name,
+.intl-tel-input .country-list .flag-box {
+  margin-left: 6px;
+  margin-right: initial;
+}
+
+.popover-user-notifications ul li i.far,
+.popover-user-notifications ul li i.fas {
+  float: right;
+}
+
+.popover-user-notifications ul li .message {
+  margin-right: 40px;
+  margin-left: initial;
+}
+
+@media (min-width: 992px) {
+  .pull-md-left {
+    float: right;
+  }
+  .pull-md-right {
+    float: left;
+  }
+}
+@media (min-width: 768px) {
+  .pull-sm-left {
+    float: right;
+  }
+  .pull-sm-right {
+    float: left;
+  }
+  .text-right-sm {
+    text-align: left;
+  }
+}
+
+.sidebar
+  .panel
+  .panel-body
+  a.list-group-item
+  i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform),
+.sidebar
+  .panel
+  .list-group
+  a.list-group-item
+  i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform),
+.cart-sidebar
+  .panel
+  .panel-body
+  a.list-group-item
+  i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform),
+.cart-sidebar
+  .panel
+  .list-group
+  a.list-group-item
+  i:not(.fa-circle):not(.fa-dot-circle):not(.no-transform) {
+  padding-left: 17px;
+  padding-right: initial;
+}
+
+.tiles .tile .icon {
+  left: 15px;
+  right: initial;
+}
+
+.client-home-panels
+  div[menuitemname="Register a New Domain"]
+  input.btn.btn-success {
+  margin-left: 1.5%;
+  margin-right: initial;
+}
+
+.client-home-panels
+  div[menuitemname="Register a New Domain"]
+  input.btn.btn-default {
+  margin-right: 1.5%;
+  margin-left: initial;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  float: left;
+}
+
+.dataTables_wrapper .dataTables_info {
+  text-align: right !important;
+}
+
+table.dataTable thead > tr > td.sorting,
+table.dataTable thead > tr > td.sorting_asc,
+table.dataTable thead > tr > td.sorting_desc,
+table.dataTable thead > tr > th.sorting,
+table.dataTable thead > tr > th.sorting_asc,
+table.dataTable thead > tr > th.sorting_desc {
+  padding-left: 30px;
+  padding-right: 8px;
+}
+
+table.dataTable thead .sorting:after,
+table.dataTable thead .sorting_asc:after,
+table.dataTable thead .sorting_desc:after {
+  left: 8px;
+  right: initial !important;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+  float: left;
+}
+
+.dataTables_wrapper .dataTables_length label .form-control {
+  padding: 0 2px;
+}
+
+div.product-details-tab-container .row {
+  text-align: right;
+}
+
+div.announcement-single .article-items {
+  float: left;
+}
+
+a.admin-inline-edit {
+  float: left;
+}
+
+a.admin-inline-edit {
+  margin-right: 6px;
+  margin-left: initial;
+}
+
+.md-editor .md-controls {
+  float: left;
+}
+
+.pull-right {
+  float: left !important;
+}
+
+.pull-left {
+  float: right !important;
+}
+
+.ticket-reply .date {
+  float: left;
+}
+
+.ticket-reply .user i {
+  float: right;
+  padding: 0 0 0 11px;
+}
+
+.ticket-reply .user .type {
+  margin-right: 23px;
+  margin-left: initial;
+}
+
+.ticket-reply .rating,
+.ticket-reply .rating-done {
+  float: left;
+  direction: ltr;
+}
+
+div[menuitemname="Support Knowledgebase Tag Cloud"] a {
+  float: right;
+  margin-left: 5px;
+  margin-right: initial;
+}
+
+.kb-article-details li {
+  float: right;
+  padding-right: 0;
+  padding-left: 30px;
+}
+
+.wdes-kb-form-articles .wdes-btns {
+  margin-right: auto;
+  margin-left: initial;
+}
+
+/* Orderform */
+#order-phox .cart-sidebar,
+#order-phox .secondary-cart-body {
+  float: right !important;
+}
+
+#order-phox .cart-body,
+#order-phox .secondary-cart-sidebar {
+  float: left !important;
+}
+
+#order-phox label,
+#order-phox p.domain-renewal-desc,
+#order-phox .domain-selection-options .option .iradio_square-blue {
+  margin-left: 10px;
+  margin-right: initial !important;
+}
+
+#order-phox .empty-cart {
+  text-align: left !important;
+  margin: -20px 0 0 20px !important;
+}
+
+#order-phox .prepend-icon .field {
+  padding-right: 36px;
+  padding-left: initial;
+}
+
+.text-right {
+  text-align: left;
+}
+
+.text-left {
+  text-align: right;
+}
+
+.domain-promo-box i {
+  float: left !important;
+}
+
+#order-phox #frmDomainTransfer .panel .panel-body .wdes-domain-transfer-help {
+  left: 20px;
+  right: initial !important;
+}
+
+.client-home-panels .panel > .list-group .list-group-item .label {
+  float: left;
+}
+
+@media only screen and (min-width: 160px) and (max-width: 992px) {
+  section#header .wdes-header ul.top-nav > li {
+    margin-left: 13px;
+    margin-right: initial !important;
+  }
+  section#header .wdes-header ul.top-nav > li:last-child {
+    margin-left: 0;
+  }
+  section#header .wdes-header section#main-menu {
+    right: initial !important;
+    left: 0;
+  }
+  section#header .wdes-header section#main-menu button.navbar-toggle {
+    padding-right: initial !important;
+    padding-left: 15px !important;
+  }
+  section#header .wdes-header ul.top-nav {
+    padding-right: 0;
+  }
+  section#header .wdes-header section#main-menu div#primary-nav .navbar-nav {
+    text-align: right !important;
+  }
+}

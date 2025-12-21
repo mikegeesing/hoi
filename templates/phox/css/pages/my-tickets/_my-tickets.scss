@@ -1,0 +1,22 @@
+#tableTicketsList {
+  .status-answered {
+    &::before {
+      content: "\f560";
+    }
+  }
+  .status-customer-reply {
+    &::before {
+      content: "\f06e";
+    }
+  }
+  .status-open {
+    &::before {
+      content: "\f00c";
+    }
+  }
+  .status-closed {
+    &::before {
+      content: "\f00d";
+    }
+  }
+}

@@ -1,0 +1,14 @@
+.masspay-payment-gateway {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2x);
+  margin-top: var(--spacing-6x);
+
+  @media screen and (max-width: 767px) {
+    flex-flow: column;
+  }
+  .control-label {
+    padding-top: 0;
+    text-align: left;
+  }
+}

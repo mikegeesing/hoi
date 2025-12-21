@@ -1,0 +1,91 @@
+.dropdown-menu {
+  background: var(--dropdown-menu-bg);
+  width: var(--dropdown-menu-width);
+  border: var(--dropdown-menu-border);
+  border-radius: var(--dropdown-menu-border-radius);
+  box-shadow: var(--dropdown-menu-box-shadow);
+  margin: 0;
+  padding: 8px 0;
+  transition: var(--show-animation);
+  font-size: var(--font-size-base);
+  top: calc(100% + var(--spacing-1x));
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  // Item
+  .dropdown-item,
+  li.dropdown-item,
+  > li > a {
+    background-color: transparent;
+    color: var(--dropdown-link-color);
+    padding: 6px var(--spacing-3x);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-1x);
+    transition: all 0.3s ease-in-out;
+    white-space: initial;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+
+    // Icon
+    i {
+      color: var(--gray-icons);
+    }
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      color: var(--brand-primary);
+    }
+  }
+
+  > .active > a,
+  > .active > a:focus,
+  > .active > a:hover,
+  > .open > a,
+  > .open > a:focus,
+  > .open > a:hover,
+  > a:focus,
+  > a:hover {
+    background-color: transparent;
+    color: var(--brand-primary);
+  }
+
+  .nav-divider {
+    background-color: var(--gray-lighter-4);
+    margin: 6px 0;
+  }
+}
+
+.open > .dropdown-toggle.btn-default:focus,
+.open > .dropdown-toggle.btn-default:hover {
+  color: var(--button-default-color-hover);
+  background: var(--button-default-bg-hover);
+  border-color: var(--button-default-border-hover);
+  outline: none;
+  box-shadow: none;
+}
+
+.btn-group.open .dropdown-toggle {
+  box-shadow: none;
+  background-color: #fff;
+}
+
+.open > .dropdown-toggle.btn-primary {
+  color: #fff;
+  background-color: var(--main-clr);
+  border-color: var(--main-clr);
+  font-family: var(--main-font);
+  font-weight: 400;
+  border-radius: 2px;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: #242424;
+  }
+
+  &:focus {
+    background-color: #242424;
+    outline: none;
+  }
+}

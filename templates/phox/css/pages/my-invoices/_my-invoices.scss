@@ -1,0 +1,12 @@
+#tableInvoicesList_wrapper {
+  .status-unpaid {
+    &::before {
+      content: "\f06a";
+    }
+  }
+  .status-paid {
+    &::before {
+      content: "\f058";
+    }
+  }
+}

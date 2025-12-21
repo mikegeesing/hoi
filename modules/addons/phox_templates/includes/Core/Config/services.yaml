@@ -1,0 +1,12 @@
+services:
+  color_validator:
+    class:     PhoxTemplates\Includes\Core\Service\SafeColor
+  request:
+    class: Symfony\Component\HttpFoundation\Request
+  whmcs_logging:
+    class:     PhoxTemplates\Includes\Core\Service\HandlerError\RegisterLogging
+    arguments:
+      [ '@request' ]
+  error_log:
+      class:  PhoxTemplates\Includes\Core\Service\HandlerError\ErrorManger
+  

@@ -1,0 +1,39 @@
+.wdes-layout-default {
+  // Enable Dark Logo on Header
+  section#header .wdes-header {
+    .logo .phox-logo.phox-logo--dark {
+      display: inline-block;
+    }
+  }
+
+  // Enable Light Logo on Accounts Page
+  .wdes-wrap-account {
+    .logo .phox-logo.phox-logo--light {
+      display: inline-block;
+    }
+  }
+
+  // Hide Top Header Menu Items Icons
+  section#header
+    .wdes-header
+    section#main-menu
+    .navbar-main
+    .navbar-nav
+    > li
+    > a
+    i:not(.wdes-nav-menu-item_icon) {
+    display: none;
+  }
+
+  // Show Top Header Menu Items Icons
+  section#header
+    .wdes-header
+    section#main-menu
+    .navbar-main
+    .navbar-nav
+    > li.wdes-top-menu-item-icon-show
+    > a
+    i:not(.wdes-nav-menu-item_icon) {
+    display: inline-flex;
+  }
+}

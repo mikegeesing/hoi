@@ -1,0 +1,287 @@
+input,
+.form-control,
+textarea,
+.field,
+.wdes-page-order #order-phox .field,
+.wdes-page-order #order-phox .form-control {
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: var(--input-border-radius);
+  box-shadow: var(--input-box-shadow);
+  color: var(--input-color);
+  padding: var(--input-padding);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  transition: all 0.3s ease-in-out;
+  height: var(--ui-height-base);
+  &::placeholder {
+    color: var(--input-color-placeholder);
+  }
+  &:hover {
+    background: var(--input-hover-bg);
+    border-color: var(--input-hover-border-color);
+    color: var(--input-hover-color);
+  }
+  &:focus {
+    background: var(--input-focus-bg);
+    border-color: var(--input-focus-border-color);
+    color: var(--input-focus-color);
+    outline: none;
+    box-shadow: none;
+  }
+  &:hover::placeholder {
+    color: var(--input-hover-placeholder-color);
+  }
+  &:focus::placeholder {
+    color: var(--input-focus-placeholder-color);
+  }
+  &[disabled],
+  &[readonly] {
+    background-color: var(--input-disabled-bg);
+    border-color: var(--input-disabled-border-color);
+  }
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  height: initial;
+}
+
+fieldset[disabled] .form-control {
+  background-color: var(--input-disabled-bg);
+  border-color: var(--input-disabled-border-color);
+}
+
+.input-group {
+  position: relative;
+  display: flex;
+  border-radius: var(--input-border-radius);
+  gap: 10px;
+  > .form-control,
+  > .form-control:first-child,
+  .input-group-btn:last-child > .btn {
+    display: block;
+    border-top-right-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+    border-top-left-radius: var(--input-border-radius);
+    border-bottom-left-radius: var(--input-border-radius);
+  }
+  .input-group-btn {
+    width: initial;
+    font-size: initial;
+    display: inline-flex;
+  }
+}
+
+// Checkbox, Radio
+.checkbox,
+.radio {
+  display: flex;
+  align-items: center;
+  color: var(--input-color);
+  margin-top: var(--spacing-3x);
+  margin-bottom: var(--spacing-3x);
+  cursor: pointer;
+}
+
+.checkbox-inline,
+.radio-inline {
+  display: inline-flex;
+  align-items: center;
+  color: var(--input-color);
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.checkbox > label,
+.radio > label {
+  display: flex;
+  align-items: center;
+  color: var(--input-color);
+  padding-left: 0;
+}
+
+.checkbox-inline.icheck-label,
+.radio-inline.icheck-label {
+  margin-left: 0;
+}
+
+.icheckbox-wdes,
+.icheckbox_square-blue,
+.iradio_square-blue,
+.iradio-wdes {
+  position: relative;
+  display: flex;
+  height: var(--icheck-size);
+  width: var(--icheck-size);
+  min-width: var(--icheck-size);
+  min-height: var(--icheck-size);
+  background: var(--icheck-bg);
+  border: var(--icheck-border);
+  border-radius: var(--icheck-border-radius);
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  margin-right: var(--spacing-1x);
+  &:hover {
+    border-color: var(--icheck-hover-border-color);
+  }
+  &.checked {
+    border-color: var(--icheck-active-border-color);
+    background: var(--icheck-active-bg);
+  }
+}
+
+.checkbox > .icheckbox-wdes,
+.checkbox > .iradio-wdes,
+.checkbox > [type="checkbox"],
+.checkbox > [type="radio"],
+.checkbox > label > .icheckbox-wdes,
+.checkbox > label > .iradio-wdes,
+.checkbox > label > [type="checkbox"],
+.checkbox > label > [type="radio"],
+.radio > .icheckbox-wdes,
+.radio > .iradio-wdes,
+.radio > [type="checkbox"],
+.radio > [type="radio"],
+.radio > label > .icheckbox-wdes,
+.radio > label > .iradio-wdes,
+.radio > label > [type="checkbox"],
+.radio > label > [type="radio"] {
+  margin-right: var(--checkbox-spacing);
+}
+
+.icheckbox-wdes:before,
+.icheckbox_square-blue:before {
+  content: "\f00c";
+  font-family: "Font Awesome 5 Pro";
+  font-weight: 900;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(var(--icheck-size) - var(--icheck-border-width) * 2);
+  width: calc(var(--icheck-size) - var(--icheck-border-width) * 2);
+  color: var(--icheck-active-icon-color);
+  font-size: 10px;
+  line-height: 1;
+}
+
+.icheckbox-wdes > input,
+.icheckbox_square-blue > input,
+.iradio-wdes > input,
+.iradio-wdes > input {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.icheckbox-wdes.disabled,
+.icheckbox_square-blue.disabled,
+.iradio_square-blue.disabled,
+.iradio-wdes.disabled {
+  cursor: not-allowed;
+  background: var(--icheck-disabled-bg);
+  border-color: var(--icheck-disabled-border-color);
+}
+
+.checkbox:hover > .icheckbox-wdes:not(.checked):not(.disabled),
+.checkbox:hover > .iradio-wdes:not(.checked):not(.disabled),
+.checkbox > label:hover > .icheckbox-wdes:not(.checked):not(.disabled),
+.checkbox > label:hover > .iradio-wdes:not(.checked):not(.disabled),
+.radio:hover > .icheckbox-wdes:not(.checked):not(.disabled),
+.radio:hover > .iradio-wdes:not(.checked):not(.disabled),
+.radio > label:hover > .icheckbox-wdes:not(.checked):not(.disabled),
+.radio > label:hover > .iradio-wdes:not(.checked):not(.disabled) {
+  border-color: var(--input-hover-border-color);
+}
+
+.iradio_square-blue,
+.iradio-wdes {
+  border-radius: 100%;
+}
+
+.iradio_square-blue:before,
+.iradio-wdes:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: calc(-1 * var(--spacing-1x) / 2);
+  margin-left: calc(-1 * var(--spacing-1x) / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  content: "";
+  height: var(--spacing-1x);
+  width: var(--spacing-1x);
+  background: #fff;
+  border-radius: 100%;
+}
+
+// Switch
+.wdes-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin-bottom: 0;
+
+  input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+
+    &::before {
+      position: absolute;
+      content: "";
+      height: 26px;
+      width: 26px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 50%;
+    }
+  }
+
+  input:checked + .slider {
+    background-color: var(--brand-primary);
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+}
+
+// Tel Input
+.intl-tel-input.separate-dial-code .selected-flag,
+.intl-tel-input.allow-dropdown .flag-container:hover .selected-flag {
+  background-color: transparent;
+}
+
+.intl-tel-input .country-list .country.highlight {
+  background-color: var(--main-color-lighter-v1);
+  color: var(--brand-primary);
+}
+
+.intl-tel-input .country-list .divider {
+  border-bottom-color: var(--gray-lighter-3);
+}
+
+select.input-sm {
+  height: var(--ui-height-base);
+}

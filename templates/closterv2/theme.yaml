@@ -1,0 +1,12 @@
+# WHMCS Eurohost Theme Configuration File
+name: "Closter v2"
+description: "Closter v2 Child WHMCS Theme version 8.13.x"
+author: "RedCheap"
+config:
+  parent: six
+properties:
+  serverSidePagination: false # Defines client side will handle pagination
+provides:
+  bootstrap: 4.5.3
+  jquery: 1.12.4
+  fontawesome: 5.10.1

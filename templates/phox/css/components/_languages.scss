@@ -1,0 +1,122 @@
+.languages-list .dropdown-menu {
+  padding-top: 0;
+  > li > a {
+    padding: 9px var(--spacing-3x);
+  }
+}
+
+.language-search-dropdown {
+  position: sticky;
+  top: 0;
+
+  > i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 20px;
+    font-size: 17px;
+    color: var(--gray-icons);
+  }
+
+  > input {
+    border: 0;
+    border-radius: 0;
+    border-bottom: var(--input-border);
+    padding: 14px 20px 14px 45px;
+    height: initial;
+    margin-bottom: 7px;
+  }
+}
+
+.languages-list .dropdown-menu > li > a.active {
+  background-color: var(--brand-primary-faded);
+  border-color: var(--brand-primary-faded);
+  color: var(--brand-primary);
+}
+
+.language-flag-icon {
+  display: flex;
+  width: 20px;
+  height: 15px;
+  border-radius: var(--border-radius-xs);
+  overflow: hidden;
+  margin-inline-end: 3px;
+  &.arabic {
+    background-image: url("../img/flags/arabic.svg");
+  }
+  &.azerbaijani {
+    background-image: url("../img/flags/azerbaijani.svg");
+  }
+  &.catalan {
+    background-image: url("../img/flags/catalan.svg");
+  }
+  &.chinese {
+    background-image: url("../img/flags/chinese.svg");
+  }
+  &.croatian {
+    background-image: url("../img/flags/croatian.svg");
+  }
+  &.czech {
+    background-image: url("../img/flags/czech.svg");
+  }
+  &.danish {
+    background-image: url("../img/flags/danish.svg");
+  }
+  &.dutch {
+    background-image: url("../img/flags/dutch.svg");
+  }
+  &.english {
+    background-image: url("../img/flags/english.svg");
+  }
+  &.estonian {
+    background-image: url("../img/flags/estonian.svg");
+  }
+  &.farsi {
+    background-image: url("../img/flags/farsi.svg");
+  }
+  &.french {
+    background-image: url("../img/flags/french.svg");
+  }
+  &.hebrew {
+    background-image: url("../img/flags/hebrew.svg");
+  }
+  &.german {
+    background-image: url("../img/flags/german.svg");
+  }
+  &.hungarian {
+    background-image: url("../img/flags/hungarian.svg");
+  }
+  &.italian {
+    background-image: url("../img/flags/italian.svg");
+  }
+  &.macedonian {
+    background-image: url("../img/flags/macedonian.svg");
+  }
+  &.norwegian {
+    background-image: url("../img/flags/norwegian.svg");
+  }
+  &.portuguese-br {
+    background-image: url("../img/flags/portuguese-br.svg");
+  }
+  &.portuguese-pt {
+    background-image: url("../img/flags/portuguese-pt.svg");
+  }
+  &.romanian {
+    background-image: url("../img/flags/romanian.svg");
+  }
+  &.russian {
+    background-image: url("../img/flags/russian.svg");
+  }
+  &.spanish {
+    background-image: url("../img/flags/spanish.svg");
+  }
+  &.swedish {
+    background-image: url("../img/flags/swedish.svg");
+  }
+  &.turkish {
+    background-image: url("../img/flags/turkish.svg");
+  }
+  &.ukranian {
+    background-image: url("../img/flags/ukranian.svg");
+  }
+}

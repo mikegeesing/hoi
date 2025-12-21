@@ -1,0 +1,29 @@
+.list-info {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  li {
+    padding: var(--spacing-2x) var(--spacing-3x);
+    border-bottom: var(--panel-divider);
+    display: flex;
+    align-items: center;
+    font-size: var(--text-base);
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+  .list-info-title {
+    flex-basis: 50%;
+    word-break: break-word;
+    color: var(--text-lighter-color);
+  }
+  .list-info-text {
+    flex-basis: 50%;
+    color: var(--text-heading-color);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-1x);
+  }
+}

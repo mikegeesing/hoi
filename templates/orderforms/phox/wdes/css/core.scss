@@ -1,0 +1,522 @@
+.wdes-page-order #order-phox {
+  .cart-sidebar,
+  .sidebar-collapsed {
+    @media screen and (max-width: 1199px) {
+      position: static;
+      order: initial;
+    }
+  }
+  .cart-body {
+    @media screen and (max-width: 1199px) {
+      display: flex;
+      gap: 30px;
+      flex-flow: column-reverse;
+    }
+  }
+}
+
+#order-phox {
+  .cart-body {
+    &.cart-body--full-width {
+      width: 100%;
+    }
+  }
+
+  // Products
+  @import "./pages/products";
+
+  // Configure Product Domain
+  @import "./pages/configure-product-domain";
+
+  // Configure Product
+  @import "./pages/configure-product";
+
+  // Configure Domains
+  @import "./pages/configure-domains";
+
+  // Review and Checkout
+  @import "./pages/review-checkout";
+
+  // View Cart Promo
+  .view-cart-promotion-code {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    text-align: left;
+  }
+
+  // Cart
+  #orderSummary {
+    background-color: var(--main-clr);
+    border-radius: var(--radius);
+    padding: 30px;
+  }
+  .order-summary {
+    background-color: transparent;
+    border-radius: 0;
+    border: 0;
+    padding: 0;
+    transition: all 0.3s;
+    margin-bottom: 0;
+    color: #fff;
+
+    .loader {
+      color: inherit;
+      opacity: 0.5;
+      top: 0;
+    }
+
+    h2 {
+      font-weight: 400;
+      font-size: 24px;
+      margin: 0 0 30px;
+      padding: 0;
+      text-align: left;
+    }
+
+    .summary-container {
+      margin: 0;
+      padding: 0;
+      min-height: 100px;
+      border-radius: 0;
+      background-color: transparent;
+      font-size: 14px;
+      .product-name,
+      .product-group {
+        display: none;
+      }
+      .subtotal,
+      .recurring-totals,
+      .bordered-totals {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        padding-bottom: 20px;
+        margin-bottom: 20px !important;
+      }
+      .clearfix {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        span:first-child {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          font-size: 13px;
+        }
+        span:last-child {
+          margin-left: auto;
+          font-size: 13px;
+          opacity: 0.9;
+          text-align: right;
+          font-style: normal;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  .order-summary .summary-totals {
+    margin: 25px 0;
+    padding: 25px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .total-due-today {
+    text-align: left;
+    display: flex;
+    flex-flow: column-reverse;
+    gap: 5px;
+    span:not(.amt) {
+      font-size: 13px;
+      opacity: 0.8;
+      text-align: left;
+    }
+    .amt {
+      text-align: left !important;
+      font-weight: 700;
+      font-size: 30px !important;
+    }
+  }
+
+  .wdes-phox-cart_btn {
+    color: var(--button-primary-faded-color);
+    background: var(--button-primary-faded-bg);
+    border-color: var(--button-primary-faded-border);
+    font-size: 16px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px 10px;
+    border-radius: var(--radius);
+    margin-top: 20px;
+    transition: all 0.3s ease-in-out;
+    &:hover,
+    &:focus {
+      background-color: #fff;
+      color: var(--main-clr);
+    }
+  }
+
+  #orderSummary {
+    .btn-add-to-cart {
+      width: 100%;
+      margin-top: var(--spacing-3x);
+      &:hover,
+      &:focus {
+        color: var(--button-primary-faded-color);
+        background: var(--button-primary-faded-bg);
+        border-color: var(--button-primary-faded-border);
+        opacity: 0.8;
+      }
+    }
+  }
+
+  .cc-input-container {
+    background-color: #fff;
+    border: 1px solid #eee;
+  }
+
+  .account-select-container {
+    background-color: var(--block-bg);
+    border: var(--block-border);
+    box-shadow: var(--block-box-shadow);
+    border-radius: var(--block-radius);
+    div.account {
+      border: 0;
+    }
+  }
+
+  // Domain Page
+  .domain-checker-container {
+    background: var(--main-clr);
+
+    .domain-checker-bg {
+      background-image: initial;
+    }
+  }
+
+  .domain-promo-box {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: 3px;
+    padding: 20px;
+    transition: all 0.3s;
+
+    &:hover,
+    &:focus {
+      border: 1px solid var(--main-clr);
+    }
+  }
+
+  .cart-sidebar .panel > .panel-heading .panel-title {
+    font-size: var(--panel-sidebar-title-size);
+  }
+
+  .cart-sidebar .panel .panel-body a.list-group-item,
+  .cart-sidebar .panel .list-group a.list-group-item {
+    padding: 6px 0;
+    margin-bottom: 0;
+    &.active {
+      padding: var(--spacing-1x) var(--spacing-2x);
+      background-color: var(--main-color-lighter-v1);
+      border-radius: var(--block-radius);
+    }
+  }
+
+  .domains-row .input-group-addon.input-group-prepend {
+    background-color: transparent;
+    border: 0;
+    color: #242424;
+  }
+
+  .sub-heading span,
+  .sub-heading-borderless span {
+    color: #242424;
+  }
+
+  // Domain Transfer
+  #frmDomainTransfer {
+    .panel {
+      font-size: 15px;
+      border: 0;
+      padding: 0;
+      box-shadow: none;
+
+      .panel-body {
+        background-color: var(--main-clr);
+        padding: 60px 120px;
+        border-radius: 10px;
+
+        a.pull-right.float-right {
+          color: #fff;
+          margin-bottom: 10px;
+        }
+
+        @media screen and (max-width: 767px) {
+          padding: 60px 30px;
+        }
+
+        #inputTransferDomain,
+        #inputAuthCode {
+          background-color: #fff;
+          padding: 25px;
+          border-radius: 10px;
+        }
+
+        .relative {
+          position: relative;
+        }
+
+        .wdes-domain-transfer-help {
+          position: absolute;
+          right: 20px;
+          top: 16px;
+          z-index: 1;
+          color: var(--main-clr);
+          text-decoration: none;
+          font-weight: 600;
+          font-size: 14px;
+        }
+
+        .alert {
+          padding: 20px;
+          margin: 20px 0;
+          border-radius: 10px;
+        }
+
+        #btnTransferDomain {
+          float: right;
+          margin: 0;
+          background-color: var(--domain-btn);
+          border-color: var(--domain-btn);
+          color: var(--main-clr);
+          padding: 14px 25px;
+          border-radius: var(--radius);
+          font-weight: 700;
+          font-size: 15px;
+          outline: none;
+
+          span {
+            font-size: inherit;
+            font-weight: inherit;
+          }
+          &:hover,
+          &:focus {
+            background-color: #fff !important;
+            color: var(--main-clr) !important;
+          }
+        }
+      }
+    }
+  }
+
+  // Domain Renewal
+  @import "./pages/domain-renewal";
+
+  .wdes-cart-goto {
+    margin-top: 10px;
+  }
+
+  #producttotal {
+    span a {
+      color: inherit;
+    }
+  }
+  .transfer-eligible,
+  .transfer-not-eligible {
+    margin: 0;
+    padding: 0;
+  }
+  .transfer-not-eligible {
+    color: #d9534f;
+    background-color: transparent;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .transfer-eligible {
+    background-color: transparent;
+  }
+
+  .wdes-phox-addons-heading {
+    margin: 0 0 15px 0;
+    font-size: 22px;
+    font-weight: 500;
+    color: #242424;
+  }
+  .info-text-sm {
+    font-size: 13px;
+  }
+  .product-configurable-options {
+    .form-group {
+      background-color: #fff;
+      border: 1px solid #eee;
+      border-radius: var(--radius);
+      padding: 25px;
+      label:first-child {
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+    }
+  }
+  .form-control-static {
+    color: var(--text-clr);
+  }
+  #productAddonsContainer {
+    .addon-products {
+      .panel-addon {
+        font-size: 14px;
+        text-align: left;
+        padding: 30px;
+        &.panel-addon-selected {
+          border-color: var(--main-clr);
+        }
+        .panel-body {
+          padding: 0;
+          font-size: 13px;
+          color: var(--text-clr);
+          line-height: 22px;
+          > label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 14px;
+            margin: 0 0 10px 0;
+          }
+        }
+        .panel-price {
+          background-color: var(--domain-btn);
+          color: var(--main-clr);
+          text-align: center;
+          padding: 7px 10px;
+          border-radius: var(--radius);
+          margin-top: 15px;
+          font-size: 12px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  .wdes-phox-form-wrapper {
+    display: flex;
+    gap: 10px;
+    button[name="validatepromo"] {
+      min-width: max-content;
+    }
+  }
+  .wdes-phox-hooks-of {
+    .sub-heading,
+    .mc-promos {
+      display: none;
+    }
+  }
+  .prepend-icon .field-icon {
+    top: 4px;
+    height: initial;
+  }
+  .tld-pricing-header {
+    background-color: var(--head-clr);
+    border: 1px solid #eee;
+    border-radius: var(--radius) var(--radius) 0 0;
+    > div,
+    .no-gutters,
+    .no-gutters > div {
+      background-color: transparent;
+      border: 0;
+    }
+    .tld-column,
+    .no-gutters > div {
+      padding: 15px;
+      font-size: 14px;
+      color: #242424;
+      font-weight: 600;
+      text-align: left;
+    }
+  }
+  .tld-row {
+    background-color: transparent;
+    border: 1px solid #eee;
+    border-top: 0;
+    padding: 0;
+    text-align: left;
+    .two-row-center {
+      margin: 0;
+      padding: 15px;
+      border: 0;
+      color: var(--text-clr);
+      font-size: 14px;
+      font-weight: 400;
+      strong {
+        color: #242424;
+      }
+    }
+    .text-center {
+      text-align: left;
+      padding: 15px;
+      color: var(--text-clr);
+      font-size: 14px;
+      font-weight: 400;
+      small {
+        color: #242424;
+      }
+    }
+  }
+
+  .intl-tel-input.separate-dial-code.allow-dropdown input,
+  .intl-tel-input.separate-dial-code.allow-dropdown input[type="tel"],
+  .intl-tel-input.separate-dial-code.allow-dropdown input[type="text"] {
+    padding-left: 76px;
+  }
+
+  .sticky-cart {
+    padding-top: 70px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .table-container .dataTables_wrapper .dataTables_filter label {
+    margin-right: 0;
+  }
+
+  .dataTables_wrapper .dataTables_filter label .form-control {
+    height: auto !important;
+    background: url("../../../../../assets/img/search.png") #fff no-repeat 8px
+      5px !important;
+    vertical-align: middle;
+  }
+
+  .table-container .dataTables_wrapper .dataTables_length label .form-control {
+    height: 30px;
+    vertical-align: middle;
+    padding: 2px;
+  }
+
+  .transfer-eligible {
+    color: #5cb85c;
+  }
+
+  .info-text-sm {
+    font-size: var(--font-size-sm);
+    a {
+      font-size: inherit;
+    }
+  }
+
+  textarea.field {
+    height: auto !important;
+  }
+
+  // Register Domain
+  @import "./pages/register-domain";
+
+  // Captcha
+  @import "./components/captcha";
+}

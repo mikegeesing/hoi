@@ -1,0 +1,28 @@
+.section + .section {
+  margin-top: var(--spacing-6x);
+}
+
+.section-header {
+  margin-bottom: var(--spacing-3x);
+}
+
+.section-title {
+  margin: 0;
+  color: var(--text-heading-color);
+  font-size: var(--font-size-h4);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-h4);
+}
+
+.section-description {
+  color: var(--text-body-color);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-base);
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.section-title + .section-description {
+  margin-top: var(--spacing-2x);
+}

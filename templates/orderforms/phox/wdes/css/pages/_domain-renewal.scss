@@ -1,0 +1,44 @@
+.domain-renewals {
+  margin: 0;
+  border-top: 0;
+  background-color: transparent;
+  display: flex;
+  flex-flow: column;
+  gap: var(--spacing-4x);
+
+  .domain-renewal {
+    background-color: #fff;
+    border: var(--block-border);
+    box-shadow: var(--block-box-shadow);
+    padding: var(--spacing-3x);
+    border-radius: var(--block-radius);
+
+    // Heading
+    .wdes-domain-renew-title {
+      font-size: var(--font-size-h4);
+      font-weight: var(--font-weight-normal);
+      line-height: var(--line-height-h4);
+      margin-bottom: var(--spacing-1x);
+    }
+
+    // Description
+    .wdes-domain-renew-description {
+      font-size: var(--font-size-sm);
+      margin-bottom: var(--spacing-3x);
+      width: 100%;
+      color: var(--text-lighter-color);
+    }
+
+    .label {
+      border-radius: var(--border-radius-sm);
+    }
+
+    .wdes-flex-domain-renew {
+      display: flex;
+      gap: 0 15px;
+      button {
+        height: 100%;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+    "schema": "1.0",
+    "type": "whmcs-addons",
+    "name": "MijnHostAddon",
+    "category": "addon",
+    "description": {
+        "name": "mijn.host",
+        "tagline": "Domain management for mijn.host services.",
+        "long": "The mijn.host addon provides comprehensive domain management capabilities. Create and manage reusable nameserver and contact profiles that can be easily assigned to domains. Streamline your domain management workflow with centralized profile storage and quick profile assignment features.",
+        "features": [
+            "Nameserver Profile Management",
+            "Contact Profile Management", 
+            "Centralized Profile Storage",
+            "API Integration with mijn.host"
+        ]
+    },
+    "support": {
+        "homepage": "https:\/\/mijn.host\/",
+        "learn_more": "https:\/\/mijn.host\/over-ons\/",
+        "email": "support@mijn.host",
+        "support_url": "https:\/\/mijn.host\/contact\/",
+        "docs_url": "https:\/\/mijn.host\/api\/doc\/"
+    },
+    "logo": {
+        "filename": "logo.png"
+    },
+    "authors": [
+        {
+            "name": "ModulesGarden",
+            "homepage": "https:\/\/www.modulesgarden.com\/"
+        }
+    ]
+}

@@ -1,0 +1,1 @@
+<div class="alert alert-danger">{$lang->get('anErrorOccurred')}</div>

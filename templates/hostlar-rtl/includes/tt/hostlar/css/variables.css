@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Rubik:wght@400;500;600;700&display=swap');
+:root {
+  --primary: #0060FE;
+  --primary-dark: #0037B6;
+  --primary-darker: #001B79;
+
+  --success:#2AC14B;
+  --info: #5585FC;
+  --worning: #FFD12D;
+  --danger: #FF423F;
+
+  --gray: #878c8f;
+  --gray-light: #f5f5f5;
+
+
+  --custom-radius: .75rem;
+  --primary-light: #CBE7FE;
+  --danger-light: #FFE6D8;
+  --warning-light: #FFF9D5;
+  --success-light: #DAFBD4;
+
+
+  --body-color: #404040;
+  --heading-color: #1d1d1f;
+
+  --border-color: #e9eaec;
+  --border-dark-color: #002693;
+  --border-primary-light: #004ADA;
+
+  --font-family-sans-serif: 'Open Sans', sans-serif;
+  --font-family-monospace: 'Rubik', sans-serif;
+}
+
+:root[data-bs-theme="dark"]{
+
+  --primary: #1C40F2;
+  --primary-dark: #1e3a8a;
+  --primary-darker: #172554;
+
+  --success: #83D617;
+  --info: #2FD9EF;
+  --worning: #F9951B;
+  --danger: #E83737;
+
+  --gray: #334155;
+  --gray-light: #1e293b;
+  --dark: #0f172a;
+
+  --custom-radius: .75rem;
+  --primary-light: #D1DCFE;
+  --danger-light: #FDE4D7;
+  --warning-light: #FEF2D1;
+  --success-light: #F1FCCF;
+
+
+  --body-color: #94a3b8;
+  --heading-color: #f8fafc;
+
+  --border-color: #64748b;
+  --border-dark-color: #08188C;
+  --border-primary-light: #1430D0;
+
+}

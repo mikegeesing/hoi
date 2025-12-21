@@ -1,0 +1,22 @@
+{
+    "name": "modulesgarden/mijnhostaddon",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jakub Filip",
+            "email": "jakub.fi@modulesgarden.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "config": {
+        "platform-check": false
+    },
+    "autoload": {
+        "psr-4": {
+            "ModulesGarden\\MijnHostAddon\\": "./"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.9"
+    }
+}

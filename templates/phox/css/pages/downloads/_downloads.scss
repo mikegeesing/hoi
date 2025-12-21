@@ -1,0 +1,15 @@
+.list-group-item--download {
+  font-size: var(--font-size-base);
+  display: flex;
+  flex-flow: column;
+  padding: var(--spacing-3x);
+
+  strong {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    i {
+      color: var(--gray-icons);
+    }
+  }
+}

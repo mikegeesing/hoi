@@ -1,0 +1,339 @@
+<?php
+session_start();
+require_once '/home/onlineh/secure/backup_crypto.php';
+
+/* ----------------------------------------------------------
+   DATABASE CONNECTIE
+----------------------------------------------------------- */
+$dsn = "mysql:host=localhost;dbname=onlineh_backupmanager;charset=utf8mb4";
+$db_user = "onlineh_backupmanager";
+$db_pass = "aXdfG92bjTDdjQ57bqWH";
+
+try {
+    $pdo = new PDO($dsn, $db_user, $db_pass, [
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+    ]);
+} catch (Exception $e) {
+    die("Database connectie mislukt: " . $e->getMessage());
+}
+
+
+/* ----------------------------------------------------------
+   GET REQUEST — TOKEN VALIDATIE
+----------------------------------------------------------- */
+if ($_SERVER["REQUEST_METHOD"] === "GET") {
+
+    // Geen token en geen sessie?
+    if (!isset($_GET['u']) && ($_SESSION["success"] ?? "") !== "ja") {
+        die("Geen toegang (geen token).");
+    }
+
+    // Als sessie al goed is → user staat al klaar
+    if (($_SESSION["success"] ?? "") === "ja") {
+        $user = $_SESSION["user"];
+    } else {
+
+        /* ------------------------------
+           TOKEN CONTROLEREN
+        ------------------------------ */
+        $token = $_GET['u'];
+
+        $stmt = $pdo->prepare("SELECT * FROM one_time_tokens WHERE token = ? LIMIT 1");
+        $stmt->execute([$token]);
+        $tokenRow = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$tokenRow) {
+            die("Ongeldig token.");
+        }
+
+        if ($tokenRow['used'] == 1) {
+            die("Deze link is al gebruikt en vervallen.");
+        }
+
+        // Token decrypten → user krijgen
+        $user = decrypt_user($token);
+
+        if ($user === false) {
+            die("Token beschadigd of ongeldig.");
+        }
+
+        // Database moet overeenkomen
+        if ($user !== $tokenRow["username"]) {
+            die("Token mismatch met gebruiker.");
+        }
+
+        /* ------------------------------
+           TOEGESTANE GEBRUIKERS
+        ------------------------------ */
+        $allowed_users = [
+            'onlineh1',
+            'onlineho',
+            'joy',
+            'klant123',
+            'admin123'
+        ];
+
+        if (!in_array($user, $allowed_users, true)) {
+            die("Geen toegang voor gebruiker: $user");
+        }
+
+        /* ------------------------------
+           TOKEN VERBRUIKEN (one-time)
+        ------------------------------ */
+        $stmt = $pdo->prepare("UPDATE one_time_tokens SET used=1, used_at=NOW() WHERE id=?");
+        $stmt->execute([$tokenRow['id']]);
+
+        /* ------------------------------
+           SESSIE VALIDEREN
+        ------------------------------ */
+        $_SESSION["success"] = "ja";
+        $_SESSION["user"] = $user;
+    }
+
+    /* ------------------------------
+       EXTRA WACHTWOORD (optioneel)
+    ------------------------------ */
+    $password = $_GET["password"] ?? null;
+
+    if ($password !== "MikeGeesingonlinehoster" && ($_SESSION["success"] ?? "") !== "ja") {
+        die("Not allowed");
+    }
+
+    /* ----------------------------------------------------------
+       BORGLIJST OPHALEN (ALLEEN BIJ GET!)
+    ----------------------------------------------------------- */
+    echo "Mappen en bestanden ophalen voor user: $user<br>";
+
+    $raw = shell_exec("sudo /usr/local/bin/borg-list.sh 2>&1");
+    $lines = array_filter(array_map('trim', explode("\n", $raw)));
+
+    $archive_map = [];
+    $enabled_dates = [];
+
+    foreach ($lines as $line) {
+        $clean = preg_replace('/^server1-/', '', $line);
+
+        $clean = preg_replace('/\.\d+$/', '', $clean);
+
+        $dt = DateTime::createFromFormat("Y-m-d\TH:i:s", $clean);
+        if ($dt) {
+            $date = $dt->format("Y-m-d");
+            $time = $dt->format("H:i:s");
+
+            $archive_map[$date][] = [
+                "time"    => $time,
+                "archive" => $line
+            ];
+
+            $enabled_dates[$date] = true;
+        }
+    }
+
+    $js_enabled_dates = json_encode(array_keys($enabled_dates));
+    $js_archive_map   = json_encode($archive_map);
+}
+
+
+/* ----------------------------------------------------------
+   POST REQUEST — RESTORE UITVOEREN
+----------------------------------------------------------- */
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // Moet een geldige sessie hebben
+    if (($_SESSION["success"] ?? "") !== "ja") {
+        die("Geen geldige sessie.");
+    }
+
+    $user = $_SESSION["user"];
+
+    $archive = escapeshellarg($_POST["archive"]);
+    $type = $_POST["type"];
+
+    echo "Restore gestart voor gebruiker: $user...\n";
+
+    if ($type === "files") {
+      echo "Bestanden worden teruggezet voor gebruiker: $user...\n";
+        echo shell_exec("sudo /usr/local/bin/borg-restore-files.sh $archive 2>&1");
+    }
+    if ($type === "db") {
+      echo "Database wordt teruggezet voor gebruiker: $user...\n";
+        echo shell_exec("sudo /usr/local/bin/borg-restore-db.sh $archive 2>&1");
+    }
+    if ($type === "mail") {
+      echo "Mail wordt teruggezet voor gebruiker: $user...\n";
+        echo shell_exec("sudo /usr/local/bin/borg-restore-mail.sh $archive 2>&1");
+    }
+
+    echo "\nRestore voltooid.\nSessie wordt nu beëindigd.";
+
+    // Restore mag maar 1x → sessie vernietigen
+    unset($_SESSION["success"]);
+    unset($_SESSION["user"]);
+    session_destroy();
+
+    exit;
+}
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Backup Kalender</title>
+
+<style>
+body { font-family: Arial; padding:20px; }
+#calendar-container { width:350px; margin-top:20px; user-select:none; }
+#calendar-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; }
+#calendar-header button { background:#1976d2; color:white; border:none; padding:6px 10px; cursor:pointer; border-radius:5px; }
+#monthTitle { font-size:18px; font-weight:bold; }
+.calendar-grid { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
+.day-header { font-weight:bold; text-align:center; }
+.day { padding:10px; border-radius:6px; text-align:center; }
+.enabled { background:#1976d2; color:white; cursor:pointer; }
+.disabled { background:#eee; color:#aaa; }
+.selected { background:#004ba0 !important; }
+#timeSelect, #restoreType, #restoreBtn { margin-top:15px; padding:10px; width:250px; }
+#restoreBtn { background:#1a73e8; color:white; border:none; cursor:pointer; }
+#output { white-space:pre-wrap; margin-top:20px; }
+</style>
+
+</head>
+<body>
+
+<h2>🔄 Backup herstellen</h2>
+
+<div id="calendar-container">
+    <div id="calendar-header">
+        <button id="prevMonth">‹</button>
+        <span id="monthTitle"></span>
+        <button id="nextMonth">›</button>
+    </div>
+    <div id="calendar" class="calendar-grid"></div>
+</div>
+
+<select id="timeSelect" class="hidden"></select>
+
+<select id="restoreType" class="hidden">
+    <option value="files">Website bestanden</option>
+    <option value="db">Database</option>
+    <option value="mail">E-mail</option>
+</select>
+
+<button id="restoreBtn" class="hidden">Restore uitvoeren</button>
+
+<pre id="output"></pre>
+
+<script>
+// Data vanuit PHP
+let enabledDates = <?php echo $js_enabled_dates ?? "[]"; ?>;
+let archiveMap   = <?php echo $js_archive_map   ?? "[]"; ?>;
+
+// Token uit URL halen
+const urlParams = new URLSearchParams(window.location.search);
+const token = urlParams.get("u");
+
+let enabled = {};
+enabledDates.forEach(d => enabled[d] = true);
+
+let calendar = document.getElementById("calendar");
+let monthTitle = document.getElementById("monthTitle");
+let prevBtn = document.getElementById("prevMonth");
+let nextBtn = document.getElementById("nextMonth");
+
+let current = new Date();
+current.setDate(1);
+
+const dayNames = ["Ma", "Di", "Wo", "Do", "Vr", "Za", "Zo"];
+
+function renderCalendar() {
+    calendar.innerHTML = "";
+
+    dayNames.forEach(d => {
+        let div = document.createElement("div");
+        div.className = "day-header";
+        div.textContent = d;
+        calendar.appendChild(div);
+    });
+
+    let y = current.getFullYear();
+    let m = current.getMonth();
+
+    monthTitle.textContent = current.toLocaleString("nl-NL", { month:"long" }) + " " + y;
+
+    let firstDay = new Date(y, m, 1).getDay();
+    if (firstDay === 0) firstDay = 7;
+
+    for (let i = 1; i < firstDay; i++) {
+        let div = document.createElement("div");
+        div.className = "day disabled";
+        calendar.appendChild(div);
+    }
+
+    let daysInMonth = new Date(y, m+1, 0).getDate();
+
+    for (let d = 1; d <= daysInMonth; d++) {
+        let dateStr =
+            y + "-" + String(m+1).padStart(2,"0") + "-" + String(d).padStart(2,"0");
+
+        let div = document.createElement("div");
+        div.className = "day " + (enabled[dateStr] ? "enabled" : "disabled");
+        div.textContent = d;
+
+        if (enabled[dateStr]) {
+            div.onclick = () => {
+                document.querySelectorAll(".enabled").forEach(e => e.classList.remove("selected"));
+                div.classList.add("selected");
+                loadTimes(dateStr);
+            };
+        }
+
+        calendar.appendChild(div);
+    }
+}
+
+prevBtn.onclick = () => { current.setMonth(current.getMonth()-1); renderCalendar(); };
+nextBtn.onclick = () => { current.setMonth(current.getMonth()+1); renderCalendar(); };
+
+renderCalendar();
+
+function loadTimes(dateStr) {
+    let timeSelect = document.getElementById("timeSelect");
+    let restoreType = document.getElementById("restoreType");
+    let restoreBtn = document.getElementById("restoreBtn");
+
+    timeSelect.innerHTML = "";
+    timeSelect.classList.remove("hidden");
+    restoreType.classList.remove("hidden");
+    restoreBtn.classList.remove("hidden");
+
+    archiveMap[dateStr].forEach(entry => {
+        let opt = document.createElement("option");
+        opt.value = entry.archive;
+        opt.textContent = entry.time;
+        timeSelect.appendChild(opt);
+    });
+}
+
+document.getElementById("restoreBtn").onclick = () => {
+
+    let archive = document.getElementById("timeSelect").value;
+    let type = document.getElementById("restoreType").value;
+
+    let params =
+        "archive=" + encodeURIComponent(archive) +
+        "&type=" + encodeURIComponent(type);
+
+    fetch("backup_calendar.php", {
+        method: "POST",
+        headers: { "Content-Type":"application/x-www-form-urlencoded" },
+        body: params
+    })
+    .then(r => r.text())
+    .then(t => document.getElementById("output").textContent = t);
+};
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,39 @@
+{
+    "schema": "1.0",
+    "type": "whmcs-registrars",
+    "name": "MijnHostRegistrar",
+    "category": "domains",
+    "description": {
+        "name": "mijn.host",
+        "tagline": "Complete Domain Registration and Management Solution.",
+        "long": "The MijnHost Registrar module provides full domain lifecycle management through WHMCS. Register, transfer, and manage domains with comprehensive DNS control, contact management, and registrar lock features. Seamlessly integrate with the mijn.host registrar platform for efficient domain operations.",
+        "features": [
+            "Domain Registration",
+            "Domain Transfers",
+            "DNS Management",
+            "Contact Profile Assignment",
+            "Nameserver Profile Assignment",
+            "Registrar Lock Management",
+            "EPP Code Retrieval",
+            "Domain Synchronization",
+            "Transfer Synchronization",
+            "API Integration with mijn.host"
+        ]
+    },
+    "support": {
+        "homepage": "https:\/\/mijn.host\/",
+        "learn_more": "https:\/\/mijn.host\/over-ons\/",
+        "email": "support@mijn.host",
+        "support_url": "https:\/\/mijn.host\/contact\/",
+        "docs_url": "https:\/\/mijn.host\/api\/doc\/"
+    },
+    "logo": {
+        "filename": "logo.png"
+    },
+    "authors": [
+        {
+            "name": "ModulesGarden",
+            "homepage": "https:\/\/www.modulesgarden.com\/"
+        }
+    ]
+}

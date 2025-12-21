@@ -1,0 +1,76 @@
+Searching 1725 files for "Version: 3.7"
+
+/Users/inebur/Documents/GitHub/antler-up/.gitignore:
+    ERROR: Unable to open file
+
+/Users/inebur/Documents/GitHub/antler-up/whmcs-template/antler/assets/js/main.js:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9  
+   10  [Main Javascript]
+
+/Users/inebur/Documents/GitHub/antler-up/whmcs-template/antler/assets/js/scripts.js:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9  -------------------------------------------------------------------*/
+   10  document.addEventListener('DOMContentLoaded', function() {
+
+/Users/inebur/Documents/GitHub/antler-up/whmcs-template/antler/assets/css/main.css:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9  
+   10   -------------------------------------------------------------------*/
+
+/Users/inebur/Documents/GitHub/antler-up/whmcs-template/antler/assets/css/style.css:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9   -------------------------------------------------------------------*/
+   10  
+
+/Users/inebur/Documents/GitHub/antler-up/whmcs-template/antler/assets/css/auto-rtl/rtl.css:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9  
+   10  ***************************************************** */
+
+/Users/inebur/Documents/GitHub/antler-up/order-form/antler/js/main.js:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9  
+   10  [Main Javascript]
+
+/Users/inebur/Documents/GitHub/antler-up/order-form/antler/css/main.css:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9   */
+   10  
+
+/Users/inebur/Documents/GitHub/antler-up/template/assets/js/scripts.js:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9  -------------------------------------------------------------------*/
+   10  document.addEventListener('DOMContentLoaded', function() {
+
+/Users/inebur/Documents/GitHub/antler-up/template/assets/css/theme.css:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.7
+    9   -------------------------------------------------------------------*/
+   10  
+
+/Users/inebur/Documents/GitHub/antler-up/template/assets/css/rtl/theme-rtl.css:
+    6  Author Envato: https://themeforest.net/user/inebur
+    7  Copyright: 2023 inebur
+    8: Version: 3.8
+    9   -------------------------------------------------------------------*/
+   10  
+
+10 matches across 10 files

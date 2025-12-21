@@ -1,0 +1,271 @@
+.panel,
+.client-home-panels .panel {
+  background-color: var(--panel-background);
+  border: var(--panel-border);
+  border-radius: var(--panel-radius);
+  box-shadow: var(--panel-box-shadow);
+  margin-bottom: var(--panel-spacing);
+  font-size: inherit;
+
+  // Heading
+  .panel-heading {
+    background-color: var(--panel-title-bg);
+    border-bottom: var(--panel-divider);
+    padding: var(--spacing-2x) var(--spacing-3x);
+    font-weight: var(--font-weight-normal);
+    border-top-left-radius: var(--radius);
+    border-top-right-radius: var(--radius);
+  }
+
+  // Title
+  .panel-title {
+    color: var(--panel-title-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--panel-heading-size);
+    font-weight: var(--panel-heading-weight);
+    line-height: var(--line-height-md);
+    > i {
+      color: var(--gray-icons);
+    }
+  }
+
+  // Body
+  .panel-body {
+    padding: var(--spacing-3x);
+
+    p {
+      padding: 0;
+      margin: 0;
+      color: var(--text-body-color);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-normal);
+      line-height: var(--line-height-sm-base);
+    }
+  }
+
+  // List Group
+  .list-group {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    // Item
+    .list-group-item {
+      padding: var(--spacing-2x) var(--spacing-3x);
+      font-size: var(--list-group-item-font-size);
+      color: var(--list-group-item-color);
+      border: 0;
+      border-bottom: 1px solid var(--gray-lighter-4);
+      margin: 0;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: var(--table-td-bg-hover);
+      }
+
+      &:last-child {
+        border-bottom: 0 !important;
+        border-bottom-left-radius: var(--radius);
+        border-bottom-right-radius: var(--radius);
+      }
+    }
+  }
+
+  // Footer
+  .panel-footer {
+    display: none;
+  }
+
+  // Product/Service
+  &[menuitemname="Active Products/Services"] {
+    .div-service-item {
+      gap: var(--spacing-3x);
+      @media screen and (max-width: 767px) {
+        flex-wrap: wrap;
+        gap: var(--spacing-1x);
+      }
+    }
+
+    .div-service-name {
+      margin: 0;
+      @media screen and (max-width: 767px) {
+        flex: initial;
+      }
+      b {
+        font-weight: var(--font-weight-semi-bold);
+      }
+
+      .text-domain {
+        color: var(--text-body-color);
+        font-size: var(--font-size-xs);
+      }
+    }
+
+    .div-service-status {
+      width: initial !important;
+      display: flex;
+      align-items: center;
+
+      .label-success {
+        color: var(--label-success-color);
+      }
+
+      .label-info {
+        color: var(--label-info-color);
+      }
+
+      @media screen and (max-width: 767px) {
+        margin-left: auto;
+        .label:not(.label-placeholder) {
+          width: auto;
+        }
+      }
+    }
+
+    .div-service-buttons {
+      position: relative;
+      @media screen and (max-width: 767px) {
+        margin-left: 0;
+        .dropdown-menu {
+          left: 0;
+          right: initial;
+        }
+      }
+      .wdes-service-dropdown-btn {
+        &::after {
+          content: "\f141";
+          font-family: "Font Awesome 5 Pro";
+          font-weight: 400;
+          color: var(--gray-icons);
+        }
+      }
+    }
+
+    .wdes-service-dropdown-btn {
+      min-width: 120px;
+    }
+
+    .open > .dropdown-toggle.btn-default:focus,
+    .open > .dropdown-toggle.btn-default:hover {
+      color: var(--button-default-color-hover);
+      background: var(--button-default-bg-hover);
+      border-color: var(--button-default-border-hover);
+    }
+  }
+
+  // MarketConnect Panels
+  &[menuitemname="SitebuilderLogin"],
+  &[menuitemname="SitelockLogin"],
+  &[menuitemname="ThreesixtymonitoringLogin"],
+  &[menuitemname="WeeblyLogin"] {
+    display: none;
+  }
+
+  &[menuitemname="Register a New Domain"] {
+    padding: var(--spacing-6x);
+    @media screen and (max-width: 767px) {
+      padding: var(--spacing-3x);
+    }
+    .panel-heading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+      background: none;
+      border: 0;
+      .panel-title {
+        font-size: var(--font-size-h4);
+        line-height: var(--line-height-h4);
+        font-weight: var(--font-weight-light);
+        margin-bottom: var(--spacing-3x);
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        i {
+          display: none;
+        }
+      }
+    }
+
+    .input-group {
+      flex-flow: column;
+      margin: 0;
+      gap: 15px;
+      .form-control {
+        text-align: center;
+        height: var(--ui-height-lg);
+        font-size: var(--font-size-lg);
+      }
+    }
+
+    .input-group-btn {
+      display: flex;
+      justify-content: center;
+      flex-flow: row-reverse;
+      gap: 15px;
+      .btn {
+        width: 100%;
+        border-radius: var(--button-radius);
+        margin: 0;
+        font-weight: var(--font-weight-semi-bold);
+      }
+      .btn-default {
+        background-color: var(--brand-primary-faded);
+        border-color: var(--brand-primary-faded);
+        color: var(--brand-primary);
+        &:hover,
+        &:focus {
+          background-color: var(--brand-primary);
+          border-color: var(--brand-primary);
+          color: #fff;
+        }
+      }
+      .btn-success {
+        color: var(--button-primary-color);
+        background: var(--button-primary-bg);
+        border-color: var(--button-primary-border);
+        &:hover,
+        &:focus {
+          background: var(--button-primary-bg-hover);
+          border-color: var(--button-primary-border-hover);
+        }
+      }
+    }
+  }
+
+  &[menuitemname="Recent Support Tickets"] {
+    .list-group-item {
+      .label {
+        float: right;
+      }
+    }
+  }
+
+  &[menuitemname="Recent News"] {
+    .text-last-updated {
+      color: var(--text-body-color);
+      font-size: var(--font-size-xs);
+    }
+  }
+
+  &.panel-form {
+    background: var(--gray-faded);
+  }
+}
+
+.client-home-panels .panel > .list-group {
+  max-height: 163px;
+}
+
+.panel-nav {
+  background: var(--block-header-bg);
+  border-bottom: var(--panel-divider);
+  padding: 0 calc(var(--spacing-3x) - var(--spacing-2x));
+}
+
+#tabAddons {
+  .panel-footer {
+    display: block;
+  }
+}

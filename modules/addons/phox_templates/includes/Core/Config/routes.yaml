@@ -1,0 +1,100 @@
+action:
+       0:
+         value: dashborad
+         controller: PhoxTemplates\Includes\App\Http\Controllers\Dashboard::homepage
+       1:
+         value: brand-settings
+         controller: PhoxTemplates\Includes\App\Http\Controllers\BrandSettings::view_settings
+       2:
+         value: savebrand
+         controller: PhoxTemplates\Includes\App\Http\Controllers\BrandSettings::save_settings
+       3:
+         value: removebrand
+         controller: PhoxTemplates\Includes\App\Http\Controllers\BrandSettings::remove_logo
+       4:
+         value: get-style-color
+         controller: PhoxTemplates\Includes\App\Http\Controllers\ColorSettings::view_settings
+       5:
+         value: set-style-color
+         controller: PhoxTemplates\Includes\App\Http\Controllers\ColorSettings::save_settings
+       6:
+         value: get-style-typo
+         controller: PhoxTemplates\Includes\App\Http\Controllers\TypoSettings::view_settings
+       7:
+         value: set-style-typo
+         controller: PhoxTemplates\Includes\App\Http\Controllers\TypoSettings::save_settings
+       8:
+         value: get-menus
+         controller: PhoxTemplates\Includes\App\Http\Controllers\MenuSettings::get_menus
+       9:
+         value: set-new-menu
+         controller: PhoxTemplates\Includes\App\Http\Controllers\MenuSettings::add_menu
+       10:
+         value: get-menu-items
+         controller: PhoxTemplates\Includes\App\Http\Controllers\MenuSettings::get_sp_menu
+       11:
+         value: save-menu-items
+         controller: PhoxTemplates\Includes\App\Http\Controllers\MenuSettings::save_full_menu
+       12:
+         value: del-menu
+         controller: PhoxTemplates\Includes\App\Http\Controllers\MenuSettings::delete_menu
+       13:
+         value: checkWhmcsLangVariable
+         controller: PhoxTemplates\Includes\App\Http\Controllers\MenuSettings::translate_name
+       14:
+         value: get-pages
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::get_pages
+       15:
+          value: get-page-setting
+          controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::get_page_settings
+       16:
+         value: new-page-template
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::build_template
+       17:
+         value: remove-page-template
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::remove_template
+       18:
+         value: active-template
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::active_template
+       19:
+         value: rebuild-template
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::rebuild_templates_list
+       20:
+         value: edit-template
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::edit_template
+       21:
+         value: save-page
+         controller: PhoxTemplates\Includes\App\Http\Controllers\PagesSettings::save_page
+       22:
+         value: status
+         controller: PhoxTemplates\Includes\App\Http\Controllers\Dashboard::show_status
+       23:
+         value: is-module-active
+         controller: PhoxTemplates\Includes\App\Http\Controllers\Dashboard::isActive
+       25:
+        value: get-layout-settings
+        controller: PhoxTemplates\Includes\App\Http\Controllers\LayoutSettings::get_active_layout
+       26:
+         value: save-layout-settings
+         controller: PhoxTemplates\Includes\App\Http\Controllers\LayoutSettings::save_active_layout
+       27:
+         value: deactivate-module
+         controller: PhoxTemplates\Includes\App\Http\Controllers\Dashboard::deactivateModule
+       28:
+         value: get-style-theme
+         controller: PhoxTemplates\Includes\App\Http\Controllers\ThemeSettings::view_settings
+       29:
+         value: set-style-theme
+         controller: PhoxTemplates\Includes\App\Http\Controllers\ThemeSettings::save_settings
+       30:
+         value: get-global-settings
+         controller: PhoxTemplates\Includes\App\Http\Controllers\GlobalSettings::view_settings
+       31:
+        value: save-global-settings
+        controller: PhoxTemplates\Includes\App\Http\Controllers\GlobalSettings::save_settings
+
+
+
+module:
+     value: phox_templates
+     controller: PhoxTemplates\Includes\App\Http\Controllers\Dashboard::homepage

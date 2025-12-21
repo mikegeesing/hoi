@@ -1,0 +1,335 @@
+.sidebar,
+.wdes-page-order #order-phox .cart-sidebar,
+.sidebar-collapsed {
+  position: sticky;
+  top: 90px;
+  left: 0;
+
+  @media screen and (max-width: 991px) {
+    order: 2;
+    width: 100%;
+    position: static;
+  }
+
+  // Heading
+  .panel-heading {
+    background: var(--panel-sidebar-heading-bg);
+    padding: var(--panel-sidebar-heading-padding);
+    color: inherit;
+    border-bottom: 0;
+  }
+
+  .panel-title {
+    font-size: var(--panel-sidebar-title-size);
+    font-weight: var(--panel-sidebar-title-weight);
+    font-family: inherit;
+    color: inherit;
+    line-height: var(--panel-title-line-height);
+    justify-content: flex-start;
+  }
+
+  // Panel Footer
+  @mixin panelFooter(
+    $bg-color: var(--brand-primary-faded),
+    $text-color: var(--brand-primary)
+  ) {
+    .panel-footer {
+      .btn {
+        display: inline-flex;
+        background-color: $bg-color;
+        border-color: $bg-color;
+        color: $text-color;
+        width: fit-content;
+        i {
+          color: inherit;
+        }
+        &:hover,
+        &:focus {
+          background-color: $text-color;
+          border-color: $text-color;
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // Panel
+  .panel.panel-sidebar,
+  .panel {
+    background-color: var(--panel-sidebar-bg);
+    border: var(--panel-sidebar-border);
+    border-radius: var(--panel-sidebar-radius);
+    box-shadow: var(--panel-sidebar-box-shadow);
+    margin-bottom: 40px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // List Group && Panel Body
+    .panel-body,
+    .list-group {
+      padding: 0;
+      color: var(--text-body-color);
+
+      em {
+        font-style: normal;
+      }
+    }
+
+    // List Group Item
+    .list-group {
+      font-size: inherit;
+      .list-group-item {
+        color: var(--text-body-color);
+        background-color: transparent;
+        border-color: var(--gray-lighter-4);
+        padding: 6px 0;
+        transition: all 0.3s ease-in-out;
+
+        i {
+          color: inherit;
+          font-size: inherit;
+          line-height: inherit;
+        }
+        &:hover,
+        &:focus,
+        &:active {
+          color: var(--gray-darker);
+          outline: none;
+          i,
+          i.fas {
+            color: inherit !important;
+          }
+        }
+        &.active {
+          padding: var(--spacing-1x) var(--spacing-2x);
+          background-color: var(--main-color-lighter-v1);
+          border-radius: var(--block-radius);
+        }
+      }
+      a.list-group-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--brand-primary);
+        border: 0;
+      }
+    }
+
+    // Panel Footer
+    > .panel-footer {
+      background-color: transparent;
+      padding: var(--panel-footer-padding);
+      display: block;
+      .btn {
+        font-size: var(--font-size-sm);
+      }
+    }
+  }
+
+  // Attachments
+  .panel[menuitemname="Attachments"] {
+    .list-group {
+      border: var(--panel-border);
+      border-radius: var(--panel-radius);
+      box-shadow: var(--panel-box-shadow);
+      a.list-group-item {
+        padding: var(--spacing-2x) var(--spacing-3x);
+        color: var(--list-group-item-link-color);
+        border-bottom: var(--panel-divider);
+        &:hover,
+        &:focus {
+          background-color: var(--main-color-lighter-v1);
+          color: var(--main-clr);
+        }
+        &:last-child {
+          border-bottom: 0;
+        }
+        &::before {
+          content: "\f019";
+          font-family: "Font Awesome 5 Pro";
+          font-weight: 900;
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+  }
+
+  // CC Recipients
+  .panel[menuitemname="CC Recipients"] {
+    .panel-footer {
+      padding-top: 0;
+    }
+    #containerAddCcEmail {
+      margin-bottom: 0;
+    }
+  }
+
+  // User Info
+  .panel[menuitemname="Client Details"] {
+    padding: var(--spacing-3x);
+    border: var(--block-border);
+
+    .panel-heading {
+      display: none;
+    }
+
+    .panel-body {
+      padding: 0;
+
+      img {
+        border-radius: 50%;
+        height: 80px;
+        width: 80px;
+        margin-bottom: 15px;
+        border: 1px solid var(--panel-border);
+      }
+
+      strong {
+        font-size: var(--font-size-lg);
+        font-weight: var(--font-weight-normal);
+        margin-bottom: -15px;
+        display: block;
+        word-wrap: break-word;
+      }
+    }
+
+    @include panelFooter;
+  }
+
+  // Client Contacts
+  .panel[menuitemname="Client Contacts"] {
+    .list-group-item[menuitemname="No Contacts"] {
+      border: 0;
+      padding: 0;
+    }
+    @include panelFooter;
+  }
+
+  // Store Panels
+  .panel.mc-panel-promo {
+    display: none;
+  }
+
+  // Recent Tickets
+  .panel.panel-sidebar[menuitemname="Recent Tickets"] {
+    .list-group {
+      .list-group-item {
+        border-bottom: var(--panel-divider);
+        padding: var(--spacing-2x) var(--spacing-3x);
+        color: var(--text-body-color);
+        &:last-child {
+          border-bottom: 0;
+        }
+      }
+    }
+
+    .recent-ticket {
+      width: 100%;
+
+      .truncate {
+        color: var(--text-heading-color);
+      }
+      .pull-right {
+        color: var(--text-body-color);
+        float: none !important;
+        margin-right: 8px;
+      }
+    }
+  }
+
+  // Currencies
+  .panel.panel-sidebar[menuitemname="Choose Currency"] {
+    .panel-body {
+      padding: var(--spacing-2x) 0 0;
+    }
+  }
+
+  // Filter Panels
+  .panel.view-filter-btns {
+    .list-group-item {
+      .sidebar-menu-item-icon {
+        display: none;
+      }
+
+      .badge {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0;
+        min-width: auto;
+        background-color: var(--block-header-bg);
+        color: var(--text-body-color);
+      }
+
+      span:not(.badge) {
+        color: var(--text-body-color);
+      }
+
+      &:hover {
+        * {
+          color: var(--brand-primary) !important;
+        }
+      }
+
+      &.active {
+        .badge {
+          background-color: var(--brand-primary);
+          color: #fff;
+        }
+        &:hover {
+          .badge {
+            color: #fff !important;
+          }
+        }
+      }
+    }
+  }
+
+  // My Invoices Summary
+  .panel.panel-sidebar[menuitemname="My Invoices Summary"] {
+    background-color: var(--block-header-bg);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: var(--spacing-2x);
+    .panel-heading {
+      display: none;
+    }
+    .panel-body {
+      padding: 0;
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-sm);
+    }
+    @include panelFooter;
+  }
+
+  // Upgrade Downgrade
+  .panel.panel-sidebar[menuitemname="Upgrade Downgrade"] {
+    background-color: var(--block-header-bg);
+    border: var(--panel-border);
+    border-radius: var(--panel-radius);
+    padding: var(--spacing-2x);
+    @include panelFooter;
+  }
+
+  // Knowledge Base Categories
+  .panel.panel-sidebar[menuitemname="Support Knowledgebase Categories"] {
+    display: none;
+  }
+
+  // Actions
+  @media screen and (max-width: 991px) {
+    .panel-actions > .list-group .list-group-item {
+      border: 0 !important;
+      > .badge {
+        margin: 0;
+      }
+    }
+  }
+}

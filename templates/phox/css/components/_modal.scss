@@ -1,0 +1,57 @@
+.fade {
+  transition: opacity 0.15s linear;
+}
+
+.modal-backdrop {
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(6px);
+  transition: opacity 0.15s linear;
+  &.in {
+    opacity: 1;
+  }
+}
+
+.modal-dialog {
+  top: 50%;
+  transform: translateY(-50%) !important;
+}
+
+.modal-content {
+  box-shadow: var(--box-shadow-xlg);
+  border-radius: var(--block-radius);
+  overflow: hidden;
+  border: 0;
+
+  .panel-heading.modal-header {
+    background-color: #fff;
+    border-color: var(--gray-lighter-4);
+    color: var(--text-body-color);
+    padding: var(--spacing-2x) var(--spacing-3x);
+
+    .modal-title {
+      font-size: var(--font-size-h5);
+      font-weight: var(--font-weight-normal);
+      line-height: var(--line-height-h5);
+      justify-content: space-between;
+      flex-flow: row-reverse;
+    }
+
+    .close {
+      margin: 0;
+      color: var(--gray-icons);
+      font-size: 26px;
+      opacity: 1;
+      font-weight: 400;
+    }
+  }
+
+  .modal-body {
+    padding: var(--spacing-3x);
+    color: var(--text-body-color);
+  }
+
+  .modal-footer {
+    border-color: var(--gray-lighter-4);
+    padding: var(--spacing-2x) var(--spacing-3x);
+  }
+}

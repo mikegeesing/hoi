@@ -1,0 +1,155 @@
+// Layout
+section#main-body {
+  padding: 60px 0;
+  background-color: inherit;
+  @media screen and (max-width: 767px) {
+    padding: 30px 0;
+  }
+}
+
+// 2FA Popup [Account Security]
+.twofa-module {
+  border-color: var(--gray-lighter-4);
+}
+
+.twofa-module.active {
+  border-color: var(--brand-primary);
+}
+
+// Bootstrap
+.well {
+  background-color: var(--block-bg);
+  border: var(--block-border);
+  border-radius: var(--block-radius);
+  padding: var(--spacing-3x);
+  font-size: var(--font-size-base);
+  color: var(--text-body-color);
+}
+
+// Progress
+.progress {
+  background-color: var(--block-bg);
+  border: var(--block-border);
+  border-radius: var(--border-radius-sm);
+  box-shadow: var(--block-box-shadow);
+}
+
+// Captcha
+#default-captcha-domainchecker #inputCaptcha {
+  border-radius: var(--border-radius-sm);
+  background-color: var(--block-bg);
+  border: var(--block-border);
+  box-shadow: var(--block-box-shadow);
+}
+
+.product-actions-wrapper {
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    background-color: var(--main-clr);
+    border: 0;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    padding: 12px 0;
+    &:hover,
+    &:focus {
+      background-color: var(--main-clr);
+      color: var(--domain-btn);
+    }
+  }
+}
+
+div.product-details-tab-container {
+  margin: 0;
+  padding: 30px 15px;
+  border: 1px solid #eee;
+  border-top: 0;
+  background-color: white;
+  font-family: var(--main-font);
+  font-size: 14px;
+  color: var(--text-clr);
+  border-radius: 0 0 var(--radius) var(--radius);
+
+  .row {
+    text-align: left;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+
+    &:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 400;
+      color: var(--text-clr);
+      font-size: 14px;
+    }
+
+    div {
+      color: #242424;
+    }
+  }
+}
+
+.wdes-main-title {
+  font-size: 17px;
+  margin: 20px 0;
+  font-weight: 600;
+}
+
+.main-color {
+  color: var(--main-clr) !important;
+}
+
+.controls {
+  display: flex;
+  flex-flow: column;
+  gap: 0;
+  align-items: flex-start;
+}
+
+.wdes-checks-email {
+  label {
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.hide-desktop {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  .flex-flow-column-mobile {
+    flex-flow: column;
+  }
+}
+
+/* Smart Phones */
+@media only screen and (min-width: 160px) and (max-width: 991px) {
+  .hide-mob {
+    display: none;
+  }
+
+  .hide-desktop {
+    display: initial;
+  }
+
+  .wdes-flex-mob {
+    display: flex;
+    flex-wrap: wrap;
+
+    .main-content {
+      order: 1;
+      width: 100%;
+    }
+  }
+}

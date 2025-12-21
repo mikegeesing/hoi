@@ -1,0 +1,57 @@
+:root {
+  .wdes-style-soft-contrast {
+    // Body
+    --body-bg: #f7f7f8;
+
+    // Header
+    --header-box-shadow: var(--box-shadow-sm);
+    --header-border-bottom: 0;
+
+    // Block
+    --block-header-bg: #fff;
+    --block-box-shadow: var(--box-shadow-sm);
+    --block-border: 1px solid transparent;
+
+    // Panel
+    --panel-background: #fff;
+    --panel-border: 1px solid transparent;
+    --panel-box-shadow: var(--block-box-shadow);
+    --panel-title-bg: var(--block-header-bg);
+    .panel.panel-form {
+      background-color: var(--panel-background);
+    }
+
+    // Sidebar
+    .sidebar .panel.panel-sidebar[menuitemname="Upgrade Downgrade"] {
+      --panel-sidebar-box-shadow: var(--box-shadow-sm);
+    }
+    .sidebar .panel.panel-sidebar[menuitemname="Client Details"] {
+      background-color: #fff;
+      --panel-sidebar-box-shadow: var(--box-shadow-sm);
+    }
+    [menuitemname="Ticket Information"],
+    [menuitemname="Attachments"] {
+      .list-group {
+        background-color: #fff;
+      }
+    }
+
+    .sidebar .panel.panel-sidebar[menuitemname="My Invoices Summary"],
+    .wdes-page-order
+      #order-phox
+      .cart-sidebar
+      .panel.panel-sidebar[menuitemname="My Invoices Summary"],
+    .sidebar-collapsed
+      .panel.panel-sidebar[menuitemname="My Invoices Summary"] {
+      box-shadow: var(--box-shadow-sm);
+    }
+
+    // Tile
+    --tile-box-shadow: var(--box-shadow-sm);
+
+    // Table
+    --table-container-box-shadow: var(--box-shadow-sm);
+    --table-container-border: 1px solid transparent;
+    --table-container-header-bg: #fff;
+  }
+}

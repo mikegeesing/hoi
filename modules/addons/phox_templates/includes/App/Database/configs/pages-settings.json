@@ -1,0 +1,3485 @@
+[
+  {
+    "id": "3dsecure",
+    "name": "3dsecure",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "access-denied",
+    "name": "Access Denied",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "account-contacts-manage",
+    "name": "Account Contacts Manage",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "account-contacts-new",
+    "name": "Account Contacts New",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "account-paymentmethods",
+    "name": "Account Payment Methods",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "account-paymentmethods-manage",
+    "name": "Account Payment Methods Manage",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "account-user-management",
+    "name": "Account User Management",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "account-user-permissions",
+    "name": "Account User Permissions",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "addons",
+    "name": "Addons",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareaaddfunds",
+    "name": "Add Funds",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "affiliates",
+    "name": "Affiliates",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "affiliatessignup",
+    "name": "Affiliates Signup",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "announcements",
+    "name": "Announcements",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "banned",
+    "name": "Banned",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "bulkdomainmanagement",
+    "name": "Bulk Domain Management",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadetails",
+    "name": "Client Details",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientregister",
+    "name": "Client Register",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": false,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": false,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": false,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "configuressl-complete",
+    "name": "Configure SSL - complete",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "configuressl-stepone",
+    "name": "Configure SSL - step one",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "configuressl-steptwo",
+    "name": "Configure SSL - step two",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "contact",
+    "name": "Contact",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareahome",
+    "name": "Dashboard",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomainaddons",
+    "name": "Domain Addons",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomaincontactinfo",
+    "name": "Domain Contact Info",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomaindetails",
+    "name": "Domain Details",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomaindns",
+    "name": "Domain DNS",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomainemailforwarding",
+    "name": "Domain Email Forwarding",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomaingetepp",
+    "name": "Domain Get EPP",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "domain-pricing",
+    "name": "Domain Pricing",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomainregisterns",
+    "name": "Domain Register NS",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareadomains",
+    "name": "Domains",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "complete",
+    "name": "Complete",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "configuredomains",
+    "name": "Configure Domains",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "configureproduct",
+    "name": "Configure Product",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "configureproductdomain",
+    "name": "Configure Product Domain",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "downloaddenied",
+    "name": "Download Denied",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "downloads",
+    "name": "Downloads",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "downloadscat",
+    "name": "Downloads Category",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "domain-renewals",
+    "name": "Domain Renewals",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "domainregister",
+    "name": "Domain Register",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "domaintransfer",
+    "name": "Domain Transfer",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "error",
+    "name": "Error",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareaemails",
+    "name": "Emails",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "forwardpage",
+    "name": "Forward Page",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "fraudcheck",
+    "name": "Fraud Check",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "homepage",
+    "name": "Homepage",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      },
+      {
+        "id": "modern",
+        "name": "Modern",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {
+      "show-domain-section": {
+        "title": "Show Domain Section",
+        "type": "toggle",
+        "value": true
+      }
+    }
+  },
+  {
+    "id": "invoice-payment",
+    "name": "Invoice Payment",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "invoicepdf",
+    "name": "Invoice PDF",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareainvoices",
+    "name": "Invoices",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "knowledgebase",
+    "name": "Knowledge Base",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "knowledgebasearticle",
+    "name": "Knowledge Base Article",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "knowledgebasecat",
+    "name": "Knowledge Base Category",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "login",
+    "name": "Login",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": false,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": false,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": false,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "logout",
+    "name": "Logout",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "managessl",
+    "name": "Manage SSL",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "masspay",
+    "name": "Mass Payment",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "password-reset-container",
+    "name": "Password Reset",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": false,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": false,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": false,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "products",
+    "name": "Products",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareaproductdetails",
+    "name": "Product Details",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "quotepdf",
+    "name": "Quote PDF",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareaquotes",
+    "name": "Quotes",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareacancelrequest",
+    "name": "Request Cancellation",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareasecurity",
+    "name": "Security",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "serverstatus",
+    "name": "Server Status",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "clientareaproducts",
+    "name": "Services",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "subscription-manage",
+    "name": "Subscription Manage",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "supportticketslist",
+    "name": "Support Tickets List",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "supportticketsubmit-confirm",
+    "name": "Support Ticket Submit Confirm",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "supportticketsubmit-stepone",
+    "name": "Support Ticket Submit Step - one",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "supportticketsubmit-steptwo",
+    "name": "Support Ticket Submit Step - two",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "service-renewals",
+    "name": "Service Renewals",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "ticketfeedback",
+    "name": "Ticket Feedback",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "two-factor-challenge",
+    "name": "Two Factor Challenge",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "two-factor-new-backup-code",
+    "name": "Two Factor New Backup Code",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "upgrade",
+    "name": "Upgrade",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "upgrade-configure",
+    "name": "Upgrade Configure",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "upgradesummary",
+    "name": "Upgrade Summary",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-invite-accept",
+    "name": "User Invite Accept",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-password",
+    "name": "User Password",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-profile",
+    "name": "User Profile",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-security",
+    "name": "User Security",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-switch-account",
+    "name": "User Switch Account",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-switch-account-forced",
+    "name": "User Switch Account Forced",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "user-verify-email",
+    "name": "User Verify Email",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "viewannouncement",
+    "name": "View Announcement",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "viewinvoice",
+    "name": "View Invoice",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "viewquote",
+    "name": "View Quote",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "viewticket",
+    "name": "View Ticket",
+    "activeTemplate": "default",
+    "group": "template",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "template"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  },
+  {
+    "id": "viewcart",
+    "name": "View Cart",
+    "activeTemplate": "default",
+    "group": "orderform",
+    "seo": {
+      "title": "",
+      "description": ""
+    },
+    "templates": [
+      {
+        "id": "default",
+        "name": "Default",
+        "image": "",
+        "group": "orderform"
+      }
+    ],
+    "global-settings": {
+      "show-header": {
+        "title": "Show Header",
+        "type": "toggle",
+        "value": true,
+        "order": 1
+      },
+      "show-footer": {
+        "title": "Show Footer",
+        "type": "toggle",
+        "value": true,
+        "order": 2
+      },
+      "show-logo": {
+        "title": "Show Logo",
+        "type": "toggle",
+        "value": true,
+        "order": 3
+      }
+    },
+    "settings": {}
+  }
+]

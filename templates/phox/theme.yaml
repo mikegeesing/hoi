@@ -1,0 +1,11 @@
+# WHMCS PHOX Theme Configuration File
+
+name: "PHOX"
+description: "WHMCS Version 8.13.1"
+author: "WHMCSdes"
+properties:
+  serverSidePagination: false # Defines client side will handle pagination
+provides:
+  bootstrap: 3.4.1
+  jquery: 1.12.4
+  fontawesome: 5.10.1

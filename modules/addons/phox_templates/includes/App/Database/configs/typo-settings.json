@@ -1,0 +1,15 @@
+{
+  "fonts-family": "Inter",
+  "buttons": {
+    "size": "14",
+    "weight": "500"
+  },
+  "description": {
+    "size": "14",
+    "weight": "400"
+  },
+  "headings": {
+    "size": "30",
+    "weight": "700"
+  }
+}

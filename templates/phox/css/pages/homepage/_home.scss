@@ -1,0 +1,226 @@
+// Hero
+section#home-banner {
+  padding: 0;
+  background-color: transparent;
+  margin-bottom: var(--spacing-10x);
+  color: var(--text-body-color);
+
+  > .row {
+    display: flex;
+    gap: var(--spacing-5x);
+    @media screen and (max-width: 767px) {
+      flex-flow: column;
+    }
+
+    &::before,
+    &::after {
+      content: unset;
+    }
+
+    > div[class^="col-"] {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // Vector
+  .wdes-domain-img {
+    max-width: 100%;
+    height: 400px;
+    margin-left: auto;
+    @media screen and (max-width: 767px) {
+      height: 250px;
+    }
+  }
+
+  // Content
+  .wdes-domain-info {
+    > h2 {
+      color: var(--text-heading-color);
+      font-size: var(--font-size-h2);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-h2);
+      padding: 0;
+      margin: 0;
+    }
+
+    .wdes-input-group {
+      margin-top: var(--spacing-7x);
+      @media screen and (max-width: 767px) {
+        flex-flow: column;
+      }
+
+      .form-control {
+        border: var(--input-border);
+        border-radius: var(--input-border-radius);
+        box-shadow: var(--input-box-shadow);
+        height: var(--ui-height-lg);
+        font-weight: var(--font-weight-normal);
+        &:hover {
+          background: var(--input-hover-bg);
+          border-color: var(--input-hover-border-color);
+          color: var(--input-hover-color);
+        }
+        &:focus {
+          background: var(--input-focus-bg);
+          border-color: var(--input-focus-border-color);
+          color: var(--input-focus-color);
+        }
+      }
+
+      .input-group-btn {
+        gap: 10px;
+        flex-flow: row-reverse;
+        width: -webkit-fill-available;
+        .btn {
+          width: 100%;
+          border-radius: var(--button-radius);
+          font-weight: var(--button-weight);
+          height: 100%;
+          &.transfer {
+            background-color: var(--brand-primary-faded);
+            border-color: var(--brand-primary-faded);
+            color: var(--brand-primary);
+          }
+          &.search {
+            color: var(--button-primary-color);
+            background: var(--button-primary-bg);
+            border-color: var(--button-primary-border);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Shortcuts
+.home-shortcuts {
+  margin-bottom: var(--spacing-10x);
+  background: transparent;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  gap: var(--spacing-2x);
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+  }
+  li {
+    border: var(--panel-border);
+    box-shadow: var(--panel-box-shadow);
+    border-radius: var(--panel-radius);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0;
+
+    &:first-child {
+      border: var(--panel-border);
+    }
+
+    @media screen and (max-width: 767px) {
+      width: calc(50% - var(--spacing-1x));
+      &:last-child {
+        border: var(--panel-border);
+      }
+    }
+
+    a {
+      background-color: var(--tile-bg);
+      padding: var(--spacing-6x) var(--spacing-2x);
+      color: var(--text-heading-color);
+      display: flex;
+      flex-flow: column;
+      gap: var(--spacing-2x);
+      width: 100%;
+    }
+
+    i {
+      font-size: var(--font-size-h2);
+      color: var(--brand-primary);
+    }
+
+    p {
+      margin: 0;
+      text-transform: capitalize;
+      font-size: var(--font-size-semi-md);
+    }
+  }
+}
+
+// News
+.wdes-tweets-block {
+  margin-bottom: var(--spacing-10x);
+  text-align: center;
+
+  > h2 {
+    color: var(--text-heading-color);
+    font-size: var(--font-size-h2);
+    font-weight: var(--font-weight-bold);
+    line-height: var(--line-height-h2);
+    padding: 0;
+    margin: 0;
+  }
+
+  > p {
+    font-size: var(--font-size-lg);
+    color: var(--text-body-color);
+    margin: var(--spacing-2x) 0 0;
+  }
+
+  .wdes-items-blocks {
+    margin-top: var(--spacing-7x);
+    display: flex;
+    justify-content: space-between;
+    gap: var(--spacing-2x);
+
+    @media screen and (max-width: 767px) {
+      flex-wrap: wrap;
+    }
+
+    .announcement-single {
+      background-color: var(--block-bg);
+      border: var(--block-border);
+      border-radius: var(--block-radius);
+      box-shadow: var(--block-box-shadow);
+      margin: 0;
+      width: 100%;
+      text-align: left;
+      padding: var(--spacing-5x) var(--spacing-4x);
+
+      .wdes-announcement-date {
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        color: var(--text-body-color);
+        font-size: var(--font-size-base);
+        margin-bottom: var(--spacing-2x);
+        i {
+          color: var(--gray-icons);
+        }
+      }
+
+      h3 {
+        margin: 0;
+
+        a {
+          color: inherit;
+          font-size: var(--font-size-h5);
+          line-height: var(--line-height-h5);
+          font-weight: var(--font-weight-medium);
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            color: var(--brand-primary);
+          }
+        }
+      }
+
+      .fb_iframe_widget {
+        overflow: hidden;
+        width: 157px;
+      }
+    }
+  }
+}

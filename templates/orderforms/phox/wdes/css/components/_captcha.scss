@@ -1,0 +1,14 @@
+.default-captcha {
+  background-color: var(--block-bg);
+  border: var(--block-border);
+  box-shadow: var(--block-box-shadow);
+  border-radius: var(--block-radius);
+  font-size: var(--font-size-sm);
+  color: var(--text-body-color);
+  > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-1x);
+  }
+}

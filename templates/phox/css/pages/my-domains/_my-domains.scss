@@ -1,0 +1,21 @@
+.wdes-domain-item-slug {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1x);
+
+  img {
+    height: 15px;
+  }
+}
+
+#tableDomainsList {
+  tbody tr td:first-child::before {
+    top: 29px !important;
+  }
+  @media screen and (max-width: 991px) {
+    .dropdown-menu {
+      right: inherit;
+      left: 0;
+    }
+  }
+}
