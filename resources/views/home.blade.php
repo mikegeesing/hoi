@@ -19,7 +19,6 @@
             <div class="flex items-center justify-between h-20">
                 <a href="/" class="flex items-center space-x-3">
                     <img src="https://onlinehoster.nl/assets/images/logo.png" alt="Online Hoster Logo" class="h-8">
-                    <span class="text-xl font-bold">Online Hoster</span>
                 </a>
                 <div class="flex items-center space-x-4">
                     <a href="{{ route('login') }}" class="text-gray-600 hover:text-green-600 transition">Inloggen</a>
