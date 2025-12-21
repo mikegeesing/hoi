@@ -479,10 +479,15 @@ class MySQLService
             $baseArgs = [$mysqlBinary];
             
             // Priority 1: Check for restore-specific credentials in .env
-            $username = env('MYSQL_RESTORE_USER');
-            $password = env('MYSQL_RESTORE_PASSWORD');
-            $socket = env('MYSQL_RESTORE_SOCKET');
-            $host = env('MYSQL_RESTORE_HOST');
+            $username = env('MYSQL_RESTORE_USER') ?: false;
+            $password = env('MYSQL_RESTORE_PASSWORD') ?: false;
+            $socket = env('MYSQL_RESTORE_SOCKET') ?: false;
+            $host = env('MYSQL_RESTORE_HOST') ?: false;
+            
+            \Illuminate\Support\Facades\Log::debug('MySQL restore credentials priority check', [
+                'has_restore_user' => !empty($username),
+                'restore_user' => $username ? substr($username, 0, 5) . '***' : 'not-set',
+            ]);
             
             // Priority 2: Try to read DirectAdmin MySQL config if not in .env
             if (!$username) {
