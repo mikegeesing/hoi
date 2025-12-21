@@ -168,9 +168,12 @@
         .nav-link {
             color: #1a202c !important;
             font-weight: 500;
-            margin: 0 12px;
+            margin: 0 8px;
+            padding: 8px 0 !important;
             transition: all 0.3s;
             position: relative;
+            display: flex;
+            align-items: center;
         }
 
         .nav-link:hover {
@@ -192,14 +195,22 @@
             width: 100%;
         }
 
+        .navbar-nav .nav-item:last-child .btn-login {
+            margin-left: 12px;
+        }
+
         .btn-login {
             background: #35b15e;
             color: white;
-            padding: 8px 24px;
+            padding: 8px 20px;
             border-radius: 6px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            height: 36px;
+            border: none;
         }
 
         .btn-login:hover {
@@ -864,46 +875,69 @@
                 </div>
                 <div class="col-lg-6 d-none d-lg-block">
                     <div class="hero-illustration">
-                        <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Server -->
-                            <rect x="80" y="100" width="240" height="200" rx="20" fill="#1a3a52" stroke="#35b15e" stroke-width="3"/>
+                        <svg viewBox="0 0 400 450" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background -->
+                            <defs>
+                                <linearGradient id="serverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#35b15e;stop-opacity:0.1" />
+                                    <stop offset="100%" style="stop-color:#35b15e;stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
                             
-                            <!-- Server top -->
-                            <rect x="90" y="110" width="220" height="30" rx="5" fill="#35b15e" opacity="0.3"/>
-                            <circle cx="110" cy="125" r="4" fill="#35b15e"/>
-                            <circle cx="130" cy="125" r="4" fill="#35b15e"/>
-                            <circle cx="150" cy="125" r="4" fill="#35b15e"/>
-                            <circle cx="170" cy="125" r="4" fill="#35b15e"/>
+                            <!-- Decorative circles -->
+                            <circle cx="80" cy="60" r="8" fill="#35b15e" opacity="0.3"/>
+                            <circle cx="320" cy="80" r="6" fill="#35b15e" opacity="0.2"/>
+                            <circle cx="350" cy="380" r="7" fill="#35b15e" opacity="0.25"/>
                             
-                            <!-- Screens -->
-                            <rect x="100" y="160" width="80" height="100" rx="5" fill="#ffffff" opacity="0.1" stroke="#35b15e" stroke-width="2"/>
-                            <line x1="110" y1="180" x2="160" y2="180" stroke="#35b15e" stroke-width="2" opacity="0.6"/>
-                            <line x1="110" y1="200" x2="160" y2="200" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
-                            <line x1="110" y1="220" x2="160" y2="220" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                            <!-- Main Server Rack -->
+                            <rect x="70" y="80" width="260" height="280" rx="15" fill="none" stroke="#35b15e" stroke-width="2.5" opacity="0.8"/>
                             
-                            <rect x="220" y="160" width="80" height="100" rx="5" fill="#ffffff" opacity="0.1" stroke="#35b15e" stroke-width="2"/>
-                            <line x1="230" y1="180" x2="280" y2="180" stroke="#35b15e" stroke-width="2" opacity="0.6"/>
-                            <line x1="230" y1="200" x2="280" y2="200" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
-                            <line x1="230" y1="220" x2="280" y2="220" stroke="#35b15e" stroke-width="2" opacity="0.4"/>
+                            <!-- Server Top Panel -->
+                            <rect x="80" y="90" width="240" height="25" rx="8" fill="#35b15e" opacity="0.2"/>
+                            <line x1="100" y1="102" x2="120" y2="102" stroke="#35b15e" stroke-width="2"/>
+                            <line x1="140" y1="102" x2="160" y2="102" stroke="#35b15e" stroke-width="2"/>
+                            <line x1="180" y1="102" x2="200" y2="102" stroke="#35b15e" stroke-width="2"/>
+                            <line x1="220" y1="102" x2="240" y2="102" stroke="#35b15e" stroke-width="2"/>
+                            <line x1="260" y1="102" x2="280" y2="102" stroke="#35b15e" stroke-width="2"/>
                             
-                            <!-- Lights -->
-                            <circle cx="120" cy="80" r="6" fill="#35b15e"/>
-                            <circle cx="150" cy="75" r="5" fill="#35b15e" opacity="0.6"/>
-                            <circle cx="180" cy="78" r="6" fill="#35b15e"/>
-                            <circle cx="210" cy="76" r="5" fill="#35b15e" opacity="0.6"/>
-                            <circle cx="240" cy="80" r="6" fill="#35b15e"/>
-                            <circle cx="270" cy="77" r="5" fill="#35b15e" opacity="0.6"/>
+                            <!-- Server Slots (3 servers) -->
+                            <!-- Server 1 -->
+                            <rect x="85" y="130" width="230" height="35" rx="4" fill="#1a3a52" stroke="#35b15e" stroke-width="2" opacity="0.9"/>
+                            <rect x="92" y="138" width="100" height="20" rx="2" fill="#2a8d4a" opacity="0.6"/>
+                            <text x="147" y="152" font-family="Inter, sans-serif" font-size="10" fill="#35b15e" font-weight="600">PHP 8.4</text>
+                            <circle cx="285" cy="147" r="3" fill="#35b15e"/>
+                            <circle cx="295" cy="147" r="3" fill="#35b15e" opacity="0.6"/>
                             
-                            <!-- Bottom accent -->
-                            <rect x="90" y="280" width="220" height="10" rx="5" fill="#35b15e" opacity="0.4"/>
+                            <!-- Server 2 -->
+                            <rect x="85" y="175" width="230" height="35" rx="4" fill="#1a3a52" stroke="#35b15e" stroke-width="2" opacity="0.9"/>
+                            <rect x="92" y="183" width="100" height="20" rx="2" fill="#2a8d4a" opacity="0.6"/>
+                            <text x="147" y="197" font-family="Inter, sans-serif" font-size="10" fill="#35b15e" font-weight="600">PHP 8.3</text>
+                            <circle cx="285" cy="192" r="3" fill="#35b15e"/>
+                            <circle cx="295" cy="192" r="3" fill="#35b15e"/>
+                            <circle cx="305" cy="192" r="3" fill="#35b15e" opacity="0.6"/>
                             
-                            <!-- Cables -->
-                            <path d="M 100 300 Q 80 320 60 350" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4"/>
-                            <path d="M 200 300 Q 200 330 200 360" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4"/>
-                            <path d="M 300 300 Q 320 320 340 350" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4"/>
+                            <!-- Server 3 -->
+                            <rect x="85" y="220" width="230" height="35" rx="4" fill="#1a3a52" stroke="#35b15e" stroke-width="2" opacity="0.9"/>
+                            <rect x="92" y="228" width="100" height="20" rx="2" fill="#2a8d4a" opacity="0.6"/>
+                            <text x="147" y="242" font-family="Inter, sans-serif" font-size="10" fill="#35b15e" font-weight="600">PHP 8.2</text>
+                            <circle cx="285" cy="237" r="3" fill="#35b15e" opacity="0.8"/>
+                            <circle cx="295" cy="237" r="3" fill="#35b15e" opacity="0.6"/>
                             
-                            <!-- Glowing effect -->
-                            <circle cx="200" cy="200" r="150" fill="#35b15e" opacity="0.05" r="160"/>
+                            <!-- Power indicator bar -->
+                            <rect x="85" y="265" width="230" height="8" rx="4" fill="#102d47" stroke="#35b15e" stroke-width="1.5" opacity="0.7"/>
+                            <rect x="87" y="267" width="80" height="4" rx="2" fill="#35b15e"/>
+                            
+                            <!-- Bottom panel -->
+                            <rect x="85" y="280" width="230" height="25" rx="6" fill="#35b15e" opacity="0.15"/>
+                            <text x="200" y="298" font-family="Inter, sans-serif" font-size="11" fill="#35b15e" font-weight="600" text-anchor="middle">OpenLiteSpeed</text>
+                            
+                            <!-- Network cables bottom -->
+                            <path d="M 120 310 Q 100 330 90 350" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4" stroke-dasharray="3,3"/>
+                            <path d="M 200 310 Q 200 335 200 360" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4" stroke-dasharray="3,3"/>
+                            <path d="M 280 310 Q 300 330 310 350" stroke="#35b15e" stroke-width="2" fill="none" opacity="0.4" stroke-dasharray="3,3"/>
+                            
+                            <!-- Glow effect -->
+                            <circle cx="200" cy="200" r="180" fill="url(#serverGrad)"/>
                         </svg>
                     </div>
                 </div>
@@ -935,6 +969,8 @@
                         <li><i class="fas fa-check"></i> 10 GB maandelijkse bandwidth</li>
                         <li><i class="fas fa-check"></i> 2 E-mailaccounts</li>
                         <li><i class="fas fa-check"></i> DirectAdmin controlepaneel</li>
+                        <li><i class="fas fa-check"></i> Installatron (400+ apps)</li>
+                        <li><i class="fas fa-check"></i> PHP 8.4 / 8.3 / 8.2</li>
                         <li><i class="fas fa-check"></i> Gratis SSL certificaat (HTTPS)</li>
                         <li><i class="fas fa-check"></i> Imunify360 beveiliging</li>
                         <li><i class="fas fa-check"></i> Uurlijke & dagelijkse backups</li>
@@ -959,6 +995,8 @@
                         <li><i class="fas fa-check"></i> 30 GB maandelijkse bandwidth</li>
                         <li><i class="fas fa-check"></i> 5 E-mailaccounts</li>
                         <li><i class="fas fa-check"></i> DirectAdmin controlepaneel</li>
+                        <li><i class="fas fa-check"></i> Installatron (400+ apps)</li>
+                        <li><i class="fas fa-check"></i> PHP 8.4 / 8.3 / 8.2</li>
                         <li><i class="fas fa-check"></i> Gratis SSL certificaat (HTTPS)</li>
                         <li><i class="fas fa-check"></i> Imunify360 beveiliging</li>
                         <li><i class="fas fa-check"></i> Cloudflare DDoS-bescherming</li>
@@ -983,6 +1021,8 @@
                         <li><i class="fas fa-check"></i> 100 GB maandelijkse bandwidth</li>
                         <li><i class="fas fa-check"></i> Unlimited E-mailaccounts</li>
                         <li><i class="fas fa-check"></i> DirectAdmin controlepaneel</li>
+                        <li><i class="fas fa-check"></i> Installatron (400+ apps)</li>
+                        <li><i class="fas fa-check"></i> PHP 8.4 / 8.3 / 8.2</li>
                         <li><i class="fas fa-check"></i> Gratis SSL certificaat (HTTPS)</li>
                         <li><i class="fas fa-check"></i> Imunify360 beveiliging</li>
                         <li><i class="fas fa-check"></i> Cloudflare DDoS-bescherming</li>
@@ -1005,7 +1045,7 @@
                     <i class="fas fa-star"></i> ONZE TECHNOLOGIE
                 </div>
                 <h2 style="color: white;">Waarom OnlineHoster de Beste Keuze is</h2>
-                <p style="color: rgba(255, 255, 255, 0.7);">Wij bieden de meest geavanceerde hostingtechnologie met wereldklasse ondersteuning en beveiliging</p>
+                <p style="color: rgba(255, 255, 255, 0.7);">Wij bieden de meest geavanceerde hostingtechnologie met Installatron voor 400+ applicaties, flexibele PHP-versies (8.4/8.3/8.2) en wereldklasse ondersteuning</p>
             </div>
             <div class="features-grid">
                 <div class="feature-item">
@@ -1037,6 +1077,16 @@
                     <i class="fas fa-headset"></i>
                     <h3>24/7 Nederlandstalig Support</h3>
                     <p>Persoonlijke Nederlandse supportteam bereikbaar 24 uur per dag, 7 dagen per week. Snelle antwoorden op je vragen.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-cube"></i>
+                    <h3>Installatron - 400+ Apps</h3>
+                    <p>Installeer WordPress, Joomla, Drupal, WooCommerce en meer met één klik. Alles volledig geautomatiseerd en voorgeconfigureerd.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-code"></i>
+                    <h3>PHP 8.4 / 8.3 / 8.2</h3>
+                    <p>Alle moderne PHP-versies beschikbaar. Schakel eenvoudig tussen PHP 8.4, 8.3 en 8.2 per website. Perfect voor WordPress en andere frameworks.</p>
                 </div>
             </div>
         </div>
