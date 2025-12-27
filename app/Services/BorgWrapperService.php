@@ -158,7 +158,7 @@ class BorgWrapperService
             }
             
             // Check if this is a directory path (likely no file extension or ends with /)
-            if (str_ends_with($normalized, '/') || (strpos(basename($normalized), '.') === false && !str_ends_with($normalized, '/cgi-bin'))) {
+            if (str_ends_with($normalized, '/') || strpos(basename($normalized), '.') === false) {
                 // This looks like a directory, get all files recursively from the archive
                 try {
                     $listResult = $this->executeCommand('list-files', [$archive, $normalized], ['timeout' => 120]);
