@@ -26,8 +26,11 @@ class BorgWrapperService
     /**
      * Execute a borg command via HTTP API proxy
      */
-    private function executeCommand(string $command, array $args = [], int $timeout = 120): array
+    private function executeCommand(string $command, array $args = [], array $options = []): array
     {
+        $timeout = $options['timeout'] ?? 120;
+        $cwd = $options['cwd'] ?? null;
+        
         $response = Http::timeout($timeout + 5)->post($this->apiUrl, [
             'command' => $command,
             'args' => $args,
@@ -61,7 +64,7 @@ class BorgWrapperService
         // Note: This uses direct borg commands, not borg-runner.sh
         // If you need to use borg-runner.sh, adjust the command
         $args = ['list', '--json', $this->repositoryPath];
-        $result = $this->executeCommand('list', $args, 120);
+        $result = $this->executeCommand('list', $args, ['timeout' => 120]);
 
         $data = json_decode($result['stdout'], true);
         if (!isset($data['archives'])) {
@@ -86,7 +89,7 @@ class BorgWrapperService
     public function getFiles(string $archive): array
     {
         $args = ['list', $this->repositoryPath . '::' . $archive];
-        $result = $this->executeCommand('list', $args, 120);
+        $result = $this->executeCommand('list', $args, ['timeout' => 120]);
 
         $files = [];
         foreach (explode("\n", trim($result['stdout'])) as $line) {
