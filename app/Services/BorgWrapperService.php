@@ -166,8 +166,8 @@ class BorgWrapperService
             'args' => $args,
         ]);
 
-        // Use destination as working directory for extraction
-        $cwd = !empty($destination) ? $destination : '/';
+        // Extract to root, files will be placed at correct paths
+        $cwd = '/';
         
         $result = $this->executeCommand('extract-multi', $args, ['timeout' => 7200, 'cwd' => $cwd]);
 

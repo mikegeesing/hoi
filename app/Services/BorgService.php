@@ -12,8 +12,9 @@ class BorgService
     /**
      * Execute a borg command via HTTP API proxy
      */
-    private function executeCommand(string $command, array $args = [], int $timeout = 60): array
+    private function executeCommand(string $command, array $args = [], array $options = []): array
     {
+        $timeout = $options['timeout'] ?? 60;
         $response = Http::timeout($timeout + 5)->post($this->apiUrl, [
             'command' => $command,
             'args' => $args,
@@ -41,7 +42,7 @@ class BorgService
      */
     public function listArchives(): array
     {
-        $result = $this->executeCommand('list', [], 60);
+        $result = $this->executeCommand('list', [], ['timeout' => 60]);
 
         $json = json_decode($result['stdout'], true);
 
@@ -65,7 +66,7 @@ class BorgService
             $args[] = $path;
         }
 
-        $result = $this->executeCommand('list-files', $args, 120);
+        $result = $this->executeCommand('list-files', $args, ['timeout' => 120]);
 
         $raw = trim($result['stdout']);
 
