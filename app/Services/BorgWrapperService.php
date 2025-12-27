@@ -210,7 +210,14 @@ class BorgWrapperService
         // Extract to root, files will be placed at correct paths
         $cwd = '/';
         
-        $result = $this->executeCommand('extract-multi', $args, ['timeout' => 7200, 'cwd' => $cwd]);
+                // Derive username from paths (home/<user>/...)
+        $username = 'onlineh';
+        if (!empty($normalizedFiles) && preg_match('/^home\/(\w+)/', $normalizedFiles[0], $matches)) {
+            $username = $matches[1];
+        }
+
+        $userArgs = array_merge([$archive, $username], $normalizedFiles);
+        $result = $this->executeCommand('extract-for-user', $userArgs, ['timeout' => 7200, 'cwd' => $cwd]);
 
         $output = $result['stdout'] . "\n" . $result['stderr'];
 
