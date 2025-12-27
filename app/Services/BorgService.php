@@ -2,12 +2,37 @@
 
 namespace App\Services;
 
-use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class BorgService
 {
-    private string $runner = '/usr/local/bin/borg-runner.sh';
+    private string $apiUrl = 'http://127.0.0.1:9876';
+
+    /**
+     * Execute a borg command via HTTP API proxy
+     */
+    private function executeCommand(string $command, array $args = [], int $timeout = 60): array
+    {
+        $response = Http::timeout($timeout + 5)->post($this->apiUrl, [
+            'command' => $command,
+            'args' => $args,
+            'timeout' => $timeout,
+        ]);
+
+        if (!$response->successful()) {
+            throw new \RuntimeException('API proxy request failed: ' . $response->body());
+        }
+
+        $result = $response->json();
+
+        if (!$result['success']) {
+            $error = trim($result['stderr'] ?? $result['stdout'] ?? 'Unknown error');
+            throw new \RuntimeException($error ?: 'Command failed');
+        }
+
+        return $result;
+    }
 
     /**
      * ============================
@@ -16,23 +41,9 @@ class BorgService
      */
     public function listArchives(): array
     {
-        $process = new Process([
-            'sudo',
-            '-n',
-            $this->runner,
-            'list'
-        ]);
+        $result = $this->executeCommand('list', [], 60);
 
-        $process->setTimeout(60);
-        $process->run();
-
-        if (! $process->isSuccessful()) {
-            throw new \RuntimeException(
-                trim($process->getErrorOutput()) ?: 'Borg list failed'
-            );
-        }
-
-        $json = json_decode($process->getOutput(), true);
+        $json = json_decode($result['stdout'], true);
 
         if (! is_array($json) || ! isset($json['archives'])) {
             throw new \RuntimeException('Invalid Borg list JSON output');
@@ -48,35 +59,17 @@ class BorgService
      */
     public function listFiles(string $archive, string $path = ''): array
     {
-        $args = [
-            'sudo',
-            '-n',
-            $this->runner,
-            'list-files',
-            $archive,
-        ];
+        $args = [$archive];
 
         if ($path !== '') {
             $args[] = $path;
         }
 
-        $process = new Process($args);
-        $process->setTimeout(120);
-        $process->run();
+        $result = $this->executeCommand('list-files', $args, 120);
 
-        if (! $process->isSuccessful()) {
-            throw new \RuntimeException(
-                trim($process->getErrorOutput()) ?: 'Borg list-files failed'
-            );
-        }
+        $raw = trim($result['stdout']);
 
-        // Attempt to parse multiple possible output formats from the runner.
-        // Some runner variants output tab-separated values like: d\t0\thome
-        // Others (when using plain borg or different env) may emit ls-style lines
-        // like: drwx--x--x onlineho onlineho 0 Wed, 2025-12-03 14:16:44 home/onlineho
-        $raw = trim($process->getOutput());
-
-        \Illuminate\Support\Facades\Log::debug('BorgService listFiles raw output', [
+        Log::debug('BorgService listFiles raw output', [
             'archive' => $archive,
             'path' => $path,
             'raw_sample' => substr($raw, 0, 500),
@@ -114,24 +107,19 @@ class BorgService
             // Determine if this is a directory
             $isDirectory = false;
             $basename = basename(rtrim($pathToken, '/'));
-            
+
             // Priority 1: Check for file extensions first (most reliable for files)
-            // Common file extensions (not domain extensions like .nl, .com, etc.)
             $hasFileExtension = preg_match('/\.(txt|log|php|js|css|html|htm|json|xml|yml|yaml|conf|ini|sh|sql|md|pdf|zip|tar|gz|jpg|jpeg|png|gif|svg|webp|ico|woff|woff2|ttf|eot|mp3|mp4|avi|mov|doc|docx|xls|xlsx|ppt|pptx|csv|bak|old|tmp|lock|htaccess|gitignore|env|moved|htmls)$/i', $basename);
-            
+
             if ($hasFileExtension) {
                 $isDirectory = false;
             } elseif (isset($type) && $type === 'd') {
-                // Priority 2: Type explicitly set to 'd' from borg output
                 $isDirectory = true;
             } elseif (str_ends_with($pathToken, '/')) {
-                // Priority 3: Path ends with /
                 $isDirectory = true;
             } elseif (isset($type) && $type === '-') {
-                // Priority 4: Type explicitly set to '-' (file)
                 $isDirectory = false;
             } else {
-                // Default: assume it's a directory (for things like domain names without extensions)
                 $isDirectory = true;
             }
 
@@ -141,12 +129,12 @@ class BorgService
                 'name' => basename(rtrim($pathToken, '/')),
                 'path' => $pathToken,
             ];
-            
+
             $files[] = $file;
-            
+
             // Log first 5 files for debugging
             if (count($files) <= 5) {
-                \Illuminate\Support\Facades\Log::debug('BorgService parsed file', [
+                Log::debug('BorgService parsed file', [
                     'raw_line' => $line,
                     'type_detected' => $type ?? 'null',
                     'hasFileExtension' => $hasFileExtension ?? false,
@@ -165,7 +153,7 @@ class BorgService
      */
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
-        // Delegate to BorgWrapperService to avoid runner script execution issues
+        // Delegate to BorgWrapperService
         $wrapper = app(\App\Services\BorgWrapperService::class);
 
         Log::debug('BorgService delegating extract to BorgWrapperService', [
@@ -177,4 +165,3 @@ class BorgService
         return $wrapper->extractFiles($archive, $files, $destination);
     }
 }
-

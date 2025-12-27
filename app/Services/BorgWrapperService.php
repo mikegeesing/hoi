@@ -2,8 +2,8 @@
 
 namespace App\Services;
 
-use Symfony\Component\Process\Process;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Http;
 
 class BorgWrapperService
 {
@@ -11,7 +11,7 @@ class BorgWrapperService
     protected string $passphrase;
     protected string $tmpDir;
     protected string $homeDir;
-    protected string $runner = '/usr/local/bin/borg-runner.sh';
+    private string $apiUrl = 'http://127.0.0.1:9876';
 
     public function __construct(string $repositoryPath, string $passphrase)
     {
@@ -24,33 +24,33 @@ class BorgWrapperService
     }
 
     /**
-     * Basis runner voor Borg-commando’s
+     * Execute a borg command via HTTP API proxy
      */
-    protected function run(array $args): string
+    private function executeCommand(string $command, array $args = [], int $timeout = 120): array
     {
-        $command = array_merge(['sudo', '-n', '/usr/bin/borg'], $args);
-
-        $env = [
-            'BORG_PASSPHRASE' => $this->passphrase,
-            'TMPDIR'          => $this->tmpDir,
-            'HOME'            => $this->homeDir,
-        ];
-
-        Log::debug('Borg command', [
-            'cmd' => implode(' ', $command),
-            'env' => $env,
+        $response = Http::timeout($timeout + 5)->post($this->apiUrl, [
+            'command' => $command,
+            'args' => $args,
+            'env' => [
+                'BORG_PASSPHRASE' => $this->passphrase,
+                'TMPDIR' => $this->tmpDir,
+                'HOME' => $this->homeDir,
+            ],
+            'timeout' => $timeout,
         ]);
 
-        $process = new Process($command, null, $env, null, 120);
-        $process->run();
-
-        if (!$process->isSuccessful()) {
-            throw new \RuntimeException(
-                $process->getErrorOutput() ?: $process->getOutput()
-            );
+        if (!$response->successful()) {
+            throw new \RuntimeException('API proxy request failed: ' . $response->body());
         }
 
-        return $process->getOutput();
+        $result = $response->json();
+
+        if (!$result['success']) {
+            $error = trim($result['stderr'] ?? $result['stdout'] ?? 'Unknown error');
+            throw new \RuntimeException($error ?: 'Command failed');
+        }
+
+        return $result;
     }
 
     /**
@@ -58,13 +58,12 @@ class BorgWrapperService
      */
     public function getArchives(): array
     {
-        $output = $this->run([
-            'list',
-            '--json',
-            $this->repositoryPath,
-        ]);
+        // Note: This uses direct borg commands, not borg-runner.sh
+        // If you need to use borg-runner.sh, adjust the command
+        $args = ['list', '--json', $this->repositoryPath];
+        $result = $this->executeCommand('list', $args, 120);
 
-        $data = json_decode($output, true);
+        $data = json_decode($result['stdout'], true);
         if (!isset($data['archives'])) {
             return [];
         }
@@ -86,13 +85,11 @@ class BorgWrapperService
      */
     public function getFiles(string $archive): array
     {
-        $output = $this->run([
-            'list',
-            $this->repositoryPath . '::' . $archive,
-        ]);
+        $args = ['list', $this->repositoryPath . '::' . $archive];
+        $result = $this->executeCommand('list', $args, 120);
 
         $files = [];
-        foreach (explode("\n", trim($output)) as $line) {
+        foreach (explode("\n", trim($result['stdout'])) as $line) {
             if (preg_match('/^\s*[d\-]/', $line)) {
                 $parts = preg_split('/\s+/', $line, 7);
                 if (isset($parts[6])) {
@@ -142,62 +139,30 @@ class BorgWrapperService
      */
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
-        // Use borg-runner.sh for secure, validated extraction
-        $args = [
-            'sudo',
-            '-n',
-            $this->runner,
-            'extract-multi',
-            $archive,
-        ];
+        $args = ['extract-multi', $archive];
         $args = array_merge($args, $files);
 
-        $env = [
-            'BORG_PASSPHRASE' => $this->passphrase,
-            'TMPDIR' => $this->tmpDir,
-            'HOME' => $this->homeDir,
-        ];
-
-        // Use destination as cwd if provided
-        $cwd = $destination !== '' ? $destination : null;
-
-        Log::debug('BorgWrapper extract starting (via runner)', [
+        Log::debug('BorgWrapper extract starting (via API proxy)', [
             'archive' => $archive,
             'destination' => $destination,
             'files' => $files,
-            'command' => implode(' ', $args),
-            'cwd' => $cwd,
-            'runner' => $this->runner,
+            'args' => $args,
         ]);
 
-        $process = new Process($args, $cwd, $env);
-        $process->setTimeout(7200);
-        $process->run();
+        $result = $this->executeCommand('extract-multi', $args, 7200);
 
-        $output = $process->getOutput() . "\n" . $process->getErrorOutput();
+        $output = $result['stdout'] . "\n" . $result['stderr'];
 
-        if ($process->isSuccessful()) {
-            Log::info('BorgWrapper extract succeeded', [
-                'archive' => $archive,
-                'destination' => $destination,
-                'files' => $files,
-                'exit_code' => $process->getExitCode(),
-                'stdout_snippet' => substr($process->getOutput(), 0, 300),
-                'stderr_snippet' => substr($process->getErrorOutput(), 0, 300),
-            ]);
-            return $output;
-        }
-
-        Log::error('BorgWrapper extract failed', [
+        Log::info('BorgWrapper extract succeeded', [
             'archive' => $archive,
             'destination' => $destination,
             'files' => $files,
-            'exit_code' => $process->getExitCode(),
-            'stdout' => $process->getOutput(),
-            'stderr' => $process->getErrorOutput(),
+            'exit_code' => $result['exitCode'],
+            'stdout_snippet' => substr($result['stdout'], 0, 300),
+            'stderr_snippet' => substr($result['stderr'], 0, 300),
         ]);
 
-        throw new \RuntimeException(trim($output) ?: 'Borg extract failed');
+        return $output;
     }
 
     /**
