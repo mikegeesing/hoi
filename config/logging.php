@@ -54,7 +54,8 @@ return [
 
         'stack' => [
             'driver' => 'stack',
-            'channels' => explode(',', (string) env('LOG_STACK', 'single')),
+            // Default to errorlog to avoid file permission issues; can override with LOG_STACK
+            'channels' => explode(',', (string) env('LOG_STACK', 'errorlog')),
             'ignore_exceptions' => false,
         ],
 
@@ -63,8 +64,6 @@ return [
             'path' => storage_path('logs/laravel.log'),
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
-            // Allow both web/queue users to append even if the file was created by another user
-            'permission' => 0666,
         ],
 
         'daily' => [
@@ -73,7 +72,6 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'days' => env('LOG_DAILY_DAYS', 14),
             'replace_placeholders' => true,
-            'permission' => 0666,
         ],
 
         'slack' => [
@@ -128,7 +126,6 @@ return [
 
         'emergency' => [
             'path' => storage_path('logs/laravel.log'),
-            'permission' => 0666,
         ],
 
     ],
