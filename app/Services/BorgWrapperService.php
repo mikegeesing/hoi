@@ -40,6 +40,7 @@ class BorgWrapperService
                 'HOME' => $this->homeDir,
             ],
             'timeout' => $timeout,
+            'cwd' => $cwd,
         ]);
 
         if (!$response->successful()) {
