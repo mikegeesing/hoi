@@ -166,9 +166,11 @@ class BorgWrapperService
                     
                     foreach ($archiveFiles as $archiveFile) {
                         if (preg_match('/^\s*[d\-]/', $archiveFile)) {
-                            $parts = preg_split('/\s+/', $archiveFile, 7);
-                            if (isset($parts[6])) {
-                                $filePath = $parts[6];
+                            // Parse: drwxr-xr-x user group size date time path
+                            // We need to extract everything after the timestamp
+                            // Format: permissions user group size day, YYYY-MM-DD HH:MM:SS path
+                            if (preg_match('/^[d\-][rwx\-]+\s+\S+\s+\S+\s+\d+\s+\w+,\s+\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+(.+)$/', $archiveFile, $matches)) {
+                                $filePath = $matches[1];
                                 // Only add actual files, not directories
                                 if (!preg_match('/^d/', $archiveFile)) {
                                     $normalizedFiles[] = $filePath;
