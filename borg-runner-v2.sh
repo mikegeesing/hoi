@@ -57,7 +57,7 @@ case "$CMD" in
     done
     
     # Execute borg extract
-    exec /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@"
+    exec /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@" 2>/dev/null
     ;;
 
   extract-for-user)
@@ -96,7 +96,7 @@ case "$CMD" in
     done
     
     # Extract files
-    /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@"
+    /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@" 2>/dev/null
     
     # Fix permissions on the entire home/ directory structure
     if [[ -d "$CWD/home/$USERNAME" ]]; then
