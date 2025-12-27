@@ -3,6 +3,18 @@
 return [
     /*
     |--------------------------------------------------------------------------
+    | Login Rate Limit
+    |--------------------------------------------------------------------------
+    |
+    | The number of login attempts allowed per minute for the restore token
+    | login page. This is used to prevent brute-force attacks.
+    |
+    */
+
+    'login_rate_limit' => env('RESTORE_LOGIN_RATE_LIMIT', 10),
+
+    /*
+    |--------------------------------------------------------------------------
     | Available Domains
     |--------------------------------------------------------------------------
     |

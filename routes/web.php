@@ -72,6 +72,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
 Route::get('/restore', [RestoreController::class, 'index'])->name('restore.login');
 
 Route::get('/restore/archives', [RestoreController::class, 'showArchives'])
+    ->middleware(['throttle:restore_login'])
     ->name('restore.archives');
 
 Route::get('/restore/files/{archive}', [RestoreController::class, 'showFiles'])
