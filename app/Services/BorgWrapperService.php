@@ -156,7 +156,43 @@ class BorgWrapperService
                     $normalized = 'home/onlineh/' . $normalized;
                 }
             }
-            $normalizedFiles[] = $normalized;
+            
+            // Check if this is a directory path (likely no file extension or ends with /)
+            if (str_ends_with($normalized, '/') || (strpos(basename($normalized), '.') === false && !str_ends_with($normalized, '/cgi-bin'))) {
+                // This looks like a directory, get all files recursively from the archive
+                try {
+                    $listResult = $this->executeCommand('list-files', [$archive, $normalized], ['timeout' => 120]);
+                    $archiveFiles = explode("\n", trim($listResult['stdout']));
+                    
+                    foreach ($archiveFiles as $archiveFile) {
+                        if (preg_match('/^\s*[d\-]/', $archiveFile)) {
+                            $parts = preg_split('/\s+/', $archiveFile, 7);
+                            if (isset($parts[6])) {
+                                $filePath = $parts[6];
+                                // Only add actual files, not directories
+                                if (!preg_match('/^d/', $archiveFile)) {
+                                    $normalizedFiles[] = $filePath;
+                                }
+                            }
+                        }
+                    }
+                    
+                    Log::info('Expanded directory to files', [
+                        'directory' => $normalized,
+                        'file_count' => count($normalizedFiles)
+                    ]);
+                } catch (\Exception $e) {
+                    // If we can't list the directory, just add it as-is
+                    Log::warning('Could not list directory contents, adding as-is', [
+                        'path' => $normalized,
+                        'error' => $e->getMessage()
+                    ]);
+                    $normalizedFiles[] = $normalized;
+                }
+            } else {
+                // Regular file path
+                $normalizedFiles[] = $normalized;
+            }
         }
 
         $args = [$archive];
