@@ -299,6 +299,18 @@ class RestoreController extends Controller
                 'error' => $e->getMessage(),
             ]);
 
+            // Check if borg is locked (backup in progress)
+            $errorMsg = $e->getMessage();
+            if (str_contains($errorMsg, 'Failed to create/acquire the lock') || 
+                str_contains($errorMsg, 'already locked') ||
+                str_contains($errorMsg, 'LockTimeout')) {
+                return view('restore.backup-in-progress', [
+                    'archive' => $archive,
+                    'path' => $path,
+                    'token' => $rawToken,
+                ]);
+            }
+
             return view('landing', ['error' => 'Kan bestanden niet laden']);
         }
 
