@@ -98,13 +98,13 @@ case "$CMD" in
     /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@"
     
     # Fix permissions on the entire home/ directory structure
-    if [[ -d "$CWD/home" ]]; then
+    if [[ -d "$CWD/home/$USERNAME" ]]; then
         # First, fix ownership so user owns everything
-        chown -R "$USERNAME:$USERNAME" "$CWD/home" 2>/dev/null || true
+        chown -R "$USERNAME:$USERNAME" "$CWD/home/$USERNAME" 2>/dev/null || true
         # Then ensure directories are traversable (775 = rwxrwxr-x)
-        find "$CWD/home" -type d -exec chmod 775 {} \;
+        find "$CWD/home/$USERNAME" -type d -exec chmod 775 {} \;
         # Then ensure files are readable/writable (664 = rw-rw-r--)
-        find "$CWD/home" -type f -exec chmod 664 {} \;
+        find "$CWD/home/$USERNAME" -type f -exec chmod 664 {} \;
     fi
 
     # Specifically fix permissions for Laravel storage and cache
