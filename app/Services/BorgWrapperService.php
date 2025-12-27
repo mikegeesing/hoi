@@ -166,7 +166,10 @@ class BorgWrapperService
             'args' => $args,
         ]);
 
-        $result = $this->executeCommand('extract-multi', $args, 7200);
+        // Use destination as working directory for extraction
+        $cwd = !empty($destination) ? $destination : '/';
+        
+        $result = $this->executeCommand('extract-multi', $args, ['timeout' => 7200, 'cwd' => $cwd]);
 
         $output = $result['stdout'] . "\n" . $result['stderr'];
 
