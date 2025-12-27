@@ -157,40 +157,9 @@ class BorgWrapperService
                 }
             }
             
-            // Check if this is a directory path (likely no file extension or ends with /)
+            // If a directory was selected, hand it directly to borg so it restores recursively
             if (str_ends_with($normalized, '/') || strpos(basename($normalized), '.') === false) {
-                // This looks like a directory, get all files recursively from the archive
-                try {
-                    $listResult = $this->executeCommand('list-files', [$archive, $normalized], ['timeout' => 120]);
-                    $archiveFiles = explode("\n", trim($listResult['stdout']));
-                    
-                    foreach ($archiveFiles as $archiveFile) {
-                        if (preg_match('/^\s*[d\-]/', $archiveFile)) {
-                            // Parse: drwxr-xr-x user group size date time path
-                            // We need to extract everything after the timestamp
-                            // Format: permissions user group size day, YYYY-MM-DD HH:MM:SS path
-                            if (preg_match('/^[d\-][rwx\-]+\s+\S+\s+\S+\s+\d+\s+\w+,\s+\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2}\s+(.+)$/', $archiveFile, $matches)) {
-                                $filePath = $matches[1];
-                                // Only add actual files, not directories
-                                if (!preg_match('/^d/', $archiveFile)) {
-                                    $normalizedFiles[] = $filePath;
-                                }
-                            }
-                        }
-                    }
-                    
-                    Log::info('Expanded directory to files', [
-                        'directory' => $normalized,
-                        'file_count' => count($normalizedFiles)
-                    ]);
-                } catch (\Exception $e) {
-                    // If we can't list the directory, just add it as-is
-                    Log::warning('Could not list directory contents, adding as-is', [
-                        'path' => $normalized,
-                        'error' => $e->getMessage()
-                    ]);
-                    $normalizedFiles[] = $normalized;
-                }
+                $normalizedFiles[] = rtrim($normalized, '/');
             } else {
                 // Regular file path
                 $normalizedFiles[] = $normalized;
