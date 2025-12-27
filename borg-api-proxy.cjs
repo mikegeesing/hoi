@@ -54,7 +54,7 @@ const server = http.createServer((req, res) => {
             }
 
             let spawnOptions = {
-                env: { ...process.env, ...env },
+                env: { ...process.env, ...env, BASH_ENV: "" },
                 timeout: timeout * 1000
             };
             
