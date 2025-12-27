@@ -61,7 +61,7 @@ const server = http.createServer((req, res) => {
             // For borg commands that need a specific cwd, wrap in a shell
             if (cwd && command !== 'mysql') {
                 // Use bash -c to change directory before running sudo
-                fullArgs = ['-c', `cd "${cwd}" ; sudo -n /usr/local/bin/borg-runner.sh ${command} ${args.map(a => `"${a.replace(/"/g, '\\"')}"`).join(' ')}`];
+                fullArgs = ['--norc', '-c', `cd "${cwd}" ; sudo -n /usr/local/bin/borg-runner.sh ${command} ${args.map(a => `"${a.replace(/"/g, '\\"')}"`).join(' ')}`];
                 spawnCommand = 'bash';
             } else if (cwd) {
                 spawnOptions.cwd = cwd;
