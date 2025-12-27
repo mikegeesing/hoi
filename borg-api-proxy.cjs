@@ -2,7 +2,7 @@ const http = require('http');
 const { spawn } = require('child_process');
 
 const PORT = 9876;
-const ALLOWED_COMMANDS = ['list', 'list-files', 'extract-multi'];
+const ALLOWED_COMMANDS = ['list', 'list-files', 'extract-multi', 'extract-for-user', 'mysql'];
 
 const server = http.createServer((req, res) => {
     // CORS headers
@@ -30,7 +30,7 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
         try {
             const data = JSON.parse(body);
-            const { command, args = [], env = {}, timeout = 120 } = data;
+            const { command, args = [], env = {}, timeout = 120, cwd = null, input = null } = data;
 
             if (!ALLOWED_COMMANDS.includes(command)) {
                 res.writeHead(400, { 'Content-Type': 'application/json' });
@@ -40,10 +40,23 @@ const server = http.createServer((req, res) => {
 
             console.log(`[${new Date().toISOString()}] Executing: ${command} ${args.join(' ')}`);
 
-            const fullArgs = ['-n', '/usr/local/bin/borg-runner.sh', command, ...args];
-            const proc = spawn('sudo', fullArgs, {
+            let fullArgs, spawnCommand;
+
+            // Handle different command types
+            if (command === 'mysql') {
+                // Direct mysql command execution
+                spawnCommand = args[0]; // e.g., '/usr/bin/mysql'
+                fullArgs = args.slice(1); // remaining args
+            } else {
+                // Borg commands via runner script
+                spawnCommand = 'sudo';
+                fullArgs = ['-n', '/usr/local/bin/borg-runner.sh', command, ...args];
+            }
+
+            const proc = spawn(spawnCommand, fullArgs, {
                 env: { ...process.env, ...env },
-                timeout: timeout * 1000
+                timeout: timeout * 1000,
+                cwd: cwd || undefined
             });
 
             let stdout = '';
@@ -56,6 +69,12 @@ const server = http.createServer((req, res) => {
             proc.stderr.on('data', data => {
                 stderr += data.toString();
             });
+
+            // Send input if provided
+            if (input !== null && input !== undefined) {
+                proc.stdin.write(input);
+                proc.stdin.end();
+            }
 
             proc.on('close', code => {
                 console.log(`[${new Date().toISOString()}] Exit code: ${code}`);
