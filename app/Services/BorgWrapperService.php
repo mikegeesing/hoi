@@ -139,8 +139,25 @@ class BorgWrapperService
      */
     public function extractFiles(string $archive, array $files, string $destination = ''): string
     {
+        // Normalize file paths to start with 'home/'
+        $normalizedFiles = [];
+        foreach ($files as $file) {
+            // Ensure paths start with 'home/'
+            $normalized = ltrim($file, '/');
+            if (!str_starts_with($normalized, 'home/')) {
+                // Try to prepend 'home/' if it doesn't exist
+                if (str_starts_with($normalized, 'domains/') || str_starts_with($normalized, 'public_html/')) {
+                    $normalized = 'home/onlineh/' . $normalized;
+                } else {
+                    // For other paths, assume they're under /home/onlineh/
+                    $normalized = 'home/onlineh/' . $normalized;
+                }
+            }
+            $normalizedFiles[] = $normalized;
+        }
+
         $args = ['extract-multi', $archive];
-        $args = array_merge($args, $files);
+        $args = array_merge($args, $normalizedFiles);
 
         Log::debug('BorgWrapper extract starting (via API proxy)', [
             'archive' => $archive,
