@@ -156,7 +156,7 @@ class BorgWrapperService
             $normalizedFiles[] = $normalized;
         }
 
-        $args = ['extract-multi', $archive];
+        $args = [$archive];
         $args = array_merge($args, $normalizedFiles);
 
         Log::debug('BorgWrapper extract starting (via API proxy)', [
