@@ -1,4 +1,5 @@
 #!/bin/bash
+export BASH_ENV=
 set -euo pipefail
 
 export BORG_REPO="/backups"
