@@ -454,7 +454,7 @@ class MySQLService
 
             if ($socket) {
                 $baseArgs[] = '--socket=' . $socket;
-            } elseif ($host ; $host !== ''; $host !== 'localhost') {
+            } elseif ($host && $host !== '' && $host !== 'localhost') {
                 $baseArgs[] = '-h' . $host;
             }
 
