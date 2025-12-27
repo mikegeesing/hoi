@@ -101,10 +101,16 @@ case "$CMD" in
     if [[ -d "$CWD/home" ]]; then
         # First, fix ownership so user owns everything
         chown -R "$USERNAME:$USERNAME" "$CWD/home" 2>/dev/null || true
-        # Then ensure directories are traversable (755 = rwxr-xr-x)
-        find "$CWD/home" -type d -exec chmod 755 {} \;
-        # Then ensure files are readable/writable (644 = rw-r--r--)
-        find "$CWD/home" -type f -exec chmod 644 {} \;
+        # Then ensure directories are traversable (775 = rwxrwxr-x)
+        find "$CWD/home" -type d -exec chmod 775 {} \;
+        # Then ensure files are readable/writable (664 = rw-rw-r--)
+        find "$CWD/home" -type f -exec chmod 664 {} \;
+    fi
+
+    # Specifically fix permissions for Laravel storage and cache
+    if [[ -d "$CWD/storage" ]] && [[ -d "$CWD/bootstrap/cache" ]]; then
+        chmod -R 775 "$CWD/storage"
+        chmod -R 775 "$CWD/bootstrap/cache"
     fi
     ;;
 
