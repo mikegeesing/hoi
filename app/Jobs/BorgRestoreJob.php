@@ -65,7 +65,7 @@ class BorgRestoreJob implements ShouldQueue
                 'output_length' => strlen($output),
             ]);
 
-            // 3. Check wat er daadwerkelijk werd hersteld
+            // 5. Check wat er daadwerkelijk werd hersteld
             $restoredFiles = [];
             foreach ($this->restoreJob->files_to_restore as $filePath) {
                 // Files are restored to their absolute paths
@@ -104,7 +104,7 @@ class BorgRestoreJob implements ShouldQueue
                 $logOutput .= "\nBorg output:\n" . $output;
             }
 
-            // 4. Succes! Markeer de taak en log de output.
+            // 6. Update log output.
             $this->restoreJob->restore_path = 'Bestanden hersteld naar originele locatie';
             $this->restoreJob->status = 'success';
             $this->restoreJob->log_output = $logOutput;

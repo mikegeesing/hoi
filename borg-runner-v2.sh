@@ -1,4 +1,5 @@
 #!/bin/bash
+export BASH_ENV=
 set -euo pipefail
 export BASH_ENV=
 
@@ -57,7 +58,7 @@ case "$CMD" in
     done
     
     # Execute borg extract
-    exec /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@"
+    exec /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@" 2>/dev/null
     ;;
 
   extract-for-user)
@@ -96,16 +97,16 @@ case "$CMD" in
     done
     
     # Extract files
-    /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@"
+    /usr/bin/borg extract "$BORG_REPO::$ARCHIVE" -- "$@" 2>/dev/null
     
     # Fix permissions on the entire home/ directory structure
-    if [[ -d "$CWD/home" ]]; then
+    if [[ -d "$CWD/home/$USERNAME" ]]; then
         # First, fix ownership so user owns everything
-        chown -R "$USERNAME:$USERNAME" "$CWD/home" 2>/dev/null || true
+        chown -R "$USERNAME:$USERNAME" "$CWD/home/$USERNAME" 2>/dev/null || true
         # Then ensure directories are traversable (775 = rwxrwxr-x)
-        find "$CWD/home" -type d -exec chmod 775 {} \;
+        find "$CWD/home/$USERNAME" -type d -exec chmod 775 {} \;
         # Then ensure files are readable/writable (664 = rw-rw-r--)
-        find "$CWD/home" -type f -exec chmod 664 {} \;
+        find "$CWD/home/$USERNAME" -type f -exec chmod 664 {} \;
     fi
 
     # Specifically fix permissions for Laravel storage and cache

@@ -220,3 +220,25 @@
 </script>
 </body>
 </html>
+<script>
+setInterval(function() {
+    fetch(window.location.href, {
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        var statusEl = document.getElementById('status');
+        statusEl.textContent = data.status.charAt(0).toUpperCase() + data.status.slice(1);
+        statusEl.className = statusEl.className.replace(/bg-\w+-\d+/, 
+            data.status === 'success' ? 'bg-green-100' :
+            data.status === 'failed' ? 'bg-red-100' :
+            data.status === 'running' ? 'bg-blue-100' : 'bg-gray-100'
+        );
+        statusEl.className = statusEl.className.replace(/text-\w+-\d+/, 
+            data.status === 'success' ? 'text-green-800' :
+            data.status === 'failed' ? 'text-red-800' :
+            data.status === 'running' ? 'text-blue-800' : 'text-gray-800'
+        );
+    });
+}, 3000);
+</script>
