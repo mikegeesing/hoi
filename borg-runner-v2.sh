@@ -1,5 +1,6 @@
 #!/bin/bash
 set -euo pipefail
+export BASH_ENV=
 
 export BORG_REPO="/backups"
 export BORG_PASSPHRASE="H@@ksbergen023!"
