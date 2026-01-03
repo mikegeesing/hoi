@@ -443,10 +443,11 @@
 
         .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 380px));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             align-items: stretch;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .pricing-card {
@@ -550,9 +551,10 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            justify-content: center;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .feature-item {
