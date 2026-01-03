@@ -443,12 +443,9 @@
 
         .pricing-cards {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             align-items: stretch;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .pricing-card {
@@ -552,11 +549,8 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
         .feature-item {
